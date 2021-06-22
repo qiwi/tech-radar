@@ -40,6 +40,7 @@ jobs:
           # need to add any root level file to prevent common dirname part trimming
           path: |
             node_modules
+            docs
 
   test:
     needs: build
@@ -80,4 +81,12 @@ jobs:
           name: artifact-${{ github.run_id }}
 
       - name: Release
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_USER: 'qiwibot'
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GIT_AUTHOR_EMAIL: 'opensource@qiwi.com'
+          GIT_COMMITTER_EMAIL: 'opensource@qiwi.com'
+          GIT_AUTHOR_NAME: '@qiwibot'
+          GIT_COMMITTER_NAME: '@qiwibot'
         run: npm run release
