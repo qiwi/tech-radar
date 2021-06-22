@@ -1,0 +1,5 @@
+name,quadrant,ring,description
+TypeScript,languages-and-frameworks,Adopt,Статически типизированный ЖС
+Nodejs,Platforms,Adopt,
+codeclimate,Tools,Trial,Статический анализатор кода
+Гексагональная архитектура,Techniques,Assess,Унификации контракта интерфейсов различных слоев приложений
