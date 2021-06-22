@@ -1,6 +1,6 @@
 // import fs from 'fs'
-import path from 'path'
 // import parse from 'csv-parse/lib/sync'
+import path from 'path'
 import fsExtra from 'fs-extra'
 
 const tplPath = 'src/main/tpl'

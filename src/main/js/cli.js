@@ -6,7 +6,7 @@ import {generateTechRadar} from './index.js'
 const cli = meow(
   `
     Usage:
-      repocrawler --github.auth=1234567890123456789012345678901234567890 --github.baseUrl=https://github.qiwi.com/api/v3 --gerrit.auth.username=j.sins --gerrit.auth.password=password --gerrit.baseUrl=https://gerrit.osmp.ru --out=temp --org=jslab
+      techradar  --csv-path /path/to/csv --out-dir /radar --versions 1.00 pathPrefix js
     Options
       --csvPath
       --outDir

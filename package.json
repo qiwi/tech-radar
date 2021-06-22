@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/tech-radar",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "",
   "type": "module",
   "scripts": {
@@ -11,8 +11,11 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "release": "npx -p @qiwi/semrel-toolkit semrel -e @qiwi/semrel-config"
   },
+  "exports": {
+    "import": "./src/main/js/index.js"
+  },
   "bin": {
-    "techradar": "src/main/js/cli.js"
+    "techradar": "./src/main/js/cli.js"
   },
   "devDependencies": {
     "@qiwi/npm-run-all": "^4.1.7",
