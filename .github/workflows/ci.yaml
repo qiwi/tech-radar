@@ -1,0 +1,88 @@
+# This is a Github Workflow that runs tests on any push or pull request.
+name: CI
+on: [push, pull_request]
+jobs:
+  # Handle [skip ci] / [ci skip] directives in commit messages
+  skipci:
+    name: skipci
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.ci-skip-step.outputs.ci-skip }}
+      skip-not: ${{ steps.ci-skip-step.outputs.ci-skip-not }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - id: ci-skip-step
+        uses: mstachniuk/ci-skip@v1
+
+  build:
+    name: build
+    needs: skipci
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install deps
+        run: yarn
+
+      - name: Build
+        run: yarn build
+        env:
+          PATHPREFIX: '/tech-radar/'
+
+      - name: Save artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact-${{ github.run_id }}
+          retention-days: 1
+          # need to add any root level file to prevent common dirname part trimming
+          path: |
+            node_modules
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Restore artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact-${{ github.run_id }}
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install deps
+        run: yarn
+
+      - name: Test
+        run: yarn test
+
+  release:
+    name: Release
+    # https://github.community/t/trigger-job-on-tag-push-only/18076
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkuout
+        uses: actions/checkout@v2
+
+      - name: Restore artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact-${{ github.run_id }}
+
+      - name: Release
+        run: npm run release

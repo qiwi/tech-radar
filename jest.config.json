@@ -1,0 +1,27 @@
+{
+  "testEnvironment": "node",
+  "transform": {
+    "\\.m?jsx?$": "jest-esm-transformer"
+  },
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "<rootDir>/src/main/**/*.(j|t)s"
+  ],
+  "coveragePathIgnorePatterns": [],
+  "testMatch": [
+    "<rootDir>/src/test/js/**/*.js",
+    "<rootDir>/src/test/ts/**/*.ts"
+  ],
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "<rootDir>/src/test/stub"
+  ],
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js",
+    "jsx",
+    "json",
+    "node"
+  ]
+}
