@@ -16,7 +16,7 @@
     "import": "./src/main/js/index.js"
   },
   "bin": {
-    "techradar": "src/main/js/cli.mjs"
+    "techradar": "./src/main/js/cli.mjs"
   },
   "devDependencies": {
     "@qiwi/npm-run-all": "^4.1.7",
