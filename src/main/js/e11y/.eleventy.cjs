@@ -1,10 +1,15 @@
+// import htmlmin from "html-minifier";
+// import * as terser from "terser"
 const htmlmin = require('html-minifier')
 const terser = require('terser')
 
 module.exports = (config) => {
   const pathPrefix = process.env.PATHPREFIX
+  console.log(pathPrefix)
 
-  config.addPassthroughCopy({ 'src/main/js/assets': '/' })
+  config.addPassthroughCopy({
+    'temp/assets': '/',
+  })
 
   config.addShortcode('makeBootScript', (title, settings, collections) => {
     const entries = collections
@@ -55,7 +60,7 @@ module.exports = (config) => {
 
   return {
     dir: {
-      input: 'src/main/js',
+      input: 'temp',
       output: 'dist',
       layouts: '_layouts',
     },
