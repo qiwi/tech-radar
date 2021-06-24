@@ -6,7 +6,7 @@ import {generateTechRadar} from './index.js'
 export const cli = meow(
   `
     Usage:
-      techradar  --csv-path /path/to/csv --out-dir /radar --versions 1.00 pathPrefix js
+      techradar  --csvPath /path/to/csv --outDir /radar --versions 1.00 pathPrefix js
     Options
       --csvPath
       --outDir
