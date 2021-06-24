@@ -12,3 +12,24 @@ Array [
   "/radar.js",
 ]
 `;
+
+exports[`generate md assets files write check 1`] = `
+Object {
+  "CodMdData": "---
+ring: trial
+---
+Статический анализатор кода",
+  "HexMdData": "---
+ring: assess
+---
+Унификации контракта интерфейсов различных слоев приложений",
+  "nodeMdData": "---
+ring: adopt
+---
+",
+  "tsMdData": "---
+ring: adopt
+---
+Статически типизированный ЖС",
+}
+`;

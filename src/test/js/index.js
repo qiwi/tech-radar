@@ -2,7 +2,11 @@ import fs from 'fs'
 import fsExtra from 'fs-extra'
 import path from 'path'
 
-import { generateMdAssets } from '../../main/js/generateMdAssets.js'
+import {
+  generateMd,
+  generateMdAssets,
+  generatePath,
+} from '../../main/js/generateMdAssets.js'
 import { generateStatics } from '../../main/js/index.js'
 
 describe('generate md assets', () => {
@@ -11,60 +15,52 @@ describe('generate md assets', () => {
     const outDir = path.join(__dirname, 'temp')
     generateMdAssets({ csvPath, tempDir: outDir })
 
-    const nameTsMd = 'TypeScript.md'
-    const dirLanguagesAndFrameworks = 'languages-and-frameworks'
     const tsMdData = fs.readFileSync(
-      path.join(outDir, 'entries', dirLanguagesAndFrameworks, nameTsMd),
+      path.join(outDir, 'entries', 'languages-and-frameworks', 'TypeScript.md'),
       'utf8',
     )
-    const contentTs = `---
-ring: adopt
----
-Статически типизированный ЖС`
-
-    expect(tsMdData).toBe(contentTs)
-
-    const nameNodeMd = 'Nodejs.md'
-    const dirPlatforms = 'platforms'
     const nodeMdData = fs.readFileSync(
-      path.join(outDir, 'entries', dirPlatforms, nameNodeMd),
+      path.join(outDir, 'entries', 'platforms', 'Nodejs.md'),
       'utf8',
     )
-    const contentNode = `---
-ring: adopt
----
-`
-
-    expect(nodeMdData).toBe(contentNode)
-
-    const nameHexMd = 'Гексагональная архитектура.md'
-    const dirTechniques = 'techniques'
     const HexMdData = fs.readFileSync(
-      path.join(outDir, 'entries', dirTechniques, nameHexMd),
+      path.join(
+        outDir,
+        'entries',
+        'techniques',
+        'Гексагональная архитектура.md',
+      ),
       'utf8',
     )
-    const contentHex = `---
-ring: assess
----
-Унификации контракта интерфейсов различных слоев приложений`
-
-    expect(HexMdData).toBe(contentHex)
-
-    const nameCodMd = 'Codeclimate.md'
-    const dirTools = 'tools'
     const CodMdData = fs.readFileSync(
-      path.join(outDir, 'entries', dirTools, nameCodMd),
+      path.join(outDir, 'entries', 'tools', 'Codeclimate.md'),
       'utf8',
     )
-    const contentCod = `---
-ring: trial
----
-Статический анализатор кода`
 
-    expect(CodMdData).toBe(contentCod)
+    expect({ tsMdData, nodeMdData, HexMdData, CodMdData }).toMatchSnapshot()
   })
-  afterAll(()=>{
+  afterAll(() => {
     fsExtra.removeSync(path.join(__dirname, 'temp'))
+  })
+
+  it('generateMd ', () => {
+    const contentMd = `---
+ring: hold
+---
+Мидвары поверх http-server`
+    expect(
+      generateMd({ ring: 'Hold', description: 'Мидвары поверх http-server' }),
+    ).toBe(contentMd)
+  })
+
+  it('generatePath ', () => {
+    expect(
+      generatePath({
+        name: 'Redux',
+        quadrant: 'languages-and-frameworks',
+        tempDirResolved: 'test',
+      }),
+    ).toBe('test/entries/languages-and-frameworks/Redux.md')
   })
 })
 
@@ -90,11 +86,11 @@ describe('generate e11y app', () => {
       return result
     }
     const fileStruct = getFileStruct(path.resolve('dist'))
-    const normalizedFileStruct = fileStruct.map(el => /dist(.+)/.exec(el)[1])
+    const normalizedFileStruct = fileStruct.map((el) => /dist(.+)/.exec(el)[1])
     expect(normalizedFileStruct).toMatchSnapshot()
   })
-  afterAll(()=>{
-    fsExtra.removeSync(path.resolve( 'dist'))
-    fsExtra.removeSync(path.resolve( 'temp'))
+  afterAll(() => {
+    fsExtra.removeSync(path.resolve('dist'))
+    fsExtra.removeSync(path.resolve('temp'))
   })
 })

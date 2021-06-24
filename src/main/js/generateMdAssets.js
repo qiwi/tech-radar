@@ -5,7 +5,7 @@ import path from 'path'
 
 const tplPath = path.resolve('src/main/tpl')
 
-function generatePath({ name, quadrant, tempDirResolved }) {
+export function generatePath({ name, quadrant, tempDirResolved }) {
   const entryMdName = name + '.md'
   return path.join(
     tempDirResolved,
@@ -15,7 +15,7 @@ function generatePath({ name, quadrant, tempDirResolved }) {
   )
 }
 
-function generateMd({ ring, description }) {
+export function generateMd({ ring, description }) {
   return `---
 ring: ${ring.toLowerCase()}
 ---
