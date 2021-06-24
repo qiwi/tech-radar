@@ -5,7 +5,6 @@ const terser = require('terser')
 
 module.exports = (config) => {
   const pathPrefix = process.env.PATHPREFIX
-  console.log(pathPrefix)
 
   config.addPassthroughCopy({
     'temp/assets': '/',
@@ -54,7 +53,6 @@ module.exports = (config) => {
 
       return result
     }
-
     return content
   })
 

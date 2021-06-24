@@ -19,6 +19,7 @@ export const generateMdAssets = ({ csvPath, outDir }) => {
         outDirResolved,
         '/entries',
         element.quadrant.toLowerCase(),
+          entryMdName
       )
 
       const content = `---
@@ -26,7 +27,7 @@ ring: ${element.ring.toLowerCase()}
 ---
 ${element.description}`
 
-      fs.writeFileSync(entryFilePath + entryMdName, content)
+      fs.writeFileSync(entryFilePath, content)
     } catch (err) {
       console.log('Element - ', element)
       console.log('Error - ', err)

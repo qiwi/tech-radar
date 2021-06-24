@@ -1,4 +1,5 @@
 import { generateMdAssets } from '../../main/js/generateMdAssets.js'
+import {generateStatics} from '../../main/js/index.js'
 import path from 'path'
 import fs from 'fs'
 
@@ -60,4 +61,26 @@ ring: trial
 
     expect(CodMdData).toBe(contentCod)
   })
+})
+
+describe('generate e11y app', () => {
+    it('', () => {
+        generateStatics('src/test/js/temp')
+
+        const getFileStruct = (dir, result = []) => {
+            fs.readdirSync(dir).forEach((elem) => {
+                const elemPath = dir + '/' + elem;
+                const stat = fs.statSync(elemPath);
+                if (stat.isDirectory()) {
+                    result = [...fileStruct(elemPath, result)];
+                } else {
+                    result.push(elemPath);
+                }
+            })
+            return result
+        }
+        const fileStruct = getFileStruct('dist')
+        expect('1').toBe('1')
+        // expect(fileStruct).toMatchSnapshot()
+    })
 })
