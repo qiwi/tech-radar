@@ -20,11 +20,3 @@ npx @qiwi/tech-radar --csvPath /path/to/csv --outDir /radar --versions 1.00 --pa
 | versions |
 | pathPrefix |
 
-## 🧑🏼‍💻 Development
-| | Command |
-|---|---
-| Install | `yarn install`
-| Edit | Specifically have a look at `.eleventy.js` to see if you want to configure
-| Build | `yarn build` or just `eleventy`
-| Preview | `eleventy --serve`
-| Debug | `DEBUG=* eleventy`

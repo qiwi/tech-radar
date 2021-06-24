@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generate e11y app  1`] = `
+Array [
+  "/Users/d.sergienko/IdeaProjects/tech-radar/dist/entries/languages-and-frameworks/TypeScript/index.html",
+  "/Users/d.sergienko/IdeaProjects/tech-radar/dist/entries/platforms/Nodejs/index.html",
+  "/Users/d.sergienko/IdeaProjects/tech-radar/dist/entries/techniques/Гексагональная архитектура/index.html",
+  "/Users/d.sergienko/IdeaProjects/tech-radar/dist/entries/tools/codeclimate/index.html",
+  "/Users/d.sergienko/IdeaProjects/tech-radar/dist/favicon.ico",
+  "/Users/d.sergienko/IdeaProjects/tech-radar/dist/index.html",
+  "/Users/d.sergienko/IdeaProjects/tech-radar/dist/radar.css",
+  "/Users/d.sergienko/IdeaProjects/tech-radar/dist/radar.js",
+]
+`;

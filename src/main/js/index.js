@@ -1,15 +1,19 @@
-import { generateMdAssets } from './generateMdAssets.js'
 import Eleventy from '@11ty/eleventy'
 
-export const generateTechRadar = async ({ csvPath, outDir }) => {
-  generateMdAssets({ csvPath, outDir })
-  generateStatics(outDir)
+import { generateMdAssets } from './generateMdAssets.js'
+
+export const generateTechRadar =async ({ csvPath, outDir }) => {
+  global.outDir = outDir
+  const tempDir = 'temp'
+  global.tempDir = tempDir
+  generateMdAssets({ csvPath, tempDir })
+  await generateStatics(tempDir, outDir)
 }
 
-export const generateStatics = (outDir) => {
-  const elev = new Eleventy(outDir, 'dist')
+export const generateStatics = async (tempDir,outDir) => {
+  const elev = new Eleventy(tempDir, outDir)
   elev.setConfigPathOverride('src/main/js/e11y/.eleventy.cjs')
-  elev.init().then(()=>{
-    elev.write()
-  })
+   await elev.init()
+   await elev.write()
+
 }

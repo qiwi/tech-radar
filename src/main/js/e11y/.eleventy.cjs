@@ -5,9 +5,10 @@ const terser = require('terser')
 
 module.exports = (config) => {
   const pathPrefix = process.env.PATHPREFIX
-
+  const tempDir = global.tempDir
+  const assetsPath = tempDir + '/assets'
   config.addPassthroughCopy({
-    'temp/assets': '/',
+    [assetsPath]: '/',
   })
 
   config.addShortcode('makeBootScript', (title, settings, collections) => {
@@ -58,8 +59,8 @@ module.exports = (config) => {
 
   return {
     dir: {
-      input: 'temp',
-      output: 'dist',
+      input: tempDir,
+      output: global.outDir,
       layouts: '_layouts',
     },
     pathPrefix,

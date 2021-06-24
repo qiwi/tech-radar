@@ -1,13 +1,14 @@
+import fs from 'fs'
+import path from 'path'
+
 import { generateMdAssets } from '../../main/js/generateMdAssets.js'
 import {generateStatics} from '../../main/js/index.js'
-import path from 'path'
-import fs from 'fs'
 
 describe('generate md assets', () => {
   it('files write check', () => {
     const csvPath = path.join(__dirname, '../stub/test.csv')
     const outDir = path.join(__dirname, 'temp')
-    generateMdAssets({ csvPath, outDir })
+    generateMdAssets({ csvPath, tempDir: outDir })
 
     const nameTsMd = 'TypeScript.md'
     const dirLanguagesAndFrameworks = 'languages-and-frameworks'
@@ -64,23 +65,27 @@ ring: trial
 })
 
 describe('generate e11y app', () => {
-    it('', () => {
-        generateStatics('src/test/js/temp')
+    it('', async () => {
+        const csvPath = path.join(__dirname, '../stub/test.csv')
+        const outDir = path.resolve( 'temp')
+        generateMdAssets({ csvPath, tempDir: outDir })
+        global.tempDir = 'temp'
+        global.outDir = 'dist'
+        await generateStatics(global.tempDir, global.outDir)
 
         const getFileStruct = (dir, result = []) => {
             fs.readdirSync(dir).forEach((elem) => {
                 const elemPath = dir + '/' + elem;
                 const stat = fs.statSync(elemPath);
                 if (stat.isDirectory()) {
-                    result = [...fileStruct(elemPath, result)];
+                    result = [...getFileStruct(elemPath, result)];
                 } else {
                     result.push(elemPath);
                 }
             })
             return result
         }
-        const fileStruct = getFileStruct('dist')
-        expect('1').toBe('1')
-        // expect(fileStruct).toMatchSnapshot()
+        const fileStruct = getFileStruct(path.resolve('dist'))
+        expect(fileStruct).toMatchSnapshot()
     })
 })
