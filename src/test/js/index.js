@@ -23,7 +23,7 @@ describe('generate md assets', () => {
       path.join(outDir, 'entries', 'platforms', 'Nodejs.md'),
       'utf8',
     )
-    const HexMdData = fs.readFileSync(
+    const hexMdData = fs.readFileSync(
       path.join(
         outDir,
         'entries',
@@ -32,12 +32,12 @@ describe('generate md assets', () => {
       ),
       'utf8',
     )
-    const CodMdData = fs.readFileSync(
-      path.join(outDir, 'entries', 'tools', 'Codeclimate.md'),
+    const codMdData = fs.readFileSync(
+      path.join(outDir, 'entries', 'tools', 'codeclimate.md'),
       'utf8',
     )
 
-    expect({ tsMdData, nodeMdData, HexMdData, CodMdData }).toMatchSnapshot()
+    expect({ tsMdData, nodeMdData, hexMdData, codMdData }).toMatchSnapshot()
   })
   afterAll(() => {
     fsExtra.removeSync(path.join(__dirname, 'temp'))

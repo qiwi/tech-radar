@@ -15,11 +15,11 @@ Array [
 
 exports[`generate md assets files write check 1`] = `
 Object {
-  "CodMdData": "---
+  "codMdData": "---
 ring: trial
 ---
 Статический анализатор кода",
-  "HexMdData": "---
+  "hexMdData": "---
 ring: assess
 ---
 Унификации контракта интерфейсов различных слоев приложений",
