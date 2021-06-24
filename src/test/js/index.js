@@ -1,8 +1,9 @@
 import fs from 'fs'
+import fsExtra from 'fs-extra'
 import path from 'path'
 
 import { generateMdAssets } from '../../main/js/generateMdAssets.js'
-import {generateStatics} from '../../main/js/index.js'
+import { generateStatics } from '../../main/js/index.js'
 
 describe('generate md assets', () => {
   it('files write check', () => {
@@ -62,30 +63,38 @@ ring: trial
 
     expect(CodMdData).toBe(contentCod)
   })
+  afterAll(()=>{
+    fsExtra.removeSync(path.join(__dirname, 'temp'))
+  })
 })
 
 describe('generate e11y app', () => {
-    it('', async () => {
-        const csvPath = path.join(__dirname, '../stub/test.csv')
-        const outDir = path.resolve( 'temp')
-        generateMdAssets({ csvPath, tempDir: outDir })
-        global.tempDir = 'temp'
-        global.outDir = 'dist'
-        await generateStatics(global.tempDir, global.outDir)
+  it('', async () => {
+    const csvPath = path.join(__dirname, '../stub/test.csv')
+    const outDir = path.resolve('temp')
+    generateMdAssets({ csvPath, tempDir: outDir })
+    global.tempDir = 'temp'
+    global.outDir = 'dist'
+    await generateStatics(global.tempDir, global.outDir)
 
-        const getFileStruct = (dir, result = []) => {
-            fs.readdirSync(dir).forEach((elem) => {
-                const elemPath = dir + '/' + elem;
-                const stat = fs.statSync(elemPath);
-                if (stat.isDirectory()) {
-                    result = [...getFileStruct(elemPath, result)];
-                } else {
-                    result.push(elemPath);
-                }
-            })
-            return result
+    const getFileStruct = (dir, result = []) => {
+      fs.readdirSync(dir).forEach((elem) => {
+        const elemPath = dir + '/' + elem
+        const stat = fs.statSync(elemPath)
+        if (stat.isDirectory()) {
+          result = [...getFileStruct(elemPath, result)]
+        } else {
+          result.push(elemPath)
         }
-        const fileStruct = getFileStruct(path.resolve('dist'))
-        expect(fileStruct).toMatchSnapshot()
-    })
+      })
+      return result
+    }
+    const fileStruct = getFileStruct(path.resolve('dist'))
+    const normalizedFileStruct = fileStruct.map(el => /dist(.+)/.exec(el)[1])
+    expect(normalizedFileStruct).toMatchSnapshot()
+  })
+  afterAll(()=>{
+    fsExtra.removeSync(path.resolve( 'dist'))
+    fsExtra.removeSync(path.resolve( 'temp'))
+  })
 })
