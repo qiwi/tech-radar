@@ -4,13 +4,23 @@ import fsExtra from 'fs-extra'
 import path from 'path'
 
 const tplPath = path.resolve('src/main/tpl')
+const alias = {
+  'languages-and-frameworks': 'languages-and-frameworks',
+  lf: 'languages-and-frameworks',
+  Platforms: 'Platforms',
+  platforms: 'Platforms',
+  Tools: 'Tools',
+  tools: 'Tools',
+  Techniques: 'Techniques',
+  techniques: 'Techniques',
+}
 
 export function generatePath({ name, quadrant, tempDirResolved }) {
   const entryMdName = name + '.md'
   return path.join(
     tempDirResolved,
     '/entries',
-    quadrant.toLowerCase(),
+    alias[quadrant].toLowerCase(),
     entryMdName,
   )
 }

@@ -1,6 +1,6 @@
 import Eleventy from '@11ty/eleventy'
-import fsExtra from "fs-extra";
-import path from "path";
+import fsExtra from 'fs-extra'
+import path from 'path'
 
 import { generateMdAssets } from './generateMdAssets.js'
 
