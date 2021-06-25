@@ -1,8 +1,8 @@
 import Eleventy from '@11ty/eleventy'
-
-import { generateMdAssets } from './generateMdAssets.js'
 import fsExtra from "fs-extra";
 import path from "path";
+
+import { generateMdAssets } from './generateMdAssets.js'
 
 export const generateTechRadar = async ({ csvPath, outDir }) => {
   global.outDir = outDir
