@@ -1,0 +1,7 @@
+{
+    "extends": [
+        "eslint-config-qiwi",
+        "prettier"
+    ],
+    "ignorePatterns": ["src/main/tpl/**/*.js"]
+}

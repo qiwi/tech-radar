@@ -1,13 +1,21 @@
-// import fs from 'fs'
-// import parse from 'csv-parse/lib/sync'
-import path from 'path'
-import fsExtra from 'fs-extra'
+import Eleventy from '@11ty/eleventy'
+import fsExtra from "fs-extra";
+import path from "path";
 
-const tplPath = 'src/main/tpl'
+import { generateMdAssets } from './generateMdAssets.js'
 
-export const generateTechRadar = ({csvPath, outDir}) => {
-  // const csvPathResolved = path.resolve(csvPath)
-  const outDirResolved = path.resolve(outDir)
-  fsExtra.copySync(tplPath, outDirResolved)
+export const generateTechRadar = async ({ csvPath, outDir }) => {
+  global.outDir = outDir
+  const tempDir = 'temp'
+  global.tempDir = tempDir
+  generateMdAssets({ csvPath, tempDir })
+  await generateStatics(tempDir, outDir)
+}
 
+export const generateStatics = async (tempDir, outDir) => {
+  const elev = new Eleventy(tempDir, outDir)
+  elev.setConfigPathOverride('src/main/js/e11y/.eleventy.cjs')
+  await elev.init()
+  await elev.write()
+  fsExtra.removeSync(path.resolve(tempDir))
 }

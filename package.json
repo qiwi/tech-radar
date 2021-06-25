@@ -1,21 +1,22 @@
 {
   "name": "@qiwi/tech-radar",
   "version": "0.0.0",
-  "main": "",
+  "main": "./src/main/js/index.js",
   "type": "module",
   "scripts": {
     "test": "npm-run-all -p -l lint test:unit",
     "test:unit": "yarn jest",
     "lint": "eslint src/{main,test}/**/*.js",
     "lint:fix": "yarn lint --fix",
-    "format": "prettier --write \"src/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.js\"",
     "release": "npx -p @qiwi/semrel-toolkit semrel -e @qiwi/semrel-config"
   },
+  "prettier": "prettier-config-qiwi",
   "exports": {
     "import": "./src/main/js/index.js"
   },
   "bin": {
-    "techradar": "./src/main/js/cli.js"
+    "techradar": "./src/main/js/cli.mjs"
   },
   "devDependencies": {
     "@qiwi/npm-run-all": "^4.1.7",

@@ -32,15 +32,15 @@ jobs:
       - name: Install deps
         run: yarn
 
-      - name: Save artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: artifact-${{ github.run_id }}
-          retention-days: 1
-          # need to add any root level file to prevent common dirname part trimming
-          path: |
-            node_modules
-            docs
+#      - name: Save artifact
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: artifact-${{ github.run_id }}
+#          retention-days: 1
+#          # need to add any root level file to prevent common dirname part trimming
+#          path: |
+#            node_modules
+#            docs
 
   test:
     needs: build
@@ -49,10 +49,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Restore artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: artifact-${{ github.run_id }}
+#      - name: Restore artifact
+#        uses: actions/download-artifact@v2
+#        with:
+#          name: artifact-${{ github.run_id }}
 
       - name: Setup NodeJS
         uses: actions/setup-node@v2

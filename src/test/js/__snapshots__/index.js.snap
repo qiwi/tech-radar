@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generate e11y app  1`] = `
+Array [
+  "/entries/languages-and-frameworks/TypeScript/index.html",
+  "/entries/platforms/Nodejs/index.html",
+  "/entries/techniques/Гексагональная архитектура/index.html",
+  "/entries/tools/codeclimate/index.html",
+  "/favicon.ico",
+  "/index.html",
+  "/radar.css",
+  "/radar.js",
+]
+`;
+
+exports[`generate md assets files write check 1`] = `
+Object {
+  "codMdData": "---
+ring: trial
+---
+Статический анализатор кода",
+  "hexMdData": "---
+ring: assess
+---
+Унификации контракта интерфейсов различных слоев приложений",
+  "nodeMdData": "---
+ring: adopt
+---
+",
+  "tsMdData": "---
+ring: adopt
+---
+Статически типизированный ЖС",
+}
+`;
