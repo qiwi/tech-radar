@@ -1,6 +1,8 @@
 import Eleventy from '@11ty/eleventy'
 
 import { generateMdAssets } from './generateMdAssets.js'
+import fsExtra from "fs-extra";
+import path from "path";
 
 export const generateTechRadar = async ({ csvPath, outDir }) => {
   global.outDir = outDir
@@ -15,4 +17,5 @@ export const generateStatics = async (tempDir, outDir) => {
   elev.setConfigPathOverride('src/main/js/e11y/.eleventy.cjs')
   await elev.init()
   await elev.write()
+  fsExtra.removeSync(path.resolve(tempDir))
 }
