@@ -17,7 +17,7 @@ export function generatePath({ name, quadrant, tempDirResolved }) {
   return path.join(
     tempDirResolved,
     '/entries',
-    alias[quadrant.toLowerCase(),
+    alias[quadrant.toLowerCase()],
     entryMdName,
   )
 }
