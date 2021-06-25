@@ -17,18 +17,22 @@ exports[`generate md assets files write check 1`] = `
 Object {
   "codMdData": "---
 ring: trial
+moved: 0
 ---
 Статический анализатор кода",
   "hexMdData": "---
 ring: assess
+moved: -1
 ---
 Унификации контракта интерфейсов различных слоев приложений",
   "nodeMdData": "---
 ring: adopt
+moved: 0
 ---
 ",
   "tsMdData": "---
 ring: adopt
+moved: 1
 ---
 Статически типизированный ЖС",
 }

@@ -15,9 +15,10 @@ export function generatePath({ name, quadrant, tempDirResolved }) {
   )
 }
 
-export function generateMd({ ring, description }) {
+export function generateMd({ ring, description, moved }) {
   return `---
 ring: ${ring.toLowerCase()}
+moved: ${moved || '0'}
 ---
 ${description}`
 }
@@ -29,9 +30,9 @@ export const generateMdAssets = ({ csvPath, tempDir }) => {
   const radarData = fs.readFileSync(csvPathResolved)
   const records = parse(radarData, { columns: true })
 
-  records.forEach(({ name, quadrant, ring, description }) => {
+  records.forEach(({ name, quadrant, ring, description, moved }) => {
     const entryFilePath = generatePath({ name, quadrant, tempDirResolved })
-    const content = generateMd({ ring, description })
+    const content = generateMd({ ring, description, moved })
     fs.writeFileSync(entryFilePath, content)
   })
 }

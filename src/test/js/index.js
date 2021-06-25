@@ -46,6 +46,7 @@ describe('generate md assets', () => {
   it('generateMd ', () => {
     const contentMd = `---
 ring: hold
+moved: 0
 ---
 Мидвары поверх http-server`
     expect(
