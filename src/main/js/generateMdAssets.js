@@ -7,12 +7,9 @@ const tplPath = path.resolve('src/main/tpl')
 const alias = {
   'languages-and-frameworks': 'languages-and-frameworks',
   lf: 'languages-and-frameworks',
-  Platforms: 'Platforms',
-  platforms: 'Platforms',
-  Tools: 'Tools',
-  tools: 'Tools',
-  Techniques: 'Techniques',
-  techniques: 'Techniques',
+  platforms: 'platforms',
+  tools: 'tools',
+  techniques: 'techniques',
 }
 
 export function generatePath({ name, quadrant, tempDirResolved }) {
@@ -20,7 +17,7 @@ export function generatePath({ name, quadrant, tempDirResolved }) {
   return path.join(
     tempDirResolved,
     '/entries',
-    alias[quadrant].toLowerCase(),
+    alias[quadrant.toLowerCase(),
     entryMdName,
   )
 }
