@@ -58,7 +58,7 @@ moved: 0
     expect(
       generatePath({
         name: 'Redux',
-        quadrant: 'languages-and-frameworks',
+        quadrant: langAndFw,
         tempDirResolved: 'test',
       }),
     ).toBe('test/entries/languages-and-frameworks/Redux.md')
