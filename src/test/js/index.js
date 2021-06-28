@@ -6,11 +6,13 @@ import {
   generateMd,
   generateMdAssets,
   generatePath,
-  getQuadrand,
+  getQuadrant,
+  langAndFw,
+  platforms,
+  techniques,
+  tools,
 } from '../../main/js/generateMdAssets.js'
 import { generateStatics } from '../../main/js/index.js'
-
-const langAndFw = 'languages-and-frameworks'
 
 describe('generate md assets', () => {
   it('files write check', () => {
@@ -23,20 +25,15 @@ describe('generate md assets', () => {
       'utf8',
     )
     const nodeMdData = fs.readFileSync(
-      path.join(outDir, 'entries', 'platforms', 'Nodejs.md'),
+      path.join(outDir, 'entries', platforms, 'Nodejs.md'),
       'utf8',
     )
     const hexMdData = fs.readFileSync(
-      path.join(
-        outDir,
-        'entries',
-        'techniques',
-        'Гексагональная архитектура.md',
-      ),
+      path.join(outDir, 'entries', techniques, 'Гексагональная архитектура.md'),
       'utf8',
     )
     const codMdData = fs.readFileSync(
-      path.join(outDir, 'entries', 'tools', 'codeclimate.md'),
+      path.join(outDir, 'entries', tools, 'codeclimate.md'),
       'utf8',
     )
 
@@ -61,17 +58,17 @@ moved: 0
     expect(
       generatePath({
         name: 'Redux',
-        quadrant: langAndFw,
+        quadrant: 'languages-and-frameworks',
         tempDirResolved: 'test',
       }),
     ).toBe('test/entries/languages-and-frameworks/Redux.md')
   })
 
-  it('getQuadrand ', function () {
-    expect(getQuadrand('lang')).toBe(langAndFw)
-    expect(getQuadrand('platforms')).toBe('platforms')
-    expect(getQuadrand('tool')).toBe('tools')
-    expect(getQuadrand('tech')).toBe('techniques')
+  it('getQuadrant ', function () {
+    expect(getQuadrant('lang')).toBe(langAndFw)
+    expect(getQuadrant('platforms')).toBe('platforms')
+    expect(getQuadrant('tool')).toBe('tools')
+    expect(getQuadrant('tech')).toBe('techniques')
   })
 })
 

@@ -5,42 +5,46 @@ import path from 'path'
 
 const tplPath = path.resolve('src/main/tpl')
 
-export function getQuadrand(quadrant) {
-  const langAndFw = 'languages-and-frameworks'
-  const platforms = 'platforms'
-  const tools = 'tools'
-  const techniques = 'techniques'
+export const langAndFw = 'languages-and-frameworks'
+export const platforms = 'platforms'
+export const tools = 'tools'
+export const techniques = 'techniques'
 
+export function getQuadrant(quadrant) {
   const quadrantAliases = {
-    langAndFw,
-    'languages-and-frameworks': langAndFw,
+    [langAndFw]: langAndFw,
+    'languages-and-framework': langAndFw,
     language: langAndFw,
     lang: langAndFw,
     lf: langAndFw,
     fw: langAndFw,
     framework: langAndFw,
 
-    platforms,
+    [platforms]: platforms,
     platform: platforms,
     pf: platforms,
 
-    tools,
+    [tools]: tools,
     tool: tools,
 
-    techniques,
+    [techniques]: techniques,
     tech: techniques,
   }
+
   return quadrantAliases[quadrant.toLowerCase()]
 }
 
 export function generatePath({ name, quadrant, tempDirResolved }) {
   const entryMdName = name + '.md'
-  return path.join(
-    tempDirResolved,
-    '/entries',
-    getQuadrand(quadrant.toLowerCase()),
-    entryMdName,
-  )
+  const quadrantAlias = getQuadrant(quadrant.toLowerCase())
+
+  if (!quadrantAlias) {
+    throw new Error(
+      `Parsing error: invalid quadrant - "${quadrant}" name - "${name}"`,
+    )
+  }
+
+  return path.join(tempDirResolved, '/entries', quadrantAlias, entryMdName)
 }
 
 export function generateMd({ ring, description, moved }) {
@@ -59,11 +63,15 @@ export const generateMdAssets = ({ csvPath, tempDir }) => {
   try {
     const records = parse(radarData, { columns: true })
     records.forEach(({ name, quadrant, ring, description, moved }) => {
-      const entryFilePath = generatePath({ name, quadrant, tempDirResolved })
-      const content = generateMd({ ring, description, moved })
-      fs.writeFileSync(entryFilePath, content)
+      try {
+        const entryFilePath = generatePath({ name, quadrant, tempDirResolved })
+        const content = generateMd({ ring, description, moved })
+        fs.writeFileSync(entryFilePath, content)
+      } catch (err) {
+        console.error(err)
+      }
     })
   } catch (err) {
-    console.error(err, 'parser failed')
+    console.error(err)
   }
 }
