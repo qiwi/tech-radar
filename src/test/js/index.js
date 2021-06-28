@@ -6,8 +6,11 @@ import {
   generateMd,
   generateMdAssets,
   generatePath,
+  getQuadrand,
 } from '../../main/js/generateMdAssets.js'
 import { generateStatics } from '../../main/js/index.js'
+
+const langAndFw = 'languages-and-frameworks'
 
 describe('generate md assets', () => {
   it('files write check', () => {
@@ -16,7 +19,7 @@ describe('generate md assets', () => {
     generateMdAssets({ csvPath, tempDir: outDir })
 
     const tsMdData = fs.readFileSync(
-      path.join(outDir, 'entries', 'languages-and-frameworks', 'TypeScript.md'),
+      path.join(outDir, 'entries', langAndFw, 'TypeScript.md'),
       'utf8',
     )
     const nodeMdData = fs.readFileSync(
@@ -58,10 +61,17 @@ moved: 0
     expect(
       generatePath({
         name: 'Redux',
-        quadrant: 'languages-and-frameworks',
+        quadrant: langAndFw,
         tempDirResolved: 'test',
       }),
     ).toBe('test/entries/languages-and-frameworks/Redux.md')
+  })
+
+  it('getQuadrand ', function () {
+    expect(getQuadrand('lang')).toBe(langAndFw)
+    expect(getQuadrand('platforms')).toBe('platforms')
+    expect(getQuadrand('tool')).toBe('tools')
+    expect(getQuadrand('tech')).toBe('techniques')
   })
 })
 

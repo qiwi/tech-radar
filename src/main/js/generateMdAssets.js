@@ -4,12 +4,33 @@ import fsExtra from 'fs-extra'
 import path from 'path'
 
 const tplPath = path.resolve('src/main/tpl')
-const alias = {
-  'languages-and-frameworks': 'languages-and-frameworks',
-  lf: 'languages-and-frameworks',
-  platforms: 'platforms',
-  tools: 'tools',
-  techniques: 'techniques',
+
+export function getQuadrand(quadrant) {
+  const langAndFw = 'languages-and-frameworks'
+  const platforms = 'platforms'
+  const tools = 'tools'
+  const techniques = 'techniques'
+
+  const quadrantAliases = {
+    langAndFw,
+    'languages-and-frameworks': langAndFw,
+    language: langAndFw,
+    lang: langAndFw,
+    lf: langAndFw,
+    fw: langAndFw,
+    framework: langAndFw,
+
+    platforms,
+    platform: platforms,
+    pf: platforms,
+
+    tools,
+    tool: tools,
+
+    techniques,
+    tech: techniques,
+  }
+  return quadrantAliases[quadrant.toLowerCase()]
 }
 
 export function generatePath({ name, quadrant, tempDirResolved }) {
@@ -17,7 +38,7 @@ export function generatePath({ name, quadrant, tempDirResolved }) {
   return path.join(
     tempDirResolved,
     '/entries',
-    alias[quadrant.toLowerCase()],
+    getQuadrand(quadrant.toLowerCase()),
     entryMdName,
   )
 }
@@ -35,11 +56,14 @@ export const generateMdAssets = ({ csvPath, tempDir }) => {
   const csvPathResolved = path.resolve(csvPath)
   fsExtra.copySync(tplPath, tempDirResolved)
   const radarData = fs.readFileSync(csvPathResolved)
-  const records = parse(radarData, { columns: true })
-
-  records.forEach(({ name, quadrant, ring, description, moved }) => {
-    const entryFilePath = generatePath({ name, quadrant, tempDirResolved })
-    const content = generateMd({ ring, description, moved })
-    fs.writeFileSync(entryFilePath, content)
-  })
+  try {
+    const records = parse(radarData, { columns: true })
+    records.forEach(({ name, quadrant, ring, description, moved }) => {
+      const entryFilePath = generatePath({ name, quadrant, tempDirResolved })
+      const content = generateMd({ ring, description, moved })
+      fs.writeFileSync(entryFilePath, content)
+    })
+  } catch (err) {
+    console.error(err, 'parser failed')
+  }
 }
