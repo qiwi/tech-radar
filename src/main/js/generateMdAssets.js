@@ -5,14 +5,46 @@ import path from 'path'
 
 const tplPath = path.resolve('src/main/tpl')
 
+export const langAndFw = 'languages-and-frameworks'
+export const platforms = 'platforms'
+export const tools = 'tools'
+export const techniques = 'techniques'
+
+export function getQuadrant(quadrant) {
+  const quadrantAliases = {
+    [langAndFw]: langAndFw,
+    'languages-and-framework': langAndFw,
+    language: langAndFw,
+    lang: langAndFw,
+    lf: langAndFw,
+    fw: langAndFw,
+    framework: langAndFw,
+
+    [platforms]: platforms,
+    platform: platforms,
+    pf: platforms,
+
+    [tools]: tools,
+    tool: tools,
+
+    [techniques]: techniques,
+    tech: techniques,
+  }
+
+  return quadrantAliases[quadrant.toLowerCase()]
+}
+
 export function generatePath({ name, quadrant, tempDirResolved }) {
   const entryMdName = name + '.md'
-  return path.join(
-    tempDirResolved,
-    '/entries',
-    quadrant.toLowerCase(),
-    entryMdName,
-  )
+  const quadrantAlias = getQuadrant(quadrant.toLowerCase())
+
+  if (!quadrantAlias) {
+    throw new Error(
+      `Parsing error: invalid quadrant - "${quadrant}" name - "${name}"`,
+    )
+  }
+
+  return path.join(tempDirResolved, '/entries', quadrantAlias, entryMdName)
 }
 
 export function generateMd({ ring, description, moved }) {
@@ -28,11 +60,18 @@ export const generateMdAssets = ({ csvPath, tempDir }) => {
   const csvPathResolved = path.resolve(csvPath)
   fsExtra.copySync(tplPath, tempDirResolved)
   const radarData = fs.readFileSync(csvPathResolved)
-  const records = parse(radarData, { columns: true })
-
-  records.forEach(({ name, quadrant, ring, description, moved }) => {
-    const entryFilePath = generatePath({ name, quadrant, tempDirResolved })
-    const content = generateMd({ ring, description, moved })
-    fs.writeFileSync(entryFilePath, content)
-  })
+  try {
+    const records = parse(radarData, { columns: true })
+    records.forEach(({ name, quadrant, ring, description, moved }) => {
+      try {
+        const entryFilePath = generatePath({ name, quadrant, tempDirResolved })
+        const content = generateMd({ ring, description, moved })
+        fs.writeFileSync(entryFilePath, content)
+      } catch (err) {
+        console.error(err)
+      }
+    })
+  } catch (err) {
+    console.error(err)
+  }
 }
