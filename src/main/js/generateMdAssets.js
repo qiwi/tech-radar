@@ -61,7 +61,14 @@ export const generateMdAssets = ({ csvPath, tempDir }) => {
   fsExtra.copySync(tplPath, tempDirResolved)
   const radarData = fs.readFileSync(csvPathResolved)
   try {
-    const records = parse(radarData, { columns: true })
+    const metaDate = parse(radarData, { columns: true, to_line: 2 })
+    global.title = metaDate[0].title
+    // metaDate[0].version
+  } catch (err) {
+    console.error('incorrect meta data')
+  }
+  try {
+    const records = parse(radarData, { columns: true, from_line: 3 })
     records.forEach(({ name, quadrant, ring, description, moved }) => {
       try {
         const entryFilePath = generatePath({ name, quadrant, tempDirResolved })

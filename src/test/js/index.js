@@ -12,7 +12,23 @@ import {
   techniques,
   tools,
 } from '../../main/js/generateMdAssets.js'
-import { generateStatics } from '../../main/js/index.js'
+import {
+  generateStatics,
+  startGenerateTechRadars,
+} from '../../main/js/index.js'
+
+const getFileStruct = (dir, result = []) => {
+  fs.readdirSync(dir).forEach((elem) => {
+    const elemPath = dir + '/' + elem
+    const stat = fs.statSync(elemPath)
+    if (stat.isDirectory()) {
+      result = [...getFileStruct(elemPath, result)]
+    } else {
+      result.push(elemPath)
+    }
+  })
+  return result
+}
 
 describe('generate md assets', () => {
   it('files write check', () => {
@@ -80,19 +96,6 @@ describe('generate e11y app', () => {
     global.tempDir = 'temp'
     global.outDir = 'dist'
     await generateStatics(global.tempDir, global.outDir)
-
-    const getFileStruct = (dir, result = []) => {
-      fs.readdirSync(dir).forEach((elem) => {
-        const elemPath = dir + '/' + elem
-        const stat = fs.statSync(elemPath)
-        if (stat.isDirectory()) {
-          result = [...getFileStruct(elemPath, result)]
-        } else {
-          result.push(elemPath)
-        }
-      })
-      return result
-    }
     const fileStruct = getFileStruct(path.resolve('dist'))
     const normalizedFileStruct = fileStruct.map((el) => /dist(.+)/.exec(el)[1])
     expect(normalizedFileStruct).toMatchSnapshot()
@@ -101,4 +104,22 @@ describe('generate e11y app', () => {
     fsExtra.removeSync(path.resolve('dist'))
     fsExtra.removeSync(path.resolve('temp'))
   })
+})
+
+describe('startGenerateTechRadars', () => {
+  it('path to the folder with csv files', async () => {
+    await startGenerateTechRadars({ csvPath: 'src/test/stub', outDir: 'test' })
+    const fileStruct = getFileStruct(path.resolve('test'))
+    const normalizedFileStruct = fileStruct.map((el) => /test(.+)/.exec(el)[1])
+    expect(normalizedFileStruct).toMatchSnapshot()
+  })
+  afterAll(() => {
+    fsExtra.removeSync(path.resolve('test'))
+  })
+  it('path to the csv file ',  async () => {
+    await startGenerateTechRadars({ csvPath: 'src/test/stub/test.csv', outDir: 'test' })
+    const fileStruct = getFileStruct(path.resolve('test'))
+    const normalizedFileStruct = fileStruct.map((el) => /test(.+)/.exec(el)[1])
+    expect(normalizedFileStruct).toMatchSnapshot()
+  });
 })

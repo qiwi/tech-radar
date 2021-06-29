@@ -1,0 +1,7 @@
+title, version
+qiwi tech radar js, v0.01
+name,quadrant,ring,description,moved
+TypeScript,language,Adopt,Статически типизированный ЖС,1
+Nodejs,Platforms,Adopt,,
+codeclimate,tools,Trial,Статический анализатор кода,0
+Гексагональная архитектура,Techniques,Assess,Унификации контракта интерфейсов различных слоев приложений,-1

@@ -37,3 +37,74 @@ moved: 1
 Статически типизированный ЖС",
 }
 `;
+
+exports[`startGenerateTechRadars  1`] = `
+Array [
+  "/test/entries/languages-and-frameworks/TypeScript/index.html",
+  "/test/entries/platforms/Nodejs/index.html",
+  "/test/entries/techniques/Гексагональная архитектура/index.html",
+  "/test/entries/tools/codeclimate/index.html",
+  "/test/favicon.ico",
+  "/test/index.html",
+  "/test/radar.css",
+  "/test/radar.js",
+  "/test2/entries/languages-and-frameworks/TypeScript/index.html",
+  "/test2/entries/platforms/Nodejs/index.html",
+  "/test2/entries/techniques/Гексагональная архитектура/index.html",
+  "/test2/entries/tools/codeclimate/index.html",
+  "/test2/favicon.ico",
+  "/test2/index.html",
+  "/test2/radar.css",
+  "/test2/radar.js",
+]
+`;
+
+exports[`startGenerateTechRadars path to the csv file  1`] = `
+Array [
+  "/entries/languages-and-frameworks/TypeScript/index.html",
+  "/entries/platforms/Nodejs/index.html",
+  "/entries/techniques/Гексагональная архитектура/index.html",
+  "/entries/tools/codeclimate/index.html",
+  "/favicon.ico",
+  "/index.html",
+  "/radar.css",
+  "/radar.js",
+  "/test/entries/languages-and-frameworks/TypeScript/index.html",
+  "/test/entries/platforms/Nodejs/index.html",
+  "/test/entries/techniques/Гексагональная архитектура/index.html",
+  "/test/entries/tools/codeclimate/index.html",
+  "/test/favicon.ico",
+  "/test/index.html",
+  "/test/radar.css",
+  "/test/radar.js",
+  "/test2/entries/languages-and-frameworks/TypeScript/index.html",
+  "/test2/entries/platforms/Nodejs/index.html",
+  "/test2/entries/techniques/Гексагональная архитектура/index.html",
+  "/test2/entries/tools/codeclimate/index.html",
+  "/test2/favicon.ico",
+  "/test2/index.html",
+  "/test2/radar.css",
+  "/test2/radar.js",
+]
+`;
+
+exports[`startGenerateTechRadars path to the folder with csv files 1`] = `
+Array [
+  "/test/entries/languages-and-frameworks/TypeScript/index.html",
+  "/test/entries/platforms/Nodejs/index.html",
+  "/test/entries/techniques/Гексагональная архитектура/index.html",
+  "/test/entries/tools/codeclimate/index.html",
+  "/test/favicon.ico",
+  "/test/index.html",
+  "/test/radar.css",
+  "/test/radar.js",
+  "/test2/entries/languages-and-frameworks/TypeScript/index.html",
+  "/test2/entries/platforms/Nodejs/index.html",
+  "/test2/entries/techniques/Гексагональная архитектура/index.html",
+  "/test2/entries/tools/codeclimate/index.html",
+  "/test2/favicon.ico",
+  "/test2/index.html",
+  "/test2/radar.css",
+  "/test2/radar.js",
+]
+`;
