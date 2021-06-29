@@ -113,13 +113,19 @@ describe('startGenerateTechRadars', () => {
     const normalizedFileStruct = fileStruct.map((el) => /test(.+)/.exec(el)[1])
     expect(normalizedFileStruct).toMatchSnapshot()
   })
-  afterAll(() => {
+  afterEach(() => {
     fsExtra.removeSync(path.resolve('test'))
   })
-  it('path to the csv file ',  async () => {
-    await startGenerateTechRadars({ csvPath: 'src/test/stub/test.csv', outDir: 'test' })
+  it('path to the csv file ', async () => {
+    await startGenerateTechRadars({
+      csvPath: 'src/test/stub/test.csv',
+      outDir: 'test',
+    })
     const fileStruct = getFileStruct(path.resolve('test'))
     const normalizedFileStruct = fileStruct.map((el) => /test(.+)/.exec(el)[1])
     expect(normalizedFileStruct).toMatchSnapshot()
-  });
+  })
+  afterEach(() => {
+    fsExtra.removeSync(path.resolve('test'))
+  })
 })

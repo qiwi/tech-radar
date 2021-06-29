@@ -22,7 +22,7 @@ export const generateStatics = async (tempDir, outDir) => {
 }
 
 export const startGenerateTechRadars = async ({ csvPath, outDir }) => {
-  if (csvPath.includes('.csv', csvPath.length - 4)){
+  if (csvPath.includes('.csv', csvPath.length - 4)) {
     await generateTechRadar(csvPath, outDir)
     return
   }
