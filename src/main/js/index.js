@@ -4,8 +4,9 @@ import path from 'path'
 
 import { generateMdAssets } from './generateMdAssets.js'
 
-export const generateTechRadar = async ({ csvPath, outDir }) => {
+export const generateTechRadar = async ({ csvPath, outDir, title }) => {
   global.outDir = outDir
+  global.title = title
   const tempDir = 'temp'
   global.tempDir = tempDir
   generateMdAssets({ csvPath, tempDir })

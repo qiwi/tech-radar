@@ -27,7 +27,7 @@ module.exports = (config) => {
 
     const radarSettings = {
       ...settings,
-      title,
+      title:global.title,
       entries,
     }
 

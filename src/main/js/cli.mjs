@@ -6,12 +6,13 @@ import {generateTechRadar} from './index.js'
 export const cli = meow(
   `
     Usage:
-      techradar  --csvPath /path/to/csv --outDir /radar --versions 1.00 pathPrefix js
+      techradar  --csvPath /path/to/csv --outDir /radar --versions 1.00 pathPrefix js --title qiwi-radar-js
     Options
       --csvPath
       --outDir
       --version
       --pathPrefix
+      --title
 `,
   {
     importMeta: import.meta,
@@ -29,6 +30,9 @@ export const cli = meow(
       },
       pathPrefix: {
         type: 'string',
+      },
+      title: {
+        type: 'string'
       },
     },
   },
