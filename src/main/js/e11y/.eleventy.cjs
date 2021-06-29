@@ -11,7 +11,7 @@ module.exports = (config) => {
     [assetsPath]: '/',
   })
 
-  config.addShortcode('makeBootScript', (title, settings, collections) => {
+  config.addShortcode('makeBootScript', (settings, collections) => {
     const entries = collections
       .map((entity) => ({
         quadrant: entity.data.quadrant,
