@@ -1,0 +1,29 @@
+meta:
+  "title": tech radar js
+  "date": 2021-06-12
+  "legend": bla bla bla
+data:
+  -
+    name: TypeScript
+    quadrant: language
+    ring: Adopt
+    description: Статически типизированный ЖС
+    moved: 1
+  -
+    name: Nodejs
+    quadrant: Platforms
+    ring: Adopt
+    description:
+    moved:
+  -
+    name: codeclimate
+    quadrant: tools
+    ring: Trial
+    description: Статический анализатор кода
+    moved: 0
+  -
+    name: Гексагональная архитектура
+    quadrant: Techniques
+    ring: Assess
+    description: Унификации контракта интерфейсов различных слоев приложений
+    moved: -1

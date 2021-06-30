@@ -6,17 +6,15 @@ Tech radar generator
 
 ```
 yarn add @qiwi/tech-radar
-techradar  --csv-path /path/to/csv --out-dir /radar --versions 1.00 --pathPrefix js
+techradar  --input /path/to/csv --output /radar
 ```
 or
 ```
-npx @qiwi/tech-radar --csvPath /path/to/csv --outDir /radar --versions 1.00 --pathPrefix js
+npx @qiwi/tech-radar --input /path/to/csv --output /radar
 ```
 
 | Args | description |
 |---|---
-| csvPath | path to csv file
-| outDir |
-| versions |
-| pathPrefix |
+| input | path to csv/json/yml file
+| output |
 

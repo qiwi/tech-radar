@@ -13,12 +13,19 @@ import {
   tools,
 } from '../../main/js/generateMdAssets.js'
 import { generateStatics } from '../../main/js/index.js'
+import {
+  csvReader,
+  getReader,
+  jsonReader,
+  reader,
+  yamlReader,
+} from '../../main/js/reader.js'
 
 describe('generate md assets', () => {
   it('files write check', () => {
     const csvPath = path.join(__dirname, '../stub/test.csv')
     const outDir = path.join(__dirname, 'temp')
-    generateMdAssets({ csvPath, tempDir: outDir })
+    generateMdAssets(csvPath, outDir)
 
     const tsMdData = fs.readFileSync(
       path.join(outDir, 'entries', langAndFw, 'TypeScript.md'),
@@ -66,9 +73,9 @@ moved: 0
 
   it('getQuadrant ', function () {
     expect(getQuadrant('lang')).toBe(langAndFw)
-    expect(getQuadrant('platforms')).toBe('platforms')
-    expect(getQuadrant('tool')).toBe('tools')
-    expect(getQuadrant('tech')).toBe('techniques')
+    expect(getQuadrant('platforms')).toBe(platforms)
+    expect(getQuadrant('tool')).toBe(tools)
+    expect(getQuadrant('tech')).toBe(techniques)
   })
 })
 
@@ -76,7 +83,7 @@ describe('generate e11y app', () => {
   it('', async () => {
     const csvPath = path.join(__dirname, '../stub/test.csv')
     const outDir = path.resolve('temp')
-    generateMdAssets({ csvPath, tempDir: outDir })
+    generateMdAssets(csvPath, outDir)
     global.tempDir = 'temp'
     global.outDir = 'dist'
     await generateStatics(global.tempDir, global.outDir)
@@ -100,5 +107,25 @@ describe('generate e11y app', () => {
   afterAll(() => {
     fsExtra.removeSync(path.resolve('dist'))
     fsExtra.removeSync(path.resolve('temp'))
+  })
+})
+
+describe('reader.js', () => {
+  it('reader', () => {
+    expect(reader('src/test/stub/test.csv')).toMatchSnapshot()
+  })
+  it('csvReader', () => {
+    expect(csvReader('src/test/stub/test.csv')).toMatchSnapshot()
+  })
+  it('jsonReader', () => {
+    expect(jsonReader('src/test/stub/test.json')).toMatchSnapshot()
+  })
+  it('yamlReader', () => {
+    expect(yamlReader('src/test/stub/test.yml')).toMatchSnapshot()
+  })
+  it('getReader ', function () {
+    expect(getReader('.csv')).toBe(csvReader)
+    expect(getReader('.json')).toBe(jsonReader)
+    expect(getReader('.yml')).toBe(yamlReader)
   })
 })

@@ -11,7 +11,7 @@ module.exports = (config) => {
     [assetsPath]: '/',
   })
 
-  config.addShortcode('makeBootScript', (title, settings, collections) => {
+  config.addShortcode('makeBootScript', (settings, collections) => {
     const entries = collections
       .map((entity) => ({
         quadrant: entity.data.quadrant,
@@ -27,7 +27,7 @@ module.exports = (config) => {
 
     const radarSettings = {
       ...settings,
-      title,
+      title: global.title,
       entries,
     }
 
