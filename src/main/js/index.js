@@ -4,11 +4,11 @@ import path from 'path'
 
 import { generateMdAssets } from './generateMdAssets.js'
 
-export const generateTechRadar = async ({ csvPath, outDir }) => {
+export const generateTechRadar = async ({ input, outDir }) => {
   global.outDir = outDir
   const tempDir = 'temp'
   global.tempDir = tempDir
-  generateMdAssets({ csvPath, tempDir })
+  generateMdAssets(input, tempDir)
   await generateStatics(tempDir, outDir)
 }
 

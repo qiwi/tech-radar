@@ -6,29 +6,21 @@ import {generateTechRadar} from './index.js'
 export const cli = meow(
   `
     Usage:
-      techradar  --csvPath /path/to/csv --outDir /radar --versions 1.00 pathPrefix js
+      techradar  --input /path/to/csv --outDir /radar
     Options
-      --csvPath
+      --input
       --outDir
-      --version
-      --pathPrefix
 `,
   {
     importMeta: import.meta,
     flags: {
-      csvPath: {
+      input: {
         type: 'string',
         isRequired: true,
       },
       outDir: {
         type: 'string',
         isRequired: true,
-      },
-      version: {
-        type: 'string',
-      },
-      pathPrefix: {
-        type: 'string',
       },
     },
   },

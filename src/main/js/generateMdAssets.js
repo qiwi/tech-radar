@@ -1,7 +1,8 @@
-import parse from 'csv-parse/lib/sync.js'
 import fs from 'fs'
 import fsExtra from 'fs-extra'
 import path from 'path'
+
+import { reader } from './reader.js'
 
 const tplPath = path.resolve('src/main/tpl')
 
@@ -55,23 +56,19 @@ moved: ${moved || '0'}
 ${description}`
 }
 
-export const generateMdAssets = ({ csvPath, tempDir }) => {
+export const generateMdAssets = (filePath, tempDir) => {
   const tempDirResolved = path.resolve(tempDir)
-  const csvPathResolved = path.resolve(csvPath)
   fsExtra.copySync(tplPath, tempDirResolved)
-  const radarData = fs.readFileSync(csvPathResolved)
-  try {
-    const records = parse(radarData, { columns: true })
-    records.forEach(({ name, quadrant, ring, description, moved }) => {
-      try {
-        const entryFilePath = generatePath({ name, quadrant, tempDirResolved })
-        const content = generateMd({ ring, description, moved })
-        fs.writeFileSync(entryFilePath, content)
-      } catch (err) {
-        console.error(err)
-      }
-    })
-  } catch (err) {
-    console.error(err)
-  }
+  const radarDocument = reader(filePath)
+  radarDocument.data.forEach(({ name, quadrant, ring, description, moved }) => {
+    try {
+      const entryFilePath = generatePath({ name, quadrant, tempDirResolved })
+      const content = generateMd({ ring, description, moved })
+      fs.writeFileSync(entryFilePath, content)
+    } catch (err) {
+      console.error(err)
+    }
+  })
+  global.title = radarDocument.meta.title
+  global.legend = radarDocument.meta.legend
 }
