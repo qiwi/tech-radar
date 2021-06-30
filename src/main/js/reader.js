@@ -32,7 +32,7 @@ export const csvReader = (csvPath) => {
       skip_empty_lines: true,
     })
     const keys = Object.keys(records[0]).toString()
-    if (keys === 'name,quadrant,ring,description,moved') {
+    if (keys.includes('name') && keys.includes('quadrant')) {
       radarDocument.data = [...radarDocument.data, ...records]
     } else {
       Object.assign(radarDocument.meta, records[0])
