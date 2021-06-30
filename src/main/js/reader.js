@@ -3,7 +3,7 @@ import fs from 'fs'
 import yaml from 'js-yaml'
 import path from 'path'
 
-export const reader = (filePath) => {
+export const read = (filePath) => {
   return getReader(path.extname(filePath))(filePath)
 }
 
@@ -33,6 +33,7 @@ export const csvReader = (csvPath) => {
       skip_empty_lines: true,
     })
     const header = Object.keys(records[0])
+
     if (header.includes('name') && header.includes('quadrant')) {
       radarDocument.data = [...radarDocument.data, ...records]
     } else {

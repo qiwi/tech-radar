@@ -5,8 +5,8 @@ import path from 'path'
 import { generateMdAssets } from './generateMdAssets.js'
 
 export const generateTechRadar = async ({ input, output }) => {
-  global.outDir = output
   const tempDir = 'temp'
+  global.outDir = output
   global.tempDir = tempDir
   try {
     generateMdAssets(input, tempDir)

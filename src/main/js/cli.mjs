@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import meow from 'meow'
-import {generateTechRadar} from './index.js'
+import {run} from './generator.js'
 
 export const cli = meow(
   `
@@ -22,8 +22,11 @@ export const cli = meow(
         type: 'string',
         isRequired: true,
       },
+      cwd: {
+        type: 'string',
+      },
     },
   },
 )
 
-generateTechRadar(cli.flags)
+run(cli.flags)
