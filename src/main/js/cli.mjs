@@ -6,10 +6,10 @@ import {generateTechRadar} from './index.js'
 export const cli = meow(
   `
     Usage:
-      techradar  --input /path/to/csv --outDir /radar
+      techradar  --input /path/to/csv --output /radar
     Options
       --input
-      --outDir
+      --output
 `,
   {
     importMeta: import.meta,
@@ -18,7 +18,7 @@ export const cli = meow(
         type: 'string',
         isRequired: true,
       },
-      outDir: {
+      output: {
         type: 'string',
         isRequired: true,
       },

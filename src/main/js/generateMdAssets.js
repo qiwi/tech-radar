@@ -59,6 +59,7 @@ ${description}`
 export const generateMdAssets = (filePath, tempDir) => {
   const tempDirResolved = path.resolve(tempDir)
   fsExtra.copySync(tplPath, tempDirResolved)
+
   const radarDocument = reader(filePath)
   radarDocument.data.forEach(({ name, quadrant, ring, description, moved }) => {
     try {
@@ -70,5 +71,4 @@ export const generateMdAssets = (filePath, tempDir) => {
     }
   })
   global.title = radarDocument.meta.title
-  global.legend = radarDocument.meta.legend
 }

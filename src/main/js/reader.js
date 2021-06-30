@@ -4,15 +4,19 @@ import yaml from 'js-yaml'
 import path from 'path'
 
 export const reader = (filePath) => {
-  if (filePath.includes('.csv', filePath.length - 4)) {
-    return csvReader(filePath)
+  const getReader = (ext) => {
+    if (ext === '.csv') {
+      return csvReader(filePath)
+    }
+    if (ext === '.json') {
+      return jsonReader(filePath)
+    }
+    if (ext === '.yml') {
+      return yamlReader(filePath)
+    }
+    throw new Error('Unsupported format', ext)
   }
-  if (filePath.includes('.json', filePath.length - 5)) {
-    return jsonReader(filePath)
-  }
-  if (filePath.includes('.yml', filePath.length - 5)) {
-    return yamlReader(filePath)
-  }
+  return getReader(path.extname(filePath))
 }
 
 export const csvReader = (csvPath) => {
@@ -28,18 +32,10 @@ export const csvReader = (csvPath) => {
       skip_empty_lines: true,
     })
     const keys = Object.keys(records[0]).toString()
-
     if (keys === 'name,quadrant,ring,description,moved') {
       radarDocument.data = [...radarDocument.data, ...records]
-    }
-    if (keys === 'title') {
-      radarDocument.meta.title = records[0].title
-    }
-    if (keys === 'date') {
-      radarDocument.meta.date = records[0].date
-    }
-    if (keys === 'legend') {
-      radarDocument.meta.legend = records[0].legend
+    } else {
+      Object.assign(radarDocument.meta, records[0])
     }
   })
   return radarDocument

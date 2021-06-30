@@ -4,12 +4,16 @@ import path from 'path'
 
 import { generateMdAssets } from './generateMdAssets.js'
 
-export const generateTechRadar = async ({ input, outDir }) => {
-  global.outDir = outDir
+export const generateTechRadar = async ({ input, output }) => {
+  global.outDir = output
   const tempDir = 'temp'
   global.tempDir = tempDir
-  generateMdAssets(input, tempDir)
-  await generateStatics(tempDir, outDir)
+  try {
+    generateMdAssets(input, tempDir)
+    await generateStatics(tempDir, output)
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 export const generateStatics = async (tempDir, outDir) => {
