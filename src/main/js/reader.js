@@ -4,19 +4,20 @@ import yaml from 'js-yaml'
 import path from 'path'
 
 export const reader = (filePath) => {
-  const getReader = (ext) => {
-    if (ext === '.csv') {
-      return csvReader(filePath)
-    }
-    if (ext === '.json') {
-      return jsonReader(filePath)
-    }
-    if (ext === '.yml') {
-      return yamlReader(filePath)
-    }
-    throw new Error('Unsupported format', ext)
+  return getReader(path.extname(filePath))(filePath)
+}
+
+export const getReader = (ext) => {
+  if (ext === '.csv') {
+    return csvReader
   }
-  return getReader(path.extname(filePath))
+  if (ext === '.json') {
+    return jsonReader
+  }
+  if (ext === '.yml') {
+    return yamlReader
+  }
+  throw new Error('Unsupported format', ext)
 }
 
 export const csvReader = (csvPath) => {
@@ -31,8 +32,8 @@ export const csvReader = (csvPath) => {
       columns: true,
       skip_empty_lines: true,
     })
-    const keys = Object.keys(records[0]).toString()
-    if (keys.includes('name') && keys.includes('quadrant')) {
+    const header = Object.keys(records[0])
+    if (header.includes('name') && header.includes('quadrant')) {
       radarDocument.data = [...radarDocument.data, ...records]
     } else {
       Object.assign(radarDocument.meta, records[0])

@@ -15,6 +15,7 @@ import {
 import { generateStatics } from '../../main/js/index.js'
 import {
   csvReader,
+  getReader,
   jsonReader,
   reader,
   yamlReader,
@@ -121,5 +122,10 @@ describe('reader.js', () => {
   })
   it('yamlReader', () => {
     expect(yamlReader('src/test/stub/test.yml')).toMatchSnapshot()
+  })
+  it('getReader ', function () {
+    expect(getReader('.csv')).toBe(csvReader)
+    expect(getReader('.json')).toBe(jsonReader)
+    expect(getReader('.yml')).toBe(yamlReader)
   })
 })
