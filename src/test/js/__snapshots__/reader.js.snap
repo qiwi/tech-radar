@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reader.js csvReader 1`] = `
+Object {
+  "data": Array [
+    Object {
+      "description": "Статически типизированный ЖС",
+      "moved": "1",
+      "name": "TypeScript",
+      "quadrant": "language",
+      "ring": "Adopt",
+    },
+    Object {
+      "description": "",
+      "moved": "",
+      "name": "Nodejs",
+      "quadrant": "Platforms",
+      "ring": "Adopt",
+    },
+    Object {
+      "description": "Статический анализатор кода",
+      "moved": "0",
+      "name": "codeclimate",
+      "quadrant": "tools",
+      "ring": "Trial",
+    },
+    Object {
+      "description": "Унификации контракта интерфейсов различных слоев приложений",
+      "moved": "-1",
+      "name": "Гексагональная архитектура",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+    },
+  ],
+  "meta": Object {
+    "date": "2021-06-18",
+    "legend": "bla bla bla",
+    "title": "work it",
+  },
+}
+`;
+
+exports[`reader.js jsonReader 1`] = `
+Object {
+  "data": Array [
+    Object {
+      "description": "Статически типизированный ЖС",
+      "moved": "1",
+      "name": "TypeScript",
+      "quadrant": "language",
+      "ring": "Adopt",
+    },
+    Object {
+      "description": "",
+      "moved": "",
+      "name": "Nodejs",
+      "quadrant": "Platforms",
+      "ring": "Adopt",
+    },
+    Object {
+      "description": "Статический анализатор кода",
+      "moved": "0",
+      "name": "codeclimate",
+      "quadrant": "tools",
+      "ring": "Trial",
+    },
+    Object {
+      "description": "Унификации контракта интерфейсов различных слоев приложений",
+      "moved": "-1",
+      "name": "Гексагональная архитектура",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+    },
+  ],
+  "meta": Object {
+    "date": "2021-06-12",
+    "legend": "bla bla bla",
+    "title": "tech radar js",
+  },
+}
+`;
+
+exports[`reader.js reader 1`] = `
+Object {
+  "data": Array [
+    Object {
+      "description": "Статически типизированный ЖС",
+      "moved": "1",
+      "name": "TypeScript",
+      "quadrant": "language",
+      "ring": "Adopt",
+    },
+    Object {
+      "description": "",
+      "moved": "",
+      "name": "Nodejs",
+      "quadrant": "Platforms",
+      "ring": "Adopt",
+    },
+    Object {
+      "description": "Статический анализатор кода",
+      "moved": "0",
+      "name": "codeclimate",
+      "quadrant": "tools",
+      "ring": "Trial",
+    },
+    Object {
+      "description": "Унификации контракта интерфейсов различных слоев приложений",
+      "moved": "-1",
+      "name": "Гексагональная архитектура",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+    },
+  ],
+  "meta": Object {
+    "date": "2021-06-18",
+    "legend": "bla bla bla",
+    "title": "work it",
+  },
+}
+`;
+
+exports[`reader.js yamlReader 1`] = `
+Object {
+  "data": Array [
+    Object {
+      "description": "Статически типизированный ЖС",
+      "moved": 1,
+      "name": "TypeScript",
+      "quadrant": "language",
+      "ring": "Adopt",
+    },
+    Object {
+      "description": null,
+      "moved": null,
+      "name": "Nodejs",
+      "quadrant": "Platforms",
+      "ring": "Adopt",
+    },
+    Object {
+      "description": "Статический анализатор кода",
+      "moved": 0,
+      "name": "codeclimate",
+      "quadrant": "tools",
+      "ring": "Trial",
+    },
+    Object {
+      "description": "Унификации контракта интерфейсов различных слоев приложений",
+      "moved": -1,
+      "name": "Гексагональная архитектура",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+    },
+  ],
+  "meta": Object {
+    "date": 2021-06-12T00:00:00.000Z,
+    "legend": "bla bla bla",
+    "title": "tech radar js",
+  },
+}
+`;

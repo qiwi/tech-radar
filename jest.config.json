@@ -3,11 +3,16 @@
   "transform": {
     "\\.m?jsx?$": "jest-esm-transformer"
   },
+  "transformIgnorePatterns": [
+    "/!node_modules\\/lodash-es/",
+    "<roodDir>/node_modules/(?!lodash-es)"
+  ],
   "collectCoverage": true,
   "collectCoverageFrom": [
     "<rootDir>/src/main/**/*.(j|t)s"
   ],
   "coveragePathIgnorePatterns": [],
+  "testTimeout": 10000,
   "testMatch": [
     "<rootDir>/src/test/js/**/*.js",
     "<rootDir>/src/test/ts/**/*.ts"
@@ -17,9 +22,9 @@
     "<rootDir>/src/test/stub"
   ],
   "moduleFileExtensions": [
-    "ts",
-    "tsx",
     "js",
+    "mjs",
+    "cjs",
     "jsx",
     "json",
     "node"

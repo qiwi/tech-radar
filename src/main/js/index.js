@@ -1,14 +1,12 @@
 import fsExtra from 'fs-extra'
 import globby from 'globby'
-import lodash from 'lodash'
+import { uniq } from 'lodash-es'
 import path from 'path'
 
 import { tempDir } from './constants.js'
 import { genStatics } from './generateStatic.js'
 import { read } from './reader.js'
 import { makeUniq, reverse } from './util.js'
-
-const { uniq } = lodash
 
 export const run = async ({ input, output, cwd = process.cwd() } = {}) => {
   try {
