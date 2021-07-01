@@ -2,14 +2,14 @@
 
 exports[`generate e11y app  1`] = `
 Array [
-  "/entries/languages-and-frameworks/TypeScript/index.html",
-  "/entries/platforms/Nodejs/index.html",
-  "/entries/techniques/Гексагональная архитектура/index.html",
-  "/entries/tools/codeclimate/index.html",
-  "/favicon.ico",
-  "/index.html",
-  "/radar.css",
-  "/radar.js",
+  "/test/entries/languages-and-frameworks/TypeScript/index.html",
+  "/test/entries/platforms/Nodejs/index.html",
+  "/test/entries/techniques/Гексагональная архитектура/index.html",
+  "/test/entries/tools/codeclimate/index.html",
+  "/test/favicon.ico",
+  "/test/index.html",
+  "/test/radar.css",
+  "/test/radar.js",
 ]
 `;
 

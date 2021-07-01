@@ -6,24 +6,24 @@ export const tools = 'tools'
 export const techniques = 'techniques'
 
 export const quadrantAliases = {
-    [langAndFw]: langAndFw,
-    'languages-and-framework': langAndFw,
-    language: langAndFw,
-    lang: langAndFw,
-    lf: langAndFw,
-    fw: langAndFw,
-    framework: langAndFw,
+  [langAndFw]: langAndFw,
+  'languages-and-framework': langAndFw,
+  language: langAndFw,
+  lang: langAndFw,
+  lf: langAndFw,
+  fw: langAndFw,
+  framework: langAndFw,
 
-    [platforms]: platforms,
-    platform: platforms,
-    pf: platforms,
+  [platforms]: platforms,
+  platform: platforms,
+  pf: platforms,
 
-    [tools]: tools,
-    tool: tools,
+  [tools]: tools,
+  tool: tools,
 
-    [techniques]: techniques,
-    tech: techniques,
+  [techniques]: techniques,
+  tech: techniques,
 }
 
-export const tplDir = path.resolve(__dirname, '../tpl')
+export const tplDir = path.resolve('src/main/tpl')
 export const tempDir = (() => 'temp')() // TODO https://github.com/antongolub/yarn-audit-fix/blob/master/src/main/ts/util.ts#L172

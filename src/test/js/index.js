@@ -3,21 +3,30 @@ import fsExtra from 'fs-extra'
 import path from 'path'
 
 import {
-  generateMd,
-  generateMdAssets,
-  generatePath,
-  getQuadrant,
   langAndFw,
   platforms,
   techniques,
   tools,
+} from '../../main/js/constants.js'
+import {
+  genMdAssets,
+  genMdContent,
+  genMdPath,
 } from '../../main/js/generateMdAssets.js'
-import { generateStatics } from '../../main/js/index.js'
+import {
+  genStatics,
+  // genEleventy,
+} from '../../main/js/generateStatic.js'
+import {
+  getDirs,
+  getDocuments,
+  // getSources,
+} from '../../main/js/index.js'
 import {
   csvReader,
   getReader,
   jsonReader,
-  reader,
+  read,
   yamlReader,
 } from '../../main/js/reader.js'
 
@@ -25,7 +34,8 @@ describe('generate md assets', () => {
   it('files write check', () => {
     const csvPath = path.join(__dirname, '../stub/test.csv')
     const outDir = path.join(__dirname, 'temp')
-    generateMdAssets(csvPath, outDir)
+
+    genMdAssets(read(csvPath), outDir)
 
     const tsMdData = fs.readFileSync(
       path.join(outDir, 'entries', langAndFw, 'TypeScript.md'),
@@ -57,36 +67,28 @@ moved: 0
 ---
 Мидвары поверх http-server`
     expect(
-      generateMd({ ring: 'Hold', description: 'Мидвары поверх http-server' }),
+      genMdContent({ ring: 'Hold', description: 'Мидвары поверх http-server' }),
     ).toBe(contentMd)
   })
 
   it('generatePath ', () => {
     expect(
-      generatePath({
+      genMdPath({
         name: 'Redux',
         quadrant: langAndFw,
-        tempDirResolved: 'test',
+        temp: 'test',
       }),
     ).toBe('test/entries/languages-and-frameworks/Redux.md')
-  })
-
-  it('getQuadrant ', function () {
-    expect(getQuadrant('lang')).toBe(langAndFw)
-    expect(getQuadrant('platforms')).toBe(platforms)
-    expect(getQuadrant('tool')).toBe(tools)
-    expect(getQuadrant('tech')).toBe(techniques)
   })
 })
 
 describe('generate e11y app', () => {
   it('', async () => {
     const csvPath = path.join(__dirname, '../stub/test.csv')
-    const outDir = path.resolve('temp')
-    generateMdAssets(csvPath, outDir)
-    global.tempDir = 'temp'
-    global.outDir = 'dist'
-    await generateStatics(global.tempDir, global.outDir)
+    // const outDir = path.resolve('temp')
+    const docs = getDocuments([csvPath])
+    const dirs = getDirs([csvPath])
+    await genStatics(docs, dirs, 'dist')
 
     const getFileStruct = (dir, result = []) => {
       fs.readdirSync(dir).forEach((elem) => {
@@ -100,7 +102,7 @@ describe('generate e11y app', () => {
       })
       return result
     }
-    const fileStruct = getFileStruct(path.resolve('dist'))
+    const fileStruct = getFileStruct(path.resolve('dist/test'))
     const normalizedFileStruct = fileStruct.map((el) => /dist(.+)/.exec(el)[1])
     expect(normalizedFileStruct).toMatchSnapshot()
   })
@@ -112,7 +114,7 @@ describe('generate e11y app', () => {
 
 describe('reader.js', () => {
   it('reader', () => {
-    expect(reader('src/test/stub/test.csv')).toMatchSnapshot()
+    expect(read('src/test/stub/test.csv')).toMatchSnapshot()
   })
   it('csvReader', () => {
     expect(csvReader('src/test/stub/test.csv')).toMatchSnapshot()
@@ -127,5 +129,41 @@ describe('reader.js', () => {
     expect(getReader('.csv')).toBe(csvReader)
     expect(getReader('.json')).toBe(jsonReader)
     expect(getReader('.yml')).toBe(yamlReader)
+  })
+})
+
+describe('getDirs', () => {
+  const cases = [
+    [
+      'returns uniq file names with omitted extensions',
+      ['/foo/bar/baz.csv', '/foo/bar/qux.csv'],
+      ['baz', 'qux'],
+    ],
+    [
+      'append parent dir otherwise',
+      ['/foo/bar/data.csv', '/foo/baz/data.json'],
+      ['bar-data', 'baz-data'],
+    ],
+    [
+      'makes values unique',
+      ['/foo/bar/data.csv', '/foo/bar/data.json', '/foo/bar/data.yaml'],
+      ['data', 'data-2', 'data-3'],
+    ],
+    [
+      'makes values unique',
+      [
+        '/foo/ios/bar/data.csv',
+        '/foo/ios/bar/data.json',
+        '/foo/js/bar/data.yaml',
+        '/foo/js/bar/data.yml',
+      ],
+      ['ios-bar-data', 'ios-bar-data-2', 'js-bar-data', 'js-bar-data-2'],
+    ],
+  ]
+
+  cases.forEach(([name, input, result]) => {
+    it(name, () => {
+      expect(getDirs(input)).toEqual(result)
+    })
   })
 })
