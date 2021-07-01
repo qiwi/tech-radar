@@ -1,18 +1,11 @@
 import fsExtra from 'fs-extra'
 import path from 'path'
 
-import { quadrantAliases } from './constants.js'
-import { read } from './reader.js'
+import { quadrantAliases, tplDir } from './constants.js'
 
-const tplPath = path.resolve('src/main/tpl')
-
-export function getQuadrant(quadrant) {
-  return quadrantAliases[quadrant.toLowerCase()]
-}
-
-export function generatePath({ name, quadrant, tempDirResolved }) {
+export function genMdPath({ name, quadrant, temp }) {
   const entryMdName = name + '.md'
-  const quadrantAlias = getQuadrant(quadrant.toLowerCase())
+  const quadrantAlias = quadrantAliases[quadrant.toLowerCase()]
 
   if (!quadrantAlias) {
     throw new Error(
@@ -20,10 +13,10 @@ export function generatePath({ name, quadrant, tempDirResolved }) {
     )
   }
 
-  return path.join(tempDirResolved, '/entries', quadrantAlias, entryMdName)
+  return path.join(temp, '/entries', quadrantAlias, entryMdName)
 }
 
-export function generateMd({ ring, description, moved }) {
+export function genMdContent({ ring, description, moved }) {
   return `---
 ring: ${ring.toLowerCase()}
 moved: ${moved || 0}
@@ -31,19 +24,16 @@ moved: ${moved || 0}
 ${description}`
 }
 
-export const generateMdAssets = (filePath, tempDir) => {
-  const tempDirResolved = path.resolve(tempDir)
-  fsExtra.copySync(tplPath, tempDirResolved)
+export const genMdAssets = (doc, temp) => {
+  fsExtra.copySync(tplDir, temp)
 
-  const radarDocument = read(filePath)
-  radarDocument.data.forEach(({ name, quadrant, ring, description, moved }) => {
+  doc.data.forEach(({ name, quadrant, ring, description, moved }) => {
     try {
-      const entryFilePath = generatePath({ name, quadrant, tempDirResolved })
-      const content = generateMd({ ring, description, moved })
-      fsExtra.writeFileSync(entryFilePath, content)
+      const entryPath = genMdPath({ name, quadrant, temp })
+      const content = genMdContent({ ring, description, moved })
+      fsExtra.writeFileSync(entryPath, content)
     } catch (err) {
       console.error(err)
     }
   })
-  global.title = radarDocument.meta.title
 }

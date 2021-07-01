@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import meow from 'meow'
-import {run} from './generator.js'
+import {run} from './index.js'
 
 export const cli = meow(
   `
