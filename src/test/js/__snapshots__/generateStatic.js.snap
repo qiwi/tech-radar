@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`generate e11y app  1`] = `
+exports[`generate 11ty app  1`] = `
 Array [
   "/test/entries/languages-and-frameworks/TypeScript/index.html",
   "/test/entries/platforms/Nodejs/index.html",

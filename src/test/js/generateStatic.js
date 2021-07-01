@@ -5,7 +5,7 @@ import path from 'path'
 import { genStatics } from '../../main/js/generateStatic.js'
 import { getDirs, getDocuments } from '../../main/js/index.js'
 
-describe('generate e11y app', () => {
+describe('generate 11ty app', () => {
   it('', async () => {
     const csvPath = path.join(__dirname, '../stub/test.csv')
     // const outDir = path.resolve('temp')
