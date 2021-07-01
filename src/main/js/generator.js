@@ -44,16 +44,32 @@ const reverse = (arr) => {
   return _arr
 }
 
-export const getDirs = (sources) => sources
-  .map(s => reverse(s.slice(0, -path.extname(s).length).split(path.sep)))
+export const makeUniq = (arr) => {
+  const counters = {}
+  const getCount = k => (counters[k] = (counters[k] || 0) + 1)
+
+  return arr.map((k) => {
+    const count = getCount(k)
+
+    return count === 1
+      ? k
+      : `${k}-${count}`
+  })
+}
+
+export const getDirs = (sources) => makeUniq(sources
+  .map(s => s.slice(0, -path.extname(s).length)))
+  .map(s => reverse(s.split(path.sep)).filter(v => v))
   .reduce((_m, _v, _i, a) => {
     let r
     let i = 0
-    while (uniq(r).length !== a.length) {
+
+    while (uniq(r).length !== a.length && i < 10) {
       i++
       r = a.map(c => reverse(c.slice(0, i)).join('-'))
     }
 
+    a.length = 0
     return r
   })
 
