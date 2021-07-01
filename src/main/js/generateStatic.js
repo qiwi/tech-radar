@@ -2,8 +2,13 @@ import Eleventy from '@11ty/eleventy'
 import fsExtra from 'fs-extra'
 import path from 'path'
 
+<<<<<<< HEAD
 import { tempDir } from './constants'
 import { genMdAssets } from './generateMdAssets'
+=======
+import { tempDir } from './constants.js'
+import { genMdAssets } from './generateMdAssets.js'
+>>>>>>> c073886
 
 export const genStatics = async (docs, dirs, _output) =>
   docs.reduce(async (r, doc, i) => {
