@@ -41,7 +41,6 @@ export const getDirs = (sources) =>
       let i = 0
 
       while (uniq(r).length !== a.length) {
-        console.log(r)
         i++
         r = a.map((c) => reverse(c.slice(0, i)).join('-'))
       }
