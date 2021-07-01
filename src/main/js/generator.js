@@ -1,7 +1,7 @@
 import Eleventy from '@11ty/eleventy'
 import fsExtra from 'fs-extra'
 import globby from 'globby'
-import {unique} from 'lodash'
+import {uniq} from 'lodash'
 import path from 'path'
 
 import {
@@ -37,13 +37,21 @@ export const getSources = async (input, cwd) => globby.sync(
 
 export const getDocuments = (inputs) => inputs.map(read)
 
+const reverse = (arr) => {
+  const _arr = [...arr]
+  _arr.reverse()
+
+  return _arr
+}
+
 export const getDirs = (sources) => sources
-  .map(s => s.slice(-path.extname(s).length).split(path.sep).reverse())
+  .map(s => reverse(s.slice(0, -path.extname(s).length).split(path.sep)))
   .reduce((_m, _v, _i, a) => {
     let r
     let i = 0
-    while (unique(r).length !== a.length) {
-      r = a.map(c => c.slice(0, i++).join('-'))
+    while (uniq(r).length !== a.length) {
+      i++
+      r = a.map(c => reverse(c.slice(0, i)).join('-'))
     }
 
     return r
