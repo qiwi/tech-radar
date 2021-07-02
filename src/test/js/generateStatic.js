@@ -2,8 +2,21 @@ import fs from 'fs'
 import fsExtra from 'fs-extra'
 import path from 'path'
 
-import { genStatics } from '../../main/js/generateStatic.js'
+import { genStatics, validate } from '../../main/js/generateStatic.js'
 import { getDirs, getDocuments } from '../../main/js/index.js'
+
+export const getFileStruct = (dir, result = []) => {
+  fs.readdirSync(dir).forEach((elem) => {
+    const elemPath = dir + '/' + elem
+    const stat = fs.statSync(elemPath)
+    if (stat.isDirectory()) {
+      result = [...getFileStruct(elemPath, result)]
+    } else {
+      result.push(elemPath)
+    }
+  })
+  return result
+}
 
 describe('generate 11ty app', () => {
   it('', async () => {
@@ -13,24 +26,53 @@ describe('generate 11ty app', () => {
     const dirs = getDirs([csvPath])
     await genStatics(docs, dirs, 'dist')
 
-    const getFileStruct = (dir, result = []) => {
-      fs.readdirSync(dir).forEach((elem) => {
-        const elemPath = dir + '/' + elem
-        const stat = fs.statSync(elemPath)
-        if (stat.isDirectory()) {
-          result = [...getFileStruct(elemPath, result)]
-        } else {
-          result.push(elemPath)
-        }
-      })
-      return result
-    }
     const fileStruct = getFileStruct(path.resolve('dist/test'))
     const normalizedFileStruct = fileStruct.map((el) => /dist(.+)/.exec(el)[1])
     expect(normalizedFileStruct).toMatchSnapshot()
   })
   afterAll(() => {
     fsExtra.removeSync(path.resolve('dist'))
-    fsExtra.removeSync(path.resolve('temp'))
+  })
+})
+
+describe('validate', () => {
+  it('validate is not undefined ', () => {
+    expect(validate).not.toBeUndefined()
+  })
+  it('valid data ', () => {
+    const obj = {
+      meta: {
+        title: '',
+        date: '',
+        legend: '',
+      },
+      data: [
+        {
+          name: '',
+          quadrant: '',
+          ring: '',
+          description: '',
+          moved: '',
+        },
+      ],
+    }
+    expect(validate(obj)).toBe(true)
+  })
+
+  it('invalid data ', () => {
+    const obj = {
+      meta: {
+        title: '',
+      },
+      data: [
+        {
+          name: '',
+          quadrant: '',
+          ring: '',
+          description: '',
+        },
+      ],
+    }
+    expect(validate(obj)).toBe(false)
   })
 })

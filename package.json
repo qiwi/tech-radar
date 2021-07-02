@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@11ty/eleventy": "^0.12.1",
+    "ajv": "^8.6.0",
     "csv-parse": "^4.12.0",
     "fs-extra": "^10.0.0",
     "globby": "^11.0.4",

@@ -1,12 +1,17 @@
 import Eleventy from '@11ty/eleventy'
+import Ajv from 'ajv'
 import fsExtra from 'fs-extra'
 import path from 'path'
 
-import { tempDir } from './constants.js'
+import { tempDir, validationSchema } from './constants.js'
 import { genMdAssets } from './generateMdAssets.js'
 
 export const genStatics = async (docs, dirs, _output) =>
   docs.reduce(async (r, doc, i) => {
+    if (!validate(doc)) {
+      console.error(validate.errors)
+      return [...(await r)]
+    }
     const temp = tempDir
     const output = dirs[i] ? path.join(_output, dirs[i]) : _output
 
@@ -32,3 +37,5 @@ export const genEleventy = async (temp, output) => {
   await elev.write()
   await fsExtra.remove(temp)
 }
+
+export const validate = new Ajv().compile(validationSchema)

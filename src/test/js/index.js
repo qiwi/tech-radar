@@ -5,6 +5,13 @@ import {
 } from '../../main/js/generateMdAssets.js'
 import { genEleventy, genStatics } from '../../main/js/generateStatic.js'
 import { getDirs, getDocuments, getSources, run } from '../../main/js/index.js'
+import {
+  csvReader,
+  getReader,
+  jsonReader,
+  read,
+  yamlReader,
+} from '../../main/js/reader.js'
 import { makeUniq, reverse } from '../../main/js/util.js'
 
 describe('has proper exports', () => {
@@ -40,5 +47,20 @@ describe('has proper exports', () => {
   })
   it('makeUniq', function () {
     expect(makeUniq).not.toBeUndefined()
+  })
+  it('read', function () {
+    expect(read).not.toBeUndefined()
+  })
+  it('yamlReader', function () {
+    expect(yamlReader).not.toBeUndefined()
+  })
+  it('getReader', function () {
+    expect(getReader).not.toBeUndefined()
+  })
+  it('jsonReader', function () {
+    expect(jsonReader).not.toBeUndefined()
+  })
+  it('csvReader', function () {
+    expect(csvReader).not.toBeUndefined()
   })
 })
