@@ -28,7 +28,7 @@ export const quadrantAliases = {
 export const tplDir = path.resolve('src/main/tpl')
 export const tempDir = (() => 'temp')() // TODO https://github.com/antongolub/yarn-audit-fix/blob/master/src/main/ts/util.ts#L172
 
-export const validationSchema = {
+export const radarSchema = {
   type: 'object',
   properties: {
     data: {
@@ -42,7 +42,7 @@ export const validationSchema = {
           description: { type: ['string', 'null'] },
           moved: { type: ['string', 'integer', 'null'] },
         },
-        required: ['name', 'quadrant', 'ring', 'description', 'moved'],
+        required: ['name', 'quadrant', 'ring', 'description'],
       },
     },
     meta: {

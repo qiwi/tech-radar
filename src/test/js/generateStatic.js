@@ -2,7 +2,7 @@ import fs from 'fs'
 import fsExtra from 'fs-extra'
 import path from 'path'
 
-import { genStatics, validate } from '../../main/js/generateStatic.js'
+import { genStatics } from '../../main/js/generateStatic.js'
 import { getDirs, getDocuments } from '../../main/js/index.js'
 
 export const getFileStruct = (dir, result = []) => {
@@ -32,47 +32,5 @@ describe('generate 11ty app', () => {
   })
   afterAll(() => {
     fsExtra.removeSync(path.resolve('dist'))
-  })
-})
-
-describe('validate', () => {
-  it('validate is not undefined ', () => {
-    expect(validate).not.toBeUndefined()
-  })
-  it('valid data ', () => {
-    const obj = {
-      meta: {
-        title: '',
-        date: '',
-        legend: '',
-      },
-      data: [
-        {
-          name: '',
-          quadrant: '',
-          ring: '',
-          description: '',
-          moved: '',
-        },
-      ],
-    }
-    expect(validate(obj)).toBe(true)
-  })
-
-  it('invalid data ', () => {
-    const obj = {
-      meta: {
-        title: '',
-      },
-      data: [
-        {
-          name: '',
-          quadrant: '',
-          ring: '',
-          description: '',
-        },
-      ],
-    }
-    expect(validate(obj)).toBe(false)
   })
 })
