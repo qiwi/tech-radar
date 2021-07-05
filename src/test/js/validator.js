@@ -3,7 +3,7 @@ import { validate } from '../../main/js/validator.js'
 
 describe('validate', () => {
   it('validate is not undefined ', () => {
-    expect(validate).not.toBeUndefined()
+    expect(validate).toBeDefined()
   })
   it('valid data ', () => {
     const obj = {

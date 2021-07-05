@@ -12,4 +12,7 @@ TypeScript,language,Adopt,Статически типизированный ЖС
 Nodejs,Platforms,Adopt,,
 codeclimate,tools,Trial,Статический анализатор кода,0
 Гексагональная архитектура,Techniques,Assess,Унификации контракта интерфейсов различных слоев приложений,-1
+===
+quadrant,alias
+languages-and-frameworks,language
 

@@ -1,26 +1,18 @@
 import fsExtra from 'fs-extra'
 import path from 'path'
 
-import { quadrantAliases, tplDir } from './constants.js'
+import { tplDir } from './constants.js'
 
 /**
  * generate path to .md file
- * @param name
- * @param quadrant
- * @param temp - temp directory
+ * @param {string} name
+ * @param {string} quadrant
+ * @param {string} temp - temp directory
  * @returns {string}
  */
 export function genMdPath({ name, quadrant, temp }) {
   const entryMdName = name + '.md'
-  const quadrantAlias = quadrantAliases[quadrant.toLowerCase()]
-
-  if (!quadrantAlias) {
-    throw new Error(
-      `Parsing error: invalid quadrant - "${quadrant}" name - "${name}"`,
-    )
-  }
-
-  return path.join(temp, '/entries', quadrantAlias, entryMdName)
+  return path.join(temp, '/entries', quadrant, entryMdName)
 }
 
 /**
@@ -48,7 +40,10 @@ export const genMdAssets = (doc, temp) => {
 
   doc.data.forEach(({ name, quadrant, ring, description, moved }) => {
     try {
-      const entryPath = genMdPath({ name, quadrant, temp })
+      const quadrantAlias = doc.quadrantAliases[quadrant.toLowerCase()]
+        ? doc.quadrantAliases[quadrant.toLowerCase()]
+        : quadrant.toLowerCase()
+      const entryPath = genMdPath({ name, quadrant: quadrantAlias, temp })
       const content = genMdContent({ ring, description, moved })
       fsExtra.writeFileSync(entryPath, content)
     } catch (err) {

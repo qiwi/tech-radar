@@ -6,7 +6,7 @@ import path from 'path'
 /**
  * read file and generate radarDocument
  * @param filePath
- * @returns {{data: any[], meta: {}}} radarDocument
+ * @returns {{data: any[], meta: {}, quadrantAliases?: {}}} radarDocument
  */
 export const read = (filePath) => {
   return getReader(path.extname(filePath))(filePath)
@@ -31,7 +31,7 @@ export const getReader = (ext) => {
 /**
  * read .csv file and generate radarDocument
  * @param csvPath
- * @returns {{data: any[], meta: {}}} radarDocument
+ * @returns {{data: any[], meta: {}, quadrantAliases?: {}}} radarDocument
  */
 export const csvReader = (csvPath) => {
   const csvPathResolved = path.resolve(csvPath)
@@ -39,6 +39,7 @@ export const csvReader = (csvPath) => {
   const radarDocument = {
     meta: {},
     data: [],
+    quadrantAliases: {},
   }
   radarContents.split('===').forEach((radarChunks) => {
     const records = parse(radarChunks, {
@@ -49,6 +50,11 @@ export const csvReader = (csvPath) => {
 
     if (header.includes('name') && header.includes('quadrant')) {
       radarDocument.data = [...radarDocument.data, ...records]
+    } else if (header.includes('alias')) {
+      records.forEach((record) => {
+        radarDocument.quadrantAliases[record.alias.toLowerCase()] =
+          record.quadrant.toLowerCase()
+      })
     } else {
       Object.assign(radarDocument.meta, records[0])
     }

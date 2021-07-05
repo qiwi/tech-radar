@@ -3,7 +3,6 @@ import globby from 'globby'
 import { uniq } from 'lodash-es'
 import path from 'path'
 
-import { tempDir } from './constants.js'
 import { genStatics } from './generateStatic.js'
 import { read } from './reader.js'
 import { makeUniq, reverse } from './util.js'
@@ -24,7 +23,7 @@ export const run = async ({ input, output, cwd = process.cwd() } = {}) => {
 
     console.log('statics=', statics)
   } finally {
-    await fsExtra.remove(tempDir)
+    await fsExtra.remove(global._11ty_.temp)
   }
 }
 /**

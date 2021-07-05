@@ -37,6 +37,9 @@ Object {
     "legend": "bla bla bla",
     "title": "work it",
   },
+  "quadrantAliases": Object {
+    "language": "languages-and-frameworks",
+  },
 }
 `;
 
@@ -116,6 +119,9 @@ Object {
     "date": "2021-06-18",
     "legend": "bla bla bla",
     "title": "work it",
+  },
+  "quadrantAliases": Object {
+    "language": "languages-and-frameworks",
   },
 }
 `;
