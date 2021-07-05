@@ -3,10 +3,19 @@ import fs from 'fs'
 import yaml from 'js-yaml'
 import path from 'path'
 
+/**
+ * read file and generate radarDocument
+ * @param filePath
+ * @returns {{data: any[], meta: {}}} radarDocument
+ */
 export const read = (filePath) => {
   return getReader(path.extname(filePath))(filePath)
 }
-
+/**
+ * selection of the reading function depending on the extension
+ * @param ext
+ * @returns {(function(*=): {data: any[], meta: {}})}
+ */
 export const getReader = (ext) => {
   if (ext === '.csv') {
     return csvReader
@@ -19,7 +28,11 @@ export const getReader = (ext) => {
   }
   throw new Error('Unsupported format', ext)
 }
-
+/**
+ * read .csv file and generate radarDocument
+ * @param csvPath
+ * @returns {{data: any[], meta: {}}} radarDocument
+ */
 export const csvReader = (csvPath) => {
   const csvPathResolved = path.resolve(csvPath)
   const radarContents = fs.readFileSync(csvPathResolved, 'utf8')
@@ -42,13 +55,21 @@ export const csvReader = (csvPath) => {
   })
   return radarDocument
 }
-
+/**
+ * read .json file and generate radarDocument
+ * @param jsonPath
+ * @returns {{data: any[], meta: {}}} radarDocument
+ */
 export const jsonReader = (jsonPath) => {
   const jsonPathResolved = path.resolve(jsonPath)
   const fileData = fs.readFileSync(jsonPathResolved, 'utf8')
   return JSON.parse(fileData)
 }
-
+/**
+ * read .yml file and generate radarDocument
+ * @param yamlPath
+ * @returns {{data: any[], meta: {}}} radarDocument
+ */
 export const yamlReader = (yamlPath) => {
   const jsonPathResolved = path.resolve(yamlPath)
   const yamlData = fs.readFileSync(jsonPathResolved, 'utf8')
