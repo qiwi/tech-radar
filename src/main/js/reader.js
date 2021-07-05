@@ -9,7 +9,12 @@ import path from 'path'
  * @returns {{data: any[], meta: {}, quadrantAliases?: {}}} radarDocument
  */
 export const read = (filePath) => {
-  return getReader(path.extname(filePath))(filePath)
+  try {
+    return getReader(path.extname(filePath))(filePath)
+  } catch (err) {
+    console.error('filePath:', filePath, err)
+    return {}
+  }
 }
 /**
  * selection of the reading function depending on the extension
@@ -59,6 +64,7 @@ export const csvReader = (csvPath) => {
       Object.assign(radarDocument.meta, records[0])
     }
   })
+  // console.log('csvPath:', csvPath, radarDocument)
   return radarDocument
 }
 /**

@@ -5,8 +5,8 @@ const terser = require('terser')
 
 module.exports = (config) => {
   const pathPrefix = process.env.PATHPREFIX
-  const tempDir = global._11ty_.temp
-  const assetsPath = tempDir + '/assets'
+  const _11ty_ = global._11ty_
+  const assetsPath = _11ty_.temp + '/assets'
   config.addPassthroughCopy({
     [assetsPath]: '/',
   })
@@ -27,7 +27,7 @@ module.exports = (config) => {
 
     const radarSettings = {
       ...settings,
-      title: global._11ty_.title,
+      title: _11ty_.title,
       entries,
     }
 
@@ -59,8 +59,8 @@ module.exports = (config) => {
 
   return {
     dir: {
-      input: tempDir,
-      output: global._11ty_.outDir,
+      input: _11ty_.temp,
+      output: _11ty_.outDir,
       layouts: '_layouts',
     },
     pathPrefix,
