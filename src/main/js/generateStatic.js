@@ -25,6 +25,7 @@ export const genStatics = async (docs, dirs, _output) =>
       title: doc.meta.title,
       output,
       temp,
+      pathPrefix: dirs[i],
     }
     try {
       genMdAssets(doc, temp)
