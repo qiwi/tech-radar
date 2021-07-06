@@ -37,6 +37,9 @@ Object {
     "legend": "bla bla bla",
     "title": "work it",
   },
+  "quadrantAliases": Object {
+    "language": "languages-and-frameworks",
+  },
 }
 `;
 
@@ -47,7 +50,7 @@ Object {
       "description": "Статически типизированный ЖС",
       "moved": "1",
       "name": "TypeScript",
-      "quadrant": "language",
+      "quadrant": "languages-and-frameworks",
       "ring": "Adopt",
     },
     Object {
@@ -117,6 +120,9 @@ Object {
     "legend": "bla bla bla",
     "title": "work it",
   },
+  "quadrantAliases": Object {
+    "language": "languages-and-frameworks",
+  },
 }
 `;
 
@@ -127,7 +133,7 @@ Object {
       "description": "Статически типизированный ЖС",
       "moved": 1,
       "name": "TypeScript",
-      "quadrant": "language",
+      "quadrant": "languages-and-frameworks",
       "ring": "Adopt",
     },
     Object {
@@ -153,7 +159,7 @@ Object {
     },
   ],
   "meta": Object {
-    "date": 2021-06-12T00:00:00.000Z,
+    "date": "2021-06-12",
     "legend": "bla bla bla",
     "title": "tech radar js",
   },

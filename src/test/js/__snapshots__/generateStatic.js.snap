@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`generate 11ty app  1`] = `
+exports[`generate 11ty app from .csv file 1`] = `
 Array [
   "/test/entries/languages-and-frameworks/TypeScript/index.html",
   "/test/entries/platforms/Nodejs/index.html",
@@ -10,5 +10,60 @@ Array [
   "/test/index.html",
   "/test/radar.css",
   "/test/radar.js",
+]
+`;
+
+exports[`generate 11ty app from .json file 1`] = `
+Array [
+  "/test/entries/languages-and-frameworks/TypeScript/index.html",
+  "/test/entries/platforms/Nodejs/index.html",
+  "/test/entries/techniques/Гексагональная архитектура/index.html",
+  "/test/entries/tools/codeclimate/index.html",
+  "/test/favicon.ico",
+  "/test/index.html",
+  "/test/radar.css",
+  "/test/radar.js",
+]
+`;
+
+exports[`generate 11ty app from .yml file 1`] = `
+Array [
+  "/test/entries/languages-and-frameworks/TypeScript/index.html",
+  "/test/entries/platforms/Nodejs/index.html",
+  "/test/entries/techniques/Гексагональная архитектура/index.html",
+  "/test/entries/tools/codeclimate/index.html",
+  "/test/favicon.ico",
+  "/test/index.html",
+  "/test/radar.css",
+  "/test/radar.js",
+]
+`;
+
+exports[`generate 11ty app from multiple files 1`] = `
+Array [
+  "/test/entries/languages-and-frameworks/TypeScript/index.html",
+  "/test/entries/platforms/Nodejs/index.html",
+  "/test/entries/techniques/Гексагональная архитектура/index.html",
+  "/test/entries/tools/codeclimate/index.html",
+  "/test/favicon.ico",
+  "/test/index.html",
+  "/test/radar.css",
+  "/test/radar.js",
+  "/test-2/entries/languages-and-frameworks/TypeScript/index.html",
+  "/test-2/entries/platforms/Nodejs/index.html",
+  "/test-2/entries/techniques/Гексагональная архитектура/index.html",
+  "/test-2/entries/tools/codeclimate/index.html",
+  "/test-2/favicon.ico",
+  "/test-2/index.html",
+  "/test-2/radar.css",
+  "/test-2/radar.js",
+  "/test-3/entries/languages-and-frameworks/TypeScript/index.html",
+  "/test-3/entries/platforms/Nodejs/index.html",
+  "/test-3/entries/techniques/Гексагональная архитектура/index.html",
+  "/test-3/entries/tools/codeclimate/index.html",
+  "/test-3/favicon.ico",
+  "/test-3/index.html",
+  "/test-3/radar.css",
+  "/test-3/radar.js",
 ]
 `;

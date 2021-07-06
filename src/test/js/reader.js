@@ -19,9 +19,12 @@ describe('reader.js', () => {
   it('yamlReader', () => {
     expect(yamlReader('src/test/stub/test.yml')).toMatchSnapshot()
   })
-  it('getReader ', function () {
+  it('getReader ', () => {
     expect(getReader('.csv')).toBe(csvReader)
     expect(getReader('.json')).toBe(jsonReader)
     expect(getReader('.yml')).toBe(yamlReader)
+  })
+  it('invalid .csv', () => {
+    expect(read('src/test/stub/invalid.csv')).toStrictEqual({})
   })
 })
