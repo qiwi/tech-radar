@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`generate 11ty app from .csv file 1`] = `
+exports[`generate 11ty app from .csv file  1`] = `
 Array [
   "/test/entries/languages-and-frameworks/TypeScript/index.html",
   "/test/entries/platforms/Nodejs/index.html",
@@ -13,7 +13,7 @@ Array [
 ]
 `;
 
-exports[`generate 11ty app from .json file 1`] = `
+exports[`generate 11ty app from .json file  1`] = `
 Array [
   "/test/entries/languages-and-frameworks/TypeScript/index.html",
   "/test/entries/platforms/Nodejs/index.html",
@@ -26,7 +26,7 @@ Array [
 ]
 `;
 
-exports[`generate 11ty app from .yml file 1`] = `
+exports[`generate 11ty app from .yml file  1`] = `
 Array [
   "/test/entries/languages-and-frameworks/TypeScript/index.html",
   "/test/entries/platforms/Nodejs/index.html",
@@ -39,7 +39,7 @@ Array [
 ]
 `;
 
-exports[`generate 11ty app from multiple files 1`] = `
+exports[`generate 11ty app from multiple files  1`] = `
 Array [
   "/test/entries/languages-and-frameworks/TypeScript/index.html",
   "/test/entries/platforms/Nodejs/index.html",

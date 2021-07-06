@@ -27,16 +27,22 @@ const genStaticFileStruct = async (input) => {
   return fileStruct.map((el) => /dist(.+)/.exec(el)[1])
 }
 
-describe('generate 11ty app', () => {
-  it('from .csv file', async () => {
+// describe('generate 11ty app', () => {
+//
+// })
+
+describe('generate 11ty app from .csv file',  () => {
+  it('',async () => {
     const csvPath = path.join(__dirname, '../stub/test.csv')
     const normalizedFileStruct = await genStaticFileStruct([csvPath])
     expect(normalizedFileStruct).toMatchSnapshot()
-  })
-  afterEach(() => {
-    fsExtra.removeSync(path.resolve('dist'))
-  })
-  it('from multiple files', async () => {
+  });
+})
+afterEach(() => {
+  fsExtra.removeSync(path.resolve('dist'))
+})
+describe('generate 11ty app from multiple files', () => {
+  it('', async () => {
     const csvPath = path.join(__dirname, '../stub/test.csv')
     const jsonPath = path.join(__dirname, '../stub/test.json')
     const yamlPath = path.join(__dirname, '../stub/test.yml')
@@ -47,26 +53,23 @@ describe('generate 11ty app', () => {
       yamlPath,
     ])
     expect(normalizedFileStruct).toMatchSnapshot()
-  })
-  afterEach(() => {
-    fsExtra.removeSync(path.resolve('dist'))
-  })
-  it('from .json file', async () => {
+  });
+})
+
+describe('generate 11ty app from .json file', () => {
+  it('', async () => {
     const jsonPath = path.join(__dirname, '../stub/test.json')
 
     const normalizedFileStruct = await genStaticFileStruct([jsonPath])
     expect(normalizedFileStruct).toMatchSnapshot()
-  })
-  afterEach(() => {
-    fsExtra.removeSync(path.resolve('dist'))
-  })
-  it('from .yml file', async () => {
+  });
+})
+
+describe('generate 11ty app from .yml file', () => {
+  it('', async () => {
     const yamlPath = path.join(__dirname, '../stub/test.yml')
 
     const normalizedFileStruct = await genStaticFileStruct([yamlPath])
     expect(normalizedFileStruct).toMatchSnapshot()
-  })
-  afterEach(() => {
-    fsExtra.removeSync(path.resolve('dist'))
-  })
+  });
 })
