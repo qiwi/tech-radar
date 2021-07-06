@@ -24,7 +24,7 @@ const genStaticFileStruct = async (input) => {
   await genStatics(docs, dirs, 'dist')
 
   const fileStruct = getFileStruct(path.resolve('dist'))
-  return fileStruct.map((el) => /(.+)/.exec(el)[1])
+  return fileStruct.map((el) => /dist(.+)/.exec(el)[1])
 }
 
 describe('generate 11ty app', () => {
