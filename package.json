@@ -10,7 +10,7 @@
     "lint:fix": "yarn lint --fix",
     "format": "prettier --write \"src/**/*.js\"",
     "release": "npx -p @qiwi/semrel-toolkit semrel -e @qiwi/semrel-config",
-    "generate": "node ./src/main/js/cli.mjs --input \"radar-data/*.{csv,json,yml}\"  --output dist && touch dist/.nojekyll"
+    "generate": "node ./src/main/js/cli.mjs --input \"data/**/*.{csv,json,yml}\"  --output dist && touch dist/.nojekyll"
   },
   "prettier": "prettier-config-qiwi",
   "exports": {
