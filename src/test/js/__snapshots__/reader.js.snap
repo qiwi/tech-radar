@@ -50,7 +50,7 @@ Object {
       "description": "Статически типизированный ЖС",
       "moved": "1",
       "name": "TypeScript",
-      "quadrant": "language",
+      "quadrant": "languages-and-frameworks",
       "ring": "Adopt",
     },
     Object {
@@ -133,7 +133,7 @@ Object {
       "description": "Статически типизированный ЖС",
       "moved": 1,
       "name": "TypeScript",
-      "quadrant": "language",
+      "quadrant": "languages-and-frameworks",
       "ring": "Adopt",
     },
     Object {

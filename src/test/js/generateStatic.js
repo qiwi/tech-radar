@@ -18,19 +18,55 @@ export const getFileStruct = (dir, result = []) => {
   return result
 }
 
-describe('generate 11ty app', () => {
-  it('', async () => {
-    const csvPath = path.join(__dirname, '../stub/test.csv')
-    // const outDir = path.resolve('temp')
-    const docs = getDocuments([csvPath])
-    const dirs = getDirs([csvPath])
-    await genStatics(docs, dirs, 'dist')
+const genStaticFileStruct = async (input) => {
+  const docs = getDocuments(input)
+  const dirs = getDirs(input)
+  await genStatics(docs, dirs, 'dist')
 
-    const fileStruct = getFileStruct(path.resolve('dist/test'))
-    const normalizedFileStruct = fileStruct.map((el) => /dist(.+)/.exec(el)[1])
+  const fileStruct = getFileStruct(path.resolve('dist'))
+  return fileStruct.map((el) => /(.+)/.exec(el)[1])
+}
+
+describe('generate 11ty app', () => {
+  it('from .csv file', async () => {
+    const csvPath = path.join(__dirname, '../stub/test.csv')
+    const normalizedFileStruct = await genStaticFileStruct([csvPath])
     expect(normalizedFileStruct).toMatchSnapshot()
   })
-  afterAll(() => {
+  afterEach(() => {
+    fsExtra.removeSync(path.resolve('dist'))
+  })
+  it('from multiple files', async () => {
+    const csvPath = path.join(__dirname, '../stub/test.csv')
+    const jsonPath = path.join(__dirname, '../stub/test.json')
+    const yamlPath = path.join(__dirname, '../stub/test.yml')
+
+    const normalizedFileStruct = await genStaticFileStruct([
+      csvPath,
+      jsonPath,
+      yamlPath,
+    ])
+    expect(normalizedFileStruct).toMatchSnapshot()
+  })
+  afterEach(() => {
+    fsExtra.removeSync(path.resolve('dist'))
+  })
+  it('from .json file', async () => {
+    const jsonPath = path.join(__dirname, '../stub/test.json')
+
+    const normalizedFileStruct = await genStaticFileStruct([jsonPath])
+    expect(normalizedFileStruct).toMatchSnapshot()
+  })
+  afterEach(() => {
+    fsExtra.removeSync(path.resolve('dist'))
+  })
+  it('from .yml file', async () => {
+    const yamlPath = path.join(__dirname, '../stub/test.yml')
+
+    const normalizedFileStruct = await genStaticFileStruct([yamlPath])
+    expect(normalizedFileStruct).toMatchSnapshot()
+  })
+  afterEach(() => {
     fsExtra.removeSync(path.resolve('dist'))
   })
 })

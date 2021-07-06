@@ -5,7 +5,7 @@ meta:
 data:
   -
     name: TypeScript
-    quadrant: language
+    quadrant: languages-and-frameworks
     ring: Adopt
     description: Статически типизированный ЖС
     moved: 1

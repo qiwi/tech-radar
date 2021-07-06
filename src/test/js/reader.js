@@ -24,4 +24,7 @@ describe('reader.js', () => {
     expect(getReader('.json')).toBe(jsonReader)
     expect(getReader('.yml')).toBe(yamlReader)
   })
+  it('invalid .csv', () => {
+    expect(read('src/test/stub/invalid.csv')).toStrictEqual({})
+  })
 })

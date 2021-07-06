@@ -2,9 +2,8 @@ import Eleventy from '@11ty/eleventy'
 import fsExtra from 'fs-extra'
 import path from 'path'
 
-import { radarSchema } from './constants.js'
+import { radarSchema, tempDir } from './constants.js'
 import { genMdAssets } from './generateMdAssets.js'
-import { getTemp } from './util.js'
 import { validate } from './validator.js'
 
 /**
@@ -13,14 +12,13 @@ import { validate } from './validator.js'
  * @param dirs
  * @param _output
  */
-export const genStatics = async (docs, dirs, _output) => {
-  const result = []
-  for (const doc of docs) {
-    const i = docs.indexOf(doc)
-    if (!validate(doc, radarSchema) || Object.keys(doc).length === 0) continue
-    console.log(doc.meta.title)
-    const temp = getTemp()
-    // const temp = tempDir
+export const genStatics = async (docs, dirs, _output) =>
+  docs.reduce(async (r, doc, i) => {
+    const _m = await r
+    if (!validate(doc, radarSchema) || Object.keys(doc).length === 0)
+      return [..._m]
+
+    const temp = tempDir
     const output = dirs[i] ? path.join(_output, dirs[i]) : _output
 
     global._11ty_ = {
@@ -28,19 +26,14 @@ export const genStatics = async (docs, dirs, _output) => {
       output,
       temp,
     }
-    console.log('0', global._11ty_)
     try {
       genMdAssets(doc, temp)
       await genEleventy(temp, output)
     } catch (err) {
       console.error(err)
-      await fsExtra.remove(temp)
     }
-    console.log('1', global._11ty_)
-    result.push(output)
-  }
-  return result
-}
+    return [..._m, output]
+  }, [])
 
 /**
  * generate static site with using 11ty

@@ -40,9 +40,7 @@ export const genMdAssets = (doc, temp) => {
 
   doc.data.forEach(({ name, quadrant, ring, description, moved }) => {
     try {
-      const quadrantAlias = doc.quadrantAliases[quadrant.toLowerCase()]
-        ? doc.quadrantAliases[quadrant.toLowerCase()]
-        : quadrant.toLowerCase()
+      const quadrantAlias = getQuadrant(quadrant, doc)
       const entryPath = genMdPath({ name, quadrant: quadrantAlias, temp })
       const content = genMdContent({ ring, description, moved })
       fsExtra.writeFileSync(entryPath, content)
@@ -50,4 +48,11 @@ export const genMdAssets = (doc, temp) => {
       console.error(err)
     }
   })
+}
+
+export const getQuadrant = (quadrant, doc) => {
+  if (!('quadrantAliases' in doc)) return quadrant
+  return doc.quadrantAliases[quadrant.toLowerCase()]
+    ? doc.quadrantAliases[quadrant.toLowerCase()]
+    : quadrant.toLowerCase()
 }
