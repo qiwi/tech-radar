@@ -53,7 +53,7 @@ export const genMdAssets = (doc, temp) => {
 }
 
 export const getQuadrant = (quadrant, doc) => {
-  if (!('quadrantAliases' in doc)) return quadrant
+  if (!('quadrantAliases' in doc)) return quadrant.toLowerCase()
   return doc.quadrantAliases[quadrant.toLowerCase()]
     ? doc.quadrantAliases[quadrant.toLowerCase()]
     : quadrant.toLowerCase()

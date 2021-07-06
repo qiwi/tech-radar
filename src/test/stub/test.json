@@ -13,7 +13,7 @@
       "moved": "1"
     },
     {
-      "name": "Nod",
+      "name": "Nodejs",
       "quadrant": "Platforms",
       "ring": "Adopt",
       "description": "",
@@ -25,6 +25,13 @@
       "ring": "Trial",
       "description": "Статический анализатор кода",
       "moved": "0"
+    },
+    {
+      "name": "Гексагональная архитектура",
+      "quadrant": "Techniques",
+      "ring": "Assess",
+      "description": "Унификации контракта интерфейсов различных слоев приложений",
+      "moved": "-1"
     }
   ]
 }
