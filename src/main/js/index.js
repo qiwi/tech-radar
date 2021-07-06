@@ -14,13 +14,13 @@ import { makeUniq, reverse } from './util.js'
  * @param output - output directory
  * @param cwd - current working directory
  */
-export const run = async ({ input, output, cwd = process.cwd() } = {}) => {
+export const run = async ({ input, output, cwd = process.cwd(), basePrefix = 'tech-radar' } = {}) => {
   try {
     // TODO check that `output` is not a dir if exists
     const sources = await getSources(input, cwd)
     const docs = getDocuments(sources)
     const dirs = getDirs(sources)
-    const statics = await genStatics(docs, dirs, output)
+    const statics = await genStatics(docs, dirs, output, basePrefix)
 
     console.log('statics=', statics)
   } finally {

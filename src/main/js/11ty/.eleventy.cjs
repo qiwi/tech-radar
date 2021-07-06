@@ -15,11 +15,11 @@ module.exports = (config) => {
   config.addShortcode('makeBootScript', (settings, collections) => {
     const entries = collections
       .map((entity) => ({
-        quadrant: entity.data.quadrant,
+        quadrant: entity.data.quadrant.trim(),
         ring: settings.rings.findIndex(
-          (ring) => ring.id === entity.data.ring.toLowerCase(),
+          (ring) => ring.id === entity.data.ring.trim().toLowerCase(),
         ),
-        moved: entity.data.moved || 0,
+        moved: entity.data.moved.trim() || 0,
         label: entity.fileSlug,
         link: config.javascriptFunctions.url(entity.url, pathPrefix),
         active: false,
