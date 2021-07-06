@@ -1,3 +1,4 @@
+import fs from 'fs'
 import fsExtra from 'fs-extra'
 import path from 'path'
 
@@ -43,7 +44,8 @@ export const genMdAssets = (doc, temp) => {
       const quadrantAlias = getQuadrant(quadrant, doc)
       const entryPath = genMdPath({ name, quadrant: quadrantAlias, temp })
       const content = genMdContent({ ring, description, moved })
-      fsExtra.writeFileSync(entryPath, content)
+      console.log('-------', quadrantAlias, entryPath)
+      fs.writeFileSync(entryPath, content)
     } catch (err) {
       console.error('genMdAssets', err)
     }
