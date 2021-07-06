@@ -1,3 +1,9 @@
+title
+QIWI JS Tech Radar
+===
+date
+21-06-2021
+===
 name,quadrant,ring,description
 TypeScript,languages-and-frameworks,Adopt,Статически типизированный ЖС
 JavaScript,languages-and-frameworks,Adopt,ЖС
@@ -25,9 +31,3 @@ Monorepo,Techniques,Trial,Обобщение кодовой базы на уро
 Trunk-based Development,Techniques,Adopt,Фиче-флаги вместо фич-бранчей
 Гексагональная архитектура,Techniques,Assess,Унификации контракта интерфейсов различных слоев приложений
 OSS,Techniques,Trial,Публичная разработка
-===
-title
-QIWI JS Tech Radar
-===
-date
-21-06-2021

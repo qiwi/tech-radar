@@ -2,9 +2,8 @@ import Eleventy from '@11ty/eleventy'
 import fsExtra from 'fs-extra'
 import path from 'path'
 
-import { radarSchema } from './constants.js'
+import {radarSchema, tempDir} from './constants.js'
 import { genMdAssets } from './generateMdAssets.js'
-import {getTemp} from "./util.js";
 import { validate } from './validator.js'
 
 /**
@@ -19,7 +18,7 @@ export const genStatics = async (docs, dirs, _output) =>
     if (!validate(doc, radarSchema) || Object.keys(doc).length === 0)
       return [..._m]
 
-    const temp = getTemp()
+    const temp = tempDir
     const output = dirs[i] ? path.join(_output, dirs[i]) : _output
 
     global._11ty_ = {
@@ -46,5 +45,5 @@ export const genEleventy = async (temp, output) => {
   elev.setConfigPathOverride('src/main/js/11ty/.eleventy.cjs')
   await elev.init()
   await elev.write()
-  await fsExtra.remove(temp)
+  fsExtra.removeSync(temp)
 }

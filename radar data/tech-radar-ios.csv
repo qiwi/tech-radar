@@ -1,3 +1,9 @@
+title
+QIWI iOS Tech Radar
+===
+date
+21-06-2021
+===
 name,quadrant,ring,description
 Дизайн-система,tech,adopt,
 Модульная архитектура,tech,adopt,
@@ -72,12 +78,6 @@ SwipeCellKit,Language,HOLD,"Swipeable UITableViewCell/UICollectionViewCell based
 TTTAttributedLabel,Language,HOLD,"A drop-in replacement for UILabel that supports attributes, data detectors, links, and more"
 Typhoon,Language,HOLD,Dependency Injection framework
 YapDatabase,Language,HOLD,A collection/key/value store.
-===
-title
-QIWI iOS Tech Radar
-===
-date
-21-06-2021
 ===
 quadrant,alias
 languages-and-frameworks,Language
