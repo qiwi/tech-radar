@@ -44,7 +44,6 @@ export const genMdAssets = (doc, temp) => {
       const quadrantAlias = getQuadrant(quadrant, doc)
       const entryPath = genMdPath({ name, quadrant: quadrantAlias, temp })
       const content = genMdContent({ ring, description, moved })
-      console.log('-------', quadrantAlias, entryPath)
       fs.writeFileSync(entryPath, content)
     } catch (err) {
       console.error('genMdAssets', err)

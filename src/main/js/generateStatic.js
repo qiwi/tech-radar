@@ -2,7 +2,7 @@ import Eleventy from '@11ty/eleventy'
 import fsExtra from 'fs-extra'
 import path from 'path'
 
-import {radarSchema, tempDir} from './constants.js'
+import { radarSchema, tempDir } from './constants.js'
 import { genMdAssets } from './generateMdAssets.js'
 import { validate } from './validator.js'
 
@@ -30,7 +30,7 @@ export const genStatics = async (docs, dirs, _output) =>
       genMdAssets(doc, temp)
       await genEleventy(temp, output)
     } catch (err) {
-      console.error('genStatics',err)
+      console.error('genStatics', err)
     }
     return [..._m, output]
   }, [])
