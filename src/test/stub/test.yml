@@ -10,6 +10,12 @@ data:
     description: Статически типизированный ЖС
     moved: 1
   -
+    name: Nodejs
+    quadrant: Platforms
+    ring: Adopt
+    description:
+    moved:
+  -
     name: codeclimate
     quadrant: tools
     ring: Trial
