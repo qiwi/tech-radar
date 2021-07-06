@@ -32,15 +32,18 @@ jobs:
       - name: Install deps
         run: yarn
 
-#      - name: Save artifact
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: artifact-${{ github.run_id }}
-#          retention-days: 1
-#          # need to add any root level file to prevent common dirname part trimming
-#          path: |
-#            node_modules
-#            docs
+      - name: Generate
+        run: yarn generate
+
+      - name: Save artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact-${{ github.run_id }}
+          retention-days: 1
+          # need to add any root level file to prevent common dirname part trimming
+          path: |
+            dist
+            README.md
 
   test:
     needs: build
@@ -48,11 +51,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-#      - name: Restore artifact
-#        uses: actions/download-artifact@v2
-#        with:
-#          name: artifact-${{ github.run_id }}
 
       - name: Setup NodeJS
         uses: actions/setup-node@v2
@@ -64,3 +62,30 @@ jobs:
 
       - name: Test
         run: yarn test
+
+  release:
+    name: Release
+    # https://github.community/t/trigger-job-on-tag-push-only/18076
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkuout
+        uses: actions/checkout@v2
+
+      - name: Restore artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact-${{ github.run_id }}
+
+      - name: Display structure of downloaded files
+        run: ls -R
+
+      - name: Publish gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          commit_message: "docs: update tech-radar static"
+          allow_empty_commit: true
+          enable_jekyll: false
