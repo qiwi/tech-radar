@@ -13,6 +13,13 @@
       "moved": "1"
     },
     {
+      "name": "Nod",
+      "quadrant": "Platforms",
+      "ring": "Adopt",
+      "description": "",
+      "moved": ""
+    },
+    {
       "name": "codeclimate",
       "quadrant": "tools",
       "ring": "Trial",
