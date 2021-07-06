@@ -30,7 +30,7 @@ export const genStatics = async (docs, dirs, _output) =>
       genMdAssets(doc, temp)
       await genEleventy(temp, output)
     } catch (err) {
-      console.error(err)
+      console.error('genStatics',err)
     }
     return [..._m, output]
   }, [])

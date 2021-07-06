@@ -45,7 +45,7 @@ export const genMdAssets = (doc, temp) => {
       const content = genMdContent({ ring, description, moved })
       fsExtra.writeFileSync(entryPath, content)
     } catch (err) {
-      console.error(err)
+      console.error('genMdAssets', err)
     }
   })
 }

@@ -10,7 +10,7 @@ const validate = (target, schema) => {
 
   const result = validator(target)
   const error = validator.errors
-  console.error(error)
+  console.error('validator', error)
   return result
 }
 
