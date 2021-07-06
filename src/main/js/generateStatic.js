@@ -2,8 +2,9 @@ import Eleventy from '@11ty/eleventy'
 import fsExtra from 'fs-extra'
 import path from 'path'
 
-import { radarSchema, tempDir } from './constants.js'
+import { radarSchema } from './constants.js'
 import { genMdAssets } from './generateMdAssets.js'
+import {getTemp} from "./util.js";
 import { validate } from './validator.js'
 
 /**
@@ -18,7 +19,7 @@ export const genStatics = async (docs, dirs, _output) =>
     if (!validate(doc, radarSchema) || Object.keys(doc).length === 0)
       return [..._m]
 
-    const temp = tempDir
+    const temp = getTemp()
     const output = dirs[i] ? path.join(_output, dirs[i]) : _output
 
     global._11ty_ = {
