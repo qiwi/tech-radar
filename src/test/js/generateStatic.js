@@ -21,10 +21,10 @@ export const getFileStruct = (dir, result = []) => {
 const genStaticFileStruct = async (input) => {
   const docs = getDocuments(input)
   const dirs = getDirs(input)
-  await genStatics(docs, dirs, 'dist')
+  await genStatics(docs, dirs, 'test')
 
-  const fileStruct = getFileStruct(path.resolve('dist'))
-  return fileStruct.map((el) => /dist(.+)/.exec(el)[1])
+  const fileStruct = getFileStruct(path.resolve('test'))
+  return fileStruct.map((el) => /test(.+)/.exec(el)[1])
 }
 
 describe('generate 11ty app', () => {
@@ -35,7 +35,7 @@ describe('generate 11ty app', () => {
   })
 
   afterEach(() => {
-    fsExtra.removeSync(path.resolve('dist'))
+    fsExtra.removeSync(path.resolve('test'))
   })
 
   it('from multiple files', async () => {
