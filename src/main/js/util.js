@@ -47,15 +47,16 @@ export const getTemp = (cwd, temp) => {
   return ensureDir(tempDir)
 }
 export const getQuadrant = (quadrant, doc) => {
+  const lowQuadrant = quadrant.toLowerCase()
   if (!('quadrantAliases' in doc))
-    return defQuadrantAlias[quadrant.toLowerCase()]
-  if (Object.values(doc.quadrantAliases).includes(quadrant))
-    return Object.keys(doc.quadrantAliases)[
-      Object.values(doc.quadrantAliases).indexOf(quadrant)
-    ]
-  return doc.quadrantAliases[quadrant.toLowerCase()]
-    ? doc.quadrantAliases[quadrant.toLowerCase()]
-    : quadrant.toLowerCase()
+    return defQuadrantAlias[lowQuadrant]
+  // console.log('0000000', lowQuadrant)
+  const alias = doc.quadrantAliases[lowQuadrant] ? doc.quadrantAliases[lowQuadrant] : lowQuadrant
+  // console.log('77778', alias, doc.quadrantAliases)
+  if (Object.values(doc.quadrantAliases).includes(alias))
+    return Object.keys(doc.quadrantAliases).find(key => doc.quadrantAliases[key] === alias && (key === 'q1' || key === 'q2' || key === 'q3' || key === 'q4'))
+
+  return alias
 }
 
 export const writeSettings = (doc, output, isTitle) => {

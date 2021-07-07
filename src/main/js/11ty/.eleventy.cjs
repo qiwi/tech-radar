@@ -5,7 +5,6 @@ const terser = require('terser')
 
 module.exports = (config) => {
   const {temp, output, title, pathPrefix } = global._11ty_
-  console.log('-----',pathPrefix)
   const assetsPath = temp + '/assets'
   config.addPassthroughCopy({
     [assetsPath]: '/',

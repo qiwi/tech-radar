@@ -39,6 +39,16 @@ Object {
   },
   "quadrantAliases": Object {
     "language": "languages-and-frameworks",
+    "q1": "languages-and-frameworks",
+    "q2": "platforms",
+    "q3": "tools",
+    "q4": "techniques",
+  },
+  "quadrantTitle": Object {
+    "q1": "Languages and frameworks",
+    "q2": "Platforms",
+    "q3": "Tools",
+    "q4": "Techniques",
   },
 }
 `;
@@ -122,6 +132,16 @@ Object {
   },
   "quadrantAliases": Object {
     "language": "languages-and-frameworks",
+    "q1": "languages-and-frameworks",
+    "q2": "platforms",
+    "q3": "tools",
+    "q4": "techniques",
+  },
+  "quadrantTitle": Object {
+    "q1": "Languages and frameworks",
+    "q2": "Platforms",
+    "q3": "Tools",
+    "q4": "Techniques",
   },
 }
 `;

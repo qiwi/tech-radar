@@ -4,9 +4,9 @@ import path from 'path'
 
 import {
   langAndFw,
-  platforms,
-  techniques,
-  tools,
+  // platforms,
+  // techniques,
+  // tools,
 } from '../../main/js/constants'
 import {
   genMdAssets,
@@ -23,19 +23,19 @@ describe('generate md assets', () => {
     genMdAssets(read(csvPath), outDir)
 
     const tsMdData = fs.readFileSync(
-      path.join(outDir, 'entries', langAndFw, 'TypeScript.md'),
+      path.join(outDir, 'entries', 'q1', 'TypeScript.md'),
       'utf8',
     )
     const nodeMdData = fs.readFileSync(
-      path.join(outDir, 'entries', platforms, 'Nodejs.md'),
+      path.join(outDir, 'entries', 'q2', 'Nodejs.md'),
       'utf8',
     )
     const hexMdData = fs.readFileSync(
-      path.join(outDir, 'entries', techniques, 'Гексагональная архитектура.md'),
+      path.join(outDir, 'entries', 'q4', 'Гексагональная архитектура.md'),
       'utf8',
     )
     const codMdData = fs.readFileSync(
-      path.join(outDir, 'entries', tools, 'codeclimate.md'),
+      path.join(outDir, 'entries', 'q3', 'codeclimate.md'),
       'utf8',
     )
 

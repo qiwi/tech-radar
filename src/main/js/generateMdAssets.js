@@ -38,12 +38,15 @@ ${description}`
  * @param temp - temp directory
  */
 export const genMdAssets = (doc, temp) => {
+  // console.log('77777777', doc, temp)
   fsExtra.copySync(tplDir, temp)
   doc.data.forEach(({ name, quadrant, ring, description, moved }) => {
     try {
       const quadrantAlias = getQuadrant(quadrant, doc)
+      // console.log('-----', quadrantAlias)
       const entryPath = genMdPath({ name, quadrant: quadrantAlias, temp })
       const content = genMdContent({ ring, description, moved })
+
       fs.writeFileSync(entryPath, content)
     } catch (err) {
       console.error('genMdAssets', err)
