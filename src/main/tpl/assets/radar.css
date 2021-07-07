@@ -2,6 +2,11 @@ body {
   font-family: 'Source Sans Pro', arial, helvetica, sans-serif;
   padding-bottom: 50px;
 }
+body.page__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 h3 {
   margin-top: 50px;
 }
