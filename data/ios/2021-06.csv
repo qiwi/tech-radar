@@ -4,6 +4,18 @@ QIWI iOS Tech Radar
 date
 21-06-2021
 ===
+quadrant,alias
+languages-and-frameworks,q1
+platforms,q2
+tools,q3
+techniques,q4
+===
+quadrant,title
+q1,Languages and frameworks
+q2,Platforms
+q3,Tools
+q4,Techniques
+===
 name,quadrant,ring,description
 Дизайн-система,tech,adopt,
 Модульная архитектура,tech,adopt,
