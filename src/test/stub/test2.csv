@@ -1,0 +1,27 @@
+title
+work it
+===
+date
+2021-06-18
+===
+legend
+bla bla bla
+===
+name,quadrant,ring,description,moved
+TypeScript,lang,Adopt,Статически типизированный ЖС,1
+Nodejs,plat,Adopt,,
+codeclimate,tool,Trial,Статический анализатор кода,0
+Гексагональная архитектура,tech,Assess,Унификации контракта интерфейсов различных слоев приложений,-1
+===
+quadrant,alias
+lang,q1
+plat,q2
+tool,q3
+tech,q4
+===
+quadrant,title
+q1,Lang
+q2,Plat
+q3,Tool
+q4,Tech
+

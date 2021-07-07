@@ -4,6 +4,7 @@ import path from 'path'
 
 import { radarSchema, tempDir } from './constants.js'
 import { genMdAssets } from './generateMdAssets.js'
+import { writeSettings } from './util.js'
 import { validate } from './validator.js'
 
 /**
@@ -25,15 +26,17 @@ export const genStatics = async (
 
     const temp = tempDir
     const output = dirs[i] ? path.join(_output, dirs[i]) : _output
+    const prefix = basePrefix ? basePrefix + '/' + dirs[i] : undefined
 
     global._11ty_ = {
       title: doc.meta.title,
       output,
       temp,
-      pathPrefix: basePrefix + '/' + dirs[i],
+      pathPrefix: prefix,
     }
     try {
       genMdAssets(doc, temp)
+      writeSettings(doc, temp, 'quadrantTitle' in doc)
       await genEleventy(temp, output)
     } catch (err) {
       console.error('genStatics', err)

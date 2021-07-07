@@ -4,9 +4,8 @@ const htmlmin = require('html-minifier')
 const terser = require('terser')
 
 module.exports = (config) => {
-  // const pathPrefix = process.env.PATHPREFIX
-  const {temp, output, title, pathPrefix} = global._11ty_
-
+  const {temp, output, title, pathPrefix } = global._11ty_
+  console.log('-----',pathPrefix)
   const assetsPath = temp + '/assets'
   config.addPassthroughCopy({
     [assetsPath]: '/',

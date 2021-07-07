@@ -36,3 +36,27 @@ export const radarSchema = {
     },
   },
 }
+export const settings = {
+  svg_id: 'radar',
+  width: 1450,
+  height: 1100,
+  colors: {
+    background: '#fff',
+    grid: '#bbb',
+    inactive: '#ddd',
+  },
+  rings: [
+    { name: 'ADOPT', color: '#93c47d', id: 'adopt' },
+    { name: 'TRIAL', color: '#93d2c2', id: 'trial' },
+    { name: 'ASSESS', color: '#fbdb84', id: 'assess' },
+    { name: 'HOLD', color: '#efafa9', id: 'hold' },
+  ],
+  print_layout: true,
+}
+
+export const defQuadrantAlias = {
+  'languages-and-frameworks': 'q1',
+  platforms: 'q2',
+  techniques: 'q3',
+  tools: 'q4',
+}
