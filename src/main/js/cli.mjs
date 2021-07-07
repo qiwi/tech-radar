@@ -6,10 +6,11 @@ import {run} from './index.js'
 export const cli = meow(
   `
     Usage:
-      techradar  --input /path/to/csv --output /radar
+      techradar  --input /path/to/csv --output /radar --basePrefix tech-radar
     Options
       --input
       --output
+      --basePrefix
 `,
   {
     importMeta: import.meta,
@@ -21,6 +22,9 @@ export const cli = meow(
       output: {
         type: 'string',
         isRequired: true,
+      },
+      basePrefix: {
+        type: 'string',
       },
       cwd: {
         type: 'string',

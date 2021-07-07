@@ -12,7 +12,12 @@ import { validate } from './validator.js'
  * @param dirs
  * @param _output
  */
-export const genStatics = async (docs, dirs, _output) =>
+export const genStatics = async (
+  docs,
+  dirs,
+  _output,
+  basePrefix = 'tech-radar',
+) =>
   docs.reduce(async (r, doc, i) => {
     const _m = await r
     if (!validate(doc, radarSchema) || Object.keys(doc).length === 0)
@@ -25,7 +30,7 @@ export const genStatics = async (docs, dirs, _output) =>
       title: doc.meta.title,
       output,
       temp,
-      pathPrefix: dirs[i],
+      pathPrefix: basePrefix + '/' + dirs[i],
     }
     try {
       genMdAssets(doc, temp)
