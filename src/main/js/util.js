@@ -50,9 +50,7 @@ export const getQuadrant = (quadrant, doc) => {
   const lowQuadrant = quadrant.toLowerCase()
   if (!('quadrantAliases' in doc))
     return defQuadrantAlias[lowQuadrant]
-  // console.log('0000000', lowQuadrant)
   const alias = doc.quadrantAliases[lowQuadrant] ? doc.quadrantAliases[lowQuadrant] : lowQuadrant
-  // console.log('77778', alias, doc.quadrantAliases)
   if (Object.values(doc.quadrantAliases).includes(alias))
     return Object.keys(doc.quadrantAliases).find(key => doc.quadrantAliases[key] === alias && (key === 'q1' || key === 'q2' || key === 'q3' || key === 'q4'))
 
