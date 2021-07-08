@@ -13,7 +13,7 @@ Nodejs,plat,Adopt,,
 codeclimate,tool,Trial,Статический анализатор кода,0
 Гексагональная архитектура,tech,Assess,Унификации контракта интерфейсов различных слоев приложений,-1
 ===
-quadrant,alias
+alias,quadrant
 lang,q1
 plat,q2
 tool,q3

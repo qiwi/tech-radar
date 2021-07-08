@@ -38,18 +38,13 @@ Object {
     "title": "work it",
   },
   "quadrantAliases": Object {
-    "language": "languages-and-frameworks",
-    "q1": "languages-and-frameworks",
-    "q2": "platforms",
-    "q3": "tools",
-    "q4": "techniques",
+    "language": "q1",
+    "languages-and-frameworks": "q1",
+    "platforms": "q2",
+    "techniques": "q4",
+    "tools": "q3",
   },
-  "quadrantTitle": Object {
-    "q1": "Languages and frameworks",
-    "q2": "Platforms",
-    "q3": "Tools",
-    "q4": "Techniques",
-  },
+  "quadrantTitle": Object {},
 }
 `;
 
@@ -89,6 +84,12 @@ Object {
     "date": "2021-06-12",
     "legend": "bla bla bla",
     "title": "tech radar js",
+  },
+  "quadrantAliases": Object {
+    "languages-and-frameworks": "q1",
+    "platforms": "q2",
+    "techniques": "q3",
+    "tools": "q4",
   },
 }
 `;
@@ -131,18 +132,13 @@ Object {
     "title": "work it",
   },
   "quadrantAliases": Object {
-    "language": "languages-and-frameworks",
-    "q1": "languages-and-frameworks",
-    "q2": "platforms",
-    "q3": "tools",
-    "q4": "techniques",
+    "language": "q1",
+    "languages-and-frameworks": "q1",
+    "platforms": "q2",
+    "techniques": "q4",
+    "tools": "q3",
   },
-  "quadrantTitle": Object {
-    "q1": "Languages and frameworks",
-    "q2": "Platforms",
-    "q3": "Tools",
-    "q4": "Techniques",
-  },
+  "quadrantTitle": Object {},
 }
 `;
 
@@ -182,6 +178,12 @@ Object {
     "date": "2021-06-12",
     "legend": "bla bla bla",
     "title": "tech radar js",
+  },
+  "quadrantAliases": Object {
+    "languages-and-frameworks": "q1",
+    "platforms": "q2",
+    "techniques": "q3",
+    "tools": "q4",
   },
 }
 `;

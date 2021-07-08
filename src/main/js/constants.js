@@ -53,10 +53,3 @@ export const settings = {
   ],
   print_layout: true,
 }
-
-export const defQuadrantAlias = {
-  'languages-and-frameworks': 'q1',
-  platforms: 'q2',
-  techniques: 'q3',
-  tools: 'q4',
-}

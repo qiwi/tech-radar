@@ -35,10 +35,10 @@
     }
   ],
   "quadrantAliases": {
-    "q1": "lang",
-    "q2": "plat",
-    "q3": "tool",
-    "q4": "tech"
+    "lang": "q1",
+    "plat": "q2",
+    "tool": "q3",
+    "tech": "q4"
   },
   "quadrantTitle": {
     "q1": "test 1",

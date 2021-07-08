@@ -28,10 +28,10 @@ data:
     description: Унификации контракта интерфейсов различных слоев приложений
     moved: -1
 quadrantAliases:
-  q1: lang
-  q2: plat
-  q3: tool
-  q4: tech
+  lang: q1
+  plat: q2
+  tool: q3
+  tech: q4
 quadrantTitle:
   q1: test 1
   q2: test 2

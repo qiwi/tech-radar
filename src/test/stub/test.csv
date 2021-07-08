@@ -14,14 +14,8 @@ codeclimate,tools,Trial,Статический анализатор кода,0
 Гексагональная архитектура,Techniques,Assess,Унификации контракта интерфейсов различных слоев приложений,-1
 ===
 quadrant,alias
-languages-and-frameworks,language
-languages-and-frameworks,q1
-platforms,q2
-tools,q3
-techniques,q4
-===
-quadrant,title
-q1,Languages and frameworks
+q1,language
+q1,Languages-and-frameworks
 q2,Platforms
 q3,Tools
 q4,Techniques
