@@ -5,16 +5,8 @@ date
 21-06-2021
 ===
 alias,quadrant
-q1,languages-and-frameworks
-q2,platforms
-q3,tools
-q4,techniques
-===
-quadrant,title
-q1,Languages and frameworks
-q2,Platforms
-q3,Tools
-q4,Techniques
+tech,techniques
+Language,languages-and-frameworks
 ===
 name,quadrant,ring,description
 Дизайн-система,tech,adopt,
