@@ -69,19 +69,3 @@ export const writeSettings = (doc, output) => {
 export const trim = (elem) => {
   return typeof elem === 'string' ? elem.trim() : elem
 }
-
-export const trimData = ({ name, quadrant, ring, description, moved }) => {
-  return {
-    name: trim(name),
-    quadrant: trim(quadrant),
-    ring: trim(ring),
-    description: description ? trim(description) : '',
-    moved: moved ? trim(moved) : '',
-  }
-}
-export const trimMeta = (elem) => {
-  const header = Object.keys(elem)
-  return {
-    [header[0]]: trim(elem[header[0]]),
-  }
-}

@@ -3,7 +3,7 @@ import fs from 'fs'
 import yaml from 'js-yaml'
 import path from 'path'
 
-import { trim, trimData, trimMeta } from './util.js'
+import { trim } from './util.js'
 
 /**
  * read file and generate radarDocument
@@ -57,7 +57,7 @@ export const csvReader = (csvPath) => {
     const header = Object.keys(records[0])
 
     if (header.includes('name') && header.includes('quadrant')) {
-      radarDocument.data = [...radarDocument.data, ...records.map(trimData)]
+      radarDocument.data = [...radarDocument.data, ...records.map(trimRadarData)]
     } else if (header.includes('alias')) {
       records.forEach((record) => {
         radarDocument.quadrantAliases[trim(record.alias.toLowerCase())] = trim(
@@ -70,7 +70,7 @@ export const csvReader = (csvPath) => {
           trim(record.title)
       })
     } else {
-      Object.assign(radarDocument.meta, trimMeta(records[0]))
+      Object.assign(radarDocument.meta, trimRadarMeta(records[0]))
     }
   })
   return radarDocument
@@ -94,4 +94,33 @@ export const yamlReader = (yamlPath) => {
   const jsonPathResolved = path.resolve(yamlPath)
   const yamlData = fs.readFileSync(jsonPathResolved, 'utf8')
   return yaml.load(yamlData, 'utf8')
+}
+/**
+ * trim item radar.data
+ * @param name
+ * @param quadrant
+ * @param ring
+ * @param description
+ * @param moved
+ * @returns {{ring, quadrant, moved, name, description}}
+ */
+export const trimRadarData = ({ name, quadrant, ring, description, moved }) => {
+  return {
+    name: trim(name),
+    quadrant: trim(quadrant),
+    ring: trim(ring),
+    description: description ? trim(description) : '',
+    moved: moved ? trim(moved) : '',
+  }
+}
+/**
+ * trim element radar.meta title, date or legend
+ * @param elem
+ * @returns {}
+ */
+export const trimRadarMeta = (elem) => {
+  const header = Object.keys(elem)
+  return {
+    [header[0]]: trim(elem[header[0]]),
+  }
 }

@@ -17,29 +17,29 @@ q3,Tools
 q4,Techniques
 ===
 name,quadrant,ring,description
-TypeScript,languages-and-frameworks,Adopt,Статически типизированный ЖС
-JavaScript,languages-and-frameworks,Adopt,ЖС
-Flow,languages-and-frameworks,Hold,Статически типизированный ЖС
-Nestjs,languages-and-frameworks,Trial,Spring для TS
-React,languages-and-frameworks,Adopt,
-Redux,languages-and-frameworks,Adopt,Стейт-менеджмент провайдер
-Rematch,languages-and-frameworks,Trial,Shortcut-flow абстракция над redux
-lodash,languages-and-frameworks,Adopt,Стандартаная библиотека
-express,languages-and-frameworks,Hold,Мидвары поверх http-server
-emotion,languages-and-frameworks,Trial,CSS in JS
-jest,languages-and-frameworks,Adopt,Фреймворк для unit автотестов
-cypress,languages-and-frameworks,Assess,Фреймворк для e2e тестов
-Nodejs,Platforms,Adopt,
-Kuber,Platforms,Adopt,
-Pijma,Platforms,Trial,
-Yarn,Tools,Adopt,Пакетный менеджер вместо npm
-semantic-relese,Tools,Trial,"Движение к CD, чтобы катать семантические релизы"
-Travis-ci,Tools,Trial,CI для OSS
-eslint,Tools,Trial,"Перекатываемся, tslint deprecated скоро"
-flp,Tools,Assess,Провайдер клиентских событий
-mocha,Tools,Hold,Либа для автотестов
-codeclimate,Tools,Trial,Статический анализатор кода
-Monorepo,Techniques,Trial,Обобщение кодовой базы на уровне домена продукта
-Trunk-based Development,Techniques,Adopt,Фиче-флаги вместо фич-бранчей
-Гексагональная архитектура,Techniques,Assess,Унификации контракта интерфейсов различных слоев приложений
-OSS,Techniques,Trial,Публичная разработка
+TypeScript,                 languages-and-frameworks,   Adopt,  Статически типизированный ЖС
+JavaScript,                 languages-and-frameworks,   Adopt,  ЖС
+Flow,                       languages-and-frameworks,   Hold,   Статически типизированный ЖС
+Nestjs,                     languages-and-frameworks,   Trial,  Spring для TS
+React,                      languages-and-frameworks,   Adopt,
+Redux,                      languages-and-frameworks,   Adopt,  Стейт-менеджмент провайдер
+Rematch,                    languages-and-frameworks,   Trial,  Shortcut-flow абстракция над redux
+lodash,                     languages-and-frameworks,   Adopt,  Стандартаная библиотека
+express,                    languages-and-frameworks,   Hold,   Мидвары поверх http-server
+emotion,                    languages-and-frameworks,   Trial,  CSS in JS
+jest,                       languages-and-frameworks,   Adopt,  Фреймворк для unit автотестов
+cypress,                    languages-and-frameworks,   Assess, Фреймворк для e2e тестов
+Nodejs,                     Platforms,                  Adopt,
+Kuber,                      Platforms,                  Adopt,
+Pijma,                      Platforms,                  Trial,
+Yarn,                       Tools,                      Adopt,  Пакетный менеджер вместо npm
+semantic-relese,            Tools,                      Trial,  "Движение к CD, чтобы катать семантические релизы"
+Travis-ci,                  Tools,                      Trial,  CI для OSS
+eslint,                     Tools,                      Trial,  "Перекатываемся, tslint deprecated скоро"
+flp,                        Tools,                      Assess, Провайдер клиентских событий
+mocha,                      Tools,                      Hold,   Либа для автотестов
+codeclimate,                Tools,                      Trial,  Статический анализатор кода
+Monorepo,                   Techniques,                 Trial,  Обобщение кодовой базы на уровне домена продукта
+Trunk-based Development,    Techniques,                 Adopt,  Фиче-флаги вместо фич-бранчей
+Гексагональная архитектура, Techniques,                 Assess, Унификации контракта интерфейсов различных слоев приложений
+OSS,                        Techniques,                 Trial,  Публичная разработка
