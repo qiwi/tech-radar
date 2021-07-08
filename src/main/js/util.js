@@ -51,19 +51,13 @@ export const getQuadrant = (quadrant, doc) => {
   return doc.quadrantAliases[lowQuadrant]
 }
 
-export const writeSettings = (doc, output, isTitle) => {
+export const writeSettings = (doc, output) => {
   const quadrants = []
-  if (isTitle) {
-    quadrants.push({ name: doc.quadrantTitle.q1, id: 'q1' })
-    quadrants.push({ name: doc.quadrantTitle.q2, id: 'q2' })
-    quadrants.push({ name: doc.quadrantTitle.q3, id: 'q3' })
-    quadrants.push({ name: doc.quadrantTitle.q4, id: 'q4' })
-  } else {
-    quadrants.push({ name: 'Languages and frameworks', id: 'q1' })
-    quadrants.push({ name: 'Platforms', id: 'q2' })
-    quadrants.push({ name: 'Techniques', id: 'q3' })
-    quadrants.push({ name: 'Tools', id: 'q4' })
-  }
+
+  quadrants.push({ name: doc.quadrantTitle.q1, id: 'q1' })
+  quadrants.push({ name: doc.quadrantTitle.q2, id: 'q2' })
+  quadrants.push({ name: doc.quadrantTitle.q3, id: 'q3' })
+  quadrants.push({ name: doc.quadrantTitle.q4, id: 'q4' })
 
   const settins = {}
   Object.assign(settins, settings)

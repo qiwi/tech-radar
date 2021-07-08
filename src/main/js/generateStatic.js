@@ -36,7 +36,7 @@ export const genStatics = async (
     }
     try {
       genMdAssets(doc, temp)
-      writeSettings(doc, temp, 'quadrantTitle' in doc)
+      writeSettings(doc, temp)
       await genEleventy(temp, output)
     } catch (err) {
       console.error('genStatics', err)

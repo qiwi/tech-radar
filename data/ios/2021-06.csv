@@ -12,6 +12,12 @@ q3,tools
 q4,tech
 q4,techniques
 ===
+quadrant,title
+q1,Languages and frameworks
+q2,Platforms
+q3,Tools
+q4,Techniques
+===
 name,quadrant,ring,description
 Дизайн-система,tech,adopt,
 Модульная архитектура,tech,adopt,

@@ -44,7 +44,12 @@ Object {
     "techniques": "q4",
     "tools": "q3",
   },
-  "quadrantTitle": Object {},
+  "quadrantTitle": Object {
+    "q1": "Languages and frameworks",
+    "q2": "Platforms",
+    "q3": "Tools",
+    "q4": "Techniques",
+  },
 }
 `;
 
@@ -88,8 +93,14 @@ Object {
   "quadrantAliases": Object {
     "languages-and-frameworks": "q1",
     "platforms": "q2",
-    "techniques": "q3",
-    "tools": "q4",
+    "techniques": "q4",
+    "tools": "q3",
+  },
+  "quadrantTitle": Object {
+    "q1": "Languages and frameworks",
+    "q2": "Platforms",
+    "q3": "Tools",
+    "q4": "Techniques",
   },
 }
 `;
@@ -138,7 +149,12 @@ Object {
     "techniques": "q4",
     "tools": "q3",
   },
-  "quadrantTitle": Object {},
+  "quadrantTitle": Object {
+    "q1": "Languages and frameworks",
+    "q2": "Platforms",
+    "q3": "Tools",
+    "q4": "Techniques",
+  },
 }
 `;
 
@@ -182,8 +198,14 @@ Object {
   "quadrantAliases": Object {
     "languages-and-frameworks": "q1",
     "platforms": "q2",
-    "techniques": "q3",
-    "tools": "q4",
+    "techniques": "q4",
+    "tools": "q3",
+  },
+  "quadrantTitle": Object {
+    "q1": "Languages and frameworks",
+    "q2": "Platforms",
+    "q3": "Tools",
+    "q4": "Techniques",
   },
 }
 `;

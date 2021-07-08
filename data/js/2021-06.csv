@@ -10,6 +10,12 @@ q2,Platforms
 q3,tools
 q4,techniques
 ===
+quadrant,title
+q1,Languages and frameworks
+q2,Platforms
+q3,Tools
+q4,Techniques
+===
 name,quadrant,ring,description
 TypeScript,languages-and-frameworks,Adopt,Статически типизированный ЖС
 JavaScript,languages-and-frameworks,Adopt,ЖС
