@@ -72,14 +72,14 @@ export const trim = (elem) => {
     if (header.includes('name') && header.includes('quadrant')) {
       const {name, quadrant, ring, description, moved} = elem
       return {
-        name: name.trim(),
-        quadrant: quadrant.trim(),
-        ring: ring.trim(),
-        description: description ? description.trim() : '',
-        moved: moved ? moved.trim() : '',
+        name: trim(name),
+        quadrant: trim(quadrant),
+        ring: trim(ring),
+        description: description ? trim(description) : '',
+        moved: moved ? trim(moved) : '',
       }
     } else return {
-      [header[0]]: elem[header[0]].trim()
+      [header[0]]: trim(elem[header[0]])
     }
   }
   return typeof elem === 'string' ? elem.trim() : elem
