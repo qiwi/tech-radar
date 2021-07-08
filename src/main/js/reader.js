@@ -45,7 +45,7 @@ export const csvReader = (csvPath) => {
     meta: {},
     data: [],
     quadrantAliases: {},
-    quadrantTitle: {},
+    quadrantTitles: {},
   }
   radarContents.split('===').forEach((radarChunks) => {
     const records = parse(radarChunks, {
@@ -63,7 +63,7 @@ export const csvReader = (csvPath) => {
       })
     } else if (header.includes('title') && header.includes('quadrant')) {
       records.forEach((record) => {
-        radarDocument.quadrantTitle[record.quadrant.toLowerCase()] =
+        radarDocument.quadrantTitles[record.quadrant.toLowerCase()] =
           record.title
       })
     } else {

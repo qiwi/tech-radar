@@ -48,16 +48,16 @@ export const getTemp = (cwd, temp) => {
 }
 export const getQuadrant = (quadrant, doc) => {
   const lowQuadrant = quadrant.toLowerCase()
-  return doc.quadrantAliases[lowQuadrant]
+  return doc.quadrantAliases[lowQuadrant] || lowQuadrant
 }
 
 export const writeSettings = (doc, output) => {
   const quadrants = []
 
-  quadrants.push({ name: doc.quadrantTitle.q1 || 'Q1', id: 'q1' })
-  quadrants.push({ name: doc.quadrantTitle.q2 || 'Q2', id: 'q2' })
-  quadrants.push({ name: doc.quadrantTitle.q3 || 'Q3', id: 'q3' })
-  quadrants.push({ name: doc.quadrantTitle.q4 || 'Q4', id: 'q4' })
+  quadrants.push({ name: doc.quadrantTitles.q1 || 'Q1', id: 'q1' })
+  quadrants.push({ name: doc.quadrantTitles.q2 || 'Q2', id: 'q2' })
+  quadrants.push({ name: doc.quadrantTitles.q3 || 'Q3', id: 'q3' })
+  quadrants.push({ name: doc.quadrantTitles.q4 || 'Q4', id: 'q4' })
 
   const settins = {}
   Object.assign(settins, settings)

@@ -32,7 +32,7 @@ quadrantAliases:
   plat: q2
   tool: q3
   tech: q4
-quadrantTitle:
+quadrantTitles:
   q1: test 1
   q2: test 2
   q3: test 3

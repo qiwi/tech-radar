@@ -44,7 +44,7 @@ Object {
     "techniques": "q4",
     "tools": "q3",
   },
-  "quadrantTitle": Object {
+  "quadrantTitles": Object {
     "q1": "Languages and frameworks",
     "q2": "Platforms",
     "q3": "Tools",
@@ -96,7 +96,7 @@ Object {
     "techniques": "q4",
     "tools": "q3",
   },
-  "quadrantTitle": Object {
+  "quadrantTitles": Object {
     "q1": "Languages and frameworks",
     "q2": "Platforms",
     "q3": "Tools",
@@ -149,7 +149,7 @@ Object {
     "techniques": "q4",
     "tools": "q3",
   },
-  "quadrantTitle": Object {
+  "quadrantTitles": Object {
     "q1": "Languages and frameworks",
     "q2": "Platforms",
     "q3": "Tools",
@@ -201,7 +201,7 @@ Object {
     "techniques": "q4",
     "tools": "q3",
   },
-  "quadrantTitle": Object {
+  "quadrantTitles": Object {
     "q1": "Languages and frameworks",
     "q2": "Platforms",
     "q3": "Tools",

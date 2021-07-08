@@ -40,7 +40,7 @@
     "tools": "q3",
     "techniques": "q4"
   },
-  "quadrantTitle": {
+  "quadrantTitles": {
     "q1": "Languages and frameworks",
     "q2": "Platforms",
     "q3": "Tools",

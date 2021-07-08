@@ -26,13 +26,13 @@ export const genStatics = async (
 
     const temp = tempDir
     const output = dirs[i] ? path.join(_output, dirs[i]) : _output
-    const prefix = basePrefix ? basePrefix + '/' + dirs[i] : undefined
+    const pathPrefix = basePrefix ? basePrefix + '/' + dirs[i] : undefined
 
     global._11ty_ = {
       title: doc.meta.title,
       output,
       temp,
-      pathPrefix: prefix,
+      pathPrefix,
     }
     try {
       genMdAssets(doc, temp)
