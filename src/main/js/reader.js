@@ -57,20 +57,20 @@ export const csvReader = (csvPath) => {
     const header = Object.keys(records[0])
 
     if (header.includes('name') && header.includes('quadrant')) {
-      const trimData = records.map((record) => trim(record))
+      const trimData = records.map(trim)
       radarDocument.data = [...radarDocument.data, ...trimData]
     } else if (header.includes('alias')) {
       records.forEach((record) => {
-        radarDocument.quadrantAliases[record.alias.toLowerCase()] =
-          record.quadrant.toLowerCase()
+        radarDocument.quadrantAliases[trim(record.alias.toLowerCase())] =
+          trim(record.quadrant.toLowerCase())
       })
     } else if (header.includes('title') && header.includes('quadrant')) {
       records.forEach((record) => {
-        radarDocument.quadrantTitles[record.quadrant.toLowerCase()] =
+        radarDocument.quadrantTitles[trim(record.quadrant.toLowerCase())] =
           record.title
       })
     } else {
-      Object.assign(radarDocument.meta, records[0])
+      Object.assign(radarDocument.meta, trim(records[0]))
     }
   })
   return radarDocument

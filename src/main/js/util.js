@@ -66,12 +66,21 @@ export const writeSettings = (doc, output) => {
   fs.writeFileSync(settingsPath, JSON.stringify(settins))
 }
 
-export const trim = ({ name, quadrant, ring, description, moved }) => {
-  return {
-    name: name.trim(),
-    quadrant: quadrant.trim(),
-    ring: ring.trim(),
-    description: description ? description.trim() : '',
-    moved: moved ? moved.trim() : '',
+export const trim = (elem) => {
+  if (typeof elem === "object") {
+    const header = Object.keys(elem)
+    if (header.includes('name') && header.includes('quadrant')) {
+      const {name, quadrant, ring, description, moved} = elem
+      return {
+        name: name.trim(),
+        quadrant: quadrant.trim(),
+        ring: ring.trim(),
+        description: description ? description.trim() : '',
+        moved: moved ? moved.trim() : '',
+      }
+    } else return {
+      [header[0]]: elem[header[0]].trim()
+    }
   }
+  return typeof elem === 'string' ? elem.trim() : elem
 }
