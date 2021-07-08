@@ -3,6 +3,8 @@ import fs from 'fs'
 import yaml from 'js-yaml'
 import path from 'path'
 
+import { trim } from './util.js'
+
 /**
  * read file and generate radarDocument
  * @param filePath
@@ -55,15 +57,7 @@ export const csvReader = (csvPath) => {
     const header = Object.keys(records[0])
 
     if (header.includes('name') && header.includes('quadrant')) {
-      const trimData = records.map(({name,quadrant,ring,description,moved}) => {
-        return {
-          name: name.trim(),
-          quadrant: quadrant.trim(),
-          ring: ring.trim(),
-          description: description ? description.trim() : '',
-          moved: moved ? moved.trim() : '',
-        }
-      })
+      const trimData = records.map((record) => trim(record))
       radarDocument.data = [...radarDocument.data, ...trimData]
     } else if (header.includes('alias')) {
       records.forEach((record) => {
@@ -101,7 +95,3 @@ export const yamlReader = (yamlPath) => {
   const yamlData = fs.readFileSync(jsonPathResolved, 'utf8')
   return yaml.load(yamlData, 'utf8')
 }
-
-// const trim = (string) => {
-//   return string.replace(/^\s+|\s+$/g, '')
-// }

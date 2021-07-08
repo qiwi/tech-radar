@@ -65,3 +65,13 @@ export const writeSettings = (doc, output) => {
   const settingsPath = path.join(output, '_data/settins.json')
   fs.writeFileSync(settingsPath, JSON.stringify(settins))
 }
+
+export const trim = ({ name, quadrant, ring, description, moved }) => {
+  return {
+    name: name.trim(),
+    quadrant: quadrant.trim(),
+    ring: ring.trim(),
+    description: description ? description.trim() : '',
+    moved: moved ? moved.trim() : '',
+  }
+}
