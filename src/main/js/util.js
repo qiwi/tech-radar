@@ -67,20 +67,21 @@ export const writeSettings = (doc, output) => {
 }
 
 export const trim = (elem) => {
-  if (typeof elem === "object") {
-    const header = Object.keys(elem)
-    if (header.includes('name') && header.includes('quadrant')) {
-      const {name, quadrant, ring, description, moved} = elem
-      return {
-        name: trim(name),
-        quadrant: trim(quadrant),
-        ring: trim(ring),
-        description: description ? trim(description) : '',
-        moved: moved ? trim(moved) : '',
-      }
-    } else return {
-      [header[0]]: trim(elem[header[0]])
-    }
-  }
   return typeof elem === 'string' ? elem.trim() : elem
+}
+
+export const trimData = ({ name, quadrant, ring, description, moved }) => {
+  return {
+    name: trim(name),
+    quadrant: trim(quadrant),
+    ring: trim(ring),
+    description: description ? trim(description) : '',
+    moved: moved ? trim(moved) : '',
+  }
+}
+export const trimMeta = (elem) => {
+  const header = Object.keys(elem)
+  return {
+    [header[0]]: trim(elem[header[0]]),
+  }
 }
