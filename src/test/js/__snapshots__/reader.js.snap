@@ -38,7 +38,17 @@ Object {
     "title": "work it",
   },
   "quadrantAliases": Object {
-    "language": "languages-and-frameworks",
+    "language": "q1",
+    "languages-and-frameworks": "q1",
+    "platforms": "q2",
+    "techniques": "q4",
+    "tools": "q3",
+  },
+  "quadrantTitles": Object {
+    "q1": "Languages and frameworks",
+    "q2": "Platforms",
+    "q3": "Tools",
+    "q4": "Techniques",
   },
 }
 `;
@@ -79,6 +89,18 @@ Object {
     "date": "2021-06-12",
     "legend": "bla bla bla",
     "title": "tech radar js",
+  },
+  "quadrantAliases": Object {
+    "languages-and-frameworks": "q1",
+    "platforms": "q2",
+    "techniques": "q4",
+    "tools": "q3",
+  },
+  "quadrantTitles": Object {
+    "q1": "Languages and frameworks",
+    "q2": "Platforms",
+    "q3": "Tools",
+    "q4": "Techniques",
   },
 }
 `;
@@ -121,7 +143,17 @@ Object {
     "title": "work it",
   },
   "quadrantAliases": Object {
-    "language": "languages-and-frameworks",
+    "language": "q1",
+    "languages-and-frameworks": "q1",
+    "platforms": "q2",
+    "techniques": "q4",
+    "tools": "q3",
+  },
+  "quadrantTitles": Object {
+    "q1": "Languages and frameworks",
+    "q2": "Platforms",
+    "q3": "Tools",
+    "q4": "Techniques",
   },
 }
 `;
@@ -162,6 +194,18 @@ Object {
     "date": "2021-06-12",
     "legend": "bla bla bla",
     "title": "tech radar js",
+  },
+  "quadrantAliases": Object {
+    "languages-and-frameworks": "q1",
+    "platforms": "q2",
+    "techniques": "q4",
+    "tools": "q3",
+  },
+  "quadrantTitles": Object {
+    "q1": "Languages and frameworks",
+    "q2": "Platforms",
+    "q3": "Tools",
+    "q4": "Techniques",
   },
 }
 `;

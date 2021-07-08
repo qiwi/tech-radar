@@ -21,7 +21,7 @@ export const getFileStruct = (dir, result = []) => {
 const genStaticFileStruct = async (input) => {
   const docs = getDocuments(input)
   const dirs = getDirs(input)
-  await genStatics(docs, dirs, 'test')
+  await genStatics(docs, dirs, 'test', '')
 
   const fileStruct = getFileStruct(path.resolve('test'))
   return fileStruct.map((el) => /test(.+)/.exec(el)[1])

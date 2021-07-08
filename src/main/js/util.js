@@ -1,7 +1,10 @@
 // import findCacheDir from 'find-cache-dir'
 import crypto from 'crypto'
+import fs from 'fs'
 import { ensureDirSync } from 'fs-extra'
 import path from 'path'
+
+import { settings } from './constants.js'
 
 export const reverse = (arr) => {
   const _arr = [...arr]
@@ -42,4 +45,23 @@ export const getTemp = (cwd, temp) => {
   // const tempDir = path.join(cacheDir, id)
   const tempDir = id
   return ensureDir(tempDir)
+}
+export const getQuadrant = (quadrant, doc) => {
+  const lowQuadrant = quadrant.toLowerCase()
+  return doc.quadrantAliases[lowQuadrant] || lowQuadrant
+}
+
+export const writeSettings = (doc, output) => {
+  const quadrants = []
+
+  quadrants.push({ name: doc.quadrantTitles.q1 || 'Q1', id: 'q1' })
+  quadrants.push({ name: doc.quadrantTitles.q2 || 'Q2', id: 'q2' })
+  quadrants.push({ name: doc.quadrantTitles.q3 || 'Q3', id: 'q3' })
+  quadrants.push({ name: doc.quadrantTitles.q4 || 'Q4', id: 'q4' })
+
+  const settins = {}
+  Object.assign(settins, settings)
+  settins.quadrants = quadrants
+  const settingsPath = path.join(output, '_data/settins.json')
+  fs.writeFileSync(settingsPath, JSON.stringify(settins))
 }

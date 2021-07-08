@@ -7,43 +7,43 @@
   "data":[
     {
       "name": "TypeScript",
-      "quadrant": "languages-and-frameworks",
+      "quadrant": "lang",
       "ring": "Adopt",
       "description": "Статически типизированный ЖС",
       "moved": "1"
     },
     {
       "name": "Nodejs",
-      "quadrant": "Platforms",
+      "quadrant": "plat",
       "ring": "Adopt",
       "description": "",
       "moved": ""
     },
     {
       "name": "codeclimate",
-      "quadrant": "tools",
+      "quadrant": "tool",
       "ring": "Trial",
       "description": "Статический анализатор кода",
       "moved": "0"
     },
     {
       "name": "Гексагональная архитектура",
-      "quadrant": "Techniques",
+      "quadrant": "tech",
       "ring": "Assess",
       "description": "Унификации контракта интерфейсов различных слоев приложений",
       "moved": "-1"
     }
   ],
   "quadrantAliases": {
-    "languages-and-frameworks": "q1",
-    "platforms": "q2",
-    "tools": "q3",
-    "techniques": "q4"
+    "lang": "q1",
+    "plat": "q2",
+    "tool": "q3",
+    "tech": "q4"
   },
   "quadrantTitles": {
-    "q1": "Languages and frameworks",
-    "q2": "Platforms",
-    "q3": "Tools",
-    "q4" :"Techniques"
+    "q1": "test 1",
+    "q2": "test 2",
+    "q3": "test 3",
+    "q4" :"test 4"
   }
 }

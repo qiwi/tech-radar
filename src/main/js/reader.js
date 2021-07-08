@@ -45,6 +45,7 @@ export const csvReader = (csvPath) => {
     meta: {},
     data: [],
     quadrantAliases: {},
+    quadrantTitles: {},
   }
   radarContents.split('===').forEach((radarChunks) => {
     const records = parse(radarChunks, {
@@ -60,11 +61,15 @@ export const csvReader = (csvPath) => {
         radarDocument.quadrantAliases[record.alias.toLowerCase()] =
           record.quadrant.toLowerCase()
       })
+    } else if (header.includes('title') && header.includes('quadrant')) {
+      records.forEach((record) => {
+        radarDocument.quadrantTitles[record.quadrant.toLowerCase()] =
+          record.title
+      })
     } else {
       Object.assign(radarDocument.meta, records[0])
     }
   })
-  // console.log('csvPath:', csvPath, radarDocument)
   return radarDocument
 }
 /**
