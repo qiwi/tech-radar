@@ -4,19 +4,19 @@ QIWI JS Tech Radar
 date
 21-06-2021
 ===
-quadrant,alias
-q1,lang
-q2,Platforms
-q3,tools
-q4,tech
+quadrant,   alias
+q1,         lang
+q2,         Platforms
+q3,         tools
+q4,         tech
 ===
-quadrant,title
-q1,Languages and frameworks
-q2,Platforms
-q3,Tools
-q4,Techniques
+quadrant,   title
+q1,         Languages and frameworks
+q2,         Platforms
+q3,         Tools
+q4,         Techniques
 ===
-name,quadrant,ring,description
+name,                       quadrant,   ring,   description
 TypeScript,                 lang,       Adopt,  Статически типизированный ЖС
 JavaScript,                 lang,       Adopt,  ЖС
 Flow,                       lang,       Hold,   Статически типизированный ЖС
