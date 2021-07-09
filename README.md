@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://yarnpkg.com/">
+  <a href="https://github.com/qiwi">
     <img alt="Tech-radar" src="https://github.com/qiwi/tech-radar/blob/master/img/radar.png?raw=true?raw=true" width="546">
   </a>
 </p>
@@ -31,7 +31,8 @@ npx @qiwi/tech-radar --input "/path/to/files/*.{json, csv, yml}" --output /radar
 | cwd | Current working dir | `process.cwd()`
 | input | [glob pattern](https://github.com/mrmlnc/fast-glob) to find radar data: csv/json/yml | `<cwd>/data/**/*.{json,csv,yml}`
 | output | Output directory | `<cwd>/radar`
-| temp | Temporary assets folder | `node_modules/.cache/@qiwi__tech-radar/<random>`
+| temp | Temporary assets folder | `<cwd>/temp/<random>`
+| base-prefix | base context path for web statics | `tech-radar`
 
 ## JS API
 ```js
@@ -39,7 +40,8 @@ import {run} from '@qiwi/tech-radar'
 
 await run({
   temp: './temp',
-  input: 'data/*.csv'
+  input: 'data/*.csv',
+  basePrefix: 'tech-radar'
 })
 ```
 
