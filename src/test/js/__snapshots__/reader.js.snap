@@ -4,7 +4,7 @@ exports[`reader.js csvReader 1`] = `
 Object {
   "data": Array [
     Object {
-      "description": "Статически типизированный ЖС",
+      "description": "Статически, типизированный ЖС",
       "moved": "1",
       "name": "TypeScript",
       "quadrant": "language",
@@ -109,7 +109,7 @@ exports[`reader.js reader 1`] = `
 Object {
   "data": Array [
     Object {
-      "description": "Статически типизированный ЖС",
+      "description": "Статически, типизированный ЖС",
       "moved": "1",
       "name": "TypeScript",
       "quadrant": "language",

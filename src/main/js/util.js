@@ -65,12 +65,14 @@ export const writeSettings = (doc, output) => {
   fs.writeFileSync(settingsPath, JSON.stringify(settins))
 }
 
-export const trim = (elem) => {
-  return typeof elem === 'string' ? elem.trim() : elem
-}
-
-export const trimCsvFile = (fileContent) =>
-  trim(fileContent).replace(/, *"|" *,/g, (match) => {
-    if (match.match(/, *"/)) return ',"'
-    return '",'
-  })
+export const normalizeCsv = (fileContent) =>
+  fileContent
+    .split(/("[^"]+")/g)
+    .map((item) => {
+      if (item[0] === '"') return item
+      return item
+        .split(',')
+        .map((i) => i.replace(/^ *| *$/gm, ''))
+        .join(',')
+    })
+    .join('')
