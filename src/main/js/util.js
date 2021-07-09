@@ -53,7 +53,6 @@ export const getQuadrant = (quadrant, doc) => {
 
 export const writeSettings = (doc, output) => {
   const quadrants = []
-
   quadrants.push({ name: doc.quadrantTitles.q1 || 'Q1', id: 'q1' })
   quadrants.push({ name: doc.quadrantTitles.q2 || 'Q2', id: 'q2' })
   quadrants.push({ name: doc.quadrantTitles.q3 || 'Q3', id: 'q3' })
@@ -65,3 +64,15 @@ export const writeSettings = (doc, output) => {
   const settingsPath = path.join(output, '_data/settins.json')
   fs.writeFileSync(settingsPath, JSON.stringify(settins))
 }
+
+export const normalizeCsv = (fileContent) =>
+  fileContent
+    .split(/("[^"]+")/g)
+    .map((item) => {
+      if (item[0] === '"') return item
+      return item
+        .split(',')
+        .map((i) => i.replace(/^ *| *$/gm, ''))
+        .join(',')
+    })
+    .join('')

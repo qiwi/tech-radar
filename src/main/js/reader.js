@@ -3,6 +3,8 @@ import fs from 'fs'
 import yaml from 'js-yaml'
 import path from 'path'
 
+import { normalizeCsv } from './util.js'
+
 /**
  * read file and generate radarDocument
  * @param filePath
@@ -40,7 +42,7 @@ export const getReader = (ext) => {
  */
 export const csvReader = (csvPath) => {
   const csvPathResolved = path.resolve(csvPath)
-  const radarContents = fs.readFileSync(csvPathResolved, 'utf8')
+  const radarContents = normalizeCsv(fs.readFileSync(csvPathResolved, 'utf8'))
   const radarDocument = {
     meta: {},
     data: [],

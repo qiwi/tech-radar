@@ -8,21 +8,21 @@ legend
 bla bla bla
 ===
 name,quadrant,ring,description,moved
-TypeScript,language,Adopt,Статически типизированный ЖС,1
-Nodejs,Platforms,Adopt,,
-codeclimate,tools,Trial,Статический анализатор кода,0
-Гексагональная архитектура,Techniques,Assess,Унификации контракта интерфейсов различных слоев приложений,-1
+TypeScript,                 language,   Adopt,  "Статически, типизированный ЖС",                                   1
+Nodejs,                     Platforms,  Adopt,  ,
+codeclimate,                tools,      Trial,  Статический анализатор кода,                                    0
+Гексагональная архитектура, Techniques, Assess, Унификации контракта интерфейсов различных слоев приложений,    -1
 ===
 quadrant,alias
-q1,language
-q1,Languages-and-frameworks
-q2,Platforms
-q3,Tools
-q4,Techniques
+q1, language
+q1, Languages-and-frameworks
+q2, Platforms
+q3, Tools
+q4, Techniques
 ===
 quadrant,title
-q1,Languages and frameworks
-q2,Platforms
-q3,Tools
-q4,Techniques
+q1, Languages and frameworks
+q2, Platforms
+q3, Tools
+q4, Techniques
 
