@@ -61,15 +61,12 @@ export const genParamMove = (dir, doc, intermediateValue) => {
     adopt: 3,
   }
   const clone = cloneDeep(intermediateValue)
-  console.log(dir, clone)
   if (dir === clone.dir) {
     const data = doc.data.map((item) => {
       const name = item.name.toLowerCase()
       const previousRing = item.ring.toLowerCase()
-      console.log(clone.data[name], previousRing)
       if (clone.data[name] !== previousRing) {
         item.moved = +rings[clone.data[name]] > +rings[previousRing] ? -1 : 1
-        console.log(item.moved, rings[clone.data[name]], rings[previousRing])
         clone.data[name] = previousRing
       }
       return item
