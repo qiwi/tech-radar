@@ -26,7 +26,8 @@ export const genStatics = async (
       return [..._m]
 
     const temp = tempDir
-    const output = dirs[i] ? path.join(_output, dirs[i]) : _output
+
+    const output = dirs ? path.join(_output, dirs[i].join('-')) : _output
     const pathPrefix = basePrefix ? basePrefix + '/' + dirs[i] : undefined
 
     global._11ty_ = {
@@ -36,13 +37,15 @@ export const genStatics = async (
       pathPrefix,
     }
     try {
-      const { data, intermediate } = genParamMove(
-        dirs[i].split('-')[0],
-        doc,
-        intermediateValue,
-      )
-      intermediateValue = intermediate
-      doc.data = data
+      if (dirs) {
+        const {data, intermediate} = genParamMove(
+          dirs[i],
+          doc,
+          intermediateValue,
+        )
+        intermediateValue = intermediate
+        doc.data = data
+      }
       genMdAssets(doc, temp)
       writeSettings(doc, temp)
       await genEleventy(temp, output)

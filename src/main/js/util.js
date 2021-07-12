@@ -76,3 +76,23 @@ export const normalizeCsv = (fileContent) =>
         .join(',')
     })
     .join('')
+
+export const getDirs = (sources) => {
+  const _a = makeUniq(
+    sources.map((source) => source.slice(0, -path.extname(source).length)),
+  ).map((item) => item.split('/'))
+  while (true) {
+    if (_a.length === 0 || _a.length === 1) return
+    const checkArray = _a.every((item) => {
+      return item[0] === _a[0][0]
+    })
+    if (checkArray) {
+      _a.forEach((item) => {
+        item.shift()
+        return item
+      })
+    } else {
+      return _a
+    }
+  }
+}

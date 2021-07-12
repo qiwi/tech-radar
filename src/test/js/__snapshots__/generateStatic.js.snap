@@ -2,40 +2,40 @@
 
 exports[`generate 11ty app from .csv file 1`] = `
 Array [
-  "/test/entries/q1/TypeScript/index.html",
-  "/test/entries/q2/Nodejs/index.html",
-  "/test/entries/q3/codeclimate/index.html",
-  "/test/entries/q4/Гексагональная архитектура/index.html",
-  "/test/favicon.ico",
-  "/test/index.html",
-  "/test/radar.css",
-  "/test/radar.js",
+  "/entries/q1/TypeScript/index.html",
+  "/entries/q2/Nodejs/index.html",
+  "/entries/q3/codeclimate/index.html",
+  "/entries/q4/Гексагональная архитектура/index.html",
+  "/favicon.ico",
+  "/index.html",
+  "/radar.css",
+  "/radar.js",
 ]
 `;
 
 exports[`generate 11ty app from .json file 1`] = `
 Array [
-  "/test/entries/q1/TypeScript/index.html",
-  "/test/entries/q2/Nodejs/index.html",
-  "/test/entries/q3/codeclimate/index.html",
-  "/test/entries/q4/Гексагональная архитектура/index.html",
-  "/test/favicon.ico",
-  "/test/index.html",
-  "/test/radar.css",
-  "/test/radar.js",
+  "/entries/q1/TypeScript/index.html",
+  "/entries/q2/Nodejs/index.html",
+  "/entries/q3/codeclimate/index.html",
+  "/entries/q4/Гексагональная архитектура/index.html",
+  "/favicon.ico",
+  "/index.html",
+  "/radar.css",
+  "/radar.js",
 ]
 `;
 
 exports[`generate 11ty app from .yml file 1`] = `
 Array [
-  "/test/entries/q1/TypeScript/index.html",
-  "/test/entries/q2/Nodejs/index.html",
-  "/test/entries/q3/codeclimate/index.html",
-  "/test/entries/q4/Гексагональная архитектура/index.html",
-  "/test/favicon.ico",
-  "/test/index.html",
-  "/test/radar.css",
-  "/test/radar.js",
+  "/entries/q1/TypeScript/index.html",
+  "/entries/q2/Nodejs/index.html",
+  "/entries/q3/codeclimate/index.html",
+  "/entries/q4/Гексагональная архитектура/index.html",
+  "/favicon.ico",
+  "/index.html",
+  "/radar.css",
+  "/radar.js",
 ]
 `;
 

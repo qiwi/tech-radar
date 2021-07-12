@@ -3,7 +3,8 @@ import fsExtra from 'fs-extra'
 import path from 'path'
 
 import { genStatics } from '../../main/js/generateStatic.js'
-import { getDirs, getDocuments } from '../../main/js/index.js'
+import { getDocuments } from '../../main/js/index.js'
+import { getDirs } from '../../main/js/util.js'
 
 export const getFileStruct = (dir, result = []) => {
   fs.readdirSync(dir).forEach((elem) => {

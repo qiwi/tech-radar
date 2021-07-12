@@ -53,7 +53,9 @@ export const genMdAssets = (doc, temp) => {
   })
 }
 
-export const genParamMove = (dir, doc, intermediateValue) => {
+export const genParamMove = (_dir, doc, intermediateValue) => {
+  _dir.pop()
+  const finalPath = _dir.join('-')
   const rings = {
     hold: 0,
     assess: 1,
@@ -61,7 +63,7 @@ export const genParamMove = (dir, doc, intermediateValue) => {
     adopt: 3,
   }
   const clone = cloneDeep(intermediateValue)
-  if (dir === clone.dir) {
+  if (finalPath === clone.dir) {
     const data = doc.data.map((item) => {
       const name = item.name.toLowerCase()
       const previousRing = item.ring.toLowerCase()
@@ -73,7 +75,7 @@ export const genParamMove = (dir, doc, intermediateValue) => {
     })
     return { data, intermediate: clone }
   }
-  clone.dir = dir
+  clone.dir = finalPath
   clone.data = {}
   doc.data.forEach((item) => {
     clone.data[item.name.toLowerCase()] = item.ring.toLowerCase()

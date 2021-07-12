@@ -4,7 +4,7 @@ import {
   genMdPath,
 } from '../../main/js/generateMdAssets.js'
 import { genEleventy, genStatics } from '../../main/js/generateStatic.js'
-import { getDirs, getDocuments, getSources, run } from '../../main/js/index.js'
+import { getDocuments, getSources, run } from '../../main/js/index.js'
 import {
   csvReader,
   getReader,
@@ -12,7 +12,7 @@ import {
   read,
   yamlReader,
 } from '../../main/js/reader.js'
-import { makeUniq, reverse } from '../../main/js/util.js'
+import { getDirs,makeUniq, reverse } from '../../main/js/util.js'
 
 describe('has proper exports', () => {
   it('getSources', function () {
