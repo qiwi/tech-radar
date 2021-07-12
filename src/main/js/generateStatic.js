@@ -3,7 +3,7 @@ import fsExtra from 'fs-extra'
 import path from 'path'
 
 import { radarSchema, tempDir } from './constants.js'
-import { genMdAssets } from './generateMdAssets.js'
+import { genMdAssets, genParamMove } from './generateMdAssets.js'
 import { writeSettings } from './util.js'
 import { validate } from './validator.js'
 
@@ -18,8 +18,9 @@ export const genStatics = async (
   dirs,
   _output,
   basePrefix = 'tech-radar',
-) =>
-  docs.reduce(async (r, doc, i) => {
+) => {
+  let intermediateValue = {}
+  return docs.reduce(async (r, doc, i) => {
     const _m = await r
     if (!validate(doc, radarSchema) || Object.keys(doc).length === 0)
       return [..._m]
@@ -35,6 +36,13 @@ export const genStatics = async (
       pathPrefix,
     }
     try {
+      const { data, intermediate } = genParamMove(
+        dirs[i].split('-')[0],
+        doc,
+        intermediateValue,
+      )
+      intermediateValue = intermediate
+      doc.data = data
       genMdAssets(doc, temp)
       writeSettings(doc, temp)
       await genEleventy(temp, output)
@@ -43,6 +51,7 @@ export const genStatics = async (
     }
     return [..._m, output]
   }, [])
+}
 
 /**
  * generate static site with using 11ty
