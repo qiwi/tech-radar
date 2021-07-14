@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generate 11ty app from .csv file 1`] = `
+Array [
+  "test/2021-06-18/entries/q1/TypeScript/index.html",
+  "test/2021-06-18/entries/q2/Nodejs/index.html",
+  "test/2021-06-18/entries/q3/codeclimate/index.html",
+  "test/2021-06-18/entries/q4/Гексагональная архитектура/index.html",
+  "test/2021-06-18/favicon.ico",
+  "test/2021-06-18/index.html",
+  "test/2021-06-18/radar.css",
+  "test/2021-06-18/radar.js",
+]
+`;
+
+exports[`generate 11ty app from .json file 1`] = `
+Array [
+  "test/2021-06-12/entries/q1/TypeScript/index.html",
+  "test/2021-06-12/entries/q2/Nodejs/index.html",
+  "test/2021-06-12/entries/q3/codeclimate/index.html",
+  "test/2021-06-12/entries/q4/Гексагональная архитектура/index.html",
+  "test/2021-06-12/favicon.ico",
+  "test/2021-06-12/index.html",
+  "test/2021-06-12/radar.css",
+  "test/2021-06-12/radar.js",
+]
+`;
+
+exports[`generate 11ty app from .yml file 1`] = `
+Array [
+  "test/2021-06-11/entries/q1/TypeScript/index.html",
+  "test/2021-06-11/entries/q2/Nodejs/index.html",
+  "test/2021-06-11/entries/q3/codeclimate/index.html",
+  "test/2021-06-11/entries/q4/Гексагональная архитектура/index.html",
+  "test/2021-06-11/favicon.ico",
+  "test/2021-06-11/index.html",
+  "test/2021-06-11/radar.css",
+  "test/2021-06-11/radar.js",
+]
+`;
+
+exports[`generate 11ty app from multiple files 1`] = `
+Array [
+  "test/2021-06-12/entries/q1/TypeScript/index.html",
+  "test/2021-06-12/entries/q2/Nodejs/index.html",
+  "test/2021-06-12/entries/q3/codeclimate/index.html",
+  "test/2021-06-12/entries/q4/Гексагональная архитектура/index.html",
+  "test/2021-06-12/favicon.ico",
+  "test/2021-06-12/index.html",
+  "test/2021-06-12/radar.css",
+  "test/2021-06-12/radar.js",
+  "test/2021-06-18/entries/q1/TypeScript/index.html",
+  "test/2021-06-18/entries/q2/Nodejs/index.html",
+  "test/2021-06-18/entries/q3/codeclimate/index.html",
+  "test/2021-06-18/entries/q4/Гексагональная архитектура/index.html",
+  "test/2021-06-18/favicon.ico",
+  "test/2021-06-18/index.html",
+  "test/2021-06-18/radar.css",
+  "test/2021-06-18/radar.js",
+]
+`;
+
+exports[`generate 11ty app from multiple files with the same date 1`] = `
+Array [
+  "test/2021-06-12/entries/q1/TypeScript/index.html",
+  "test/2021-06-12/entries/q2/Nodejs/index.html",
+  "test/2021-06-12/entries/q3/codeclimate/index.html",
+  "test/2021-06-12/entries/q4/Гексагональная архитектура/index.html",
+  "test/2021-06-12/favicon.ico",
+  "test/2021-06-12/index.html",
+  "test/2021-06-12/radar.css",
+  "test/2021-06-12/radar.js",
+  "test/2021-06-18/entries/q1/TypeScript/index.html",
+  "test/2021-06-18/entries/q2/Nodejs/index.html",
+  "test/2021-06-18/entries/q3/codeclimate/index.html",
+  "test/2021-06-18/entries/q4/Гексагональная архитектура/index.html",
+  "test/2021-06-18/favicon.ico",
+  "test/2021-06-18/index.html",
+  "test/2021-06-18/radar.css",
+  "test/2021-06-18/radar.js",
+]
+`;
