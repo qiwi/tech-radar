@@ -3,7 +3,7 @@ import {
   genMdContent,
   genMdPath,
 } from '../../main/js/generateMdAssets.js'
-import { genEleventy, genStatics } from '../../main/js/generateStatic.js'
+import { genEleventy, generateStatics } from '../../main/js/generateStatic.js'
 import { getDocuments, getSources, run } from '../../main/js/index.js'
 import {
   csvReader,
@@ -12,7 +12,7 @@ import {
   read,
   yamlReader,
 } from '../../main/js/reader.js'
-import { getDirs,makeUniq, reverse } from '../../main/js/util.js'
+import { makeUniq, reverse } from '../../main/js/util.js'
 
 describe('has proper exports', () => {
   it('getSources', function () {
@@ -20,9 +20,6 @@ describe('has proper exports', () => {
   })
   it('getDocuments', function () {
     expect(getDocuments).toBeDefined()
-  })
-  it('getDirs', function () {
-    expect(getDirs).toBeDefined()
   })
   it('run', function () {
     expect(run).toBeDefined()
@@ -40,7 +37,7 @@ describe('has proper exports', () => {
     expect(genEleventy).toBeDefined()
   })
   it('genStatics', function () {
-    expect(genStatics).toBeDefined()
+    expect(generateStatics).toBeDefined()
   })
   it('reverse', function () {
     expect(reverse).toBeDefined()

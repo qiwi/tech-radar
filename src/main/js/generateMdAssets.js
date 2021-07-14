@@ -1,6 +1,5 @@
 import fs from 'fs'
 import fsExtra from 'fs-extra'
-import { cloneDeep } from 'lodash-es'
 import path from 'path'
 
 import { tplDir } from './constants.js'
@@ -45,7 +44,6 @@ export const genMdAssets = (doc, temp) => {
       const quadrantAlias = getQuadrant(quadrant, doc)
       const entryPath = genMdPath({ name, quadrant: quadrantAlias, temp })
       const content = genMdContent({ ring, description, moved })
-
       fs.writeFileSync(entryPath, content)
     } catch (err) {
       console.error('genMdAssets', err)
@@ -53,32 +51,42 @@ export const genMdAssets = (doc, temp) => {
   })
 }
 
-export const genParamMove = (_dir, doc, intermediateValue) => {
-  _dir.pop()
-  const finalPath = _dir.join('-')
+export const genParamMove = (file, doc, intermediate, date) => {
   const rings = {
     hold: 0,
     assess: 1,
     trial: 2,
     adopt: 3,
   }
-  const clone = cloneDeep(intermediateValue)
-  if (finalPath === clone.dir) {
+  const validDate = new Date(date)
+  if(isNaN(validDate.getDate())) {
+    throw new Error(`${file} - invalid date`)
+  }
+  const a = intermediate.find((i) => {
+    return i.dir === path.dirname(file)
+  })
+  if (a && a.date < validDate) {
     const data = doc.data.map((item) => {
       const name = item.name.toLowerCase()
       const previousRing = item.ring.toLowerCase()
-      if (clone.data[name] !== previousRing) {
-        item.moved = +rings[clone.data[name]] > +rings[previousRing] ? -1 : 1
-        clone.data[name] = previousRing
+      if (a.data[name] !== previousRing) {
+        item.moved = +rings[a.data[name]] > +rings[previousRing] ? -1 : 1
+        a.data[name] = previousRing
       }
       return item
     })
-    return { data, intermediate: clone }
+    return { ...doc, data }
   }
-  clone.dir = finalPath
-  clone.data = {}
+  const data = {}
   doc.data.forEach((item) => {
-    clone.data[item.name.toLowerCase()] = item.ring.toLowerCase()
+    data[item.name.toLowerCase()] = item.ring.toLowerCase()
   })
-  return { data: doc.data, intermediate: clone }
+  if (!a) {
+    intermediate.push({
+      dir: path.dirname(file),
+      data,
+      date: validDate,
+    })
+  }
+  return doc
 }

@@ -1,13 +1,15 @@
 import fsExtra from 'fs-extra'
 import globby from 'globby'
 
-// import { uniq } from 'lodash-es'
-// import path from 'path'
 import { tempDir } from './constants.js'
-import { genStatics } from './generateStatic.js'
+import {
+  init,
+  readFiles,
+  resolveBases,
+  sortContexts,
+} from './context.js'
+import {generateStatics} from './generateStatic.js'
 import { read } from './reader.js'
-// import { makeUniq, reverse } from './util.js'
-import { getDirs } from './util.js'
 
 /**
  * generate static sites from csv/json/yml files to the output directory
@@ -20,18 +22,25 @@ export const run = async ({
   output,
   cwd = process.cwd(),
   basePrefix,
+  autoscope,
 } = {}) => {
+  console.log(input, output, cwd, basePrefix)
   try {
     // TODO check that `output` is not a dir if exists
     const sources = await getSources(input, cwd)
-    sources.sort()
-    const docs = getDocuments(sources)
-    const dirs = getDirs(sources)
-    const statics = await genStatics(docs, dirs, output, basePrefix)
-
+    const intermediate = []
+    const statics = await generateStatics(
+      sortContexts(resolveBases(readFiles(init(sources)))),
+      output,
+      basePrefix,
+      intermediate,
+      autoscope,
+    )
     console.log('statics=', statics)
+  } catch (err) {
+    console.error(err)
   } finally {
-    fsExtra.removeSync(tempDir)
+    await fsExtra.remove(tempDir)
   }
 }
 /**

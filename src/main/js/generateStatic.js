@@ -9,52 +9,45 @@ import { validate } from './validator.js'
 
 /**
  * generate static sites from array radarDocument
- * @param docs
- * @param dirs
+ * @param contexts
  * @param _output
+ * @param basePrefix
+ * @param intermediate
  */
-export const genStatics = async (
-  docs,
-  dirs,
+export const generateStatics = async (
+  contexts,
   _output,
-  basePrefix = 'tech-radar',
-) => {
-  let intermediateValue = {}
-  return docs.reduce(async (r, doc, i) => {
-    const _m = await r
-    if (!validate(doc, radarSchema) || Object.keys(doc).length === 0)
-      return [..._m]
+  basePrefix,
+  intermediate,
+  autoscope,
+) =>
+  contexts.reduce(async (_r, context) => {
+    const _m = await _r
+    const { data, base, file, date } = context
+    if (!validate(data, radarSchema) || Object.keys(data).length === 0)
+      return context
 
     const temp = tempDir
-
-    const output = dirs ? path.join(_output, dirs[i].join('-')) : _output
-    const pathPrefix = basePrefix ? basePrefix + '/' + dirs[i] : undefined
+    const output = base ? path.join(_output, base) : _output
+    const pathPrefix = basePrefix ? basePrefix + '/' + base : undefined
 
     global._11ty_ = {
-      title: doc.meta.title,
+      title: data.meta.title,
       output,
       temp,
       pathPrefix,
     }
+    const modContext = {}
     try {
-      if (dirs) {
-        const {data, intermediate} = genParamMove(
-          dirs[i],
-          doc,
-          intermediateValue,
-        )
-        intermediateValue = intermediate
-        doc.data = data
-      }
-      genMdAssets(doc, temp)
-      writeSettings(doc, temp)
+      modContext.data = autoscope ? genParamMove(file, data, intermediate, date ) : data
+      genMdAssets(modContext.data, temp)
+      writeSettings(modContext.data, temp)
       await genEleventy(temp, output)
     } catch (err) {
       console.error('genStatics', err)
     }
     return [..._m, output]
   }, [])
-}
 
 /**
  * generate static site with using 11ty

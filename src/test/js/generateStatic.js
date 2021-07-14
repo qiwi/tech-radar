@@ -2,9 +2,7 @@ import fs from 'fs'
 import fsExtra from 'fs-extra'
 import path from 'path'
 
-import { genStatics } from '../../main/js/generateStatic.js'
-import { getDocuments } from '../../main/js/index.js'
-import { getDirs } from '../../main/js/util.js'
+import { run } from '../../main/js/index.js'
 
 export const getFileStruct = (dir, result = []) => {
   fs.readdirSync(dir).forEach((elem) => {
@@ -19,19 +17,11 @@ export const getFileStruct = (dir, result = []) => {
   return result
 }
 
-const genStaticFileStruct = async (input) => {
-  const docs = getDocuments(input)
-  const dirs = getDirs(input)
-  await genStatics(docs, dirs, 'test', '')
-
-  const fileStruct = getFileStruct(path.resolve('test'))
-  return fileStruct.map((el) => /test(.+)/.exec(el)[1])
-}
-
 describe('generate 11ty app', () => {
   it('from .csv file', async () => {
     const csvPath = path.join(__dirname, '../stub/test.csv')
-    const normalizedFileStruct = await genStaticFileStruct([csvPath])
+    await run({input:csvPath, output:'test'})
+    const normalizedFileStruct = getFileStruct('test')
     expect(normalizedFileStruct).toMatchSnapshot()
   })
 
@@ -39,30 +29,31 @@ describe('generate 11ty app', () => {
     fsExtra.removeSync(path.resolve('test'))
   })
 
-  it('from multiple files', async () => {
-    const csvPath = path.join(__dirname, '../stub/test.csv')
-    const jsonPath = path.join(__dirname, '../stub/test.json')
-    const yamlPath = path.join(__dirname, '../stub/test.yml')
+  it('from multiple files with the same date', async () => {
+    await run({input:'src/test/stub/test.{csv,json,yaml}', output:'test'})
+    const normalizedFileStruct = getFileStruct('test')
+    expect(normalizedFileStruct).toMatchSnapshot()
+  })
 
-    const normalizedFileStruct = await genStaticFileStruct([
-      csvPath,
-      jsonPath,
-      yamlPath,
-    ])
+  it('from multiple files', async () => {
+    await run({input:'src/test/stub/test.{csv,json}', output:'test'})
+    const normalizedFileStruct = getFileStruct('test')
     expect(normalizedFileStruct).toMatchSnapshot()
   })
 
   it('from .json file', async () => {
     const jsonPath = path.join(__dirname, '../stub/test.json')
-
-    const normalizedFileStruct = await genStaticFileStruct([jsonPath])
+    await run({input:jsonPath, output:'test'})
+    const normalizedFileStruct = getFileStruct('test')
     expect(normalizedFileStruct).toMatchSnapshot()
   })
 
   it('from .yml file', async () => {
     const yamlPath = path.join(__dirname, '../stub/test.yml')
 
-    const normalizedFileStruct = await genStaticFileStruct([yamlPath])
+    await run({input:yamlPath, output:'test'})
+    const normalizedFileStruct = getFileStruct('test')
     expect(normalizedFileStruct).toMatchSnapshot()
   })
 })
+
