@@ -34,7 +34,11 @@ export const radarSchema = {
       },
       required: ['title', 'date'],
     },
+    quadrantAliases: {
+      type: 'object',
+    },
   },
+  required: ['meta', 'data', 'quadrantAliases'],
 }
 export const settings = {
   svg_id: 'radar',

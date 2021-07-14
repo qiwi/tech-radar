@@ -41,8 +41,6 @@ export const getTemp = (cwd, temp) => {
   }
 
   const id = crypto.randomBytes(16).toString('hex')
-  // const cacheDir = findCacheDir({ name: '@qiwi__tech-radar', cwd }) + ''
-  // const tempDir = path.join(cacheDir, id)
   const tempDir = id
   return ensureDir(tempDir)
 }
@@ -76,3 +74,21 @@ export const normalizeCsv = (fileContent) =>
         .join(',')
     })
     .join('')
+
+export const getDirs = (sources) => {
+  const _a = sources.map((item) => item.split(path.sep))
+  while (true) {
+    if (_a.length === 0 || _a.length === 1) return
+    const checkArray = _a.every((item) => {
+      return item[0] === _a[0][0]
+    })
+    if (checkArray) {
+      _a.forEach((item) => {
+        item.shift()
+        return item
+      })
+    } else {
+      return _a.map((item) => item.join('-'))
+    }
+  }
+}

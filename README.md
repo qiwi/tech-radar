@@ -10,6 +10,11 @@
 
 Tech-radar generator. Based on [zalando/tech-radar](https://github.com/zalando/tech-radar). Boosted with [11ty](https://github.com/11ty/eleventy/)
 
+## QIWI radars:
+[iOS Tech Radar](https://qiwi.github.io/tech-radar/ios-2021-06/) 
+
+[JS Tech Radar](https://qiwi.github.io/tech-radar/js-2021-06/)
+
 ## Requirements
 * Node.js >= 12.20 (esm)
 * Mac / linux
@@ -31,7 +36,7 @@ npx @qiwi/tech-radar --input "/path/to/files/*.{json, csv, yml}" --output /radar
 | cwd | Current working dir | `process.cwd()`
 | input | [glob pattern](https://github.com/mrmlnc/fast-glob) to find radar data: csv/json/yml | `<cwd>/data/**/*.{json,csv,yml}`
 | output | Output directory | `<cwd>/radar`
-| temp | Temporary assets folder | `<cwd>/temp/<random>`
+| autoscope | idenfify same-scoped files as subversions of a single radar | `false`
 | base-prefix | base context path for web statics | `tech-radar`
 
 ## JS API
@@ -39,9 +44,10 @@ npx @qiwi/tech-radar --input "/path/to/files/*.{json, csv, yml}" --output /radar
 import {run} from '@qiwi/tech-radar'
 
 await run({
-  temp: './temp',
-  input: 'data/*.csv',
-  basePrefix: 'tech-radar'
+  input : 'data/*.{csv,json,yml}',
+  output : 'dist',
+  basePrefix: 'your project',
+  autoscope: false
 })
 ```
 

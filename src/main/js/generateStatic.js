@@ -9,34 +9,31 @@ import { validate } from './validator.js'
 
 /**
  * generate static sites from array radarDocument
- * @param docs
- * @param dirs
+ * @param contexts
  * @param _output
+ * @param basePrefix
  */
-export const genStatics = async (
-  docs,
-  dirs,
-  _output,
-  basePrefix = 'tech-radar',
-) =>
-  docs.reduce(async (r, doc, i) => {
-    const _m = await r
-    if (!validate(doc, radarSchema) || Object.keys(doc).length === 0)
-      return [..._m]
+export const generateStatics = async (contexts, _output, basePrefix) =>
+  contexts.reduce(async (_r, context) => {
+    const _m = await _r
+    const { data, base } = context
+    if (!validate(data, radarSchema) || Object.keys(data).length === 0)
+      return context
 
     const temp = tempDir
-    const output = dirs[i] ? path.join(_output, dirs[i]) : _output
-    const pathPrefix = basePrefix ? basePrefix + '/' + dirs[i] : undefined
+    const output = base ? path.join(_output, base) : _output
+    const pathPrefix = basePrefix ? basePrefix + '/' + base : undefined
 
     global._11ty_ = {
-      title: doc.meta.title,
+      title: data.meta.title,
       output,
       temp,
       pathPrefix,
     }
+
     try {
-      genMdAssets(doc, temp)
-      writeSettings(doc, temp)
+      genMdAssets(data, temp)
+      writeSettings(data, temp)
       await genEleventy(temp, output)
     } catch (err) {
       console.error('genStatics', err)

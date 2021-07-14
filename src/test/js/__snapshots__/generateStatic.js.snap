@@ -2,68 +2,81 @@
 
 exports[`generate 11ty app from .csv file 1`] = `
 Array [
-  "/test/entries/q1/TypeScript/index.html",
-  "/test/entries/q2/Nodejs/index.html",
-  "/test/entries/q3/codeclimate/index.html",
-  "/test/entries/q4/Гексагональная архитектура/index.html",
-  "/test/favicon.ico",
-  "/test/index.html",
-  "/test/radar.css",
-  "/test/radar.js",
+  "test/2021-06-18/entries/q1/TypeScript/index.html",
+  "test/2021-06-18/entries/q2/Nodejs/index.html",
+  "test/2021-06-18/entries/q3/codeclimate/index.html",
+  "test/2021-06-18/entries/q4/Гексагональная архитектура/index.html",
+  "test/2021-06-18/favicon.ico",
+  "test/2021-06-18/index.html",
+  "test/2021-06-18/radar.css",
+  "test/2021-06-18/radar.js",
 ]
 `;
 
 exports[`generate 11ty app from .json file 1`] = `
 Array [
-  "/test/entries/q1/TypeScript/index.html",
-  "/test/entries/q2/Nodejs/index.html",
-  "/test/entries/q3/codeclimate/index.html",
-  "/test/entries/q4/Гексагональная архитектура/index.html",
-  "/test/favicon.ico",
-  "/test/index.html",
-  "/test/radar.css",
-  "/test/radar.js",
+  "test/2021-06-12/entries/q1/TypeScript/index.html",
+  "test/2021-06-12/entries/q2/Nodejs/index.html",
+  "test/2021-06-12/entries/q3/codeclimate/index.html",
+  "test/2021-06-12/entries/q4/Гексагональная архитектура/index.html",
+  "test/2021-06-12/favicon.ico",
+  "test/2021-06-12/index.html",
+  "test/2021-06-12/radar.css",
+  "test/2021-06-12/radar.js",
 ]
 `;
 
 exports[`generate 11ty app from .yml file 1`] = `
 Array [
-  "/test/entries/q1/TypeScript/index.html",
-  "/test/entries/q2/Nodejs/index.html",
-  "/test/entries/q3/codeclimate/index.html",
-  "/test/entries/q4/Гексагональная архитектура/index.html",
-  "/test/favicon.ico",
-  "/test/index.html",
-  "/test/radar.css",
-  "/test/radar.js",
+  "test/2021-06-11/entries/q1/TypeScript/index.html",
+  "test/2021-06-11/entries/q2/Nodejs/index.html",
+  "test/2021-06-11/entries/q3/codeclimate/index.html",
+  "test/2021-06-11/entries/q4/Гексагональная архитектура/index.html",
+  "test/2021-06-11/favicon.ico",
+  "test/2021-06-11/index.html",
+  "test/2021-06-11/radar.css",
+  "test/2021-06-11/radar.js",
 ]
 `;
 
 exports[`generate 11ty app from multiple files 1`] = `
 Array [
-  "/test/entries/q1/TypeScript/index.html",
-  "/test/entries/q2/Nodejs/index.html",
-  "/test/entries/q3/codeclimate/index.html",
-  "/test/entries/q4/Гексагональная архитектура/index.html",
-  "/test/favicon.ico",
-  "/test/index.html",
-  "/test/radar.css",
-  "/test/radar.js",
-  "/test-2/entries/q1/TypeScript/index.html",
-  "/test-2/entries/q2/Nodejs/index.html",
-  "/test-2/entries/q3/codeclimate/index.html",
-  "/test-2/entries/q4/Гексагональная архитектура/index.html",
-  "/test-2/favicon.ico",
-  "/test-2/index.html",
-  "/test-2/radar.css",
-  "/test-2/radar.js",
-  "/test-3/entries/q1/TypeScript/index.html",
-  "/test-3/entries/q2/Nodejs/index.html",
-  "/test-3/entries/q3/codeclimate/index.html",
-  "/test-3/entries/q4/Гексагональная архитектура/index.html",
-  "/test-3/favicon.ico",
-  "/test-3/index.html",
-  "/test-3/radar.css",
-  "/test-3/radar.js",
+  "test/2021-06-12/entries/q1/TypeScript/index.html",
+  "test/2021-06-12/entries/q2/Nodejs/index.html",
+  "test/2021-06-12/entries/q3/codeclimate/index.html",
+  "test/2021-06-12/entries/q4/Гексагональная архитектура/index.html",
+  "test/2021-06-12/favicon.ico",
+  "test/2021-06-12/index.html",
+  "test/2021-06-12/radar.css",
+  "test/2021-06-12/radar.js",
+  "test/2021-06-18/entries/q1/TypeScript/index.html",
+  "test/2021-06-18/entries/q2/Nodejs/index.html",
+  "test/2021-06-18/entries/q3/codeclimate/index.html",
+  "test/2021-06-18/entries/q4/Гексагональная архитектура/index.html",
+  "test/2021-06-18/favicon.ico",
+  "test/2021-06-18/index.html",
+  "test/2021-06-18/radar.css",
+  "test/2021-06-18/radar.js",
+]
+`;
+
+exports[`generate 11ty app from multiple files with the same date 1`] = `
+Array [
+  "test/2021-06-12/entries/q1/TypeScript/index.html",
+  "test/2021-06-12/entries/q2/Nodejs/index.html",
+  "test/2021-06-12/entries/q3/codeclimate/index.html",
+  "test/2021-06-12/entries/q4/Гексагональная архитектура/index.html",
+  "test/2021-06-12/favicon.ico",
+  "test/2021-06-12/index.html",
+  "test/2021-06-12/radar.css",
+  "test/2021-06-12/radar.js",
+  "test/2021-06-18/entries/q1/TypeScript/index.html",
+  "test/2021-06-18/entries/q2/Nodejs/index.html",
+  "test/2021-06-18/entries/q3/codeclimate/index.html",
+  "test/2021-06-18/entries/q4/Гексагональная архитектура/index.html",
+  "test/2021-06-18/favicon.ico",
+  "test/2021-06-18/index.html",
+  "test/2021-06-18/radar.css",
+  "test/2021-06-18/radar.js",
 ]
 `;
