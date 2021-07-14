@@ -21,7 +21,7 @@ describe('validate', () => {
           moved: '',
         },
       ],
-      quadrantAliases: {}
+      quadrantAliases: {},
     }
     expect(validate(obj, radarSchema)).toBe(true)
   })

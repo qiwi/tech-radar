@@ -2,13 +2,8 @@ import fsExtra from 'fs-extra'
 import globby from 'globby'
 
 import { tempDir } from './constants.js'
-import {
-  init,
-  readFiles,
-  resolveBases,
-  sortContexts,
-} from './context.js'
-import {generateStatics} from './generateStatic.js'
+import { init, readFiles, resolveBases, sortContexts } from './context.js'
+import { generateStatics } from './generateStatic.js'
 import { read } from './reader.js'
 
 /**

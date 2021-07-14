@@ -88,7 +88,7 @@ export const getDirs = (sources) => {
         return item
       })
     } else {
-      return _a.map(item => item.join('-'))
+      return _a.map((item) => item.join('-'))
     }
   }
 }

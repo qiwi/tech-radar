@@ -59,7 +59,7 @@ export const genParamMove = (file, doc, intermediate, date) => {
     adopt: 3,
   }
   const validDate = new Date(date)
-  if(isNaN(validDate.getDate())) {
+  if (isNaN(validDate.getDate())) {
     throw new Error(`${file} - invalid date`)
   }
   const a = intermediate.find((i) => {

@@ -39,7 +39,9 @@ export const generateStatics = async (
     }
     const modContext = {}
     try {
-      modContext.data = autoscope ? genParamMove(file, data, intermediate, date ) : data
+      modContext.data = autoscope
+        ? genParamMove(file, data, intermediate, date)
+        : data
       genMdAssets(modContext.data, temp)
       writeSettings(modContext.data, temp)
       await genEleventy(temp, output)
