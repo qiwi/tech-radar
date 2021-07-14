@@ -50,52 +50,62 @@ export const genMdAssets = (doc, temp) => {
     }
   })
 }
-
+/**
+ * generates the "moved" parameter depending on the "autoscope" flag and other files in this directory
+ * @param contexts
+ * @param intermediate - contains intermediate meanings of technology names and their rings
+ * @param autoscope
+ * @returns contexts
+ */
 export const genParamMove = (contexts, intermediate, autoscope) => {
   if (!autoscope) return contexts
   return contexts.map((context) => {
     const { file, data, date } = context
 
-    const validDate = new Date(date)
-    if (isNaN(validDate.getDate())) {
+    const _date = new Date(date)
+    if (isNaN(_date.getDate())) {
       throw new Error(`${file} - invalid date`)
     }
-    const findValue = intermediate.find((i) => {
+    const prevCtx = intermediate.find((i) => {
       return i.dir === path.dirname(file)
     })
-    if (findValue && findValue.date < validDate) {
-      return { ...context, data: modifyData(data, findValue) }
+    if (prevCtx && prevCtx.date < _date) {
+      return { ...context, data: addMoved(data, prevCtx) }
     }
-    const interData = {}
-    data.data.forEach((item) => {
-      interData[item.name.toLowerCase()] = item.ring.toLowerCase()
-    })
-    if (!findValue) {
+
+    if (!prevCtx) {
       intermediate.push({
         dir: path.dirname(file),
-        data: interData,
-        date: validDate,
+        data: data.data.reduce((r, item) => {
+          return {...r, [item.name.toLowerCase()]: item.ring.toLowerCase()}
+        }),
+        date: _date,
       })
     }
     return context
   })
 }
-
-export const modifyData = (data, findValue) => {
+/**
+ * add param "moved" to radarDocument
+ * @param doc - radarDocument
+ * @param intermediate - contains intermediate meanings of technology names and their rings
+ * @returns radarDocument - general input data format
+ */
+export const addMoved = (doc, intermediate) => {
   const rings = {
     hold: 0,
     assess: 1,
     trial: 2,
     adopt: 3,
   }
-  const modData = data.data.map((item) => {
+  const _data = doc.data.map((item) => {
     const name = item.name.toLowerCase()
-    const previousRing = item.ring.toLowerCase()
-    if (findValue.data[name] !== previousRing) {
-      item.moved = +rings[findValue.data[name]] > +rings[previousRing] ? -1 : 1
-      findValue.data[name] = previousRing
+    const prevRing = item.ring.toLowerCase()
+    if (intermediate.data[name] !== prevRing) {
+      item.moved = +rings[intermediate.data[name]] > +rings[prevRing] ? -1 : 1
+      intermediate.data[name] = prevRing
     }
     return item
   })
-  return { ...data, data: modData }
+  return { ...doc, data: _data }
 }

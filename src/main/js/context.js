@@ -4,14 +4,27 @@ import path from 'path'
 import { read } from './reader.js'
 import { getDirs } from './util.js'
 
+/**
+ * add param file to context
+ * @param sources
+ * @returns contexts
+ */
 export const init = (sources) => sources.map((s) => ({ file: s }))
-
+/**
+ * add param data to context
+ * @param contexts
+ * @returns contexts
+ */
 export const readFiles = (contexts) =>
   contexts.map((c) => ({
     ...c,
     data: read(c.file),
   }))
-
+/**
+ * add param base to context
+ * @param contexts
+ * @returns contexts
+ */
 export const resolveBases = (contexts) => {
   const dates = contexts.map(({ data }) => data.meta.date)
   if (contexts.length === 1)
@@ -36,6 +49,11 @@ export const resolveBases = (contexts) => {
     base,
   }))
 }
+/**
+ * sort contexts with path and date
+ * @param contexts
+ * @returns contexts
+ */
 export const sortContexts = (contexts) => {
   if (contexts.length === 1) return contexts
   return contexts.sort((a, b) => {

@@ -5,13 +5,13 @@ import { tempDir } from './constants.js'
 import { init, readFiles, resolveBases, sortContexts } from './context.js'
 import { genParamMove } from './generateMdAssets.js'
 import { generateStatics } from './generateStatic.js'
-import { read } from './reader.js'
 
 /**
  * generate static sites from csv/json/yml files to the output directory
  * @param input - globby pattern for input files
  * @param output - output directory
  * @param cwd - current working directory
+ * @param autoscope - idenfify same-scoped files as subversions of a single radar
  */
 export const run = async ({
   input,
@@ -53,9 +53,3 @@ export const getSources = async (input, cwd) =>
     absolute: true,
     cwd,
   })
-/**
- * returns parsed data in radarDocument format
- * @param inputs
- * @returns {radarDocument[]}
- */
-export const getDocuments = (inputs) => inputs.map(read)
