@@ -10,10 +10,9 @@
 
 Tech-radar generator. Based on [zalando/tech-radar](https://github.com/zalando/tech-radar). Boosted with [11ty](https://github.com/11ty/eleventy/)
 
-## QIWI radars:
-[iOS Tech Radar](https://qiwi.github.io/tech-radar/ios-2021-06/) 
-
-[JS Tech Radar](https://qiwi.github.io/tech-radar/js-2021-06/)
+## 📡 Radars
+* [QIWI iOS Tech Radar](https://qiwi.github.io/tech-radar/ios-2021-06-21/)
+* [QIWI JS Tech Radar](https://qiwi.github.io/tech-radar/js-2021-06-21/)
 
 ## Requirements
 * Node.js >= 12.20 (esm)
@@ -39,7 +38,7 @@ npx @qiwi/tech-radar --input "/path/to/files/*.{json, csv, yml}" --output /radar
 | autoscope | idenfify same-scoped files as subversions of a single radar | `false`
 | base-prefix | base context path for web statics | `tech-radar`
 
-## JS API
+### JS API
 ```js
 import {run} from '@qiwi/tech-radar'
 
