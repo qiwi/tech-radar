@@ -11,8 +11,7 @@
 Tech-radar generator. Based on [zalando/tech-radar](https://github.com/zalando/tech-radar). Boosted with [11ty](https://github.com/11ty/eleventy/)
 
 ## QIWI radars:
-* [iOS Tech Radar](https://qiwi.github.io/tech-radar/ios-2021-06-21/) 
-
+* [iOS Tech Radar](https://qiwi.github.io/tech-radar/ios-2021-06-21/)
 * [JS Tech Radar](https://qiwi.github.io/tech-radar/js-2021-06-21/)
 
 ## Requirements
