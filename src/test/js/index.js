@@ -4,7 +4,7 @@ import {
   genMdPath,
 } from '../../main/js/generateMdAssets.js'
 import { genEleventy, generateStatics } from '../../main/js/generateStatic.js'
-import { getDocuments, getSources, run } from '../../main/js/index.js'
+import { getSources, run } from '../../main/js/index.js'
 import {
   csvReader,
   getReader,
@@ -17,9 +17,6 @@ import { makeUniq, reverse } from '../../main/js/util.js'
 describe('has proper exports', () => {
   it('getSources', function () {
     expect(getSources).toBeDefined()
-  })
-  it('getDocuments', function () {
-    expect(getDocuments).toBeDefined()
   })
   it('run', function () {
     expect(run).toBeDefined()
