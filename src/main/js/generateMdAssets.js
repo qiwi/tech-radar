@@ -51,42 +51,51 @@ export const genMdAssets = (doc, temp) => {
   })
 }
 
-export const genParamMove = (file, doc, intermediate, date) => {
+export const genParamMove = (contexts, intermediate, autoscope) => {
+  if (!autoscope) return contexts
+  return contexts.map((context) => {
+    const { file, data, date } = context
+
+    const validDate = new Date(date)
+    if (isNaN(validDate.getDate())) {
+      throw new Error(`${file} - invalid date`)
+    }
+    const findValue = intermediate.find((i) => {
+      return i.dir === path.dirname(file)
+    })
+    if (findValue && findValue.date < validDate) {
+      return { ...context, data: modifyData(data, findValue) }
+    }
+    const interData = {}
+    data.data.forEach((item) => {
+      interData[item.name.toLowerCase()] = item.ring.toLowerCase()
+    })
+    if (!findValue) {
+      intermediate.push({
+        dir: path.dirname(file),
+        data: interData,
+        date: validDate,
+      })
+    }
+    return context
+  })
+}
+
+export const modifyData = (data, findValue) => {
   const rings = {
     hold: 0,
     assess: 1,
     trial: 2,
     adopt: 3,
   }
-  const validDate = new Date(date)
-  if (isNaN(validDate.getDate())) {
-    throw new Error(`${file} - invalid date`)
-  }
-  const a = intermediate.find((i) => {
-    return i.dir === path.dirname(file)
+  const modData = data.data.map((item) => {
+    const name = item.name.toLowerCase()
+    const previousRing = item.ring.toLowerCase()
+    if (findValue.data[name] !== previousRing) {
+      item.moved = +rings[findValue.data[name]] > +rings[previousRing] ? -1 : 1
+      findValue.data[name] = previousRing
+    }
+    return item
   })
-  if (a && a.date < validDate) {
-    const data = doc.data.map((item) => {
-      const name = item.name.toLowerCase()
-      const previousRing = item.ring.toLowerCase()
-      if (a.data[name] !== previousRing) {
-        item.moved = +rings[a.data[name]] > +rings[previousRing] ? -1 : 1
-        a.data[name] = previousRing
-      }
-      return item
-    })
-    return { ...doc, data }
-  }
-  const data = {}
-  doc.data.forEach((item) => {
-    data[item.name.toLowerCase()] = item.ring.toLowerCase()
-  })
-  if (!a) {
-    intermediate.push({
-      dir: path.dirname(file),
-      data,
-      date: validDate,
-    })
-  }
-  return doc
+  return { ...data, data: modData }
 }

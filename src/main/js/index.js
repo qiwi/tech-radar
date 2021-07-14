@@ -3,6 +3,7 @@ import globby from 'globby'
 
 import { tempDir } from './constants.js'
 import { init, readFiles, resolveBases, sortContexts } from './context.js'
+import { genParamMove } from './generateMdAssets.js'
 import { generateStatics } from './generateStatic.js'
 import { read } from './reader.js'
 
@@ -25,11 +26,13 @@ export const run = async ({
     const sources = await getSources(input, cwd)
     const intermediate = []
     const statics = await generateStatics(
-      sortContexts(resolveBases(readFiles(init(sources)))),
+      genParamMove(
+        sortContexts(resolveBases(readFiles(init(sources)))),
+        intermediate,
+        autoscope,
+      ),
       output,
       basePrefix,
-      intermediate,
-      autoscope,
     )
     console.log('statics=', statics)
   } catch (err) {

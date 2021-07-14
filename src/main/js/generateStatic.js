@@ -3,7 +3,7 @@ import fsExtra from 'fs-extra'
 import path from 'path'
 
 import { radarSchema, tempDir } from './constants.js'
-import { genMdAssets, genParamMove } from './generateMdAssets.js'
+import { genMdAssets } from './generateMdAssets.js'
 import { writeSettings } from './util.js'
 import { validate } from './validator.js'
 
@@ -12,18 +12,11 @@ import { validate } from './validator.js'
  * @param contexts
  * @param _output
  * @param basePrefix
- * @param intermediate
  */
-export const generateStatics = async (
-  contexts,
-  _output,
-  basePrefix,
-  intermediate,
-  autoscope,
-) =>
+export const generateStatics = async (contexts, _output, basePrefix) =>
   contexts.reduce(async (_r, context) => {
     const _m = await _r
-    const { data, base, file, date } = context
+    const { data, base } = context
     if (!validate(data, radarSchema) || Object.keys(data).length === 0)
       return context
 
@@ -37,13 +30,10 @@ export const generateStatics = async (
       temp,
       pathPrefix,
     }
-    const modContext = {}
+
     try {
-      modContext.data = autoscope
-        ? genParamMove(file, data, intermediate, date)
-        : data
-      genMdAssets(modContext.data, temp)
-      writeSettings(modContext.data, temp)
+      genMdAssets(data, temp)
+      writeSettings(data, temp)
       await genEleventy(temp, output)
     } catch (err) {
       console.error('genStatics', err)
