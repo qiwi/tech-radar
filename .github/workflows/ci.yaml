@@ -80,9 +80,6 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install deps
-        run: yarn
-
       - name: Lib-release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
