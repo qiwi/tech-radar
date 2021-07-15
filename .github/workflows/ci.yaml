@@ -16,37 +16,8 @@ jobs:
       - id: ci-skip-step
         uses: mstachniuk/ci-skip@v1
 
-  build:
-    name: build
-    needs: skipci
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup NodeJS
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16
-
-      - name: Install deps
-        run: yarn
-
-      - name: Generate
-        run: yarn generate
-
-      - name: Save artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: artifact-${{ github.run_id }}
-          retention-days: 1
-          # need to add any root level file to prevent common dirname part trimming
-          path: |
-            dist
-            README.md
-
   test:
-    needs: build
+    needs: skipci
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -63,8 +34,8 @@ jobs:
       - name: Test
         run: yarn test
 
-  release:
-    name: Release
+  release_radar:
+    name: Publish radar to gh-pages
     # https://github.community/t/trigger-job-on-tag-push-only/18076
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
@@ -73,13 +44,16 @@ jobs:
       - name: Checkuout
         uses: actions/checkout@v2
 
-      - name: Restore artifact
-        uses: actions/download-artifact@v2
+      - name: Setup NodeJS
+        uses: actions/setup-node@v2
         with:
-          name: artifact-${{ github.run_id }}
+          node-version: 16
 
-      - name: Display structure of downloaded files
-        run: ls -R
+      - name: Install deps
+        run: yarn
+
+      - name: Generate
+        run: yarn generate
 
       - name: Publish gh-pages
         uses: peaceiris/actions-gh-pages@v3
@@ -89,3 +63,31 @@ jobs:
           commit_message: "docs: update tech-radar static"
           allow_empty_commit: true
           enable_jekyll: false
+
+  release_lib:
+    name: Release lib
+    # https://github.community/t/trigger-job-on-tag-push-only/18076
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Lib-release
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_USER: 'qiwibot'
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GIT_AUTHOR_EMAIL: 'opensource@qiwi.com'
+          GIT_COMMITTER_EMAIL: 'opensource@qiwi.com'
+          GIT_AUTHOR_NAME: '@qiwibot'
+          GIT_COMMITTER_NAME: '@qiwibot'
+        run: yarn release
