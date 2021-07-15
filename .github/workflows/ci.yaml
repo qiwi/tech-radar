@@ -44,6 +44,14 @@ jobs:
       - name: Checkuout
         uses: actions/checkout@v2
 
+      - name: Setup NodeJS
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install deps
+        run: yarn
+
       - name: Generate
         run: yarn generate
 
@@ -67,11 +75,14 @@ jobs:
         uses: actions/checkout@v2
         with:
           persist-credentials: false
+
       - uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16
+
       - name: Install deps
         run: yarn
+
       - name: Lib-release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
