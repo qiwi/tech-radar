@@ -41,14 +41,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
-      - name: Generate
-          run: yarn generate
-
       - name: Checkuout
         uses: actions/checkout@v2
 
-      - name: Display structure of downloaded files
-        run: ls -R
+      - name: Generate
+          run: yarn generate
 
       - name: Publish gh-pages
         uses: peaceiris/actions-gh-pages@v3
