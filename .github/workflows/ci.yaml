@@ -53,9 +53,8 @@ jobs:
           # If a wildcard pattern is used, the path hierarchy will be preserved after the first wildcard pattern.
           # https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions
           path: |
-            !packages/*/node_modules
-            !packages/*/src
-            packages
+            node_modules
+            src
 
   test:
     needs: build
@@ -101,6 +100,7 @@ jobs:
           commit_message: "docs: update tech-radar static"
           allow_empty_commit: true
           enable_jekyll: false
+
   release:
     name: Release
     # https://github.community/t/trigger-job-on-tag-push-only/18076
