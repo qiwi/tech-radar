@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/qiwi/tech-radar/compare/v1.0.0...v1.0.1) (2021-07-15)
+
+
+### Bug Fixes
+
+* **pkg:** make package public ([f4d348c](https://github.com/qiwi/tech-radar/commit/f4d348c896da6b30d035807fc83f1b0575d2e059))
+
 # 1.0.0 (2021-07-15)
 
 
