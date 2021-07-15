@@ -2,6 +2,10 @@
   "name": "@qiwi/tech-radar",
   "version": "1.0.0",
   "main": "./src/main/js/index.js",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "scripts": {
     "test": "npm-run-all -p -l lint test:unit",
