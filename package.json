@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/tech-radar",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "./src/main/js/index.js",
   "type": "module",
   "scripts": {
