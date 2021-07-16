@@ -17,7 +17,7 @@ q3,         Tools
 q4,         Techniques
 ===
 name,                       quadrant,   ring,   description
-TypeScript,                 lang,       Adopt,  "Язык программирования, позиционируемый как средство разработки веб-приложений, расширяющее возможности JavaScript."
+TypeScript,                 lang,       Adopt,  "Язык программирования, позиционируемый как средство разработки веб-приложений, расширяющее возможности JavaScript посредством введения статической типизации на уровне компилятора (транспилятора)"
 JavaScript,                 lang,       Adopt,
 Flow,                       lang,       Hold,   "Статический анализатор кода и набор синтаксических конструкций, для прямого указания типа переменной"
 Nestjs,                     lang,       Trial,  Spring для TS
@@ -35,7 +35,7 @@ Pijma,                      Platforms,  Trial,
 Yarn,                       Tools,      Adopt,  Пакетный менеджер вместо npm
 semantic-relese,            Tools,      Trial,  Движение к CD чтобы катать семантические релизы
 Travis-ci,                  Tools,      Trial,  CI для OSS
-eslint,                     Tools,      Trial,  "Инструмент статического анализа кода для выявления проблемных шаблонов, обнаруженных в коде JavaScript."
+eslint,                     Tools,      Trial,  "Инструмент, который позволяет проводить анализ качества вашего кода, написанного на любом выбранном стандарте JavaScript."
 flp,                        Tools,      Assess, Провайдер клиентских событий
 mocha,                      Tools,      Hold,   Либа для автотестов
 codeclimate,                Tools,      Trial,  "Статический анализатор кода https://github.com/codeclimate/codeclimate"
