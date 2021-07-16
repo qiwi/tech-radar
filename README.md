@@ -49,8 +49,8 @@ await run({
   autoscope: false
 })
 ```
-###Examples of input files
-####json
+### Examples of input files
+#### json
 ```json
 {
   "meta":{
@@ -101,7 +101,7 @@ await run({
   }
 }
 ```
-####yaml
+#### yaml
 ```yaml
 meta:
   title: tech radar js
@@ -142,7 +142,7 @@ quadrantTitles:
   q3: Tools
   q4: Techniques
 ```
-####csv
+#### csv
 ```
 title
 tech radar js
@@ -168,8 +168,6 @@ q1,         Languages and frameworks
 q2,         Platforms
 q3,         Tools
 q4,         Techniques
-
-
 ```
 
 ## License
