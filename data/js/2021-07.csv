@@ -43,4 +43,4 @@ Monorepo,                   Tech,       adopt,  Обобщение кодово�
 Trunk-basedDevelopment,     Tech,       Adopt,  Фиче-флаги вместо фич-бранчей
 Гексагональная архитектура, Tech,      Assess,  Унификации контракта интерфейсов различных слоев приложений
 OSS,                        Tech,       adopt,  "Публичная разработка https://github.com/qiwi"
-masker,                     tools,      trial,  Composite data masking utility
+masker,                     tools,      trial,  "Composite data masking utility https://github.com/qiwi/masker"
