@@ -20,20 +20,29 @@ export const run = async ({
   basePrefix,
   autoscope,
   navPage,
+  navTitle,
+  navFooter,
 } = {}) => {
   try {
     // TODO check that `output` is not a dir if exists
     const sources = await getSources(input, cwd)
     const intermediate = []
-    genNavigationPage(await generateStatics(
-      genParamMove(
-        sortContexts(resolveBases(readFiles(init(sources)))),
-        intermediate,
-        autoscope,
+    genNavigationPage(
+      await generateStatics(
+        genParamMove(
+          sortContexts(resolveBases(readFiles(init(sources)))),
+          intermediate,
+          autoscope,
+        ),
+        output,
+        basePrefix,
       ),
       output,
-      basePrefix,
-    ), output, navPage, input)
+      navPage,
+      input,
+      navTitle,
+      navFooter,
+    )
   } catch (err) {
     console.error(err)
   } finally {

@@ -80,3 +80,116 @@ Array [
   "test/2021-06-18/radar.js",
 ]
 `;
+
+exports[`generate 11ty app generate navigation page 1`] = `
+"<!DOCTYPE html>
+<head>
+    <meta charset=\\"utf-8\\">
+    <link rel=\\"stylesheet\\" href=\\"index.css\\">
+  <title>📡 Tech radar</title>
+</head>
+<body>
+    <h1>
+        📡 Tech radars
+    </h1>
+    <div class=\\"wrapper\\">
+        <div class=\\"tile\\">
+<h2>js</h2>
+<ul>
+  <li><a href=2021-06-12> 2021-06-12 </a></li>
+ <li><a href=2021-06-11> 2021-06-11 </a></li>
+</ul>
+</div>
+    </div>
+    <footer>
+        Tech-radar generator. Based on <a href=\\"https://github.com/zalando/tech-radar\\"> zalando/tech-radar</a>. Boosted with<a href=\\"https://github.com/11ty/eleventy/\\"> 11ty</a>.
+    </footer>
+</body>
+"
+`;
+
+exports[`generate 11ty app generate navigation page footer 1`] = `
+"<!DOCTYPE html>
+<head>
+    <meta charset=\\"utf-8\\">
+    <link rel=\\"stylesheet\\" href=\\"index.css\\">
+  <title>📡 Tech radar</title>
+</head>
+<body>
+    <h1>
+        📡 Tech radars
+    </h1>
+    <div class=\\"wrapper\\">
+        <div class=\\"tile\\">
+<h2>js</h2>
+<ul>
+  <li><a href=2021-06-12> 2021-06-12 </a></li>
+ <li><a href=2021-06-11> 2021-06-11 </a></li>
+</ul>
+</div>
+    </div>
+    <footer>
+        footer
+    </footer>
+</body>
+"
+`;
+
+exports[`generate 11ty app generate navigation page of data2 1`] = `
+"<!DOCTYPE html>
+<head>
+    <meta charset=\\"utf-8\\">
+    <link rel=\\"stylesheet\\" href=\\"index.css\\">
+  <title>📡 Tech radar</title>
+</head>
+<body>
+    <h1>
+        📡 Tech radars
+    </h1>
+    <div class=\\"wrapper\\">
+        <div class=\\"tile\\">
+<h2>ios</h2>
+<ul>
+  <li><a href=ios-2021-06-11> 2021-06-11 </a></li>
+</ul>
+</div>
+<div class=\\"tile\\">
+<h2>js</h2>
+<ul>
+  <li><a href=js-2021-06-12> 2021-06-12 </a></li>
+</ul>
+</div>
+    </div>
+    <footer>
+        Tech-radar generator. Based on <a href=\\"https://github.com/zalando/tech-radar\\"> zalando/tech-radar</a>. Boosted with<a href=\\"https://github.com/11ty/eleventy/\\"> 11ty</a>.
+    </footer>
+</body>
+"
+`;
+
+exports[`generate 11ty app generate navigation page title 1`] = `
+"<!DOCTYPE html>
+<head>
+    <meta charset=\\"utf-8\\">
+    <link rel=\\"stylesheet\\" href=\\"index.css\\">
+  <title>📡 Tech radar</title>
+</head>
+<body>
+    <h1>
+        title
+    </h1>
+    <div class=\\"wrapper\\">
+        <div class=\\"tile\\">
+<h2>js</h2>
+<ul>
+  <li><a href=2021-06-12> 2021-06-12 </a></li>
+ <li><a href=2021-06-11> 2021-06-11 </a></li>
+</ul>
+</div>
+    </div>
+    <footer>
+        Tech-radar generator. Based on <a href=\\"https://github.com/zalando/tech-radar\\"> zalando/tech-radar</a>. Boosted with<a href=\\"https://github.com/11ty/eleventy/\\"> 11ty</a>.
+    </footer>
+</body>
+"
+`;

@@ -1,13 +1,19 @@
 import Eleventy from '@11ty/eleventy'
-import fs from "fs";
+import fs from 'fs'
 import fsExtra from 'fs-extra'
+import { uniq } from 'lodash-es'
 import path from 'path'
 
-import {radarSchema, tempDir, tplNavPage} from './constants.js'
+import {
+  defNavFooter,
+  defNavTitle,
+  radarSchema,
+  tempDir,
+  tplNavPage,
+} from './constants.js'
 import { genMdAssets } from './generateMdAssets.js'
-import {sortContextsByDate, writeSettings} from './util.js'
+import { sortContextsByDate, writeSettings } from './util.js'
 import { validate } from './validator.js'
-
 
 /**
  * generate static sites from array radarDocument
@@ -18,7 +24,7 @@ import { validate } from './validator.js'
 export const generateStatics = async (contexts, _output, basePrefix) => {
   const statics = await contexts.reduce(async (_r, context) => {
     const _m = await _r
-    const {data, base} = context
+    const { data, base } = context
     if (!validate(data, radarSchema) || Object.keys(data).length === 0)
       return context
 
@@ -43,7 +49,10 @@ export const generateStatics = async (contexts, _output, basePrefix) => {
     return [..._m, output]
   }, [])
   console.log('statics=', statics)
-  return contexts.map(context => ({...context, prefix:basePrefix ? basePrefix + '/' + context.base : context.base}))
+  return contexts.map((context) => ({
+    ...context,
+    prefix: basePrefix ? basePrefix + '/' + context.base : context.base,
+  }))
 }
 
 /**
@@ -59,34 +68,51 @@ export const genEleventy = async (temp, output) => {
   fsExtra.removeSync(temp)
 }
 
-export const genNavigationPage = (contexts, output, navPage, input) => {
+export const genNavigationPage = (
+  contexts,
+  output,
+  navPage,
+  input,
+  navTitle,
+  navFooter,
+) => {
   if (!navPage) return
+  if (!navTitle) navTitle = defNavTitle
+  if (!navFooter) navFooter = defNavFooter
 
-  const links = fs.readdirSync(input.split('/')[0], { withFileTypes: true })
-    .filter(dir => dir.isDirectory())
-    .reduce((r, dir) => {
-      return {...r, [dir.name]: []}
-    }, {})
+  const dirs = contexts.map(({ file }) => path.dirname(file))
+  console.log(dirs)
+  const links = uniq(dirs.map((dir) => dir.split('/').pop())).reduce(
+    (r, dir) => ({ ...r, [dir]: [] }),
+    {},
+  )
 
-  contexts.sort(sortContextsByDate).forEach(context => {
-    const key = Object.keys(links).find(dir => dir === context.base.split('-')[0])
+  contexts.sort(sortContextsByDate).forEach((context) => {
+    const keys = Object.keys(links)
+    const key =
+      keys.length === 1
+        ? keys[0]
+        : keys.find((dir) => dir === context.base.split('-')[0])
     if (!key) return
     const link = `<a href=${context.prefix}> ${context.data.meta.date} </a>`
     links[key].push(link)
   })
 
-  const li = link => `<li>${link}</li>`
-  const contentPage = Object.keys(links)
-    .map(key => `<div class="tile">
+  const li = (link) => `<li>${link}</li>`
+  const contentPage = Object.keys(links).map(
+    (key) => `<div class="tile">
 <h2>${key}</h2>
 <ul>
   ${links[key].map(li).join('\n ')}
 </ul>
-</div>`)
+</div>`,
+  )
 
   fsExtra.copySync(tplNavPage, output)
   const tplHtml = fs.readFileSync(path.join(output, 'index.html'), 'utf8')
-  const html = tplHtml.replace('#nav_page-content', contentPage.join('\n'))
-
+  const html = tplHtml
+    .replace('#nav_page-content', contentPage.join('\n'))
+    .replace('#nav_page-title', navTitle)
+    .replace('#nav_page-footer', navFooter)
   fs.writeFileSync(path.join(output, 'index.html'), html)
 }

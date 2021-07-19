@@ -8,6 +8,9 @@ export const techniques = 'techniques'
 export const tplDir = path.resolve('src/main/tpl')
 export const tempDir = 'radar-temp'
 export const tplNavPage = path.resolve('src/main/nav-page')
+export const defNavTitle = '📡 Tech radars'
+export const defNavFooter =
+  'Tech-radar generator. Based on <a href="https://github.com/zalando/tech-radar"> zalando/tech-radar</a>. Boosted with<a href="https://github.com/11ty/eleventy/"> 11ty</a>.'
 
 export const radarSchema = {
   type: 'object',

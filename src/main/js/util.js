@@ -93,5 +93,5 @@ export const getDirs = (sources) => {
   }
 }
 
-
-export const sortContextsByDate = (a, b) => a.date > b.date ? -1 : a.date === b.date ? 0 : 1
+export const sortContextsByDate = (a, b) =>
+  a.date > b.date ? -1 : a.date === b.date ? 0 : 1

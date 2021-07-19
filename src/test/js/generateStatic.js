@@ -55,4 +55,40 @@ describe('generate 11ty app', () => {
     const normalizedFileStruct = getFileStruct('test')
     expect(normalizedFileStruct).toMatchSnapshot()
   })
+  const dataPath = 'src/test/stub/data/**'
+  const indexPath = path.join('test', 'index.html')
+  it('generate navigation page', async () => {
+    await run({ input: dataPath, output: 'test', navPage: true })
+    const index = fs.readFileSync(indexPath, 'utf8')
+    expect(index).toMatchSnapshot()
+  })
+  it('generate navigation page title', async () => {
+    await run({
+      input: dataPath,
+      output: 'test',
+      navPage: true,
+      navTitle: 'title',
+    })
+    const index = fs.readFileSync(indexPath, 'utf8')
+    expect(index).toMatchSnapshot()
+  })
+  it('generate navigation page footer', async () => {
+    await run({
+      input: dataPath,
+      output: 'test',
+      navPage: true,
+      navFooter: 'footer',
+    })
+    const index = fs.readFileSync(indexPath, 'utf8')
+    expect(index).toMatchSnapshot()
+  })
+  it('generate navigation page of data2', async () => {
+    await run({
+      input: 'src/test/stub/data2/**',
+      output: 'test',
+      navPage: true,
+    })
+    const index = fs.readFileSync(indexPath, 'utf8')
+    expect(index).toMatchSnapshot()
+  })
 })
