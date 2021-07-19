@@ -81,7 +81,6 @@ export const genNavigationPage = (
   if (!navFooter) navFooter = defNavFooter
 
   const dirs = contexts.map(({ file }) => path.dirname(file))
-  console.log(dirs)
   const links = uniq(dirs.map((dir) => dir.split('/').pop())).reduce(
     (r, dir) => ({ ...r, [dir]: [] }),
     {},
