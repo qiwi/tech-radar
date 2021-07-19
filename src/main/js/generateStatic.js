@@ -43,7 +43,7 @@ export const generateStatics = async (contexts, _output, basePrefix) => {
     return [..._m, output]
   }, [])
   console.log('statics=', statics)
-  return contexts.map(context => {return {...context, prefix:basePrefix ? basePrefix + '/' + context.base : context.base}})
+  return contexts.map(context => ({...context, prefix:basePrefix ? basePrefix + '/' + context.base : context.base}))
 }
 
 /**
@@ -63,14 +63,14 @@ export const genNavigationPage = (contexts, output, navPage, input) => {
   if (!navPage) return
 
   const links = fs.readdirSync(input.split('/')[0], { withFileTypes: true })
-    .filter(d => d.isDirectory())
-    .reduce((_r, dir) => {
-      return {..._r, [dir.name]: []}
+    .filter(dir => dir.isDirectory())
+    .reduce((r, dir) => {
+      return {...r, [dir.name]: []}
     }, {})
 
   const sort = (a, b) => a.date > b.date ? -1 : a.date === b.date ? 0 : 1
   contexts.sort(sort).forEach(context => {
-    const key = Object.keys(links).find(i => i === context.base.split('-')[0])
+    const key = Object.keys(links).find(dir => dir === context.base.split('-')[0])
     if (!key) return
     const link = `<a href=${context.prefix}> ${context.data.meta.title} ${context.data.meta.date} </a>`
     links[key].push(link)
