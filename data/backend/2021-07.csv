@@ -18,8 +18,8 @@ q4,         Tools and Techniques
 ===
 name,                       quadrant,      ring,   description
 Java 8,                     langlib,       Adopt,  Обычная Java
-Java 11,                    langlib,       Adopt,  Java поновее
-Java 13,                    langlib,       Trial,  Новая, но не совсем Java
+Java 11,                    langlib,       Adopt,  Актуальная LTS Java
+Java 16,                    langlib,       Trial,  Следующая LTS Java
 Kotlin,                     langlib,       Adopt,  Как Java только Kotlin
 Scala,                      langlib,       Hold,   Scala
 Groovy,                     langlib,       Hold,   Groovy
