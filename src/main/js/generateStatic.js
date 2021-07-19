@@ -5,7 +5,7 @@ import path from 'path'
 
 import {radarSchema, tempDir, tplNavPage} from './constants.js'
 import { genMdAssets } from './generateMdAssets.js'
-import { writeSettings } from './util.js'
+import {sortContextsByDate, writeSettings} from './util.js'
 import { validate } from './validator.js'
 
 
@@ -68,18 +68,17 @@ export const genNavigationPage = (contexts, output, navPage, input) => {
       return {...r, [dir.name]: []}
     }, {})
 
-  const sort = (a, b) => a.date > b.date ? -1 : a.date === b.date ? 0 : 1
-  contexts.sort(sort).forEach(context => {
+  contexts.sort(sortContextsByDate).forEach(context => {
     const key = Object.keys(links).find(dir => dir === context.base.split('-')[0])
     if (!key) return
-    const link = `<a href=${context.prefix}> ${context.data.meta.title} ${context.data.meta.date} </a>`
+    const link = `<a href=${context.prefix}> ${context.data.meta.date} </a>`
     links[key].push(link)
   })
 
   const li = link => `<li>${link}</li>`
   const contentPage = Object.keys(links)
-    .map(key => `<div>
-<h2>${key.toUpperCase()}</h2>
+    .map(key => `<div class="tile">
+<h2>${key}</h2>
 <ul>
   ${links[key].map(li).join('\n ')}
 </ul>

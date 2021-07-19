@@ -21,7 +21,6 @@ export const run = async ({
   autoscope,
   navPage,
 } = {}) => {
-  console.log(input, output, cwd, basePrefix)
   try {
     // TODO check that `output` is not a dir if exists
     const sources = await getSources(input, cwd)
