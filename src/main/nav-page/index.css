@@ -8,15 +8,10 @@ ul {
     list-style-type: none;
     padding: 0px;
 }
-a {
+.link {
     color: black;
     text-decoration: none;
 }
-/*h2 {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    border-bottom: 1px solid lightslategray;*/
-/*}*/
 li {
     margin: 5px;
     padding: 5px 10px;
@@ -40,4 +35,7 @@ li:hover {
 }
 .tile{
     margin: 20px;
+}
+footer {
+    text-align: center;
 }
