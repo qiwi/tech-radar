@@ -7,6 +7,7 @@ export const techniques = 'techniques'
 
 export const tplDir = path.resolve('src/main/tpl')
 export const tempDir = 'radar-temp'
+export const tplNavPage = path.resolve('src/main/nav-page')
 
 export const radarSchema = {
   type: 'object',

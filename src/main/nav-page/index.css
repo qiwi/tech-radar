@@ -1,0 +1,36 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+div {
+    margin-top: 20px;
+}
+ul {
+    list-style-type: none;
+    padding: 0px;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+h2 {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid lightslategray;
+}
+li {
+    margin: 5px;
+    padding: 5px;
+}
+
+li:hover {
+    background-color: rgba(187, 187, 187, 0.26);
+    border-radius: 20px;
+}
+* {
+    font-family: "Museo Sans", sans-serif;
+    color: #333;
+
+    line-height: 1.6333;
+}

@@ -6,7 +6,7 @@ import {run} from './index.js'
 export const cli = meow(
   `
     Usage:
-      techradar  --input /path/to/csv --output /radar --basePrefix tech-radar --autoscope true
+      techradar  --input /path/to/csv --output /radar --basePrefix tech-radar --autoscope true --nav-page true
     Options
       --input
       --output
@@ -30,6 +30,9 @@ export const cli = meow(
         type: 'string',
       },
       autoscope: {
+        type: 'boolean'
+      },
+      navPage: {
         type: 'boolean'
       }
     },

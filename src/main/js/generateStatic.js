@@ -1,11 +1,13 @@
 import Eleventy from '@11ty/eleventy'
+import fs from "fs";
 import fsExtra from 'fs-extra'
 import path from 'path'
 
-import { radarSchema, tempDir } from './constants.js'
+import {radarSchema, tempDir, tplNavPage} from './constants.js'
 import { genMdAssets } from './generateMdAssets.js'
 import { writeSettings } from './util.js'
 import { validate } from './validator.js'
+
 
 /**
  * generate static sites from array radarDocument
@@ -13,10 +15,10 @@ import { validate } from './validator.js'
  * @param _output
  * @param basePrefix
  */
-export const generateStatics = async (contexts, _output, basePrefix) =>
-  contexts.reduce(async (_r, context) => {
+export const generateStatics = async (contexts, _output, basePrefix) => {
+  const statics = await contexts.reduce(async (_r, context) => {
     const _m = await _r
-    const { data, base } = context
+    const {data, base} = context
     if (!validate(data, radarSchema) || Object.keys(data).length === 0)
       return context
 
@@ -40,6 +42,9 @@ export const generateStatics = async (contexts, _output, basePrefix) =>
     }
     return [..._m, output]
   }, [])
+  console.log('statics=', statics)
+  return contexts.map(context => {return {...context, prefix:basePrefix ? basePrefix + '/' + context.base : context.base}})
+}
 
 /**
  * generate static site with using 11ty
@@ -52,4 +57,37 @@ export const genEleventy = async (temp, output) => {
   await elev.init()
   await elev.write()
   fsExtra.removeSync(temp)
+}
+
+export const genNavigationPage = (contexts, output, navPage, input) => {
+  if (!navPage) return
+
+  const links = fs.readdirSync(input.split('/')[0], { withFileTypes: true })
+    .filter(d => d.isDirectory())
+    .reduce((_r, dir) => {
+      return {..._r, [dir.name]: []}
+    }, {})
+
+  const sort = (a, b) => a.date > b.date ? -1 : a.date === b.date ? 0 : 1
+  contexts.sort(sort).forEach(context => {
+    const key = Object.keys(links).find(i => i === context.base.split('-')[0])
+    if (!key) return
+    const link = `<a href=${context.prefix}> ${context.data.meta.title} ${context.data.meta.date} </a>`
+    links[key].push(link)
+  })
+
+  const li = link => `<li>${link}</li>`
+  const contentPage = Object.keys(links)
+    .map(key => `<div>
+<h2>${key.toUpperCase()}</h2>
+<ul>
+  ${links[key].map(li).join('\n ')}
+</ul>
+</div>`)
+
+  fsExtra.copySync(tplNavPage, output)
+  const tplHtml = fs.readFileSync(path.join(output, 'index.html'), 'utf8')
+  const html = tplHtml.replace('#nav_page-content', contentPage.join('\n'))
+
+  fs.writeFileSync(path.join(output, 'index.html'), html)
 }
