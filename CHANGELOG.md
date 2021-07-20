@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/qiwi/tech-radar/compare/v1.0.1...v1.1.0) (2021-07-20)
+
+
+### Features
+
+* add navigation page and custom title and footer in nav page ([348b636](https://github.com/qiwi/tech-radar/commit/348b6367c82d9f68879219af05d280c44525af8c))
+
 ## [1.0.1](https://github.com/qiwi/tech-radar/compare/v1.0.0...v1.0.1) (2021-07-15)
 
 
