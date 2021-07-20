@@ -96,13 +96,16 @@ exports[`generate 11ty app generate navigation page 1`] = `
         <div class=\\"tile\\">
 <h2>js</h2>
 <ul>
-  <li><a href=2021-06-12> 2021-06-12 </a></li>
- <li><a href=2021-06-11> 2021-06-11 </a></li>
+  <li><a class=\\"link\\" href=2021-06-12> 2021-06-12 </a></li>
+ <li><a class=\\"link\\" href=2021-06-11> 2021-06-11 </a></li>
 </ul>
 </div>
     </div>
     <footer>
-        Tech-radar generator. Based on <a href=\\"https://github.com/zalando/tech-radar\\"> zalando/tech-radar</a>. Boosted with<a href=\\"https://github.com/11ty/eleventy/\\"> 11ty</a>.
+        <a href=\\"https://github.com/qiwi/tech-radar\\">Tech-radar generator.</a> 
+Based on <a href=\\"https://github.com/zalando/tech-radar\\">zalando/tech-radar</a> .
+Boosted with <a href=\\"https://github.com/11ty/eleventy/\\">11ty</a>.
+<br><a class=\\"link\\" href=\\"https://github.com/qiwi\\">QIWI ❤️ Open Source.</a> 
     </footer>
 </body>
 "
@@ -123,8 +126,8 @@ exports[`generate 11ty app generate navigation page footer 1`] = `
         <div class=\\"tile\\">
 <h2>js</h2>
 <ul>
-  <li><a href=2021-06-12> 2021-06-12 </a></li>
- <li><a href=2021-06-11> 2021-06-11 </a></li>
+  <li><a class=\\"link\\" href=2021-06-12> 2021-06-12 </a></li>
+ <li><a class=\\"link\\" href=2021-06-11> 2021-06-11 </a></li>
 </ul>
 </div>
     </div>
@@ -150,18 +153,21 @@ exports[`generate 11ty app generate navigation page of data2 1`] = `
         <div class=\\"tile\\">
 <h2>ios</h2>
 <ul>
-  <li><a href=ios-2021-06-11> 2021-06-11 </a></li>
+  <li><a class=\\"link\\" href=ios-2021-06-11> 2021-06-11 </a></li>
 </ul>
 </div>
 <div class=\\"tile\\">
 <h2>js</h2>
 <ul>
-  <li><a href=js-2021-06-12> 2021-06-12 </a></li>
+  <li><a class=\\"link\\" href=js-2021-06-12> 2021-06-12 </a></li>
 </ul>
 </div>
     </div>
     <footer>
-        Tech-radar generator. Based on <a href=\\"https://github.com/zalando/tech-radar\\"> zalando/tech-radar</a>. Boosted with<a href=\\"https://github.com/11ty/eleventy/\\"> 11ty</a>.
+        <a href=\\"https://github.com/qiwi/tech-radar\\">Tech-radar generator.</a> 
+Based on <a href=\\"https://github.com/zalando/tech-radar\\">zalando/tech-radar</a> .
+Boosted with <a href=\\"https://github.com/11ty/eleventy/\\">11ty</a>.
+<br><a class=\\"link\\" href=\\"https://github.com/qiwi\\">QIWI ❤️ Open Source.</a> 
     </footer>
 </body>
 "
@@ -182,13 +188,16 @@ exports[`generate 11ty app generate navigation page title 1`] = `
         <div class=\\"tile\\">
 <h2>js</h2>
 <ul>
-  <li><a href=2021-06-12> 2021-06-12 </a></li>
- <li><a href=2021-06-11> 2021-06-11 </a></li>
+  <li><a class=\\"link\\" href=2021-06-12> 2021-06-12 </a></li>
+ <li><a class=\\"link\\" href=2021-06-11> 2021-06-11 </a></li>
 </ul>
 </div>
     </div>
     <footer>
-        Tech-radar generator. Based on <a href=\\"https://github.com/zalando/tech-radar\\"> zalando/tech-radar</a>. Boosted with<a href=\\"https://github.com/11ty/eleventy/\\"> 11ty</a>.
+        <a href=\\"https://github.com/qiwi/tech-radar\\">Tech-radar generator.</a> 
+Based on <a href=\\"https://github.com/zalando/tech-radar\\">zalando/tech-radar</a> .
+Boosted with <a href=\\"https://github.com/11ty/eleventy/\\">11ty</a>.
+<br><a class=\\"link\\" href=\\"https://github.com/qiwi\\">QIWI ❤️ Open Source.</a> 
     </footer>
 </body>
 "
