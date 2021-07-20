@@ -93,7 +93,7 @@ export const genNavigationPage = (
         ? keys[0]
         : keys.find((dir) => dir === context.base.split('-')[0])
     if (!key) return
-    const link = `<a class="link" href=${context.prefix}> ${context.data.meta.date} </a>`
+    const link = `<a class="link" href=${context.base}> ${context.data.meta.date} </a>`
     links[key].push(link)
   })
 
