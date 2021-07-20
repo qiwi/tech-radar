@@ -13,7 +13,7 @@ export const defNavFooter =
   `<a href="https://github.com/qiwi/tech-radar">Tech-radar generator.</a> 
 Based on <a href="https://github.com/zalando/tech-radar">zalando/tech-radar</a> .
 Boosted with <a href="https://github.com/11ty/eleventy/">11ty</a>.
-<br><a href="https://github.com/qiwi">QIWI</a> ❤️ Open Source.`
+<br><a class="link" href="https://github.com/qiwi">QIWI ❤️ Open Source.</a> `
 
 export const radarSchema = {
   type: 'object',
