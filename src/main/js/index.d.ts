@@ -3,7 +3,10 @@ interface inputParam {
   output: string,
   cwd?: string,
   basePrefix?: string,
-  autoscope?: boolean
+  autoscope?: boolean,
+  navPage?: boolean,
+  navTitle?: string,
+  navFooter?:string
 }
 export declare function run(param: inputParam): void;
 

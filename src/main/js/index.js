@@ -4,7 +4,7 @@ import globby from 'globby'
 import { tempDir } from './constants.js'
 import { init, readFiles, resolveBases, sortContexts } from './context.js'
 import { genParamMove } from './generateMdAssets.js'
-import { generateStatics } from './generateStatic.js'
+import { generateStatics, genNavigationPage } from './generateStatic.js'
 
 /**
  * generate static sites from csv/json/yml files to the output directory
@@ -19,22 +19,30 @@ export const run = async ({
   cwd = process.cwd(),
   basePrefix,
   autoscope,
+  navPage,
+  navTitle,
+  navFooter,
 } = {}) => {
-  console.log(input, output, cwd, basePrefix)
   try {
     // TODO check that `output` is not a dir if exists
     const sources = await getSources(input, cwd)
     const intermediate = []
-    const statics = await generateStatics(
-      genParamMove(
-        sortContexts(resolveBases(readFiles(init(sources)))),
-        intermediate,
-        autoscope,
+    genNavigationPage(
+      await generateStatics(
+        genParamMove(
+          sortContexts(resolveBases(readFiles(init(sources)))),
+          intermediate,
+          autoscope,
+        ),
+        output,
+        basePrefix,
       ),
       output,
-      basePrefix,
+      navPage,
+      input,
+      navTitle,
+      navFooter,
     )
-    console.log('statics=', statics)
   } catch (err) {
     console.error(err)
   } finally {

@@ -6,11 +6,15 @@ import {run} from './index.js'
 export const cli = meow(
   `
     Usage:
-      techradar  --input /path/to/csv --output /radar --basePrefix tech-radar --autoscope true
+      techradar  --input /path/to/csv --output /radar --basePrefix tech-radar --autoscope true --nav-page true --nav-title title --nav-footer footer
     Options
       --input
       --output
       --basePrefix
+      --autoscope
+      --nav-page
+      --nav-title
+      --nav-footer
 `,
   {
     importMeta: import.meta,
@@ -31,7 +35,16 @@ export const cli = meow(
       },
       autoscope: {
         type: 'boolean'
-      }
+      },
+      navPage: {
+        type: 'boolean'
+      },
+      navTitle: {
+        type: 'string'
+      },
+      navFooter: {
+        type: 'string'
+      },
     },
   },
 )

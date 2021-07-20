@@ -37,6 +37,9 @@ npx @qiwi/tech-radar --input "/path/to/files/*.{json, csv, yml}" --output /radar
 | output | Output directory | `<cwd>/radar`
 | autoscope | idenfify same-scoped files as subversions of a single radar | `false`
 | base-prefix | base context path for web statics | `tech-radar`
+| nav-page | create navigation page | `false`
+| nav-title | navigation page title | 
+| nav-footer | navigation page footer | 
 
 ### JS API
 ```js

@@ -42,7 +42,6 @@ export const resolveBases = (contexts) => {
   if (uniq(filesWithNoExt).length !== filesWithNoExt.length) {
     throw new Error('same dates in one directory')
   }
-
   return getDirs(filesWithNoExt).map((base, i) => ({
     ...contexts[i],
     date: dates[i],

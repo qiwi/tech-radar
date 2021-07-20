@@ -77,7 +77,7 @@ export const genParamMove = (contexts, intermediate, autoscope) => {
       intermediate.push({
         dir: path.dirname(file),
         data: data.data.reduce((r, item) => {
-          return {...r, [item.name.toLowerCase()]: item.ring.toLowerCase()}
+          return { ...r, [item.name.toLowerCase()]: item.ring.toLowerCase() }
         }),
         date: _date,
       })
