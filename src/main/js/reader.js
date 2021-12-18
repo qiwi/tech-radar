@@ -1,4 +1,4 @@
-import parse from 'csv-parse/lib/sync.js'
+import parseCsv from 'csv-parse/lib/sync.js'
 import fs from 'fs'
 import yaml from 'js-yaml'
 import path from 'path'
@@ -50,7 +50,7 @@ export const csvReader = (csvPath) => {
     quadrantTitles: {},
   }
   radarContents.split('===').forEach((radarChunks) => {
-    const records = parse(radarChunks, {
+    const records = parseCsv(radarChunks, {
       columns: true,
       skip_empty_lines: true,
     })
