@@ -1,5 +1,5 @@
 import fsExtra from 'fs-extra'
-import globby from 'globby'
+import { globbySync } from 'globby'
 
 import { tempDir } from './constants.js'
 import { init, readFiles, resolveBases, sortContexts } from './context.js'
@@ -56,7 +56,7 @@ export const run = async ({
  * @returns {string[]}
  */
 export const getSources = async (input, cwd) =>
-  globby.sync([input], {
+  globbySync([input], {
     onlyFiles: true,
     absolute: true,
     cwd,
