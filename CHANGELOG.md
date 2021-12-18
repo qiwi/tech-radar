@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/qiwi/tech-radar/compare/v1.1.0...v1.2.0) (2021-12-18)
+
+
+### Features
+
+* attach qa radar data ([eeb9414](https://github.com/qiwi/tech-radar/commit/eeb94143ce214c47255e383ef45e85a85a95c41a))
+
 # [1.1.0](https://github.com/qiwi/tech-radar/compare/v1.0.1...v1.1.0) (2021-07-20)
 
 
