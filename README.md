@@ -12,10 +12,10 @@ Tech-radar generator. Based on [zalando/tech-radar](https://github.com/zalando/t
 
 ## 📡 Radars
 * [QIWI Tech Radar](https://qiwi.github.io/tech-radar/)
-  * [iOS](https://qiwi.github.io/tech-radar/ios-2021-06-21/)
-  * [JS](https://qiwi.github.io/tech-radar/js-2021-07-15/)
-  * [Backend](https://qiwi.github.io/tech-radar/backend-2021-07-16/)
-  * [QA](https://qiwi.github.io/tech-radar/backand-2021-12-16/)
+  * [iOS](https://qiwi.github.io/tech-radar/ios/)
+  * [JS](https://qiwi.github.io/tech-radar/js/)
+  * [Backend](https://qiwi.github.io/tech-radar/backend/)
+  * [QA](https://qiwi.github.io/tech-radar/qa/)
 
 ## Requirements
 * Node.js >= 12.20 (esm)
