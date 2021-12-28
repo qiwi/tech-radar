@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/qiwi/tech-radar/compare/v1.2.0...v1.3.0) (2021-12-28)
+
+
+### Features
+
+* redirect scope base to its latest radar ([65a7e24](https://github.com/qiwi/tech-radar/commit/65a7e24f6f878d6f6882c9257d7691db915bbcfd)), closes [#47](https://github.com/qiwi/tech-radar/issues/47)
+
 # [1.2.0](https://github.com/qiwi/tech-radar/compare/v1.1.0...v1.2.0) (2021-12-18)
 
 
