@@ -2,7 +2,7 @@ import Eleventy from '@11ty/eleventy'
 import fs from 'fs'
 import fsExtra from 'fs-extra'
 import { uniq } from 'lodash-es'
-import path from 'path'
+import path, {dirname} from 'path'
 
 import {
   defNavFooter,
@@ -14,6 +14,9 @@ import {
 import { genMdAssets } from './generateMdAssets.js'
 import { sortContextsByDate, writeSettings } from './util.js'
 import { validate } from './validator.js'
+import { fileURLToPath } from 'url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 /**
  * generate static sites from array radarDocument
@@ -33,6 +36,7 @@ export const generateStatics = async (contexts, _output, basePrefix) => {
     const pathPrefix = basePrefix ? basePrefix + '/' + base : undefined
 
     global._11ty_ = {
+      date: data.meta.date,
       title: data.meta.title,
       output,
       temp,
@@ -91,7 +95,7 @@ export const genNavigationPage = (
     const key =
       keys.length === 1
         ? keys[0]
-        : keys.find((dir) => dir === context.base.split('-')[0])
+        : keys.find((dir) => dir === context.base.split('/')[0])
     if (!key) return
     const link = `<a class="link" href=${context.base}> ${context.data.meta.date} </a>`
     links[key].push(link)
@@ -107,6 +111,7 @@ export const genNavigationPage = (
 </div>`,
   )
 
+  // Main nav page
   fsExtra.copySync(tplNavPage, output)
   const tplHtml = fs.readFileSync(path.join(output, 'index.html'), 'utf8')
   const html = tplHtml
@@ -114,4 +119,18 @@ export const genNavigationPage = (
     .replace('#nav_page-title', navTitle)
     .replace('#nav_page-footer', navFooter)
   fs.writeFileSync(path.join(output, 'index.html'), html)
+
+  // Latest scoped radars aliases
+  const redirect = fs.readFileSync(path.resolve(__dirname, '../redirect-page/index.html'), 'utf8')
+  Object.entries(contexts.reduce((m, {base, date}) => {
+    const scope = path.dirname(base)
+    const prev = m[scope]
+
+    if (!prev || prev < date) {
+      m[scope] = date
+    }
+    return m
+  }, {})).map(([scope, date]) => {
+    fs.writeFileSync(path.join(output, scope, 'index.html'), redirect.replace('###', date))
+  })
 }

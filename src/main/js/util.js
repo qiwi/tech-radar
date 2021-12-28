@@ -75,23 +75,8 @@ export const normalizeCsv = (fileContent) =>
     })
     .join('')
 
-export const getDirs = (sources) => {
-  const _a = sources.map((item) => item.split(path.sep))
-  while (true) {
-    if (_a.length === 0 || _a.length === 1) return
-    const checkArray = _a.every((item) => {
-      return item[0] === _a[0][0]
-    })
-    if (checkArray) {
-      _a.forEach((item) => {
-        item.shift()
-        return item
-      })
-    } else {
-      return _a.map((item) => item.join('-'))
-    }
-  }
-}
+export const getDirs = (files) =>
+  files.map(f => f.slice([...(files[0])].findIndex((c, i) => files.some(f => f.charAt(i) !== c))))
 
 export const sortContextsByDate = (a, b) =>
   a.date > b.date ? -1 : a.date === b.date ? 0 : 1

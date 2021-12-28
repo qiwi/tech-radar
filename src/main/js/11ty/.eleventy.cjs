@@ -4,7 +4,7 @@ const htmlmin = require('html-minifier')
 const terser = require('terser')
 
 module.exports = (config) => {
-  const {temp, output, title, pathPrefix } = global._11ty_
+  const {temp, output, title, pathPrefix, date } = global._11ty_
   const assetsPath = temp + '/assets'
   config.addPassthroughCopy({
     [assetsPath]: '/',
@@ -26,7 +26,7 @@ module.exports = (config) => {
 
     const radarSettings = {
       ...settings,
-      title,
+      title: `${title} — ${date}`,
       entries,
     }
 
