@@ -1,8 +1,6 @@
 {
   "testEnvironment": "node",
-  "transform": {
-    "\\.m?jsx?$": "jest-esm-transformer"
-  },
+  "transform": {},
   "transformIgnorePatterns": [
     "/!node_modules\\/lodash-es/",
     "<roodDir>/node_modules/(?!lodash-es)"
@@ -15,7 +13,7 @@
   "testTimeout": 10000,
   "testMatch": [
     "<rootDir>/src/test/js/**/*.js",
-    "<rootDir>/src/test/ts/**/*.ts"
+    "<rootDir>/src/test/ts/**/*.mjs"
   ],
   "testPathIgnorePatterns": [
     "/node_modules/",

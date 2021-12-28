@@ -2,7 +2,8 @@ import Eleventy from '@11ty/eleventy'
 import fs from 'fs'
 import fsExtra from 'fs-extra'
 import { uniq } from 'lodash-es'
-import path, {dirname} from 'path'
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
 
 import {
   defNavFooter,
@@ -14,7 +15,6 @@ import {
 import { genMdAssets } from './generateMdAssets.js'
 import { sortContextsByDate, writeSettings } from './util.js'
 import { validate } from './validator.js'
-import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -113,7 +113,7 @@ export const genNavigationPage = (
 
   // Main nav page
   fsExtra.copySync(tplNavPage, output)
-  const tplHtml = fs.readFileSync(path.join(output, 'index.html'), 'utf8')
+  const tplHtml = fs.readFileSync(path.join(output, 'index.html'), 'utf8') // eslint-disable-line sonarjs/no-duplicate-string
   const html = tplHtml
     .replace('#nav_page-content', contentPage.join('\n'))
     .replace('#nav_page-title', navTitle)
@@ -130,7 +130,7 @@ export const genNavigationPage = (
       m[scope] = date
     }
     return m
-  }, {})).map(([scope, date]) => {
+  }, {})).forEach(([scope, date]) => {
     fs.writeFileSync(path.join(output, scope, 'index.html'), redirect.replace('###', date))
   })
 }

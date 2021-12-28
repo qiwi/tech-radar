@@ -14,4 +14,4 @@ const server = http.createServer(function onRequest (req, res) {
 
 // Listen
 server.listen(3000)
-console.log('http://localhost:3000/tech-radar')
+console.log('http://localhost:3000/')
