@@ -9,7 +9,7 @@
   "type": "module",
   "scripts": {
     "test": "npm-run-all -p -l lint test:unit",
-    "test:unit": "yarn jest",
+    "test:unit": "NODE_OPTIONS=--experimental-vm-modules yarn jest",
     "lint": "eslint src/{main,test}/**/*.js",
     "lint:fix": "yarn lint --fix",
     "format": "prettier --write \"src/**/*.js\"",
@@ -30,17 +30,15 @@
     "eslint-config-qiwi": "^1.15.3",
     "finalhandler": "^1.1.2",
     "jest": "^27.4.5",
-    "jest-esm-transformer": "^1.0.0",
     "jsdoc": "^3.6.7",
     "prettier": "^2.5.1",
     "prettier-config-qiwi": "^1.5.0",
     "serve-static": "^1.14.2",
-    "terser": "^5.10.0",
-    "typescript": "*"
+    "terser": "^5.10.0"
   },
   "engines": {
-    "node": ">=12.12",
-    "npm": ">=5.6"
+    "node": ">=14",
+    "npm": ">=6"
   },
   "dependencies": {
     "@11ty/eleventy": "^0.12.1",
