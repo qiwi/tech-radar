@@ -56,13 +56,8 @@ export const generateStatics = async (contexts, _output, basePrefix, temp) => {
   }))
 }
 
-/**
- * generate static site with using 11ty
- * @param temp
- * @param output
- */
-export const genEleventy = async ({temp, output, title, pathPrefix, date}) => {
-  const configExtPath = path.resolve('src/main/js/11ty/.eleventy.cjs')
+export const genConfig = ({temp, output, title, pathPrefix, date}) => {
+  const configExtPath = path.resolve(__dirname, '11ty/.eleventy.cjs')
   const configMixin = {extra: {temp, title, pathPrefix, date, output }}
   const configPath = path.resolve(temp, 'config.js')
   const configContents = `
@@ -70,6 +65,16 @@ module.exports = (config) => require('${configExtPath}')(Object.assign(config, $
 `
   fs.writeFileSync(configPath, configContents, 'utf8')
 
+  return configPath
+}
+
+/**
+ * generate static site with using 11ty
+ * @param context
+ */
+export const genEleventy = async (context) => {
+  const { temp, output } = context
+  const configPath = genConfig(context)
   const elev = new Eleventy(temp, output, { configPath })
 
   await elev.init()
