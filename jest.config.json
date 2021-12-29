@@ -5,7 +5,10 @@
     "/!node_modules\\/lodash-es/",
     "<roodDir>/node_modules/(?!lodash-es)"
   ],
-  "collectCoverage": true,
+  "moduleNameMapper": {
+    "csv-parse/sync": "<rootDir>/node_modules/csv-parse//lib/sync.js"
+  },
+  "collectCoverage": false,
   "collectCoverageFrom": [
     "<rootDir>/src/main/**/*.(j|t)s"
   ],
