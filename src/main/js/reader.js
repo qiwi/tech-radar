@@ -1,4 +1,4 @@
-import parseCsv from 'csv-parse/lib/sync.js'
+import {parse as parseCsv} from 'csv-parse/sync'
 import fs from 'fs'
 import yaml from 'js-yaml'
 import path from 'path'
