@@ -1,7 +1,7 @@
 import fsExtra from 'fs-extra'
 import { globbySync } from 'globby'
+import tempy from 'tempy'
 
-import { tempDir } from './constants.js'
 import { init, readFiles, resolveBases, sortContexts } from './context.js'
 import { genParamMove } from './generateMdAssets.js'
 import { generateStatics, genNavigationPage } from './generateStatic.js'
@@ -22,6 +22,7 @@ export const run = async ({
   navPage,
   navTitle,
   navFooter,
+  temp = tempy.directory()
 } = {}) => {
   try {
     // TODO check that `output` is not a dir if exists
@@ -36,6 +37,7 @@ export const run = async ({
         ),
         output,
         basePrefix,
+        temp,
       ),
       output,
       navPage,
@@ -46,7 +48,7 @@ export const run = async ({
   } catch (err) {
     console.error(err)
   } finally {
-    await fsExtra.remove(tempDir)
+    await fsExtra.remove(temp)
   }
 }
 /**

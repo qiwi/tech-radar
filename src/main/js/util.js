@@ -29,21 +29,7 @@ export const ensureDir = (dir) => {
 
   return dir
 }
-/**
- *  return unique name temp directory
- * @param cwd
- * @param temp
- * @returns {string}
- */
-export const getTemp = (cwd, temp) => {
-  if (temp) {
-    return ensureDir(path.resolve(temp))
-  }
 
-  const id = crypto.randomBytes(16).toString('hex')
-  const tempDir = id
-  return ensureDir(tempDir)
-}
 export const getQuadrant = (quadrant, doc) => {
   const lowQuadrant = quadrant.toLowerCase()
   return doc.quadrantAliases[lowQuadrant] || lowQuadrant
