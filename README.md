@@ -8,10 +8,10 @@
   @qiwi/tech-radar
 </h2>
 
-Tech-radar generator. Based on [zalando/tech-radar](https://github.com/zalando/tech-radar). Boosted with [11ty](https://github.com/11ty/eleventy/)
+Fully automated tech-radar generator. Based on [zalando/tech-radar](https://github.com/zalando/tech-radar). Boosted with [11ty](https://github.com/11ty/eleventy/)
 
 ## 📡 Radars
-* [QIWI Tech Radar](https://qiwi.github.io/tech-radar/)
+* [QIWI Tech Radars](https://qiwi.github.io/tech-radar/)
   * [iOS](https://qiwi.github.io/tech-radar/ios/)
   * [JS](https://qiwi.github.io/tech-radar/js/)
   * [Backend](https://qiwi.github.io/tech-radar/backend/)
@@ -42,7 +42,8 @@ npx @qiwi/tech-radar --input "/path/to/files/*.{json, csv, yml}" --output /radar
 | base-prefix | base context path for web statics | `tech-radar`
 | nav-page | create navigation page | `false`
 | nav-title | navigation page title | 
-| nav-footer | navigation page footer | 
+| nav-footer | navigation page footer |
+| temp | temporary assets dir | [`tempy.directory()`](https://github.com/sindresorhus/tempy)
 
 ### JS API
 ```js
