@@ -15,6 +15,7 @@ export const cli = meow(
       --nav-page
       --nav-title
       --nav-footer
+      --temp
 `,
   {
     importMeta: import.meta,
@@ -45,6 +46,9 @@ export const cli = meow(
       navFooter: {
         type: 'string'
       },
+      temp: {
+        type: 'string'
+      }
     },
   },
 )
