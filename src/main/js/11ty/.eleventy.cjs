@@ -4,7 +4,7 @@ const htmlmin = require('html-minifier')
 const terser = require('terser')
 
 module.exports = (config) => {
-  const {temp, title, pathPrefix, date, output } = config.extra
+  const {temp, pathPrefix, output } = config.extra
   const assetsPath = temp + '/assets'
   config.addPassthroughCopy({
     [assetsPath]: '/',

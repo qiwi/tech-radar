@@ -24,14 +24,13 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
  * @param _output
  * @param basePrefix
  */
-export const generateStatics = async (contexts, _output, basePrefix) => {
+export const generateStatics = async (contexts, _output, basePrefix, temp) => {
   const statics = await contexts.reduce(async (_r, context) => {
     const _m = await _r
     const { data, base } = context
     if (!validate(data, radarSchema) || Object.keys(data).length === 0)
       return context
 
-    const temp = tempy.directory()
     const output = base ? path.join(_output, base) : _output
     const pathPrefix = basePrefix ? basePrefix + '/' + base : undefined
     Object.assign(context, {
@@ -70,8 +69,6 @@ export const genEleventy = async ({temp, output, title, pathPrefix, date}) => {
   const configContents = `
 module.exports = (config) => require('${configExtPath}')(Object.assign(config, ${JSON.stringify(configMixin)}))
 `
-  console.log(configMixin)
-
   fs.writeFileSync(configPath, configContents, 'utf8')
 
   const elev = new Eleventy(temp, output, { configPath })
