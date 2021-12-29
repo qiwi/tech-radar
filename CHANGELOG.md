@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/qiwi/tech-radar/compare/v1.4.0...v1.4.1) (2021-12-29)
+
+
+### Bug Fixes
+
+* fix css path for entries pages ([2ecfc61](https://github.com/qiwi/tech-radar/commit/2ecfc617801d4ab286690f0a10f6b363eb15d261))
+
 # [1.4.0](https://github.com/qiwi/tech-radar/compare/v1.3.0...v1.4.0) (2021-12-29)
 
 
