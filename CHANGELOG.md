@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/qiwi/tech-radar/compare/v1.3.0...v1.4.0) (2021-12-29)
+
+
+### Features
+
+* add `temp` dir option to api ([ca01e3a](https://github.com/qiwi/tech-radar/commit/ca01e3a97967ebe9d277fea47fb023090dbc95d8))
+* **cli:** add temp option ([55fd4fd](https://github.com/qiwi/tech-radar/commit/55fd4fdc584e4db5340fe138d9686ca8df97fcb3)), closes [#2792d0a2055fd2084e1bd29f1c773be6079574d1](https://github.com/qiwi/tech-radar/issues/2792d0a2055fd2084e1bd29f1c773be6079574d1)
+
 # [1.3.0](https://github.com/qiwi/tech-radar/compare/v1.2.0...v1.3.0) (2021-12-28)
 
 

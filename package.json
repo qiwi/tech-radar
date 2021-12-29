@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/tech-radar",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "main": "./src/main/js/index.js",
   "private": false,
   "publishConfig": {
