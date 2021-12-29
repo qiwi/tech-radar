@@ -8,7 +8,7 @@
   "moduleNameMapper": {
     "csv-parse/sync": "<rootDir>/node_modules/csv-parse//lib/sync.js"
   },
-  "collectCoverage": false,
+  "collectCoverage": true,
   "collectCoverageFrom": [
     "<rootDir>/src/main/**/*.(j|t)s"
   ],

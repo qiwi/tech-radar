@@ -1,5 +1,6 @@
 {
   "name": "@qiwi/tech-radar",
+  "description": "Fully automated tech-radar generator",
   "version": "1.4.0",
   "main": "./src/main/js/index.js",
   "private": false,
