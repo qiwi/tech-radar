@@ -4,13 +4,15 @@ const htmlmin = require('html-minifier')
 const terser = require('terser')
 
 module.exports = (config) => {
-  const {temp, output, title, pathPrefix, date } = global._11ty_
+  const {temp, title, pathPrefix, date, output } = config.extra
   const assetsPath = temp + '/assets'
   config.addPassthroughCopy({
     [assetsPath]: '/',
   })
 
+  // NOTE It's cached by template renderer, so we need to pass extra options through settings injection
   config.addShortcode('makeBootScript', (settings, collections) => {
+    const { title, pathPrefix, date } = settings.extra
     const entries = collections
       .map((entity) => ({
         quadrant: entity.data.quadrant,
