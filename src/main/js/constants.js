@@ -6,7 +6,6 @@ export const tools = 'tools'
 export const techniques = 'techniques'
 
 export const tplDir = path.resolve('src/main/tpl')
-export const tempDir = 'radar-temp'
 export const tplNavPage = path.resolve('src/main/nav-page')
 export const defNavTitle = '📡 Tech radars'
 export const defNavFooter = `<a href="https://github.com/qiwi/tech-radar">Tech-radar generator.</a> 

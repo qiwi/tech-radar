@@ -4,7 +4,7 @@ import fs from 'fs'
 import { ensureDirSync } from 'fs-extra'
 import path from 'path'
 
-import { settings } from './constants.js'
+import { settings as defaultSettings } from './constants.js'
 
 export const reverse = (arr) => {
   const _arr = [...arr]
@@ -49,17 +49,16 @@ export const getQuadrant = (quadrant, doc) => {
   return doc.quadrantAliases[lowQuadrant] || lowQuadrant
 }
 
-export const writeSettings = (doc, output) => {
+export const writeSettings = ({data: doc, output, title, pathPrefix, temp, date}) => {
   const quadrants = []
   quadrants.push({ name: doc.quadrantTitles.q1 || 'Q1', id: 'q1' })
   quadrants.push({ name: doc.quadrantTitles.q2 || 'Q2', id: 'q2' })
   quadrants.push({ name: doc.quadrantTitles.q3 || 'Q3', id: 'q3' })
   quadrants.push({ name: doc.quadrantTitles.q4 || 'Q4', id: 'q4' })
 
-  const settins = {}
-  Object.assign(settins, settings)
-  settins.quadrants = quadrants
-  const settingsPath = path.join(output, '_data/settins.json')
+  const extra = { output, title, pathPrefix, temp, date }
+  const settins = {...defaultSettings, extra, quadrants}
+  const settingsPath = path.join(temp, '_data/settins.json')
   fs.writeFileSync(settingsPath, JSON.stringify(settins))
 }
 

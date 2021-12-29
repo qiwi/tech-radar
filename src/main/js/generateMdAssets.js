@@ -14,7 +14,7 @@ import { getQuadrant } from './util.js'
  */
 export function genMdPath({ name, quadrant, temp }) {
   const entryMdName = name + '.md'
-  return path.join(temp, '/entries', quadrant, entryMdName)
+  return path.join(temp, 'entries', quadrant, entryMdName)
 }
 
 /**
@@ -37,7 +37,7 @@ ${description}`
  * @param doc - radarDocument
  * @param temp - temp directory
  */
-export const genMdAssets = (doc, temp) => {
+export const genMdAssets = ({data: doc, temp}) => {
   fsExtra.copySync(tplDir, temp)
   doc.data.forEach(({ name, quadrant, ring, description, moved }) => {
     try {

@@ -3,13 +3,13 @@ import fs from 'fs'
 import fsExtra from 'fs-extra'
 import { uniq } from 'lodash-es'
 import path, { dirname } from 'path'
+import tempy from 'tempy'
 import { fileURLToPath } from 'url'
 
 import {
   defNavFooter,
   defNavTitle,
   radarSchema,
-  tempDir,
   tplNavPage,
 } from './constants.js'
 import { genMdAssets } from './generateMdAssets.js'
@@ -31,22 +31,21 @@ export const generateStatics = async (contexts, _output, basePrefix) => {
     if (!validate(data, radarSchema) || Object.keys(data).length === 0)
       return context
 
-    const temp = tempDir
+    const temp = tempy.directory()
     const output = base ? path.join(_output, base) : _output
     const pathPrefix = basePrefix ? basePrefix + '/' + base : undefined
-
-    global._11ty_ = {
+    Object.assign(context, {
       date: data.meta.date,
       title: data.meta.title,
-      output,
       temp,
-      pathPrefix,
-    }
+      output,
+      pathPrefix
+    })
 
     try {
-      genMdAssets(data, temp)
-      writeSettings(data, temp)
-      await genEleventy(temp, output)
+      genMdAssets(context)
+      writeSettings(context)
+      await genEleventy(context)
     } catch (err) {
       console.error('genStatics', err)
     }
@@ -64,9 +63,19 @@ export const generateStatics = async (contexts, _output, basePrefix) => {
  * @param temp
  * @param output
  */
-export const genEleventy = async (temp, output) => {
-  const elev = new Eleventy(temp, output)
-  elev.setConfigPathOverride('src/main/js/11ty/.eleventy.cjs')
+export const genEleventy = async ({temp, output, title, pathPrefix, date}) => {
+  const configExtPath = path.resolve('src/main/js/11ty/.eleventy.cjs')
+  const configMixin = {extra: {temp, title, pathPrefix, date, output }}
+  const configPath = path.resolve(temp, 'config.js')
+  const configContents = `
+module.exports = (config) => require('${configExtPath}')(Object.assign(config, ${JSON.stringify(configMixin)}))
+`
+  console.log(configMixin)
+
+  fs.writeFileSync(configPath, configContents, 'utf8')
+
+  const elev = new Eleventy(temp, output, { configPath })
+
   await elev.init()
   await elev.write()
   fsExtra.removeSync(temp)
