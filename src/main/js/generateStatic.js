@@ -3,7 +3,6 @@ import fs from 'fs'
 import fsExtra from 'fs-extra'
 import { uniq } from 'lodash-es'
 import path, { dirname } from 'path'
-import tempy from 'tempy'
 import { fileURLToPath } from 'url'
 
 import {
