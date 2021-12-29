@@ -1,4 +1,4 @@
-interface inputParam {
+interface Options {
   input: string,
   output: string,
   cwd?: string,
@@ -7,6 +7,6 @@ interface inputParam {
   navPage?: boolean,
   navTitle?: string,
   navFooter?:string
+  temp?: string
 }
-export declare function run(param: inputParam): void;
-
+export declare function run(options: Options): void;
