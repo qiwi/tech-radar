@@ -1,5 +1,3 @@
-// import findCacheDir from 'find-cache-dir'
-import crypto from 'crypto'
 import fs from 'fs'
 import { ensureDirSync } from 'fs-extra'
 import path from 'path'
