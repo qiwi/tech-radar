@@ -1,7 +1,7 @@
 import { uniq } from 'lodash-es'
 import path from 'path'
 
-import { read } from './reader.js'
+import { read } from './reader/index.js'
 import { getDirs } from './util.js'
 
 /**
