@@ -30,19 +30,17 @@ export const getReader = (ext) => {
   if (ext === '.json') {
     return jsonReader
   }
-  if (ext === '.yml') {
+  if (ext === '.yml' || ext === '.yaml') {
     return yamlReader
   }
   throw new Error('Unsupported format', ext)
 }
 
-
-
 /**
  * Returns absolute files paths by glob pattern
  * @param {string|string[]} pattern - glob pattern
  * @param cwd - cwd
- * @returns {string[]}
+ * @returns {Promise<string[]>}
  */
 export const getSources = async (pattern, cwd) =>
   globby([pattern], {
