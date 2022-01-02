@@ -46,18 +46,6 @@ export const writeSettings = ({data: doc, output, title, pathPrefix, temp, date}
   fs.writeFileSync(settingsPath, JSON.stringify(settins))
 }
 
-export const normalizeCsv = (fileContent) =>
-  fileContent
-    .split(/("[^"]+")/g)
-    .map((item) => {
-      if (item[0] === '"') return item
-      return item
-        .split(',')
-        .map((i) => i.replace(/^ *| *$/gm, ''))
-        .join(',')
-    })
-    .join('')
-
 export const getDirs = (files) =>
   files.map(f => f.slice([...(files[0])].findIndex((c, i) => files.some(f => f.charAt(i) !== c))))
 

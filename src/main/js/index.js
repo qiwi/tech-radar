@@ -1,7 +1,7 @@
 import fsExtra from 'fs-extra'
-import { globbySync } from 'globby'
 import tempy from 'tempy'
 
+import { getSources } from './reader/index.js'
 import { init, readFiles, resolveBases, sortContexts } from './context.js'
 import { genParamMove } from './generateMdAssets.js'
 import { generateStatics, genNavigationPage } from './generateStatic.js'
@@ -51,15 +51,4 @@ export const run = async ({
     await fsExtra.remove(temp)
   }
 }
-/**
- * gives array of all file paths matching the globby pattern
- * @param input - globby pattern for input files
- * @param cwd - current working directory
- * @returns {string[]}
- */
-export const getSources = async (input, cwd) =>
-  globbySync([input], {
-    onlyFiles: true,
-    absolute: true,
-    cwd,
-  })
+
