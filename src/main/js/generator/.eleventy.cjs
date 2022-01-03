@@ -32,7 +32,8 @@ module.exports = (config) => {
 
     const radarSettings = {
       ...settings,
-      title: `${title} — ${date}`,
+      title,
+      date,
       entries,
     }
 

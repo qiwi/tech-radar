@@ -254,7 +254,7 @@ function radar_visualization(config) {
         .attr('y', -rings[i].radius + 62)
         .attr('text-anchor', 'middle')
         .style('fill', '#e5e5e5')
-        .style('font-family', 'Arial, Helvetica')
+        .style('font-family', 'Helvetica, Arial')
         .style('font-size', 42)
         .style('font-weight', 'bold')
         .style('pointer-events', 'none')
@@ -281,8 +281,18 @@ function radar_visualization(config) {
       .append('text')
       .attr('transform', translate(title_offset.x, title_offset.y))
       .text(config.title)
-      .style('font-family', 'Arial, Helvetica')
-      .style('font-size', '34')
+      .style('font-family', 'Helvetica, Arial')
+      .style('font-size', '26')
+      .style('font-weight', 'bolder')
+
+    // date
+    radar
+      .append('text')
+      .attr('transform', translate(title_offset.x, title_offset.y + 20))
+      .text(config.date)
+      .style('font-family', 'Helvetica, Arial')
+      .style('font-size', '12')
+      .style('fill', '#999')
 
     // footer
     radar
@@ -290,7 +300,7 @@ function radar_visualization(config) {
       .attr('transform', translate(footer_offset.x, footer_offset.y))
       .text('▲ moved up     ▼ moved down')
       .attr('xml:space', 'preserve')
-      .style('font-family', 'Arial, Helvetica')
+      .style('font-family', 'Helvetica, Arial')
       .style('font-size', '10')
 
     // legend
@@ -303,16 +313,20 @@ function radar_visualization(config) {
           translate(legend_offset[quadrant].x, legend_offset[quadrant].y - 45),
         )
         .text(config.quadrants[quadrant].name)
-        .style('font-family', 'Arial, Helvetica')
-        .style('font-size', '18')
+        .style('font-family', 'Helvetica, Arial')
+        .style('font-size', '16')
+        .style('font-weight', 'bold')
+
       for (var ring = 0; ring < 4; ring++) {
         legend
           .append('text')
           .attr('transform', legend_transform(quadrant, ring))
           .text(config.rings[ring].name)
-          .style('font-family', 'Arial, Helvetica')
+          .style('font-family', 'Helvetica, Arial')
           .style('font-size', '12')
           .style('font-weight', 'bold')
+          .style('fill', config.rings[ring].color)
+
         legend
           .selectAll('.legend' + quadrant + ring)
           .data(segmented[quadrant][ring])
@@ -328,7 +342,7 @@ function radar_visualization(config) {
           .text(function (d, i) {
             return d.id + '. ' + d.label
           })
-          .style('font-family', 'Arial, Helvetica')
+          .style('font-family', 'Helvetica, Arial')
           .style('font-size', '11')
           .on('mouseover', function (d) {
             showBubble(d)
@@ -455,7 +469,7 @@ function radar_visualization(config) {
         .attr('y', 3)
         .attr('text-anchor', 'middle')
         .style('fill', '#fff')
-        .style('font-family', 'Arial, Helvetica')
+        .style('font-family', 'Helvetica, Arial')
         .style('font-size', function (d) {
           return blip_text.length > 2 ? '8' : '9'
         })
