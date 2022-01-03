@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/qiwi/tech-radar/compare/v1.5.1...v1.5.2) (2022-01-03)
+
+
+### Bug Fixes
+
+* fix points moves resolver ([028d406](https://github.com/qiwi/tech-radar/commit/028d40676a7c124a2741a2acfcce60ab1ba97846))
+
 ## [1.5.1](https://github.com/qiwi/tech-radar/compare/v1.5.0...v1.5.1) (2022-01-03)
 
 
