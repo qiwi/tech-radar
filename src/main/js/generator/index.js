@@ -110,8 +110,8 @@ export const genNavPage = async ({
   ${radars
     .filter(({ scope }) => scope === _scope)
     .map(
-      ({ prefix, date }) =>
-        `<li><a class="link" href="/${prefix}"> ${date}</a></li>`,
+      ({ target, date }) =>
+        `<li><a class="link" href="${target}"> ${date}</a></li>`,
     )
     .join('\n')}
 </ul>
