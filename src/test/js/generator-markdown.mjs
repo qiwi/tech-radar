@@ -1,5 +1,5 @@
 import fs from 'fs'
-import fsExtra from 'fs-extra'
+import fse from 'fs-extra'
 import path from 'path'
 
 import {
@@ -7,20 +7,26 @@ import {
   // platforms,
   // techniques,
   // tools,
-} from '../../main/js/constants'
+} from '../../main/js/generator/constants.js'
 import {
   genMdAssets,
   genMdContent,
   genMdPath,
-} from '../../main/js/generateMdAssets.js'
-import { read } from '../../main/js/reader'
+} from '../../main/js/generator/markdown.js'
+import { parse } from '../../main/js/parser'
+import {fileURLToPath} from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 describe('generate md assets', () => {
-  it('files write check', () => {
+  it('files write check', async () => {
     const csvPath = path.join(__dirname, '../stub/test.csv')
     const outDir = path.join(__dirname, 'temp')
 
-    genMdAssets(read(csvPath), outDir)
+    await genMdAssets({
+      document: parse(csvPath),
+      temp: outDir
+    })
 
     const tsMdData = fs.readFileSync(
       path.join(outDir, 'entries', 'q1', 'TypeScript.md'),
@@ -42,13 +48,13 @@ describe('generate md assets', () => {
     expect({ tsMdData, nodeMdData, hexMdData, codMdData }).toMatchSnapshot()
   })
   afterAll(() => {
-    fsExtra.removeSync(path.join(__dirname, 'temp'))
+    fse.removeSync(path.join(__dirname, 'temp'))
   })
 
   it('generateMd ', () => {
     const contentMd = `---
-ring: hold
-moved: 0
+ring: Hold
+moved: undefined
 ---
 Мидвары поверх http-server`
     expect(

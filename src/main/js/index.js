@@ -23,7 +23,7 @@ export const run = async ({
   input,
   output,
   cwd = process.cwd(),
-  basePrefix,
+  basePrefix= '/',
   autoscope,
   navPage,
   navTitle,
@@ -132,9 +132,8 @@ const sortRadars = async ({ ctx, radars }) => {
   radars.sort((a, b) => {
     if (path.dirname(a.source) > path.dirname(b.source)) return 1
     if (path.dirname(a.source) < path.dirname(b.source)) return -1
-    if (a.date > b.date) return 1
-    if (a.date < b.date) return -1
-    return 0
+
+    return Math.sign(Date.parse(b.date) - Date.parse(a.date))
   })
 
   return ctx

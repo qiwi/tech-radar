@@ -76,7 +76,7 @@ export const genRedirects = async ({ radars, output }) => {
       radars.reduce((m, { scope, date }) => {
         const prev = m[scope]
 
-        if (!prev || prev < date) {
+        if (scope!== '.' && (!prev || prev < date)) {
           m[scope] = date
         }
         return m
@@ -111,7 +111,7 @@ export const genNavPage = async ({
     .filter(({ scope }) => scope === _scope)
     .map(
       ({ prefix, date }) =>
-        `<li><a class="link" href=${prefix}> ${date}</a></li>`,
+        `<li><a class="link" href="${prefix}"> ${date}</a></li>`,
     )
     .join('\n')}
 </ul>
