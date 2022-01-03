@@ -1,3 +1,10 @@
+## [1.7.3](https://github.com/qiwi/tech-radar/compare/v1.7.2...v1.7.3) (2022-01-03)
+
+
+### Performance Improvements
+
+* tweak up radar colors ([c67b013](https://github.com/qiwi/tech-radar/commit/c67b01318ab8ffaa9264355d317710f22b88caaa))
+
 ## [1.7.2](https://github.com/qiwi/tech-radar/compare/v1.7.1...v1.7.2) (2022-01-03)
 
 
