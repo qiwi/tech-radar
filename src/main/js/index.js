@@ -1,12 +1,12 @@
 import fse from 'fs-extra'
-import tempy from 'tempy'
-import path from 'path'
 import { nanoid } from 'nanoid'
+import path from 'path'
+import tempy from 'tempy'
 
+import { tplDir } from './generator/constants.js'
+import { genEleventy, genNavPage, genRedirects } from './generator/index.js'
 import { getSources, parse } from './parser/index.js'
 import { getDirs, mkdirp } from './util.js'
-import { genNavPage, genRedirects, genEleventy } from './generator/index.js'
-import { tplDir } from './generator/constants.js'
 
 /**
  * generate static sites from csv/json/yml radar declarations

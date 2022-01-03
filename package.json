@@ -11,7 +11,7 @@
   "scripts": {
     "test": "npm-run-all -p -l lint test:unit",
     "test:unit": "NODE_OPTIONS=--experimental-vm-modules yarn jest --detectOpenHandles --forceExit --runInBand",
-    "lint": "eslint src/{main,test}/**/*.js",
+    "lint": "eslint 'src/{main,test}/**/*.js'",
     "lint:fix": "yarn lint --fix",
     "format": "prettier --write \"src/**/*.js\"",
     "release": "npx -p @qiwi/semrel-toolkit semrel",

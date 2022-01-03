@@ -1,7 +1,7 @@
 import {
   _validate,
-  validate,
   radarSchema,
+  validate,
 } from '../../main/js/parser/validator.js'
 
 describe('validate', () => {
