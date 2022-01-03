@@ -23,7 +23,7 @@ export const settings = {
   height: 1100,
   colors: {
     background: '#fff',
-    grid: '#bbb',
+    grid: '#dddde0',
     inactive: '#ddd',
   },
   rings: [
