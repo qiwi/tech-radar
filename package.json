@@ -27,9 +27,9 @@
   },
   "devDependencies": {
     "@qiwi/npm-run-all": "^4.1.7",
-    "eslint": "^8.5.0",
+    "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-config-qiwi": "^1.15.3",
+    "eslint-config-qiwi": "^1.15.4",
     "finalhandler": "^1.1.2",
     "jest": "^27.4.5",
     "jsdoc": "^3.6.7",
@@ -45,7 +45,7 @@
   "dependencies": {
     "@11ty/eleventy": "^1.0.0-beta.9",
     "ajv": "^8.8.2",
-    "csv-parse": "^5.0.3",
+    "csv-parse": "^5.0.4",
     "fs-extra": "^10.0.0",
     "globby": "^12.0.2",
     "html-minifier": "^4.0.0",
