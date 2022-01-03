@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/qiwi/tech-radar/compare/v1.6.0...v1.7.0) (2022-01-03)
+
+
+### Features
+
+* tweak up footer layout ([7749ec0](https://github.com/qiwi/tech-radar/commit/7749ec009947fea6cfcf1389995d5c7a3e2b0ca7))
+
 # [1.6.0](https://github.com/qiwi/tech-radar/compare/v1.5.2...v1.6.0) (2022-01-03)
 
 
