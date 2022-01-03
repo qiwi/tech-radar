@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`reader.js csvReader 1`] = `
+exports[`parser.js csvReader 1`] = `
 Object {
   "data": Array [
     Object {
@@ -53,7 +53,7 @@ Object {
 }
 `;
 
-exports[`reader.js jsonReader 1`] = `
+exports[`parser.js jsonReader 1`] = `
 Object {
   "data": Array [
     Object {
@@ -105,36 +105,36 @@ Object {
 }
 `;
 
-exports[`reader.js reader 1`] = `
+exports[`parser.js parse() 1`] = `
 Object {
   "data": Array [
     Object {
       "description": "Статически, типизированный ЖС",
-      "moved": "1",
+      "moved": 1,
       "name": "TypeScript",
-      "quadrant": "language",
-      "ring": "Adopt",
+      "quadrant": "q1",
+      "ring": "adopt",
     },
     Object {
       "description": "",
-      "moved": "",
+      "moved": 0,
       "name": "Nodejs",
-      "quadrant": "Platforms",
-      "ring": "Adopt",
+      "quadrant": "q2",
+      "ring": "adopt",
     },
     Object {
       "description": "Статический анализатор кода",
-      "moved": "0",
+      "moved": 0,
       "name": "codeclimate",
-      "quadrant": "tools",
-      "ring": "Trial",
+      "quadrant": "q3",
+      "ring": "trial",
     },
     Object {
       "description": "Унификации контракта интерфейсов различных слоев приложений",
-      "moved": "-1",
+      "moved": -1,
       "name": "Гексагональная архитектура",
-      "quadrant": "Techniques",
-      "ring": "Assess",
+      "quadrant": "q4",
+      "ring": "assess",
     },
   ],
   "meta": Object {
@@ -158,7 +158,7 @@ Object {
 }
 `;
 
-exports[`reader.js yamlReader 1`] = `
+exports[`parser.js yamlReader 1`] = `
 Object {
   "data": Array [
     Object {

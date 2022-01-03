@@ -1,9 +1,8 @@
-import { radarSchema } from '../../main/js/constants.js'
-import { validate } from '../../main/js/validator.js'
+import { _validate, validate, radarSchema } from '../../main/js/parser/validator.js'
 
 describe('validate', () => {
   it('validate is not undefined ', () => {
-    expect(validate).toBeDefined()
+    expect(_validate).toBeDefined()
   })
   it('valid data ', () => {
     const obj = {
@@ -23,7 +22,8 @@ describe('validate', () => {
       ],
       quadrantAliases: {},
     }
-    expect(validate(obj, radarSchema)).toBe(true)
+    expect(_validate(obj, radarSchema)).toBe(true)
+    expect(validate(obj, radarSchema)).toBe(obj)
   })
 
   it('invalid data ', () => {
@@ -40,6 +40,6 @@ describe('validate', () => {
         },
       ],
     }
-    expect(validate(obj, radarSchema)).toBe(false)
+    expect(_validate(obj, radarSchema)).toBe(false)
   })
 })
