@@ -1,3 +1,20 @@
+# [1.5.0](https://github.com/qiwi/tech-radar/compare/v1.4.1...v1.5.0) (2022-01-03)
+
+
+### Bug Fixes
+
+* use rel paths for links ([cbb9671](https://github.com/qiwi/tech-radar/commit/cbb9671229c7a9e35d769a2abb9e7f2f56cbb392))
+
+
+### Features
+
+* add `.yaml` to allowed extensions ([7a74dd0](https://github.com/qiwi/tech-radar/commit/7a74dd07d06cdd4a362563a78cd49b19ab9f5bfe))
+
+
+### Performance Improvements
+
+* reuse common static ([096ab3f](https://github.com/qiwi/tech-radar/commit/096ab3f47e776faa6d3c95896a90c7e007c83ef9))
+
 ## [1.4.1](https://github.com/qiwi/tech-radar/compare/v1.4.0...v1.4.1) (2021-12-29)
 
 
