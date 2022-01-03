@@ -1,7 +1,7 @@
 import { uniq } from 'lodash-es'
 import path from 'path'
 
-import { read } from './reader/index.js'
+import { parse } from './parser/index.js'
 import { getDirs } from './util.js'
 
 /**
@@ -18,7 +18,7 @@ export const init = (sources) => sources.map((s) => ({ file: s }))
 export const readFiles = (contexts) =>
   contexts.map((c) => ({
     ...c,
-    data: read(c.file),
+    data: parse(c.file),
   }))
 /**
  * add param base to context

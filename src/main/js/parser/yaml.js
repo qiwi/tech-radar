@@ -7,7 +7,7 @@ import yaml from "js-yaml";
  * @param yamlPath
  * @returns {{data: any[], meta: {}}} radarDocument
  */
-export const yamlReader = (yamlPath) => {
+export const parseYamlRadar = (yamlPath) => {
   const jsonPathResolved = path.resolve(yamlPath)
   const yamlData = fs.readFileSync(jsonPathResolved, 'utf8')
   return yaml.load(yamlData, 'utf8')
