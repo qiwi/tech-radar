@@ -4,10 +4,10 @@ const path = require('path')
 
 module.exports = (config) => {
   const {temp, prefix, output } = config.extra
-  const assetsPath = path.join(temp, 'assets')
-  config.addPassthroughCopy({
-    [assetsPath]: '/',
-  })
+  // const assetsPath = path.join(temp, 'assets')
+  // config.addPassthroughCopy({
+  //   [assetsPath]: '/',
+  // })
 
   // NOTE It's cached by template renderer, so we need to pass extra options through settings injection
   config.addShortcode('makeBootScript', (settings, collections) => {
