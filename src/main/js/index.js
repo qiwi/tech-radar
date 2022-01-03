@@ -4,11 +4,8 @@ import path from 'path'
 import { nanoid } from 'nanoid'
 
 import {getSources, parse} from './parser/index.js'
-import { init, readFiles, resolveBases, sortContexts } from './context.js'
-import { genParamMove } from './generateMdAssets.js'
-import { genNavigationPage } from './generateStatic.js'
-import {getDirs} from "./util.js";
-import {genEleventy, generateStatics, genStatics, genNavPage, genRedirects} from './generator/index.js'
+import {getDirs} from './util.js'
+import {genStatics, genNavPage, genRedirects} from './generator/index.js'
 
 /**
  * generate static sites from csv/json/yml files to the output directory
@@ -33,54 +30,25 @@ export const run = async ({
   navFooter,
   temp = path.join(tempy.root, `tech-radar-${nanoid(5)}`)
 } = {}) => {
-  try {
-    const ctx = {
-      input,
-      output: path.resolve(cwd, output),
-      cwd,
-      basePrefix,
-      autoscope,
-      navPage,
-      navTitle,
-      navFooter,
-      temp
-    }
-    ctx.ctx = ctx // context self-ref to simplify pipelining
-
-    return readSources(ctx)
-      .then(parseRadars)
-      .then(sortRadars)
-      .then(resolveMoves)
-      .then(renderRadars)
-      .finally(() => cleanTemp(ctx))
-      // .then(renderNavPage)
-      // .then(assemble)
-
-    // TODO check that `output` is not a dir if exists
-    const sources = await getSources(input, cwd)
-    const intermediate = []
-    genNavigationPage(
-      await generateStatics(
-        genParamMove(
-          sortContexts(resolveBases(readFiles(init(sources)))),
-          intermediate,
-          autoscope,
-        ),
-        output,
-        basePrefix,
-        temp,
-      ),
-      output,
-      navPage,
-      input,
-      navTitle,
-      navFooter,
-    )
-  } catch (err) {
-    console.error(err)
-  } finally {
-    await fse.remove(temp)
+  const ctx = {
+    input,
+    output: path.resolve(cwd, output),
+    cwd,
+    basePrefix,
+    autoscope,
+    navPage,
+    navTitle,
+    navFooter,
+    temp
   }
+  ctx.ctx = ctx // context self-ref to simplify pipelining
+
+  return readSources(ctx)
+    .then(parseRadars)
+    .then(sortRadars)
+    .then(resolveMoves)
+    .then(renderRadars)
+    .finally(() => cleanTemp(ctx))
 }
 
 const readSources = async ({ctx, cwd, input}) => {
