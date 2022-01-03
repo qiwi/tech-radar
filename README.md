@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/qiwi">
+  <a href="https://qiwi.github.io/tech-radar/">
     <img alt="Tech-radar" src="https://github.com/qiwi/tech-radar/blob/master/img/radar.png?raw=true?raw=true" width="546">
   </a>
 </p>
