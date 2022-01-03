@@ -6,11 +6,7 @@ import { parseJsonRadar } from './json.js'
 import { parseYamlRadar } from './yaml.js'
 import { validate } from './validator.js'
 
-export {
-  parseCsvRadar,
-  parseJsonRadar,
-  parseYamlRadar
-}
+export { parseCsvRadar, parseJsonRadar, parseYamlRadar }
 
 /**
  * Parse radarDocument

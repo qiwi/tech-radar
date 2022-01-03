@@ -3,7 +3,7 @@ import {
   parse,
   parseCsvRadar,
   parseJsonRadar,
-  parseYamlRadar
+  parseYamlRadar,
 } from '../../main/js/parser/index.js'
 
 describe('parser.js', () => {

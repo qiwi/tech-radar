@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid'
 import { getSources, parse } from './parser/index.js'
 import { getDirs, mkdirp } from './util.js'
 import { genNavPage, genRedirects, genEleventy } from './generator/index.js'
+import { tplDir } from './generator/constants.js'
 
 /**
  * generate static sites from csv/json/yml radar declarations
@@ -23,7 +24,7 @@ export const run = async ({
   input,
   output,
   cwd = process.cwd(),
-  basePrefix= '/',
+  basePrefix = '/',
   autoscope,
   navPage,
   navTitle,
@@ -73,6 +74,7 @@ const parseRadars = async ({ ctx, sources, scopes }) => {
 }
 
 const renderRadars = async ({ radars, ctx, temp, basePrefix, output }) => {
+  await fse.copy(path.join(tplDir, 'assets'), output)
   await Promise.all(
     radars.map(async (radar) => {
       radar.temp = await mkdirp(path.join(temp, nanoid(5)))
