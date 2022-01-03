@@ -11,9 +11,10 @@ export const tplDir = path.resolve(__dirname, '../../tpl')
 
 export const defNavTitle = '📡 Tech radars'
 // TODO move to templates
-export const defNavFooter = `<div style="width: 100%; text-align: center; margin-top: 30px; font-size: 90%"><a href="https://github.com/qiwi/tech-radar">Tech-radar generator.</a> 
-Based on <a href="https://github.com/zalando/tech-radar">zalando/tech-radar</a> .
-Boosted with <a href="https://github.com/11ty/eleventy/">11ty</a>.
+export const defNavFooter = `<div style="width: 100%; text-align: center; margin: 30px 0 10px 0; font-size: 80%">
+<a href="https://github.com/qiwi/tech-radar">Tech-radar generator</a>.
+Based on <a href="https://github.com/zalando/tech-radar">zalando/tech-radar</a>.
+Boosted with <a href="https://github.com/11ty/eleventy/">11ty</a>
 <br/><a class="link" href="https://github.com/qiwi">QIWI ❤️ Open Source</a></div>`
 
 export const settings = {

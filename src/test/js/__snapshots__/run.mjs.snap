@@ -86,19 +86,22 @@ exports[`generate 11ty app generate navigation page 1`] = `
     <h1>
         📡 Tech radars
     </h1>
-    <div class=\\"wrapper\\">
-        <div class=\\"tile\\">
+    <main>
+        <div class=\\"wrapper\\">
+            <div class=\\"tile\\">
 <h2>.</h2>
 <ul>
   <li><a class=\\"link\\" href=\\"2021-06-12\\"> 2021-06-12</a></li>
 <li><a class=\\"link\\" href=\\"2021-06-11\\"> 2021-06-11</a></li>
 </ul>
 </div>
-    </div>
+        </div>
+    </main>
     <footer>
-        <div style=\\"width: 100%; text-align: center; margin-top: 30px; font-size: 90%\\"><a href=\\"https://github.com/qiwi/tech-radar\\">Tech-radar generator.</a> 
-Based on <a href=\\"https://github.com/zalando/tech-radar\\">zalando/tech-radar</a> .
-Boosted with <a href=\\"https://github.com/11ty/eleventy/\\">11ty</a>.
+        <div style=\\"width: 100%; text-align: center; margin: 30px 0 10px 0; font-size: 80%\\">
+<a href=\\"https://github.com/qiwi/tech-radar\\">Tech-radar generator</a>.
+Based on <a href=\\"https://github.com/zalando/tech-radar\\">zalando/tech-radar</a>.
+Boosted with <a href=\\"https://github.com/11ty/eleventy/\\">11ty</a>
 <br/><a class=\\"link\\" href=\\"https://github.com/qiwi\\">QIWI ❤️ Open Source</a></div>
     </footer>
 </body>
@@ -116,15 +119,17 @@ exports[`generate 11ty app generate navigation page footer 1`] = `
     <h1>
         📡 Tech radars
     </h1>
-    <div class=\\"wrapper\\">
-        <div class=\\"tile\\">
+    <main>
+        <div class=\\"wrapper\\">
+            <div class=\\"tile\\">
 <h2>.</h2>
 <ul>
   <li><a class=\\"link\\" href=\\"2021-06-12\\"> 2021-06-12</a></li>
 <li><a class=\\"link\\" href=\\"2021-06-11\\"> 2021-06-11</a></li>
 </ul>
 </div>
-    </div>
+        </div>
+    </main>
     <footer>
         footer
     </footer>
@@ -143,8 +148,9 @@ exports[`generate 11ty app generate navigation page of data2 1`] = `
     <h1>
         📡 Tech radars
     </h1>
-    <div class=\\"wrapper\\">
-        <div class=\\"tile\\">
+    <main>
+        <div class=\\"wrapper\\">
+            <div class=\\"tile\\">
 <h2>ios</h2>
 <ul>
   <li><a class=\\"link\\" href=\\"ios/2021-06-11\\"> 2021-06-11</a></li>
@@ -156,11 +162,13 @@ exports[`generate 11ty app generate navigation page of data2 1`] = `
   <li><a class=\\"link\\" href=\\"js/2021-06-12\\"> 2021-06-12</a></li>
 </ul>
 </div>
-    </div>
+        </div>
+    </main>
     <footer>
-        <div style=\\"width: 100%; text-align: center; margin-top: 30px; font-size: 90%\\"><a href=\\"https://github.com/qiwi/tech-radar\\">Tech-radar generator.</a> 
-Based on <a href=\\"https://github.com/zalando/tech-radar\\">zalando/tech-radar</a> .
-Boosted with <a href=\\"https://github.com/11ty/eleventy/\\">11ty</a>.
+        <div style=\\"width: 100%; text-align: center; margin: 30px 0 10px 0; font-size: 80%\\">
+<a href=\\"https://github.com/qiwi/tech-radar\\">Tech-radar generator</a>.
+Based on <a href=\\"https://github.com/zalando/tech-radar\\">zalando/tech-radar</a>.
+Boosted with <a href=\\"https://github.com/11ty/eleventy/\\">11ty</a>
 <br/><a class=\\"link\\" href=\\"https://github.com/qiwi\\">QIWI ❤️ Open Source</a></div>
     </footer>
 </body>
@@ -178,19 +186,22 @@ exports[`generate 11ty app generate navigation page title 1`] = `
     <h1>
         title
     </h1>
-    <div class=\\"wrapper\\">
-        <div class=\\"tile\\">
+    <main>
+        <div class=\\"wrapper\\">
+            <div class=\\"tile\\">
 <h2>.</h2>
 <ul>
   <li><a class=\\"link\\" href=\\"2021-06-12\\"> 2021-06-12</a></li>
 <li><a class=\\"link\\" href=\\"2021-06-11\\"> 2021-06-11</a></li>
 </ul>
 </div>
-    </div>
+        </div>
+    </main>
     <footer>
-        <div style=\\"width: 100%; text-align: center; margin-top: 30px; font-size: 90%\\"><a href=\\"https://github.com/qiwi/tech-radar\\">Tech-radar generator.</a> 
-Based on <a href=\\"https://github.com/zalando/tech-radar\\">zalando/tech-radar</a> .
-Boosted with <a href=\\"https://github.com/11ty/eleventy/\\">11ty</a>.
+        <div style=\\"width: 100%; text-align: center; margin: 30px 0 10px 0; font-size: 80%\\">
+<a href=\\"https://github.com/qiwi/tech-radar\\">Tech-radar generator</a>.
+Based on <a href=\\"https://github.com/zalando/tech-radar\\">zalando/tech-radar</a>.
+Boosted with <a href=\\"https://github.com/11ty/eleventy/\\">11ty</a>
 <br/><a class=\\"link\\" href=\\"https://github.com/qiwi\\">QIWI ❤️ Open Source</a></div>
     </footer>
 </body>
