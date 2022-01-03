@@ -6,10 +6,10 @@ Array [
   "test/2021-06-18/entries/q2/Nodejs/index.html",
   "test/2021-06-18/entries/q3/codeclimate/index.html",
   "test/2021-06-18/entries/q4/Гексагональная архитектура/index.html",
-  "test/2021-06-18/favicon.ico",
   "test/2021-06-18/index.html",
-  "test/2021-06-18/radar.css",
-  "test/2021-06-18/radar.js",
+  "test/favicon.ico",
+  "test/radar.css",
+  "test/radar.js",
 ]
 `;
 
@@ -19,10 +19,10 @@ Array [
   "test/2021-06-12/entries/q2/Nodejs/index.html",
   "test/2021-06-12/entries/q3/codeclimate/index.html",
   "test/2021-06-12/entries/q4/Гексагональная архитектура/index.html",
-  "test/2021-06-12/favicon.ico",
   "test/2021-06-12/index.html",
-  "test/2021-06-12/radar.css",
-  "test/2021-06-12/radar.js",
+  "test/favicon.ico",
+  "test/radar.css",
+  "test/radar.js",
 ]
 `;
 
@@ -32,10 +32,10 @@ Array [
   "test/2021-06-11/entries/q2/Nodejs/index.html",
   "test/2021-06-11/entries/q3/codeclimate/index.html",
   "test/2021-06-11/entries/q4/Гексагональная архитектура/index.html",
-  "test/2021-06-11/favicon.ico",
   "test/2021-06-11/index.html",
-  "test/2021-06-11/radar.css",
-  "test/2021-06-11/radar.js",
+  "test/favicon.ico",
+  "test/radar.css",
+  "test/radar.js",
 ]
 `;
 
@@ -45,18 +45,15 @@ Array [
   "test/2021-06-12/entries/q2/Nodejs/index.html",
   "test/2021-06-12/entries/q3/codeclimate/index.html",
   "test/2021-06-12/entries/q4/Гексагональная архитектура/index.html",
-  "test/2021-06-12/favicon.ico",
   "test/2021-06-12/index.html",
-  "test/2021-06-12/radar.css",
-  "test/2021-06-12/radar.js",
   "test/2021-06-18/entries/q1/TypeScript/index.html",
   "test/2021-06-18/entries/q2/Nodejs/index.html",
   "test/2021-06-18/entries/q3/codeclimate/index.html",
   "test/2021-06-18/entries/q4/Гексагональная архитектура/index.html",
-  "test/2021-06-18/favicon.ico",
   "test/2021-06-18/index.html",
-  "test/2021-06-18/radar.css",
-  "test/2021-06-18/radar.js",
+  "test/favicon.ico",
+  "test/radar.css",
+  "test/radar.js",
 ]
 `;
 
@@ -66,18 +63,15 @@ Array [
   "test/2021-06-12/entries/q2/Nodejs/index.html",
   "test/2021-06-12/entries/q3/codeclimate/index.html",
   "test/2021-06-12/entries/q4/Гексагональная архитектура/index.html",
-  "test/2021-06-12/favicon.ico",
   "test/2021-06-12/index.html",
-  "test/2021-06-12/radar.css",
-  "test/2021-06-12/radar.js",
   "test/2021-06-18/entries/q1/TypeScript/index.html",
   "test/2021-06-18/entries/q2/Nodejs/index.html",
   "test/2021-06-18/entries/q3/codeclimate/index.html",
   "test/2021-06-18/entries/q4/Гексагональная архитектура/index.html",
-  "test/2021-06-18/favicon.ico",
   "test/2021-06-18/index.html",
-  "test/2021-06-18/radar.css",
-  "test/2021-06-18/radar.js",
+  "test/favicon.ico",
+  "test/radar.css",
+  "test/radar.js",
 ]
 `;
 
@@ -96,8 +90,8 @@ exports[`generate 11ty app generate navigation page 1`] = `
         <div class=\\"tile\\">
 <h2>.</h2>
 <ul>
-  <li><a class=\\"link\\" href=\\"/2021-06-12\\"> 2021-06-12</a></li>
-<li><a class=\\"link\\" href=\\"/2021-06-11\\"> 2021-06-11</a></li>
+  <li><a class=\\"link\\" href=\\"2021-06-12\\"> 2021-06-12</a></li>
+<li><a class=\\"link\\" href=\\"2021-06-11\\"> 2021-06-11</a></li>
 </ul>
 </div>
     </div>
@@ -126,8 +120,8 @@ exports[`generate 11ty app generate navigation page footer 1`] = `
         <div class=\\"tile\\">
 <h2>.</h2>
 <ul>
-  <li><a class=\\"link\\" href=\\"/2021-06-12\\"> 2021-06-12</a></li>
-<li><a class=\\"link\\" href=\\"/2021-06-11\\"> 2021-06-11</a></li>
+  <li><a class=\\"link\\" href=\\"2021-06-12\\"> 2021-06-12</a></li>
+<li><a class=\\"link\\" href=\\"2021-06-11\\"> 2021-06-11</a></li>
 </ul>
 </div>
     </div>
@@ -153,13 +147,13 @@ exports[`generate 11ty app generate navigation page of data2 1`] = `
         <div class=\\"tile\\">
 <h2>ios</h2>
 <ul>
-  <li><a class=\\"link\\" href=\\"/ios/2021-06-11\\"> 2021-06-11</a></li>
+  <li><a class=\\"link\\" href=\\"ios/2021-06-11\\"> 2021-06-11</a></li>
 </ul>
 </div>
 <div class=\\"tile\\">
 <h2>js</h2>
 <ul>
-  <li><a class=\\"link\\" href=\\"/js/2021-06-12\\"> 2021-06-12</a></li>
+  <li><a class=\\"link\\" href=\\"js/2021-06-12\\"> 2021-06-12</a></li>
 </ul>
 </div>
     </div>
@@ -188,8 +182,8 @@ exports[`generate 11ty app generate navigation page title 1`] = `
         <div class=\\"tile\\">
 <h2>.</h2>
 <ul>
-  <li><a class=\\"link\\" href=\\"/2021-06-12\\"> 2021-06-12</a></li>
-<li><a class=\\"link\\" href=\\"/2021-06-11\\"> 2021-06-11</a></li>
+  <li><a class=\\"link\\" href=\\"2021-06-12\\"> 2021-06-12</a></li>
+<li><a class=\\"link\\" href=\\"2021-06-11\\"> 2021-06-11</a></li>
 </ul>
 </div>
     </div>
