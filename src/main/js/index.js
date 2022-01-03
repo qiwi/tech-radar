@@ -113,7 +113,7 @@ const resolveMoves = async ({ ctx, radars, autoscope }) => {
     data.forEach((entry) => {
       const { name, ring } = entry
       const lowerName = name.toLowerCase()
-      const prevRadar = i !== 0 && radars[i - 1]
+      const prevRadar = radars[i + 1] // NOTE sorted by desc date
       const prevEntry =
         prevRadar &&
         prevRadar.scope === scope &&
