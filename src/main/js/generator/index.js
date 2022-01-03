@@ -4,11 +4,11 @@ import { uniq } from 'lodash-es'
 import path from 'path'
 
 import {
+  __dirname,
   defNavFooter,
   defNavTitle,
   settings as defaultSettings,
   tplDir,
-  __dirname,
 } from './constants.js'
 import { genMdAssets } from './markdown.js'
 
@@ -83,7 +83,7 @@ export const genRedirects = async ({ radars, output }) => {
       }, {}),
     ).map(([scope, date]) =>
       fse.writeFile(
-        path.join(output, scope, 'index.html'),
+        path.join(output, scope, 'index.html'), // eslint-disable-line sonarjs/no-duplicate-string
         redirectTpl.replace('###', date),
       ),
     ),
@@ -111,7 +111,7 @@ export const genNavPage = async ({
     .filter(({ scope }) => scope === _scope)
     .map(
       ({ target, date }) =>
-        `<li><a class="link" href="${target}"> ${date}</a></li>`,
+        `<li><a class="link" href="${target}"> ${date}</a></li>`, // eslint-disable-line sonarjs/no-nested-template-literals
     )
     .join('\n')}
 </ul>

@@ -1,6 +1,6 @@
-import path from 'path'
-import fs from 'fs'
 import { parse as parseCsv } from 'csv-parse/sync'
+import fs from 'fs'
+import path from 'path'
 
 /**
  * read .csv file and generate radarDocument
