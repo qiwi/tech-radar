@@ -10,17 +10,18 @@
   },
   "collectCoverage": true,
   "collectCoverageFrom": [
-    "<rootDir>/src/main/**/*.(j|t)s"
+    "<rootDir>/src/main/js/**/*.js"
   ],
   "coveragePathIgnorePatterns": [],
   "testTimeout": 10000,
   "testMatch": [
     "<rootDir>/src/test/js/**/*.js",
-    "<rootDir>/src/test/ts/**/*.mjs"
+    "<rootDir>/src/test/js/**/*.mjs"
   ],
   "testPathIgnorePatterns": [
     "/node_modules/",
-    "<rootDir>/src/test/stub"
+    "<rootDir>/src/test/stub",
+    "<rootDir>/src/test/temp"
   ],
   "moduleFileExtensions": [
     "js",

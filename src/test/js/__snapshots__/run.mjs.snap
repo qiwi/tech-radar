@@ -94,10 +94,10 @@ exports[`generate 11ty app generate navigation page 1`] = `
     </h1>
     <div class=\\"wrapper\\">
         <div class=\\"tile\\">
-<h2>js</h2>
+<h2>.</h2>
 <ul>
-  <li><a class=\\"link\\" href=2021-06-12> 2021-06-12 </a></li>
- <li><a class=\\"link\\" href=2021-06-11> 2021-06-11 </a></li>
+  <li><a class=\\"link\\" href=\\"/2021-06-12\\"> 2021-06-12</a></li>
+<li><a class=\\"link\\" href=\\"/2021-06-11\\"> 2021-06-11</a></li>
 </ul>
 </div>
     </div>
@@ -124,10 +124,10 @@ exports[`generate 11ty app generate navigation page footer 1`] = `
     </h1>
     <div class=\\"wrapper\\">
         <div class=\\"tile\\">
-<h2>js</h2>
+<h2>.</h2>
 <ul>
-  <li><a class=\\"link\\" href=2021-06-12> 2021-06-12 </a></li>
- <li><a class=\\"link\\" href=2021-06-11> 2021-06-11 </a></li>
+  <li><a class=\\"link\\" href=\\"/2021-06-12\\"> 2021-06-12</a></li>
+<li><a class=\\"link\\" href=\\"/2021-06-11\\"> 2021-06-11</a></li>
 </ul>
 </div>
     </div>
@@ -153,13 +153,13 @@ exports[`generate 11ty app generate navigation page of data2 1`] = `
         <div class=\\"tile\\">
 <h2>ios</h2>
 <ul>
-  <li><a class=\\"link\\" href=ios-2021-06-11> 2021-06-11 </a></li>
+  <li><a class=\\"link\\" href=\\"/ios/2021-06-11\\"> 2021-06-11</a></li>
 </ul>
 </div>
 <div class=\\"tile\\">
 <h2>js</h2>
 <ul>
-  <li><a class=\\"link\\" href=js-2021-06-12> 2021-06-12 </a></li>
+  <li><a class=\\"link\\" href=\\"/js/2021-06-12\\"> 2021-06-12</a></li>
 </ul>
 </div>
     </div>
@@ -186,10 +186,10 @@ exports[`generate 11ty app generate navigation page title 1`] = `
     </h1>
     <div class=\\"wrapper\\">
         <div class=\\"tile\\">
-<h2>js</h2>
+<h2>.</h2>
 <ul>
-  <li><a class=\\"link\\" href=2021-06-12> 2021-06-12 </a></li>
- <li><a class=\\"link\\" href=2021-06-11> 2021-06-11 </a></li>
+  <li><a class=\\"link\\" href=\\"/2021-06-12\\"> 2021-06-12</a></li>
+<li><a class=\\"link\\" href=\\"/2021-06-11\\"> 2021-06-11</a></li>
 </ul>
 </div>
     </div>

@@ -3,6 +3,9 @@ import fsExtra from 'fs-extra'
 import path from 'path'
 
 import { run } from '../../main/js/index.js'
+import {fileURLToPath} from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export const getFileStruct = (dir, result = []) => {
   fs.readdirSync(dir).forEach((elem) => {
@@ -87,6 +90,7 @@ describe('generate 11ty app', () => {
       input: 'src/test/stub/data2/**',
       output: 'test',
       navPage: true,
+      autoscope: true
     })
     const index = fs.readFileSync(indexPath, 'utf8')
     expect(index).toMatchSnapshot()
