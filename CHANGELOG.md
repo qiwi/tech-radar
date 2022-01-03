@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/qiwi/tech-radar/compare/v1.5.0...v1.5.1) (2022-01-03)
+
+
+### Bug Fixes
+
+* fix urls in templates ([9f55802](https://github.com/qiwi/tech-radar/commit/9f558025d5812d431fedf21a7ad91bc569cb10bb))
+
 # [1.5.0](https://github.com/qiwi/tech-radar/compare/v1.4.1...v1.5.0) (2022-01-03)
 
 
