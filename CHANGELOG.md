@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/qiwi/tech-radar/compare/v1.7.1...v1.7.2) (2022-01-03)
+
+
+### Performance Improvements
+
+* minor layout improvements ([22ea08f](https://github.com/qiwi/tech-radar/commit/22ea08f0ceb6129be488addefd4c99e2e9d0c8da))
+
 ## [1.7.1](https://github.com/qiwi/tech-radar/compare/v1.7.0...v1.7.1) (2022-01-03)
 
 

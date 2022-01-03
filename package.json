@@ -1,7 +1,7 @@
 {
   "name": "@qiwi/tech-radar",
   "description": "Fully automated tech-radar generator",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "main": "./src/main/js/index.js",
   "private": false,
   "publishConfig": {
