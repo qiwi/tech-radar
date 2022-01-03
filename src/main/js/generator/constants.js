@@ -1,12 +1,14 @@
-import path from 'path'
+import path, {dirname} from 'path'
+import {fileURLToPath} from 'url'
 
 export const langAndFw = 'languages-and-frameworks'
 export const platforms = 'platforms'
 export const tools = 'tools'
 export const techniques = 'techniques'
 
-export const tplDir = path.resolve('src/main/tpl')
-export const tplNavPage = path.resolve('src/main/nav-page')
+export const __dirname = dirname(fileURLToPath(import.meta.url))
+export const tplDir = path.resolve(__dirname, '../../tpl')
+
 export const defNavTitle = '📡 Tech radars'
 export const defNavFooter = `<a href="https://github.com/qiwi/tech-radar">Tech-radar generator.</a> 
 Based on <a href="https://github.com/zalando/tech-radar">zalando/tech-radar</a> .
