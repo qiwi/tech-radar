@@ -1,4 +1,4 @@
-import { ensureDirSync } from 'fs-extra'
+import fse from 'fs-extra'
 
 export const reverse = (arr) => {
   const _arr = [...arr]
@@ -18,13 +18,12 @@ export const makeUniq = (arr) => {
   })
 }
 
-export const ensureDir = (dir) => {
-  ensureDirSync(dir)
-
-  return dir
-}
-
+export const mkdirp = async (dir) =>
+  (await fse.mkdir(dir, { recursive: true })) && dir
 
 export const getDirs = (files) =>
-  files.map(f => f.slice([...(files[0])].findIndex((c, i) => files.some(f => f.charAt(i) !== c))))
-
+  files.map((f) =>
+    f.slice(
+      [...files[0]].findIndex((c, i) => files.some((f) => f.charAt(i) !== c)),
+    ),
+  )
