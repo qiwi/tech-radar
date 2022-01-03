@@ -1,5 +1,5 @@
 body {
-  font-family: 'Source Sans Pro', arial, helvetica, sans-serif;
+  font-family: helvetica, arial, 'Source Sans Pro', sans-serif;
   padding-bottom: 50px;
 }
 body.page__body {
@@ -14,8 +14,9 @@ li {
   margin: 25px 50px 0 0;
 }
 table {
-  width: 1400px;
-  margin: 0 50px 0 50px;
+  width: 1000px;
+  margin: 0 50px;
+  font-size: 80%;
 }
 td {
   width: 50%;

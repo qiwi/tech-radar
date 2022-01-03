@@ -3,13 +3,7 @@ import fse from 'fs-extra'
 import { uniq } from 'lodash-es'
 import path from 'path'
 
-import {
-  __dirname,
-  defNavFooter,
-  defNavTitle,
-  settings as defaultSettings,
-  tplDir,
-} from './constants.js'
+import { __dirname, settings as defaultSettings, tplDir } from './constants.js'
 import { genMdAssets } from './markdown.js'
 
 export const genConfig = async ({ temp, output, title, prefix, date }) => {
@@ -33,7 +27,8 @@ export const genSettings = async ({
   prefix,
   date,
   output,
-  basePrefix
+  basePrefix,
+  footer,
 }) => {
   const quadrants = [
     { name: document.quadrantTitles.q1 || 'Q1', id: 'q1' },
@@ -42,7 +37,7 @@ export const genSettings = async ({
     { name: document.quadrantTitles.q4 || 'Q4', id: 'q4' },
   ]
 
-  const extra = { output, title, prefix, temp, date, basePrefix }
+  const extra = { output, title, prefix, temp, date, basePrefix, footer }
   const settings = { ...defaultSettings, extra, quadrants }
   const settingsPath = path.join(temp, '_data/settings.json')
 
@@ -99,8 +94,6 @@ export const genNavPage = async ({
   navFooter,
 }) => {
   if (!navPage) return
-  if (!navTitle) navTitle = defNavTitle
-  if (!navFooter) navFooter = defNavFooter
 
   const headers = uniq(radars.map((r) => r.scope))
   const navBlock = headers

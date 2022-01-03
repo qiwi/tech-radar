@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid'
 import path from 'path'
 import tempy from 'tempy'
 
-import { tplDir } from './generator/constants.js'
+import { defNavFooter, defNavTitle, tplDir } from './generator/constants.js'
 import { genEleventy, genNavPage, genRedirects } from './generator/index.js'
 import { getSources, parse } from './parser/index.js'
 import { getDirs, mkdirp } from './util.js'
@@ -27,8 +27,8 @@ export const run = async ({
   basePrefix = '/',
   autoscope,
   navPage,
-  navTitle,
-  navFooter,
+  navTitle = defNavTitle,
+  navFooter = defNavFooter,
   temp = path.join(tempy.root, `tech-radar-${nanoid(5)}`),
 } = {}) => {
   const ctx = {
@@ -73,7 +73,14 @@ const parseRadars = async ({ ctx, sources, scopes }) => {
   return ctx
 }
 
-const renderRadars = async ({ radars, ctx, temp, basePrefix, output }) => {
+const renderRadars = async ({
+  radars,
+  ctx,
+  temp,
+  basePrefix,
+  output,
+  navFooter,
+}) => {
   await fse.copy(path.join(tplDir, 'assets'), output)
   await Promise.all(
     radars.map(async (radar) => {
@@ -82,6 +89,7 @@ const renderRadars = async ({ radars, ctx, temp, basePrefix, output }) => {
       radar.output = path.join(output, radar.target)
       radar.prefix = path.join(basePrefix, radar.target)
       radar.basePrefix = basePrefix
+      radar.footer = navFooter
 
       await genEleventy(radar)
     }),
