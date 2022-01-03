@@ -1,14 +1,14 @@
 import fse from 'fs-extra'
-import tempy  from 'tempy'
+import tempy from 'tempy'
 import path from 'path'
 import { nanoid } from 'nanoid'
 
-import {getSources, parse} from './parser/index.js'
-import {getDirs} from './util.js'
-import {genStatics, genNavPage, genRedirects} from './generator/index.js'
+import { getSources, parse } from './parser/index.js'
+import { getDirs, mkdirp } from './util.js'
+import { genNavPage, genRedirects, genEleventy } from './generator/index.js'
 
 /**
- * generate static sites from csv/json/yml files to the output directory
+ * generate static sites from csv/json/yml radar declarations
  * @param {string} input globby pattern for input files
  * @param {string} output output directory
  * @param {string} cwd current working directory
@@ -28,7 +28,7 @@ export const run = async ({
   navPage,
   navTitle,
   navFooter,
-  temp = path.join(tempy.root, `tech-radar-${nanoid(5)}`)
+  temp = path.join(tempy.root, `tech-radar-${nanoid(5)}`),
 } = {}) => {
   const ctx = {
     input,
@@ -39,7 +39,7 @@ export const run = async ({
     navPage,
     navTitle,
     navFooter,
-    temp
+    temp,
   }
   ctx.ctx = ctx // context self-ref to simplify pipelining
 
@@ -51,13 +51,13 @@ export const run = async ({
     .finally(() => cleanTemp(ctx))
 }
 
-const readSources = async ({ctx, cwd, input}) => {
+const readSources = async ({ ctx, cwd, input }) => {
   ctx.sources = await getSources(input, cwd)
   ctx.scopes = getDirs(ctx.sources).map(path.dirname)
   return ctx
 }
 
-const parseRadars = async ({ctx, sources, scopes}) => {
+const parseRadars = async ({ ctx, sources, scopes }) => {
   ctx.radars = sources.map((file, i) => {
     const document = parse(file)
     return {
@@ -65,23 +65,24 @@ const parseRadars = async ({ctx, sources, scopes}) => {
       source: file,
       scope: scopes[i],
       date: document.meta.date,
-      title: document.meta.title
+      title: document.meta.title,
     }
   })
 
   return ctx
 }
 
-const renderRadars = async ({radars, ctx, temp, basePrefix, output}) => {
-  await Promise.all(radars.map(async (radar) => {
-    const _temp = path.join(temp, nanoid(5))
-    radar.temp = (await fse.mkdir(_temp, {recursive: true})) && _temp
-    radar.target = path.join(radar.scope, radar.date)
-    radar.output = path.join(output, radar.target)
-    radar.prefix = path.join(basePrefix, radar.target)
+const renderRadars = async ({ radars, ctx, temp, basePrefix, output }) => {
+  await Promise.all(
+    radars.map(async (radar) => {
+      radar.temp = await mkdirp(path.join(temp, nanoid(5)))
+      radar.target = path.join(radar.scope, radar.date)
+      radar.output = path.join(output, radar.target)
+      radar.prefix = path.join(basePrefix, radar.target)
 
-    await genStatics(radar)
-  }))
+      await genEleventy(radar)
+    }),
+  )
 
   await genNavPage(ctx)
   await genRedirects(ctx)
@@ -91,7 +92,7 @@ const renderRadars = async ({radars, ctx, temp, basePrefix, output}) => {
   return ctx
 }
 
-const resolveMoves = async ({ctx, radars, autoscope}) => {
+const resolveMoves = async ({ ctx, radars, autoscope }) => {
   if (!autoscope) {
     return ctx
   }
@@ -105,14 +106,17 @@ const resolveMoves = async ({ctx, radars, autoscope}) => {
 
   const getRingWeight = (ring) => rings[ring.toLowerCase()]
 
-  radars.forEach(({document: {data}, scope}, i) => {
+  radars.forEach(({ document: { data }, scope }, i) => {
     data.forEach((entry) => {
-      const {name, ring} = entry
+      const { name, ring } = entry
       const lowerName = name.toLowerCase()
       const prevRadar = i !== 0 && radars[i - 1]
-      const prevEntry = prevRadar
-        && prevRadar.scope === scope
-        && prevRadar.document.data.find(({name: _name}) => _name.toLowerCase() === lowerName)
+      const prevEntry =
+        prevRadar &&
+        prevRadar.scope === scope &&
+        prevRadar.document.data.find(
+          ({ name: _name }) => _name.toLowerCase() === lowerName,
+        )
       const moved = prevEntry
         ? Math.sign(getRingWeight(ring) - getRingWeight(prevEntry.ring))
         : 0
@@ -124,7 +128,7 @@ const resolveMoves = async ({ctx, radars, autoscope}) => {
   return ctx
 }
 
-const sortRadars = async ({ctx, radars}) => {
+const sortRadars = async ({ ctx, radars }) => {
   radars.sort((a, b) => {
     if (path.dirname(a.source) > path.dirname(b.source)) return 1
     if (path.dirname(a.source) < path.dirname(b.source)) return -1
@@ -136,7 +140,7 @@ const sortRadars = async ({ctx, radars}) => {
   return ctx
 }
 
-const cleanTemp = async ({ctx, temp}) => {
+const cleanTemp = async ({ ctx, temp }) => {
   await fse.remove(temp)
   return ctx
 }

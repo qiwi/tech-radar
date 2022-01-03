@@ -1,5 +1,5 @@
-import path, {dirname} from 'path'
-import {fileURLToPath} from 'url'
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
 
 export const langAndFw = 'languages-and-frameworks'
 export const platforms = 'platforms'
@@ -14,7 +14,6 @@ export const defNavFooter = `<a href="https://github.com/qiwi/tech-radar">Tech-r
 Based on <a href="https://github.com/zalando/tech-radar">zalando/tech-radar</a> .
 Boosted with <a href="https://github.com/11ty/eleventy/">11ty</a>.
 <br><a class="link" href="https://github.com/qiwi">QIWI ❤️ Open Source.</a> `
-
 
 export const settings = {
   svg_id: 'radar',

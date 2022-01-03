@@ -18,7 +18,6 @@ export const parse = (filePath) => {
     const radar = normalizeEntries(document)
 
     return validate(radar)
-
   } catch (err) {
     console.error('filePath:', filePath, err)
     return {}
@@ -56,7 +55,7 @@ export const getSources = async (pattern, cwd) =>
   })
 
 export const normalizeEntries = (doc) => {
-  doc.data.forEach(entry => {
+  doc.data.forEach((entry) => {
     entry.ring = entry.ring.toLowerCase()
     entry.quadrant = getQuadrant(entry.quadrant, doc.quadrantAliases)
     entry.moved = +entry.moved || 0

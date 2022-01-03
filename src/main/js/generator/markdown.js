@@ -35,17 +35,18 @@ ${description}`
  * @param document - radarDocument
  * @param temp - temp directory
  */
-export const genMdAssets = async ({document, temp}) => {
+export const genMdAssets = async ({ document, temp }) => {
   await fse.copy(tplDir, temp)
 
-  await Promise.all(document.data.map(async({ name, quadrant, ring, description, moved }) => {
-    try {
-      const entryPath = genMdPath({ name, quadrant, temp })
-      const content = genMdContent({ ring, description, moved })
-      return fse.writeFile(entryPath, content)
-
-    } catch (err) {
-      console.error('genMdAssets', err)
-    }
-  }))
+  await Promise.all(
+    document.data.map(async ({ name, quadrant, ring, description, moved }) => {
+      try {
+        const entryPath = genMdPath({ name, quadrant, temp })
+        const content = genMdContent({ ring, description, moved })
+        return fse.writeFile(entryPath, content)
+      } catch (err) {
+        console.error('genMdAssets', err)
+      }
+    }),
+  )
 }
