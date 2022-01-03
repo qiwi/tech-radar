@@ -8,7 +8,7 @@ import { init, readFiles, resolveBases, sortContexts } from './context.js'
 import { genParamMove } from './generateMdAssets.js'
 import { genNavigationPage } from './generateStatic.js'
 import {getDirs} from "./util.js";
-import {genEleventy, generateStatics} from './generator/index.js'
+import {genEleventy, generateStatics, genStatics, genNavPage, genRedirects} from './generator/index.js'
 
 /**
  * generate static sites from csv/json/yml files to the output directory
@@ -36,7 +36,7 @@ export const run = async ({
   try {
     const ctx = {
       input,
-      output,
+      output: path.resolve(cwd, output),
       cwd,
       basePrefix,
       autoscope,
@@ -112,9 +112,11 @@ const renderRadars = async ({radars, ctx, temp, basePrefix, output}) => {
     radar.output = path.join(output, radar.target)
     radar.prefix = path.join(basePrefix, radar.target)
 
-    await genEleventy(radar)
+    await genStatics(radar)
   }))
 
+  await genNavPage(ctx)
+  await genRedirects(ctx)
 
   // console.log('radars', radars)
   // console.log('radar', JSON.stringify(radars[3], null, 2))
