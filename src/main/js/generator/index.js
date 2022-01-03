@@ -102,65 +102,74 @@ export const genEleventy = async (radar) => {
   await elev.write()
 }
 
-export const genNavigationPage = (
-  contexts,
-  output,
-  navPage,
-  input,
-  navTitle,
-  navFooter,
-) => {
-  if (!navPage) return
-  if (!navTitle) navTitle = defNavTitle
-  if (!navFooter) navFooter = defNavFooter
+export const genStatics = async(radar) => {
+  await fse.copy(tplDir, radar.temp)
+  await genEleventy(radar)
+}
 
-  const dirs = contexts.map(({ file }) => path.dirname(file))
-  const links = uniq(dirs.map((dir) => dir.split('/').pop())).reduce(
-    (r, dir) => ({ ...r, [dir]: [] }),
-    {},
-  )
+export const genRedirects = async({radars, output}) => {
+  const redirectTpl = await fse.readFile(path.join(tplDir, 'redirect-page/index.html'), 'utf8')
 
-  contexts.sort(sortContextsByDate).forEach((context) => {
-    const keys = Object.keys(links)
-    const key =
-      keys.length === 1
-        ? keys[0]
-        : keys.find((dir) => dir === context.base.split('/')[0])
-    if (!key) return
-    const link = `<a class="link" href=${context.base}> ${context.data.meta.date} </a>`
-    links[key].push(link)
-  })
-
-  const li = (link) => `<li>${link}</li>`
-  const contentPage = Object.keys(links).map(
-    (key) => `<div class="tile">
-<h2>${key}</h2>
-<ul>
-  ${links[key].map(li).join('\n ')}
-</ul>
-</div>`,
-  )
-
-  // Main nav page
-  fse.copySync(tplNavPage, output)
-  const tplHtml = fse.readFileSync(path.join(output, 'index.html'), 'utf8') // eslint-disable-line sonarjs/no-duplicate-string
-  const html = tplHtml
-    .replace('#nav_page-content', contentPage.join('\n'))
-    .replace('#nav_page-title', navTitle)
-    .replace('#nav_page-footer', navFooter)
-  fse.writeFileSync(path.join(output, 'index.html'), html)
-
-  // Latest scoped radars aliases
-  const redirect = fse.readFileSync(path.resolve(__dirname, '../redirect-page/index.html'), 'utf8')
-  Object.entries(contexts.reduce((m, {base, date}) => {
-    const scope = path.dirname(base)
+  await Promise.all(Object.entries(radars.reduce((m, {scope, date}) => {
     const prev = m[scope]
 
     if (!prev || prev < date) {
       m[scope] = date
     }
     return m
-  }, {})).forEach(([scope, date]) => {
-    fse.writeFileSync(path.join(output, scope, 'index.html'), redirect.replace('###', date))
-  })
+  }, {})).map(([scope, date]) =>
+    fse.writeFile(path.join(output, scope, 'index.html'), redirectTpl.replace('###', date))
+  ))
+}
+
+export const genNavPage = async ({
+ radars,
+ output,
+ navPage,
+ navTitle,
+ navFooter,
+}) => {
+  if (!navPage) return
+  if (!navTitle) navTitle = defNavTitle
+  if (!navFooter) navFooter = defNavFooter
+
+  const headers = uniq(radars.map(r => r.scope))
+  const navBlock = headers
+    .map((_scope) => `<div class="tile">
+<h2>${_scope}</h2>
+<ul>
+  ${
+    radars
+      .filter(({scope}) => scope === _scope)
+      .map(({prefix, date}) => `<li><a class="link" href=${prefix}> ${date}</a></li>`)
+      .join('\n')
+  }
+</ul>
+</div>`)
+    .join('\n')
+
+
+  // Main nav page
+  await fse.copy(path.join(tplDir, 'nav-page'), output)
+  const tplHtml = await fse.readFile(path.join(output, 'index.html'), 'utf8') // eslint-disable-line sonarjs/no-duplicate-string
+  const html = tplHtml
+    .replace('#nav_page-content', navBlock)
+    .replace('#nav_page-title', navTitle)
+    .replace('#nav_page-footer', navFooter)
+
+  await fse.writeFile(path.join(output, 'index.html'), html)
+
+  // Latest scoped radars aliases
+  // const redirect = fse.readFileSync(path.resolve(__dirname, '../redirect-page/index.html'), 'utf8')
+  // Object.entries(contexts.reduce((m, {base, date}) => {
+  //   const scope = path.dirname(base)
+  //   const prev = m[scope]
+  //
+  //   if (!prev || prev < date) {
+  //     m[scope] = date
+  //   }
+  //   return m
+  // }, {})).forEach(([scope, date]) => {
+  //   fse.writeFileSync(path.join(output, scope, 'index.html'), redirect.replace('###', date))
+  // })
 }
