@@ -8,6 +8,9 @@
     "access": "public"
   },
   "type": "module",
+  "files": [
+    "src/main"
+  ],
   "scripts": {
     "test": "npm-run-all -p -l lint test:unit",
     "test:unit": "NODE_OPTIONS=--experimental-vm-modules yarn jest --detectOpenHandles --forceExit --runInBand",
@@ -54,5 +57,9 @@
     "meow": "^10.1.2",
     "nanoid": "^3.1.30",
     "tempy": "^2.0.0"
-  }
+  },
+  "keywords": [
+    "radar",
+    "tech-radar"
+  ]
 }
