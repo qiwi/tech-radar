@@ -7,7 +7,7 @@ import {parse as parseCsv} from 'csv-parse/sync'
  * @param csvPath
  * @returns {{data: any[], meta: {}, quadrantAliases?: {}}} radarDocument
  */
-export const csvReader = (csvPath) => {
+export const parseCsvRadar = (csvPath) => {
   const csvPathResolved = path.resolve(csvPath)
   const radarContents = normalizeCsv(fs.readFileSync(csvPathResolved, 'utf8'))
   const radarDocument = {

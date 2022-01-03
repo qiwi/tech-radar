@@ -6,7 +6,7 @@ import fs from 'fs'
  * @param jsonPath
  * @returns {{data: any[], meta: {}}} radarDocument
  */
-export const jsonReader = (jsonPath) => {
+export const parseJsonRadar = (jsonPath) => {
   const jsonPathResolved = path.resolve(jsonPath)
   const fileData = fs.readFileSync(jsonPathResolved, 'utf8')
   return JSON.parse(fileData)

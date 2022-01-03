@@ -7,14 +7,15 @@ import { fileURLToPath } from 'url'
 import {
   defNavFooter,
   defNavTitle,
-  radarSchema,
+  radarSchema, settings as defaultSettings,
   tplNavPage,
-} from './constants.js'
-import { genMdAssets } from './generateMdAssets.js'
-import { sortContextsByDate, writeSettings } from './util.js'
-import { validate } from './validator.js'
+} from '../constants.js'
+import { genMdAssets } from './markdown.js'
+import { sortContextsByDate, writeSettings } from '../util.js'
+import { validate } from '../validator.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
+const tplDir = path.resolve(__dirname, '../../tpl')
 
 /**
  * generate static sites from array radarDocument
@@ -23,6 +24,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
  * @param basePrefix
  */
 export const generateStatics = async (contexts, _output, basePrefix, temp) => {
+  return
+
   const statics = await contexts.reduce(async (_r, context) => {
     const _m = await _r
     const { data, base } = context
@@ -55,30 +58,48 @@ export const generateStatics = async (contexts, _output, basePrefix, temp) => {
   }))
 }
 
-export const genConfig = ({temp, output, title, pathPrefix, date}) => {
-  const configExtPath = path.resolve(__dirname, '11ty/.eleventy.cjs')
-  const configMixin = {extra: {temp, title, pathPrefix, date, output }}
-  const configPath = path.resolve(temp, 'config.js')
+export const genConfig = async ({temp, output, title, prefix, date}) => {
+  const configExtPath = path.resolve(__dirname, '.eleventy.cjs')
+  const configMixin = {extra: {temp, title, prefix, date, output }}
+  const configPath = path.join(temp, 'config.js')
   const configContents = `
 module.exports = (config) => require('${configExtPath}')(Object.assign(config, ${JSON.stringify(configMixin)}))
 `
-  fse.writeFileSync(configPath, configContents, 'utf8')
+  await fse.writeFile(configPath, configContents, 'utf8')
 
   return configPath
 }
 
+export const genSettings = async ({temp, document, title, prefix, date, output}) => {
+  const quadrants = [
+    { name: document.quadrantTitles.q1 || 'Q1', id: 'q1' },
+    { name: document.quadrantTitles.q2 || 'Q2', id: 'q2' },
+    { name: document.quadrantTitles.q3 || 'Q3', id: 'q3' },
+    { name: document.quadrantTitles.q4 || 'Q4', id: 'q4' },
+  ]
+
+  const extra = { output, title, prefix, temp, date }
+  const settins = {...defaultSettings, extra, quadrants}
+  const settingsPath = path.join(temp, '_data/settins.json')
+
+  await fse.writeFile(settingsPath, JSON.stringify(settins))
+}
+
 /**
  * generate static site with using 11ty
- * @param context
+ * @param radar
  */
-export const genEleventy = async (context) => {
-  const { temp, output } = context
-  const configPath = genConfig(context)
-  const elev = new Eleventy(temp, output, { configPath })
+export const genEleventy = async (radar) => {
+  await fse.copy(tplDir, radar.temp)
+
+  const configPath = await genConfig(radar)
+  await genMdAssets(radar)
+  await genSettings(radar)
+
+  const elev = new Eleventy(radar.temp, radar.output, { configPath })
 
   await elev.init()
   await elev.write()
-  fse.removeSync(temp)
 }
 
 export const genNavigationPage = (
