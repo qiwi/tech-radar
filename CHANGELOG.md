@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/qiwi/tech-radar/compare/v1.7.0...v1.7.1) (2022-01-03)
+
+
+### Performance Improvements
+
+* repack with proper file assets ([70c8689](https://github.com/qiwi/tech-radar/commit/70c8689b8f955570653c984d56640565154725df))
+
 # [1.7.0](https://github.com/qiwi/tech-radar/compare/v1.6.0...v1.7.0) (2022-01-03)
 
 
