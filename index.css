@@ -2,7 +2,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 95vh;
+    height: 100vh;
+    margin: 0;
 }
 ul {
     list-style-type: none;
@@ -12,20 +13,29 @@ ul {
     color: black;
     text-decoration: none;
 }
-li {
-    margin: 5px;
-    padding: 5px 10px;
+
+li a {
+    min-width: 150px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 95%;
 }
 
-li:hover {
-    background-color: rgba(187, 187, 187, 0.26);
-    border-radius: 20px;
+li a:hover {
+    background-color: #eaeef8;
 }
 * {
-    font-family: "Museo Sans", sans-serif;
+    font-family: "Helvetiva, Museo Sans", sans-serif;
     color: #333;
 
     line-height: 1.6333;
+}
+main {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    min-width: 400px;
 }
 .wrapper {
     display: flex;
@@ -34,6 +44,7 @@ li:hover {
     flex: 1;
 }
 .tile{
+    text-align: center;
     margin: 20px;
 }
 footer {
