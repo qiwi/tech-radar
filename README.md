@@ -7,6 +7,7 @@
 <h2 align="center">
 
 📡 [QIWI Radars](https://qiwi.github.io/tech-radar/) • [iOS](https://qiwi.github.io/tech-radar/ios/) • [JS](https://qiwi.github.io/tech-radar/js/) • [Backend](https://qiwi.github.io/tech-radar/backend/) • [QA](https://qiwi.github.io/tech-radar/qa/)
+
 </h2>
 <div align="center">
 
@@ -18,6 +19,7 @@ Fully automated tech-radar generator. Based on [zalando/tech-radar](https://gith
 
 ## Table of contents
 - [Getting started](#getting-started)
+  - [Key features](#key-features)
   - [Requirements](#requirements)
   - [Install](#install)
   - [Usage](#usage)
@@ -29,10 +31,17 @@ Fully automated tech-radar generator. Based on [zalando/tech-radar](https://gith
 - [Contributing](#contributing)
 - [License](#license)
 
+## Key features
+* Builds radars by `csv`, `json` or `yaml` data
+* Renders a separate description page for each radar entry
+* Сompares radars of the same scope with each other and shows the movement of points
+* Assembles all the radars refs on the main navigation page
+* Redirects scope urls to the latest version of their radars
+* CLI / JS / TS API
 
 ## Requirements
-* Node.js >= 12.20 (esm)
-* Mac / linux
+* Node.js >= 14.13
+* macOS / linux
 
 ## Install
 ```shell
@@ -241,9 +250,9 @@ Follow [gh-action usage example](https://github.com/qiwi/tech-radar/blob/master/
   <summary>generator script</summary>
 
 ```json
-  "scripts": {
-    "generate": "node ./src/main/js/cli.mjs --input \"data/**/*.{csv,json,yml}\"  --output dist --base-prefix tech-radar --autoscope true --nav-page true && touch dist/.nojekyll"
-  },
+"scripts": {
+  "generate": "node ./src/main/js/cli.mjs --input \"data/**/*.{csv,json,yml}\"  --output dist --base-prefix tech-radar --autoscope true --nav-page true && touch dist/.nojekyll"
+},
 ```
 </details>
 
@@ -255,6 +264,7 @@ Any feedback is appreciated.
 ## Alternatives
 * [https://github.com/thoughtworks/build-your-own-radar](https://github.com/thoughtworks/build-your-own-radar)
 * [https://github.com/zalando/tech-radar](https://github.com/zalando/tech-radar)
+* [https://www.npmjs.com/package/@backstage/plugin-tech-radar](https://www.npmjs.com/package/@backstage/plugin-tech-radar)
 
 ## License
 [MIT](./LICENSE)
