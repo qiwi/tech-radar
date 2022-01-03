@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/qiwi/tech-radar/compare/v1.5.2...v1.6.0) (2022-01-03)
+
+
+### Features
+
+* add some colors to rings legends ([00885d6](https://github.com/qiwi/tech-radar/commit/00885d66b8f066ed766c3573da0b0f7a8a3b35ed))
+
 ## [1.5.2](https://github.com/qiwi/tech-radar/compare/v1.5.1...v1.5.2) (2022-01-03)
 
 
