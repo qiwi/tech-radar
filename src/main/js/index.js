@@ -81,6 +81,7 @@ const renderRadars = async ({ radars, ctx, temp, basePrefix, output }) => {
       radar.target = path.join(radar.scope, radar.date)
       radar.output = path.join(output, radar.target)
       radar.prefix = path.join(basePrefix, radar.target)
+      radar.basePrefix = basePrefix
 
       await genEleventy(radar)
     }),

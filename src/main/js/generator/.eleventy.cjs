@@ -1,6 +1,7 @@
 const htmlmin = require('html-minifier')
 const terser = require('terser')
 const path = require('path')
+const util = require('util')
 
 module.exports = (config) => {
   const {temp, prefix, output } = config.extra
@@ -8,6 +9,10 @@ module.exports = (config) => {
   // config.addPassthroughCopy({
   //   [assetsPath]: '/',
   // })
+
+  config.addFilter('console', function(value) {
+    return util.inspect(value);
+  })
 
   // NOTE It's cached by template renderer, so we need to pass extra options through settings injection
   config.addShortcode('makeBootScript', (settings, collections) => {

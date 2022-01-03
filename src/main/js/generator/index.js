@@ -33,6 +33,7 @@ export const genSettings = async ({
   prefix,
   date,
   output,
+  basePrefix
 }) => {
   const quadrants = [
     { name: document.quadrantTitles.q1 || 'Q1', id: 'q1' },
@@ -41,7 +42,7 @@ export const genSettings = async ({
     { name: document.quadrantTitles.q4 || 'Q4', id: 'q4' },
   ]
 
-  const extra = { output, title, prefix, temp, date }
+  const extra = { output, title, prefix, temp, date, basePrefix }
   const settings = { ...defaultSettings, extra, quadrants }
   const settingsPath = path.join(temp, '_data/settings.json')
 
