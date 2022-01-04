@@ -1,8 +1,6 @@
 import fse from 'fs-extra'
 import path from 'path'
 
-import { tplDir } from './constants.js'
-
 /**
  * generate path to .md file
  * @param {string} name
@@ -10,10 +8,8 @@ import { tplDir } from './constants.js'
  * @param {string} temp - temp directory
  * @returns {string}
  */
-export function genMdPath({ name, quadrant, temp }) {
-  const entryMdName = name + '.md'
-  return path.join(temp, 'entries', quadrant, entryMdName)
-}
+export const genMdPath = ({ name, quadrant, temp }) =>
+  path.join(temp, 'entries', quadrant, name + '.md')
 
 /**
  * generate content .md file
@@ -22,13 +18,13 @@ export function genMdPath({ name, quadrant, temp }) {
  * @param moved - optional parameter
  * @returns {string}
  */
-export function genMdContent({ ring, description, moved }) {
-  return `---
+export const genMdContent = ({ ring, description, moved }) =>
+`---
 ring: ${ring}
 moved: ${moved}
 ---
 ${description}`
-}
+
 
 /**
  * generate assets .md files from radarDocument to temp directory
@@ -36,8 +32,6 @@ ${description}`
  * @param temp - temp directory
  */
 export const genMdAssets = async ({ document, temp }) => {
-  await fse.copy(tplDir, temp)
-
   await Promise.all(
     document.data.map(async ({ name, quadrant, ring, description, moved }) => {
       try {

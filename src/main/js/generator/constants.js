@@ -20,7 +20,7 @@ Boosted with <a href="https://github.com/11ty/eleventy/">11ty</a>
 export const settings = {
   svg_id: 'radar',
   width: 1450,
-  height: 1000,
+  height: 1050,
   colors: {
     background: '#fff',
     grid: '#dddde0',
