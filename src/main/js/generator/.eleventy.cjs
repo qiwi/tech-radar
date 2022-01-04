@@ -10,9 +10,7 @@ module.exports = (config) => {
   //   [assetsPath]: '/',
   // })
 
-  config.addFilter('console', function(value) {
-    return util.inspect(value);
-  })
+  config.addFilter('console', (value) => util.inspect(value))
 
   // NOTE It's cached by template renderer, so we need to pass extra options through settings injection
   config.addShortcode('makeBootScript', (settings, collections) => {
