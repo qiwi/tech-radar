@@ -1,26 +1,28 @@
 import Eleventy from '@11ty/eleventy'
 import fse from 'fs-extra'
 import { uniq } from 'lodash-es'
+import { nanoid } from 'nanoid'
 import path from 'path'
 
 import { __dirname, settings as defaultSettings, tplDir } from './constants.js'
 import { genMdAssets } from './markdown.js'
+import { mkdirp } from '../util.js'
 
-export const genConfig = async ({ temp, output, title, prefix, date }) => {
+export const genConfig = async ({ temp, output, prefix,}) => {
   const configExtPath = path.resolve(__dirname, '.eleventy.cjs')
-  const configMixin = { extra: { temp, title, prefix, date, output } }
+  const configMixin = { extra: { temp, prefix, output } }
   const configPath = path.join(temp, 'config.js')
   const configContents = `
 module.exports = (config) => require('${configExtPath}')(Object.assign(config, ${JSON.stringify(
     configMixin,
   )}))
 `
-  await fse.writeFile(configPath, configContents, 'utf8')
+  await fse.outputFile(configPath, configContents, 'utf8')
 
   return configPath
 }
 
-export const genSettings = async ({
+export const genRadarSettings = ({
   temp,
   document,
   title,
@@ -38,30 +40,48 @@ export const genSettings = async ({
   ]
 
   const extra = { output, title, prefix, temp, date, basePrefix, footer }
-  const settings = { ...defaultSettings, extra, quadrants }
-  const settingsPath = path.join(temp, '_data/settings.json')
-
-  await fse.writeFile(settingsPath, JSON.stringify(settings))
+  return { ...defaultSettings, extra, quadrants }
 }
 
-/**
- * generate static site with using 11ty
- * @param radar
- */
-export const genEleventy = async (radar) => {
-  await fse.copy(tplDir, radar.temp)
+export const genRadars = async ({radars, temp, output, navFooter, basePrefix}) => {
+  await Promise.all(
+    radars.map(async (radar) => {
+      radar.temp = await mkdirp(path.join(temp, nanoid(5)))
+      radar.target = path.join(radar.scope, radar.date)
+      radar.output = path.join(output, radar.target)
+      radar.prefix = path.join(basePrefix, radar.target)
+      radar.basePrefix = basePrefix
+      radar.footer = navFooter
 
-  const configPath = await genConfig(radar)
-  await genMdAssets(radar)
-  await genSettings(radar)
-
-  const elev = new Eleventy(radar.temp, radar.output, { configPath })
-
-  await elev.init()
-  await elev.write()
+      await genMdAssets(radar)
+      await render('radar', {...radar, settings: genRadarSettings(radar)})
+    }),
+  )
 }
 
-export const genRedirects = async ({ radars, output }) => {
+export const genRedirects = async ({ radars, output, ctx }) => {
+  await Promise.all(
+    Object.entries(
+      radars.reduce((m, { scope, date }) => {
+        const prev = m[scope]
+
+        if (scope !== '.' && (!prev || prev < date)) {
+          m[scope] = date
+        }
+        return m
+      }, {}),
+    ).map(([scope, date]) =>
+      render('redirect', {
+        ...ctx,
+        output: path.join(output, scope),
+        date,
+        settings: { extra: { date } }
+      }),
+    ),
+  )
+}
+
+export const _genRedirects = async ({ radars, output, ctx }) => {
   const redirectTpl = await fse.readFile(
     path.join(tplDir, 'redirect-page/index.html'),
     'utf8',
@@ -78,7 +98,7 @@ export const genRedirects = async ({ radars, output }) => {
         return m
       }, {}),
     ).map(([scope, date]) =>
-      fse.writeFile(
+      fse.outputFile(
         path.join(output, scope, 'index.html'), // eslint-disable-line sonarjs/no-duplicate-string
         redirectTpl.replace('###', date),
       ),
@@ -120,5 +140,20 @@ export const genNavPage = async ({
     .replace('#nav_page-title', navTitle)
     .replace('#nav_page-footer', navFooter)
 
-  await fse.writeFile(path.join(output, 'index.html'), html)
+  await fse.outputFile(path.join(output, 'index.html'), html)
+}
+
+export const render = async (template, options) => {
+  const temp = await mkdirp(path.join(options.temp, nanoid(5)))
+  const configPath = await genConfig({ ...options, temp })
+  const elev = new Eleventy(temp, options.output, { configPath })
+
+  await fse.copy(tplDir, temp)
+  await fse.outputFile(path.join(temp, '_data/settings.json'), JSON.stringify(options.settings))
+  await fse.outputFile(path.join(temp, 'index.njk'), `---
+layout: ${template}.njk
+---
+`)
+  await elev.init()
+  await elev.write()
 }

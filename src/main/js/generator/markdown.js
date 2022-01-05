@@ -34,12 +34,13 @@ ${description}`
 export const genMdAssets = async ({ document, temp }) => {
   await Promise.all(
     document.data.map(async ({ name, quadrant, ring, description, moved }) => {
+      const entryPath = genMdPath({ name, quadrant, temp })
+      const content = genMdContent({ ring, description, moved })
+
       try {
-        const entryPath = genMdPath({ name, quadrant, temp })
-        const content = genMdContent({ ring, description, moved })
-        return fse.writeFile(entryPath, content)
+        return await fse.outputFile(entryPath, content)
       } catch (err) {
-        console.error('genMdAssets', err)
+        console.error('genMdAssets', entryPath, err)
       }
     }),
   )
