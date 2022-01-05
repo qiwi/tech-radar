@@ -4,7 +4,7 @@ import path from 'path'
 import tempy from 'tempy'
 
 import { defNavFooter, defNavTitle, tplDir } from './generator/constants.js'
-import { genEleventy, genNavPage, genRedirects } from './generator/index.js'
+import { genNavPage, genRadars, genRedirects } from './generator/index.js'
 import { getSources, parse } from './parser/index.js'
 import { getDirs, mkdirp } from './util.js'
 
@@ -74,29 +74,14 @@ const parseRadars = async ({ ctx, sources, scopes }) => {
 }
 
 const renderRadars = async ({
-  radars,
   ctx,
-  temp,
-  basePrefix,
   output,
-  navFooter,
 }) => {
   await fse.copy(path.join(tplDir, 'assets'), output)
-  await Promise.all(
-    radars.map(async (radar) => {
-      radar.temp = await mkdirp(path.join(temp, nanoid(5)))
-      radar.target = path.join(radar.scope, radar.date)
-      radar.output = path.join(output, radar.target)
-      radar.prefix = path.join(basePrefix, radar.target)
-      radar.basePrefix = basePrefix
-      radar.footer = navFooter
 
-      await genEleventy(radar)
-    }),
-  )
-
-  await genNavPage(ctx)
-  await genRedirects(ctx)
+  await genRadars(ctx)
+  // await genNavPage(ctx)
+  // await genRedirects(ctx)
 
   // console.log('radars', radars)
   // console.log('radar', JSON.stringify(radars[3], null, 2))

@@ -4,7 +4,7 @@ const path = require('path')
 const util = require('util')
 
 module.exports = (config) => {
-  const {temp, prefix, output } = config.extra
+  const { temp, prefix, output } = config.extra
   // const assetsPath = path.join(temp, 'assets')
   // config.addPassthroughCopy({
   //   [assetsPath]: '/',
@@ -14,6 +14,10 @@ module.exports = (config) => {
 
   // NOTE It's cached by template renderer, so we need to pass extra options through settings injection
   config.addShortcode('makeBootScript', (settings, collections) => {
+    if (!settings.extra || !collections) {
+      return
+    }
+console.log('!!!!', settings, collections)
     const { title, prefix, date } = settings.extra
     const entries = collections
       .map((entity) => ({
@@ -62,6 +66,7 @@ module.exports = (config) => {
   })
 
   return {
+
     dir: {
       input: temp,
       output: output,
