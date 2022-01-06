@@ -1,0 +1,7 @@
+parsers:
+  '**/*.js': ['es6']
+  '**/*.cjs': ['es6']
+  '**/*.mjs': ['es6']
+  '**/*.json':
+    - json1
+    - json2

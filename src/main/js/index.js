@@ -7,16 +7,22 @@ import { getSources, parse } from './parser/index.js'
 import { getDirs, tempDir } from './util.js'
 
 /**
- * generate static sites from csv/json/yml radar declarations
- * @param {string} input globby pattern for input files
- * @param {string} output output directory
- * @param {string} cwd current working directory
- * @param {string?} basePrefix web app root level prefix
- * @param {boolean?} autoscope consider same-scoped files as subversions of a single radar
- * @param {boolean?} navPage Generate navigation page
- * @param {string?} navTitle Nav page title
- * @param {string?} navFooter Nav page footer
- * @param {string?} temp Temp directory
+ * @description
+ * Generate static sites from csv/json/yml radar declarations
+ *
+ * @func
+ * @param {Object} options
+ * @param {string} options.input globby pattern for input files
+ * @param {string} options.output output directory
+ * @param {string} options.cwd current working directory
+ * @param {string?} options.basePrefix web app root level prefix
+ * @param {boolean?} options.autoscope consider same-scoped files as subversions of a single radar
+ * @param {boolean?} options.navPage Generate navigation page
+ * @param {string?} options.navTitle Nav page title
+ * @param {string?} options.navFooter Nav page footer
+ * @param {string?} options.temp Temp directory
+ *
+ * @return {Promise<void>}
  */
 export const run = async ({
   input,
