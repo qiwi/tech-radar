@@ -71,7 +71,7 @@ const parseRadars = async ({ ctx, sources, scopes }) => {
   return ctx
 }
 
-const renderRadars = async ({ ctx, output, temp }) => {
+const renderRadars = async ({ ctx, output }) => {
   await fse.copy(path.join(tplDir, 'assets'), output)
 
   await genRadars(ctx)

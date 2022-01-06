@@ -34,7 +34,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-qiwi": "^1.15.4",
     "finalhandler": "^1.1.2",
-    "jest": "^27.4.5",
+    "jest": "^27.4.7",
     "jsdoc": "^3.6.7",
     "prettier": "^2.5.1",
     "prettier-config-qiwi": "^1.5.0",
