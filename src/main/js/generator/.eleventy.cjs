@@ -14,10 +14,10 @@ module.exports = (config) => {
 
   // NOTE It's cached by template renderer, so we need to pass extra options through settings injection
   config.addShortcode('makeBootScript', (settings, collections) => {
-    if (!settings.extra || !collections) {
+    if (!collections || !settings) {
       return
     }
-console.log('!!!!', settings, collections)
+
     const { title, prefix, date } = settings.extra
     const entries = collections
       .map((entity) => ({

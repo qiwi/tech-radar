@@ -1,14 +1,13 @@
 import Eleventy from '@11ty/eleventy'
 import fse from 'fs-extra'
 import { uniq } from 'lodash-es'
-import { nanoid } from 'nanoid'
 import path from 'path'
 
+import { tempDir } from '../util.js'
 import { __dirname, settings as defaultSettings, tplDir } from './constants.js'
 import { genMdAssets } from './markdown.js'
-import { mkdirp } from '../util.js'
 
-export const genConfig = async ({ temp, output, prefix,}) => {
+export const genConfig = async ({ temp, output, prefix }) => {
   const configExtPath = path.resolve(__dirname, '.eleventy.cjs')
   const configMixin = { extra: { temp, prefix, output } }
   const configPath = path.join(temp, 'config.js')
@@ -43,10 +42,17 @@ export const genRadarSettings = ({
   return { ...defaultSettings, extra, quadrants }
 }
 
-export const genRadars = async ({radars, temp, output, navFooter, basePrefix}) => {
+export const genRadars = async ({
+  radars,
+  temp,
+  output,
+  navFooter,
+  basePrefix,
+}) => {
   await Promise.all(
     radars.map(async (radar) => {
-      radar.temp = await mkdirp(path.join(temp, nanoid(5)))
+      radar.temp = await tempDir(temp)
+
       radar.target = path.join(radar.scope, radar.date)
       radar.output = path.join(output, radar.target)
       radar.prefix = path.join(basePrefix, radar.target)
@@ -54,12 +60,12 @@ export const genRadars = async ({radars, temp, output, navFooter, basePrefix}) =
       radar.footer = navFooter
 
       await genMdAssets(radar)
-      await render('radar', {...radar, settings: genRadarSettings(radar)})
+      await render('radar', { ...radar, settings: genRadarSettings(radar) })
     }),
   )
 }
 
-export const genRedirects = async ({ radars, output, ctx }) => {
+export const genRedirects = async ({ radars, output, ctx, temp }) => {
   await Promise.all(
     Object.entries(
       radars.reduce((m, { scope, date }) => {
@@ -70,38 +76,14 @@ export const genRedirects = async ({ radars, output, ctx }) => {
         }
         return m
       }, {}),
-    ).map(([scope, date]) =>
+    ).map(async ([scope, date]) =>
       render('redirect', {
         ...ctx,
+        temp: await tempDir(temp),
         output: path.join(output, scope),
         date,
-        settings: { extra: { date } }
+        settings: { extra: { date } },
       }),
-    ),
-  )
-}
-
-export const _genRedirects = async ({ radars, output, ctx }) => {
-  const redirectTpl = await fse.readFile(
-    path.join(tplDir, 'redirect-page/index.html'),
-    'utf8',
-  )
-
-  await Promise.all(
-    Object.entries(
-      radars.reduce((m, { scope, date }) => {
-        const prev = m[scope]
-
-        if (scope !== '.' && (!prev || prev < date)) {
-          m[scope] = date
-        }
-        return m
-      }, {}),
-    ).map(([scope, date]) =>
-      fse.outputFile(
-        path.join(output, scope, 'index.html'), // eslint-disable-line sonarjs/no-duplicate-string
-        redirectTpl.replace('###', date),
-      ),
     ),
   )
 }
@@ -109,51 +91,39 @@ export const _genRedirects = async ({ radars, output, ctx }) => {
 export const genNavPage = async ({
   radars,
   output,
-  navPage,
+  ctx,
+  temp,
   navTitle,
   navFooter,
 }) => {
-  if (!navPage) return
+  const scopes = uniq(radars.map((r) => r.scope))
 
-  const headers = uniq(radars.map((r) => r.scope))
-  const navBlock = headers
-    .map(
-      (_scope) => `<div class="tile">
-<h2>${_scope}</h2>
-<ul>
-  ${radars
-    .filter(({ scope }) => scope === _scope)
-    .map(
-      ({ target, date }) =>
-        `<li><a class="link" href="${target}"> ${date}</a></li>`, // eslint-disable-line sonarjs/no-nested-template-literals
-    )
-    .join('\n')}
-</ul>
-</div>`,
-    )
-    .join('\n')
-
-  await fse.copy(path.join(tplDir, 'nav-page'), output)
-  const tplHtml = await fse.readFile(path.join(output, 'index.html'), 'utf8') // eslint-disable-line sonarjs/no-duplicate-string
-  const html = tplHtml
-    .replace('#nav_page-content', navBlock)
-    .replace('#nav_page-title', navTitle)
-    .replace('#nav_page-footer', navFooter)
-
-  await fse.outputFile(path.join(output, 'index.html'), html)
+  await render('root', {
+    ...ctx,
+    temp: await tempDir(temp),
+    output,
+    settings: { extra: { radars, scopes, footer: navFooter, title: navTitle } },
+  })
 }
 
 export const render = async (template, options) => {
-  const temp = await mkdirp(path.join(options.temp, nanoid(5)))
-  const configPath = await genConfig({ ...options, temp })
-  const elev = new Eleventy(temp, options.output, { configPath })
+  const { temp, output, settings } = options
+  const configPath = await genConfig(options)
+  const elev = new Eleventy(temp, output, { configPath })
 
   await fse.copy(tplDir, temp)
-  await fse.outputFile(path.join(temp, '_data/settings.json'), JSON.stringify(options.settings))
-  await fse.outputFile(path.join(temp, 'index.njk'), `---
+  await fse.outputFile(
+    path.join(temp, '_data/settings.json'),
+    JSON.stringify(settings),
+  )
+  await fse.outputFile(
+    path.join(temp, 'index.njk'),
+    `---
 layout: ${template}.njk
 ---
-`)
+`,
+  )
+
   await elev.init()
   await elev.write()
 }

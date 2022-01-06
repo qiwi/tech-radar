@@ -19,12 +19,11 @@ export const genMdPath = ({ name, quadrant, temp }) =>
  * @returns {string}
  */
 export const genMdContent = ({ ring, description, moved }) =>
-`---
+  `---
 ring: ${ring}
 moved: ${moved}
 ---
 ${description}`
-
 
 /**
  * generate assets .md files from radarDocument to temp directory
