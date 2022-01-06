@@ -60,14 +60,29 @@
 </head>
 <body>
     <h1>
-        #nav_page-title
+        {{ settings.extra.title }}
     </h1>
     <main>
         <div class="wrapper">
-            #nav_page-content
+            {% for scope in settings.extra.scopes %}
+                <div class="tile">
+                    <h2>{{ scope }}</h2>
+                    <ul>
+                        {% for radar in settings.extra.radars %}
+                            {% if radar.scope === scope %}
+                                <li><a class="link" href="{{ radar.scope + '/' + radar.date }}"> {{ radar.date }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
         </div>
     </main>
     <footer>
-        #nav_page-footer
+        {% if settings.extra.footer %}
+            {{ settings.extra.footer | safe }}
+        {% else %}
+            {% include 'footer.njk' %}
+        {% endif %}
     </footer>
 </body>

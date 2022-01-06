@@ -1,12 +1,10 @@
 import fse from 'fs-extra'
-import { nanoid } from 'nanoid'
 import path from 'path'
-import tempy from 'tempy'
 
 import { defNavFooter, defNavTitle, tplDir } from './generator/constants.js'
 import { genNavPage, genRadars, genRedirects } from './generator/index.js'
 import { getSources, parse } from './parser/index.js'
-import { getDirs, mkdirp } from './util.js'
+import { getDirs, tempDir } from './util.js'
 
 /**
  * generate static sites from csv/json/yml radar declarations
@@ -25,11 +23,11 @@ export const run = async ({
   output,
   cwd = process.cwd(),
   basePrefix = '/',
-  autoscope,
-  navPage,
+  autoscope = false,
+  navPage = false,
   navTitle = defNavTitle,
   navFooter = defNavFooter,
-  temp = path.join(tempy.root, `tech-radar-${nanoid(5)}`),
+  temp,
 } = {}) => {
   const ctx = {
     input,
@@ -40,7 +38,7 @@ export const run = async ({
     navPage,
     navTitle,
     navFooter,
-    temp,
+    temp: temp || (await tempDir()),
   }
   ctx.ctx = ctx // context self-ref to simplify pipelining
 
@@ -73,15 +71,12 @@ const parseRadars = async ({ ctx, sources, scopes }) => {
   return ctx
 }
 
-const renderRadars = async ({
-  ctx,
-  output,
-}) => {
+const renderRadars = async ({ ctx, output, temp }) => {
   await fse.copy(path.join(tplDir, 'assets'), output)
 
   await genRadars(ctx)
-  // await genNavPage(ctx)
-  // await genRedirects(ctx)
+  await genNavPage(ctx)
+  await genRedirects(ctx)
 
   // console.log('radars', radars)
   // console.log('radar', JSON.stringify(radars[3], null, 2))
