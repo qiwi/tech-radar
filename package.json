@@ -12,15 +12,17 @@
     "src/main"
   ],
   "scripts": {
-    "test": "npm-run-all -p -l lint test:unit",
+    "test": "npm-run-all -p -l lint test:unit test:depcheck",
     "test:unit": "NODE_OPTIONS=--experimental-vm-modules yarn jest --detectOpenHandles --forceExit --runInBand",
+    "test:depcheck": "npm_config_yes=true npx -p depcheck -p @babel/parser@7.16.4 depcheck",
     "docs": "jsdoc -d dist/docs src/main/js/index.js",
     "lint": "eslint 'src/{main,test}/**/*.js'",
     "lint:fix": "yarn lint --fix",
     "format": "prettier --write \"src/**/*.js\"",
     "release": "npx -p @qiwi/semrel-toolkit semrel",
     "generate": "node ./src/main/js/cli.mjs --input \"data/**/*.{csv,json,yml}\"  --output dist --base-prefix tech-radar --autoscope true --nav-page true && touch dist/.nojekyll",
-    "preview": "node src/main/server"
+    "preview": "node src/main/server",
+    "postupdate": "yarn && npm_config_yes=true npx yarn-audit-fix && yarn test && yarn generate"
   },
   "prettier": "prettier-config-qiwi",
   "exports": {
