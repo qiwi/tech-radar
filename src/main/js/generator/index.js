@@ -52,7 +52,6 @@ export const genRadars = async ({
   await Promise.all(
     radars.map(async (radar) => {
       radar.temp = await tempDir(temp)
-
       radar.target = path.join(radar.scope, radar.date)
       radar.output = path.join(output, radar.target)
       radar.prefix = path.join(basePrefix, radar.target)

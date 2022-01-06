@@ -80,6 +80,8 @@ await run({
   autoscope: false
 })
 ```
+[JSDoc reference](https://qiwi.github.io/tech-radar/docs)
+
 ### Input examples
 <details>
   <summary>json</summary>
