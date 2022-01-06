@@ -1,3 +1,10 @@
+## [1.7.4](https://github.com/qiwi/tech-radar/compare/v1.7.3...v1.7.4) (2022-01-06)
+
+
+### Performance Improvements
+
+* rm useless code ([f48f4b0](https://github.com/qiwi/tech-radar/commit/f48f4b0dd7cf3e07f143f4f9b8a1ba77bcae94b5))
+
 ## [1.7.3](https://github.com/qiwi/tech-radar/compare/v1.7.2...v1.7.3) (2022-01-03)
 
 
