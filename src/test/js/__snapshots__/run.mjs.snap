@@ -81,7 +81,7 @@ Array [
 `;
 
 exports[`generate 11ty app generate navigation page 1`] = `
-"<!DOCTYPE html><head><meta charset=\\"utf-8\\"><link rel=\\"stylesheet\\" href=\\"index.css\\"><title>📡 Tech radar</title><style>body {
+"<!DOCTYPE html><head><meta charset=\\"utf-8\\"><link rel=\\"stylesheet\\" href=\\"index.css\\"><title>📡 Tech radars</title><style>body {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -136,7 +136,7 @@ exports[`generate 11ty app generate navigation page 1`] = `
 `;
 
 exports[`generate 11ty app generate navigation page footer 1`] = `
-"<!DOCTYPE html><head><meta charset=\\"utf-8\\"><link rel=\\"stylesheet\\" href=\\"index.css\\"><title>📡 Tech radar</title><style>body {
+"<!DOCTYPE html><head><meta charset=\\"utf-8\\"><link rel=\\"stylesheet\\" href=\\"index.css\\"><title>📡 Tech radars</title><style>body {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -191,7 +191,7 @@ exports[`generate 11ty app generate navigation page footer 1`] = `
 `;
 
 exports[`generate 11ty app generate navigation page of data2 1`] = `
-"<!DOCTYPE html><head><meta charset=\\"utf-8\\"><link rel=\\"stylesheet\\" href=\\"index.css\\"><title>📡 Tech radar</title><style>body {
+"<!DOCTYPE html><head><meta charset=\\"utf-8\\"><link rel=\\"stylesheet\\" href=\\"index.css\\"><title>📡 Tech radars</title><style>body {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -246,7 +246,7 @@ exports[`generate 11ty app generate navigation page of data2 1`] = `
 `;
 
 exports[`generate 11ty app generate navigation page title 1`] = `
-"<!DOCTYPE html><head><meta charset=\\"utf-8\\"><link rel=\\"stylesheet\\" href=\\"index.css\\"><title>📡 Tech radar</title><style>body {
+"<!DOCTYPE html><head><meta charset=\\"utf-8\\"><link rel=\\"stylesheet\\" href=\\"index.css\\"><title>title</title><style>body {
           display: flex;
           flex-direction: column;
           align-items: center;
