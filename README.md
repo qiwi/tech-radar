@@ -27,8 +27,10 @@ Fully automated tech-radar generator. Based on [zalando/tech-radar](https://gith
     - [JS API](#js-api)
     - [Input-examples](#input-examples)
     - [CI/CD](#cicd)
-- [Alternatives](#alternatives)
 - [Contributing](#contributing)
+  - [Add new data](#add-new-radar-data)
+  - [Enhance the generator](#enhance-the-generator)
+- [Alternatives](#alternatives)
 - [License](#license)
 
 ## Key features
@@ -260,6 +262,20 @@ Follow [gh-action usage example](https://github.com/qiwi/tech-radar/blob/master/
 Feel free to open any issues: bug reports, feature requests or questions.
 You're always welcome to suggest a PR. Just fork this repo, write some code, add some tests and push your changes.
 Any feedback is appreciated.
+
+### Add new radar data
+1. Place a new radar data file to `data/<scope>/<date>.{csv|json|yaml}`
+2. Fill it as shown in [examples](#input-examples) / [its siblings](https://github.com/qiwi/tech-radar/tree/master/data)
+3. Run `yarn generate && yarn preview`
+4. Follow [http://localhost:3000/](http://localhost:3000/). Assess the result
+5. Push commit and create a pull request
+
+### Enhance the generator
+1. Make some changes in `src/main/js`
+2. Put some tests to `src/test/js`
+3. Run `yarn test`
+4. Repeat if necessary steps 1 to 3
+5. Push commit and create a pull request
 
 ## Alternatives
 * [https://github.com/thoughtworks/build-your-own-radar](https://github.com/thoughtworks/build-your-own-radar)
