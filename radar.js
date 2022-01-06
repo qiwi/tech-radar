@@ -52,7 +52,7 @@ function radar_visualization(config) {
     { radius: 410 },
   ]
 
-  const title_offset = { x: -675, y: -500 }
+  const title_offset = { x: -675, y: -475 }
 
   const footer_offset = { x: -675, y: 420 }
 
