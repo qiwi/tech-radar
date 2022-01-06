@@ -2,7 +2,12 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="index.css">
-  <title>📡 Tech radar</title>
+  <title>{% if settings.extra.title %}
+          {{ settings.extra.title | safe }}
+      {% else %}
+          📡 Tech radars
+      {% endif %}
+  </title>
   <style>
       body {
           display: flex;
@@ -60,7 +65,11 @@
 </head>
 <body>
     <h1>
-        {{ settings.extra.title }}
+        {% if settings.extra.title %}
+            {{ settings.extra.title | safe }}
+        {% else %}
+            📡 Tech radars
+        {% endif %}
     </h1>
     <main>
         <div class="wrapper">

@@ -3,12 +3,6 @@ import fse from 'fs-extra'
 import path from 'path'
 
 import {
-  langAndFw,
-  // platforms,
-  // techniques,
-  // tools,
-} from '../../main/js/generator/constants.js'
-import {
   genMdAssets,
   genMdContent,
   genMdPath,
@@ -17,6 +11,7 @@ import { parse } from '../../main/js/parser'
 import {fileURLToPath} from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+export const langAndFw = 'languages-and-frameworks'
 
 describe('generate md assets', () => {
   it('files write check', async () => {
