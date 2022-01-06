@@ -1,7 +1,7 @@
 import fse from 'fs-extra'
 import path from 'path'
 
-import { defNavFooter, defNavTitle, tplDir } from './generator/constants.js'
+import { tplDir } from './generator/constants.js'
 import { genNavPage, genRadars, genRedirects } from './generator/index.js'
 import { getSources, parse } from './parser/index.js'
 import { getDirs, tempDir } from './util.js'
@@ -25,8 +25,8 @@ export const run = async ({
   basePrefix = '/',
   autoscope = false,
   navPage = false,
-  navTitle = defNavTitle,
-  navFooter = defNavFooter,
+  navTitle,
+  navFooter,
   temp,
 } = {}) => {
   const ctx = {
@@ -74,9 +74,9 @@ const parseRadars = async ({ ctx, sources, scopes }) => {
 const renderRadars = async ({ ctx, output }) => {
   await fse.copy(path.join(tplDir, 'assets'), output)
 
-  await genRadars(ctx)
+  // await genRadars(ctx)
   await genNavPage(ctx)
-  await genRedirects(ctx)
+  // await genRedirects(ctx)
 
   // console.log('radars', radars)
   // console.log('radar', JSON.stringify(radars[3], null, 2))
