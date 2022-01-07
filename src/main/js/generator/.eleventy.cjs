@@ -66,7 +66,6 @@ module.exports = (config) => {
   })
 
   return {
-
     dir: {
       input: temp,
       output: output,

@@ -4,16 +4,15 @@
   </a>
 </p>
 
-<h2 align="center">
+<div align="center"><h2>
 
 📡 [QIWI Radars](https://qiwi.github.io/tech-radar/) • [iOS](https://qiwi.github.io/tech-radar/ios/) • [JS](https://qiwi.github.io/tech-radar/js/) • [Backend](https://qiwi.github.io/tech-radar/backend/) • [QA](https://qiwi.github.io/tech-radar/qa/)
-
 </h2>
-<div align="center">
 
 [![CI](https://github.com/qiwi/tech-radar/workflows/CI/badge.svg)](https://github.com/qiwi/tech-radar/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b04b40063c8974a8ca31/maintainability)](https://codeclimate.com/github/qiwi/tech-radar/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/b04b40063c8974a8ca31/test_coverage)](https://codeclimate.com/github/qiwi/tech-radar/test_coverage)  
+[![Test Coverage](https://api.codeclimate.com/v1/badges/b04b40063c8974a8ca31/test_coverage)](https://codeclimate.com/github/qiwi/tech-radar/test_coverage)
+
 Fully automated tech-radar generator. Based on [zalando/tech-radar](https://github.com/zalando/tech-radar). Boosted with [11ty](https://github.com/11ty/eleventy/)
 </div>
 
@@ -45,9 +44,14 @@ Fully automated tech-radar generator. Based on [zalando/tech-radar](https://gith
 * Node.js >= 14.13
 * macOS / linux
 
-## Install
+## Install [![npm (scoped)](https://img.shields.io/npm/v/@qiwi/tech-radar?color=09e)](https://www.npmjs.com/package/@qiwi/tech-radar)
+
 ```shell
+# yarn
 yarn add @qiwi/tech-radar
+
+# npm
+npm i @qiwi/tech-radar
 ```
 
 ## Usage
