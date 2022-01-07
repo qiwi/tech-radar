@@ -12,6 +12,7 @@
 [![CI](https://github.com/qiwi/tech-radar/workflows/CI/badge.svg)](https://github.com/qiwi/tech-radar/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b04b40063c8974a8ca31/maintainability)](https://codeclimate.com/github/qiwi/tech-radar/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/b04b40063c8974a8ca31/test_coverage)](https://codeclimate.com/github/qiwi/tech-radar/test_coverage)
+[![npm (scoped)](https://img.shields.io/npm/v/@qiwi/tech-radar?color=09e)](https://www.npmjs.com/package/@qiwi/tech-radar)
 
 Fully automated tech-radar generator. Based on [zalando/tech-radar](https://github.com/zalando/tech-radar). Boosted with [11ty](https://github.com/11ty/eleventy/)
 </div>
@@ -44,7 +45,7 @@ Fully automated tech-radar generator. Based on [zalando/tech-radar](https://gith
 * Node.js >= 14.13
 * macOS / linux
 
-## Install [![npm (scoped)](https://img.shields.io/npm/v/@qiwi/tech-radar?color=09e)](https://www.npmjs.com/package/@qiwi/tech-radar)
+## Install
 
 ```shell
 # yarn
@@ -56,8 +57,11 @@ npm i @qiwi/tech-radar
 
 ## Usage
 ### CLI
-```
+```shell
+# as local dep
 techradar --input "/path/to/files/*.{json, csv, yml}" --output /radar
+
+# through npx
 npx @qiwi/tech-radar --input "/path/to/files/*.{json, csv, yml}" --output /radar
 ```
 
@@ -265,7 +269,7 @@ Follow [gh-action usage example](https://github.com/qiwi/tech-radar/blob/master/
 </details>
 
 ## Contributing
-Feel free to open any issues: bug reports, feature requests or questions.
+Feel free to open new issues: bug reports, feature requests or questions.
 You're always welcome to suggest a PR. Just fork this repo, write some code, add some tests and push your changes.
 Any feedback is appreciated.
 
