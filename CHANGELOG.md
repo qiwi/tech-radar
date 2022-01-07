@@ -1,3 +1,10 @@
+## [1.7.5](https://github.com/qiwi/tech-radar/compare/v1.7.4...v1.7.5) (2022-01-07)
+
+
+### Bug Fixes
+
+* fix some typos in templates ([603083e](https://github.com/qiwi/tech-radar/commit/603083ee5169ad6d3eeb67fdf755e31653607a65))
+
 ## [1.7.4](https://github.com/qiwi/tech-radar/compare/v1.7.3...v1.7.4) (2022-01-06)
 
 
