@@ -2,81 +2,81 @@
 
 exports[`generate 11ty app from .csv file 1`] = `
 Array [
-  "test/2021-06-18/entries/q1/TypeScript/index.html",
-  "test/2021-06-18/entries/q2/Nodejs/index.html",
-  "test/2021-06-18/entries/q3/codeclimate/index.html",
-  "test/2021-06-18/entries/q4/Гексагональная архитектура/index.html",
-  "test/2021-06-18/index.html",
-  "test/favicon.ico",
-  "test/index.html",
-  "test/radar.css",
-  "test/radar.js",
+  "favicon.ico",
+  "index.html",
+  "radar.css",
+  "radar.js",
+  "2021-06-18/index.html",
+  "2021-06-18/entries/q1/TypeScript/index.html",
+  "2021-06-18/entries/q2/Nodejs/index.html",
+  "2021-06-18/entries/q3/codeclimate/index.html",
+  "2021-06-18/entries/q4/Гексагональная архитектура/index.html",
 ]
 `;
 
 exports[`generate 11ty app from .json file 1`] = `
 Array [
-  "test/2021-06-12/entries/q1/TypeScript/index.html",
-  "test/2021-06-12/entries/q2/Nodejs/index.html",
-  "test/2021-06-12/entries/q3/codeclimate/index.html",
-  "test/2021-06-12/entries/q4/Гексагональная архитектура/index.html",
-  "test/2021-06-12/index.html",
-  "test/favicon.ico",
-  "test/index.html",
-  "test/radar.css",
-  "test/radar.js",
+  "favicon.ico",
+  "index.html",
+  "radar.css",
+  "radar.js",
+  "2021-06-12/index.html",
+  "2021-06-12/entries/q1/TypeScript/index.html",
+  "2021-06-12/entries/q2/Nodejs/index.html",
+  "2021-06-12/entries/q3/codeclimate/index.html",
+  "2021-06-12/entries/q4/Гексагональная архитектура/index.html",
 ]
 `;
 
 exports[`generate 11ty app from .yml file 1`] = `
 Array [
-  "test/2021-06-11/entries/q1/TypeScript/index.html",
-  "test/2021-06-11/entries/q2/Nodejs/index.html",
-  "test/2021-06-11/entries/q3/codeclimate/index.html",
-  "test/2021-06-11/entries/q4/Гексагональная архитектура/index.html",
-  "test/2021-06-11/index.html",
-  "test/favicon.ico",
-  "test/index.html",
-  "test/radar.css",
-  "test/radar.js",
+  "favicon.ico",
+  "index.html",
+  "radar.css",
+  "radar.js",
+  "2021-06-11/index.html",
+  "2021-06-11/entries/q1/TypeScript/index.html",
+  "2021-06-11/entries/q2/Nodejs/index.html",
+  "2021-06-11/entries/q3/codeclimate/index.html",
+  "2021-06-11/entries/q4/Гексагональная архитектура/index.html",
 ]
 `;
 
 exports[`generate 11ty app from multiple files 1`] = `
 Array [
-  "test/2021-06-12/entries/q1/TypeScript/index.html",
-  "test/2021-06-12/entries/q2/Nodejs/index.html",
-  "test/2021-06-12/entries/q3/codeclimate/index.html",
-  "test/2021-06-12/entries/q4/Гексагональная архитектура/index.html",
-  "test/2021-06-12/index.html",
-  "test/2021-06-18/entries/q1/TypeScript/index.html",
-  "test/2021-06-18/entries/q2/Nodejs/index.html",
-  "test/2021-06-18/entries/q3/codeclimate/index.html",
-  "test/2021-06-18/entries/q4/Гексагональная архитектура/index.html",
-  "test/2021-06-18/index.html",
-  "test/favicon.ico",
-  "test/index.html",
-  "test/radar.css",
-  "test/radar.js",
+  "favicon.ico",
+  "index.html",
+  "radar.css",
+  "radar.js",
+  "2021-06-12/index.html",
+  "2021-06-18/index.html",
+  "2021-06-12/entries/q1/TypeScript/index.html",
+  "2021-06-12/entries/q2/Nodejs/index.html",
+  "2021-06-12/entries/q3/codeclimate/index.html",
+  "2021-06-12/entries/q4/Гексагональная архитектура/index.html",
+  "2021-06-18/entries/q1/TypeScript/index.html",
+  "2021-06-18/entries/q2/Nodejs/index.html",
+  "2021-06-18/entries/q3/codeclimate/index.html",
+  "2021-06-18/entries/q4/Гексагональная архитектура/index.html",
 ]
 `;
 
 exports[`generate 11ty app from multiple files with the same date 1`] = `
 Array [
-  "test/2021-06-12/entries/q1/TypeScript/index.html",
-  "test/2021-06-12/entries/q2/Nodejs/index.html",
-  "test/2021-06-12/entries/q3/codeclimate/index.html",
-  "test/2021-06-12/entries/q4/Гексагональная архитектура/index.html",
-  "test/2021-06-12/index.html",
-  "test/2021-06-18/entries/q1/TypeScript/index.html",
-  "test/2021-06-18/entries/q2/Nodejs/index.html",
-  "test/2021-06-18/entries/q3/codeclimate/index.html",
-  "test/2021-06-18/entries/q4/Гексагональная архитектура/index.html",
-  "test/2021-06-18/index.html",
-  "test/favicon.ico",
-  "test/index.html",
-  "test/radar.css",
-  "test/radar.js",
+  "favicon.ico",
+  "index.html",
+  "radar.css",
+  "radar.js",
+  "2021-06-12/index.html",
+  "2021-06-18/index.html",
+  "2021-06-12/entries/q1/TypeScript/index.html",
+  "2021-06-12/entries/q2/Nodejs/index.html",
+  "2021-06-12/entries/q3/codeclimate/index.html",
+  "2021-06-12/entries/q4/Гексагональная архитектура/index.html",
+  "2021-06-18/entries/q1/TypeScript/index.html",
+  "2021-06-18/entries/q2/Nodejs/index.html",
+  "2021-06-18/entries/q3/codeclimate/index.html",
+  "2021-06-18/entries/q4/Гексагональная архитектура/index.html",
 ]
 `;
 
@@ -132,7 +132,7 @@ exports[`generate 11ty app generate custom navigation page: title, footer 1`] = 
       }
       footer {
           text-align: center;
-      }</style></head><body><h1>test</h1><main><div class=\\"wrapper\\"><div class=\\"tile\\"><h2>.</h2><ul><li><a class=\\"link\\" href=\\"./2021-06-12\\">2021-06-12</a></li><li><a class=\\"link\\" href=\\"./2021-06-11\\">2021-06-11</a></li></ul></div></div></main><footer><div style=\\"width: 100%; text-align: center; margin: 30px 0 10px 0; font-size: 80%\\"><a href=\\"https://github.com/qiwi/tech-radar\\">Tech-radar generator</a>. Based on <a href=\\"https://github.com/zalando/tech-radar\\">zalando/tech-radar</a>. Boosted with <a href=\\"https://github.com/11ty/eleventy/\\">11ty</a><br><a class=\\"link\\" href=\\"https://github.com/qiwi\\">QIWI ❤️ Open Source</a></div></footer></body>"
+      }</style></head><body><h1>test</h1><main><div class=\\"wrapper\\"><div class=\\"tile\\"><h2>.</h2><ul><li><a class=\\"link\\" href=\\"./2021-06-12\\">2021-06-12</a></li><li><a class=\\"link\\" href=\\"./2021-06-11\\">2021-06-11</a></li></ul></div></div></main><footer>foobarbaz</footer></body>"
 `;
 
 exports[`generate 11ty app generate navigation page 1`] = `
@@ -246,7 +246,7 @@ exports[`generate 11ty app generate navigation page by data2 1`] = `
 `;
 
 exports[`generate 11ty app generate navigation page from custom templates 1`] = `
-"<!DOCTYPE html><head><meta charset=\\"utf-8\\"><link rel=\\"stylesheet\\" href=\\"index.css\\"><title>📡 Tech radars</title><style>body {
+"<!DOCTYPE html><head><meta charset=\\"utf-8\\"><link rel=\\"stylesheet\\" href=\\"index.css\\"><title>test</title><style>body {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -297,7 +297,7 @@ exports[`generate 11ty app generate navigation page from custom templates 1`] = 
       }
       footer {
           text-align: center;
-      }</style></head><body><h1>📡 Tech radars</h1><main><div class=\\"wrapper\\"><div class=\\"tile\\"><h2>.</h2><ul><li><a class=\\"link\\" href=\\"./2021-06-12\\">2021-06-12</a></li><li><a class=\\"link\\" href=\\"./2021-06-11\\">2021-06-11</a></li></ul></div></div></main><footer><div style=\\"width: 100%; text-align: center; margin: 30px 0 10px 0; font-size: 80%\\">Testing footer template</div></footer></body>"
+      }</style></head><body><h1>test</h1><main><div class=\\"wrapper\\"><div class=\\"tile\\"><h2>.</h2><ul><li><a class=\\"link\\" href=\\"./2021-06-12\\">2021-06-12</a></li><li><a class=\\"link\\" href=\\"./2021-06-11\\">2021-06-11</a></li></ul></div></div></main><footer><div style=\\"width: 100%; text-align: center; margin: 30px 0 10px 0; font-size: 80%\\"><a href=\\"https://github.com/qiwi/tech-radar\\">Tech-radar generator</a>. Based on <a href=\\"https://github.com/zalando/tech-radar\\">zalando/tech-radar</a>. Boosted with <a href=\\"https://github.com/11ty/eleventy/\\">11ty</a><br><a class=\\"link\\" href=\\"https://github.com/qiwi\\">QIWI ❤️ Open Source</a></div></footer></body>"
 `;
 
 exports[`generate 11ty app generate navigation page title 1`] = `

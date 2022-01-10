@@ -24,7 +24,18 @@ import { getDirs, tempDir } from './util.js'
  *
  * @return {Promise<void>}
  */
-export const run = async ({
+export const run = async (options) => {
+  const ctx = await getContext(options)
+
+  return readSources(ctx)
+    .then(parseRadars)
+    .then(sortRadars)
+    .then(resolveMoves)
+    .then(renderRadars)
+    .finally(() => cleanTemp(ctx))
+}
+
+const getContext = async ({
   input,
   output,
   cwd = process.cwd(),
@@ -34,7 +45,7 @@ export const run = async ({
   navTitle,
   navFooter,
   temp,
-  templates
+  templates,
 } = {}) => {
   const ctx = {
     input,
@@ -48,14 +59,10 @@ export const run = async ({
     temp: temp || (await tempDir()),
     templates,
   }
+
   ctx.ctx = ctx // context self-ref to simplify pipelining
 
-  return readSources(ctx)
-    .then(parseRadars)
-    .then(sortRadars)
-    .then(resolveMoves)
-    .then(renderRadars)
-    .finally(() => cleanTemp(ctx))
+  return ctx
 }
 
 const readSources = async ({ ctx, cwd, input }) => {
