@@ -22,14 +22,12 @@ module.exports = (config) => require('${configExtPath}')(Object.assign(config, $
 }
 
 export const genRadarSettings = ({
-  temp,
-  document,
   title,
-  prefix,
-  date,
-  output,
   basePrefix,
-  footer,
+  navFooter,
+  date,
+  document,
+  scope,
 }) => {
   const quadrants = [
     { name: document.quadrantTitles.q1 || 'Q1', id: 'q1' },
@@ -38,29 +36,32 @@ export const genRadarSettings = ({
     { name: document.quadrantTitles.q4 || 'Q4', id: 'q4' },
   ]
 
-  const extra = { output, title, prefix, temp, date, basePrefix, footer }
+  const extra = {
+    title,
+    target: path.join(scope, date),
+    prefix: path.join(basePrefix, scope, date),
+    basePrefix: basePrefix,
+    footer: navFooter,
+  }
+
   return { ...defaultSettings, extra, quadrants }
 }
 
-export const genRadars = async ({
-  radars,
-  temp,
-  output,
-  navFooter,
-  basePrefix,
-  ctx,
-}) => {
+export const genRadars = async ({ radars, ctx }) => {
   await Promise.all(
     radars.map(async (radar) => {
-      radar.temp = await tempDir(temp)
-      radar.target = path.join(radar.scope, radar.date)
-      radar.output = path.join(output, radar.target)
-      radar.prefix = path.join(basePrefix, radar.target)
-      radar.basePrefix = basePrefix
-      radar.footer = navFooter
+      const temp = await tempDir(ctx.temp)
+      const output = path.join(ctx.output, radar.scope, radar.date)
+      const context = {
+        ...ctx,
+        ...radar,
+        output,
+        temp,
+      }
+      context.settings = genRadarSettings(context)
 
-      await genMdAssets(radar)
-      await render('radar', { ...ctx, ...radar, settings: genRadarSettings(radar) })
+      await genMdAssets(context)
+      await render('radar', context)
     }),
   )
 }
@@ -97,17 +98,25 @@ export const genNavPage = async ({
   navFooter,
 }) => {
   const scopes = uniq(radars.map((r) => r.scope))
+  const settings = {
+    extra: {
+      radars,
+      scopes,
+      footer: navFooter,
+      title: navTitle,
+    },
+  }
 
   await render('root', {
     ...ctx,
     temp: await tempDir(temp),
     output,
-    settings: { extra: { radars, scopes, footer: navFooter, title: navTitle } },
+    settings,
   })
 }
 
 export const render = async (template, options) => {
-  const { temp, output, settings } = options
+  const { temp, output, settings, templates } = options
   const configPath = await genConfig(options)
   const elev = new Eleventy(temp, output, { configPath })
 
@@ -123,8 +132,9 @@ layout: ${template}.njk
 ---
 `,
   )
-  if (options.templates) {
-    await fse.copy(options.templates, temp)
+
+  if (templates) {
+    await fse.copy(templates, temp)
   }
 
   await elev.init()
