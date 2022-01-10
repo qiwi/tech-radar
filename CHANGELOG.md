@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/qiwi/tech-radar/compare/v1.8.0...v1.9.0) (2022-01-10)
+
+
+### Features
+
+* provide custom renderSettings via api ([b2e1381](https://github.com/qiwi/tech-radar/commit/b2e13810f05a1c17aba81071518707eb8ca4c995)), closes [#57](https://github.com/qiwi/tech-radar/issues/57)
+
 # [1.8.0](https://github.com/qiwi/tech-radar/compare/v1.7.5...v1.8.0) (2022-01-10)
 
 
