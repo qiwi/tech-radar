@@ -1,16 +1,18 @@
-import fs from 'fs'
-import fsExtra from 'fs-extra'
+import fse from 'fs-extra'
 import path from 'path'
-
-import { run } from '../../main/js/index.js'
 import {fileURLToPath} from 'url'
 
+import { run } from '../../main/js/index.js'
+import { tempDir } from '../../main/js/util.js'
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const out = path.resolve(process.cwd(), 'test')
+const input = path.join(__dirname, '../stub/data/**')
 
 export const getFileStruct = (dir, result = []) => {
-  fs.readdirSync(dir).forEach((elem) => {
+  fse.readdirSync(dir).forEach((elem) => {
     const elemPath = dir + '/' + elem
-    const stat = fs.statSync(elemPath)
+    const stat = fse.statSync(elemPath)
     if (stat.isDirectory()) {
       result = [...getFileStruct(elemPath, result)]
     } else {
@@ -20,79 +22,101 @@ export const getFileStruct = (dir, result = []) => {
   return result
 }
 
+afterAll(async () => await fse.remove(out))
+
 describe('generate 11ty app', () => {
   it('from .csv file', async () => {
     const csvPath = path.join(__dirname, '../stub/test.csv')
-    await run({ input: csvPath, output: 'test' })
+    const output = await tempDir(out)
+
+    await run({ input: csvPath, output})
     const normalizedFileStruct = getFileStruct('test')
     expect(normalizedFileStruct).toMatchSnapshot()
   })
 
-  afterEach(() => {
-    fsExtra.removeSync(path.resolve('test'))
-  })
-
   it('from multiple files with the same date', async () => {
-    await run({ input: 'src/test/stub/test.{csv,json,yaml}', output: 'test' })
+    const output = await tempDir(out)
+    await run({ input: 'src/test/stub/test.{csv,json,yaml}', output })
     const normalizedFileStruct = getFileStruct('test')
     expect(normalizedFileStruct).toMatchSnapshot()
   })
 
   it('from multiple files', async () => {
-    await run({ input: 'src/test/stub/test.{csv,json}', output: 'test' })
+    const output = await tempDir(out)
+    await run({ input: 'src/test/stub/test.{csv,json}', output })
     const normalizedFileStruct = getFileStruct('test')
     expect(normalizedFileStruct).toMatchSnapshot()
   })
 
   it('from .json file', async () => {
-    const jsonPath = path.join(__dirname, '../stub/test.json')
-    await run({ input: jsonPath, output: 'test' })
+    const input = path.join(__dirname, '../stub/test.json')
+    const output = await tempDir(out)
+
+    await run({ input, output })
     const normalizedFileStruct = getFileStruct('test')
     expect(normalizedFileStruct).toMatchSnapshot()
   })
 
   it('from .yml file', async () => {
-    const yamlPath = path.join(__dirname, '../stub/test.yml')
+    const input = path.join(__dirname, '../stub/test.yml')
+    const output = await tempDir(out)
 
-    await run({ input: yamlPath, output: 'test' })
+    await run({ input, output })
     const normalizedFileStruct = getFileStruct('test')
     expect(normalizedFileStruct).toMatchSnapshot()
   })
-  const dataPath = 'src/test/stub/data/**'
-  const indexPath = path.join('test', 'index.html')
+
+
   it('generate navigation page', async () => {
-    await run({ input: dataPath, output: 'test', navPage: true })
-    const index = fs.readFileSync(indexPath, 'utf8')
-    expect(index).toMatchSnapshot()
+    const output = await tempDir(out)
+    await run({ input, output, navPage: true })
+    expect(fse.readFileSync(path.join(output, 'index.html'),'utf8')).toMatchSnapshot()
   })
+
   it('generate navigation page title', async () => {
+    const output = await tempDir(out)
     await run({
-      input: dataPath,
-      output: 'test',
+      input,
+      output,
       navPage: true,
       navTitle: 'title',
     })
-    const index = fs.readFileSync(indexPath, 'utf8')
-    expect(index).toMatchSnapshot()
+    expect(fse.readFileSync(path.join(output, 'index.html'),'utf8')).toMatchSnapshot()
   })
-  it('generate navigation page footer', async () => {
+
+  it('generate custom navigation page: title, footer', async () => {
+    const output = await tempDir(out)
     await run({
-      input: dataPath,
-      output: 'test',
+      input,
+      output,
+      navTitle: 'test',
       navPage: true,
-      navFooter: 'footer',
+      templates: path.join(__dirname, '../tpl')
     })
-    const index = fs.readFileSync(indexPath, 'utf8')
-    expect(index).toMatchSnapshot()
+    expect(fse.readFileSync(path.join(output, 'index.html'),'utf8')).toMatchSnapshot()
   })
-  it('generate navigation page of data2', async () => {
+
+  fit('generate navigation page from custom templates', async () => {
+    const output = await tempDir(out)
     await run({
-      input: 'src/test/stub/data2/**',
-      output: 'test',
+      input,
+      output,
+      templates: path.join(__dirname, '../tpl'),
+      navPage: true,
+    })
+    expect(fse.readFileSync(path.join(output, 'index.html'),'utf8')).toMatchSnapshot()
+  })
+
+  it('generate navigation page by data2', async () => {
+    const output = await tempDir(out)
+    const input = 'src/test/stub/data2/**'
+
+    await run({
+      input,
+      output,
       navPage: true,
       autoscope: true
     })
-    const index = fs.readFileSync(indexPath, 'utf8')
-    expect(index).toMatchSnapshot()
+    expect(fse.readFileSync(path.join(output, 'index.html'),'utf8')).toMatchSnapshot()
   })
 })

@@ -8,6 +8,7 @@ export const cli = meow(
     Usage:
       techradar  --input /path/to/csv --output /radar --basePrefix tech-radar --autoscope true --nav-page true --nav-title title --nav-footer footer
     Options
+      --cwd
       --input
       --output
       --basePrefix
@@ -16,6 +17,7 @@ export const cli = meow(
       --nav-title
       --nav-footer
       --temp
+      --templates
 `,
   {
     importMeta: import.meta,
@@ -48,6 +50,10 @@ export const cli = meow(
       },
       temp: {
         type: 'string'
+      },
+      templates: {
+        type: 'string',
+        alias: 'tpl'
       }
     },
   },

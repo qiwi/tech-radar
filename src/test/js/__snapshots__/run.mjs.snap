@@ -80,6 +80,61 @@ Array [
 ]
 `;
 
+exports[`generate 11ty app generate custom navigation page: title, footer 1`] = `
+"<!DOCTYPE html><head><meta charset=\\"utf-8\\"><link rel=\\"stylesheet\\" href=\\"index.css\\"><title>test</title><style>body {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          height: 100vh;
+          margin: 0;
+      }
+      ul {
+          list-style-type: none;
+          padding: 0px;
+      }
+      .link {
+          color: black;
+          text-decoration: none;
+      }
+
+      li a {
+          min-width: 150px;
+          padding: 3px 10px;
+          border-radius: 20px;
+          display: inline-block;
+          font-size: 95%;
+      }
+
+      li a:hover {
+          background-color: #eaeef8;
+      }
+      * {
+          font-family: \\"Helvetiva, Museo Sans\\", sans-serif;
+          color: #333;
+
+          line-height: 1.6333;
+      }
+      main {
+          display: flex;
+          justify-content: center;
+          height: 100%;
+          min-width: 400px;
+      }
+      .wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          width: 90%;
+          flex: 1;
+      }
+      .tile{
+          text-align: center;
+          margin: 20px;
+      }
+      footer {
+          text-align: center;
+      }</style></head><body><h1>test</h1><main><div class=\\"wrapper\\"><div class=\\"tile\\"><h2>.</h2><ul><li><a class=\\"link\\" href=\\"./2021-06-12\\">2021-06-12</a></li><li><a class=\\"link\\" href=\\"./2021-06-11\\">2021-06-11</a></li></ul></div></div></main><footer><div style=\\"width: 100%; text-align: center; margin: 30px 0 10px 0; font-size: 80%\\"><a href=\\"https://github.com/qiwi/tech-radar\\">Tech-radar generator</a>. Based on <a href=\\"https://github.com/zalando/tech-radar\\">zalando/tech-radar</a>. Boosted with <a href=\\"https://github.com/11ty/eleventy/\\">11ty</a><br><a class=\\"link\\" href=\\"https://github.com/qiwi\\">QIWI ❤️ Open Source</a></div></footer></body>"
+`;
+
 exports[`generate 11ty app generate navigation page 1`] = `
 "<!DOCTYPE html><head><meta charset=\\"utf-8\\"><link rel=\\"stylesheet\\" href=\\"index.css\\"><title>📡 Tech radars</title><style>body {
           display: flex;
@@ -135,62 +190,7 @@ exports[`generate 11ty app generate navigation page 1`] = `
       }</style></head><body><h1>📡 Tech radars</h1><main><div class=\\"wrapper\\"><div class=\\"tile\\"><h2>.</h2><ul><li><a class=\\"link\\" href=\\"./2021-06-12\\">2021-06-12</a></li><li><a class=\\"link\\" href=\\"./2021-06-11\\">2021-06-11</a></li></ul></div></div></main><footer><div style=\\"width: 100%; text-align: center; margin: 30px 0 10px 0; font-size: 80%\\"><a href=\\"https://github.com/qiwi/tech-radar\\">Tech-radar generator</a>. Based on <a href=\\"https://github.com/zalando/tech-radar\\">zalando/tech-radar</a>. Boosted with <a href=\\"https://github.com/11ty/eleventy/\\">11ty</a><br><a class=\\"link\\" href=\\"https://github.com/qiwi\\">QIWI ❤️ Open Source</a></div></footer></body>"
 `;
 
-exports[`generate 11ty app generate navigation page footer 1`] = `
-"<!DOCTYPE html><head><meta charset=\\"utf-8\\"><link rel=\\"stylesheet\\" href=\\"index.css\\"><title>📡 Tech radars</title><style>body {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          height: 100vh;
-          margin: 0;
-      }
-      ul {
-          list-style-type: none;
-          padding: 0px;
-      }
-      .link {
-          color: black;
-          text-decoration: none;
-      }
-
-      li a {
-          min-width: 150px;
-          padding: 3px 10px;
-          border-radius: 20px;
-          display: inline-block;
-          font-size: 95%;
-      }
-
-      li a:hover {
-          background-color: #eaeef8;
-      }
-      * {
-          font-family: \\"Helvetiva, Museo Sans\\", sans-serif;
-          color: #333;
-
-          line-height: 1.6333;
-      }
-      main {
-          display: flex;
-          justify-content: center;
-          height: 100%;
-          min-width: 400px;
-      }
-      .wrapper {
-          display: flex;
-          flex-wrap: wrap;
-          width: 90%;
-          flex: 1;
-      }
-      .tile{
-          text-align: center;
-          margin: 20px;
-      }
-      footer {
-          text-align: center;
-      }</style></head><body><h1>📡 Tech radars</h1><main><div class=\\"wrapper\\"><div class=\\"tile\\"><h2>.</h2><ul><li><a class=\\"link\\" href=\\"./2021-06-12\\">2021-06-12</a></li><li><a class=\\"link\\" href=\\"./2021-06-11\\">2021-06-11</a></li></ul></div></div></main><footer>footer</footer></body>"
-`;
-
-exports[`generate 11ty app generate navigation page of data2 1`] = `
+exports[`generate 11ty app generate navigation page by data2 1`] = `
 "<!DOCTYPE html><head><meta charset=\\"utf-8\\"><link rel=\\"stylesheet\\" href=\\"index.css\\"><title>📡 Tech radars</title><style>body {
           display: flex;
           flex-direction: column;
@@ -243,6 +243,61 @@ exports[`generate 11ty app generate navigation page of data2 1`] = `
       footer {
           text-align: center;
       }</style></head><body><h1>📡 Tech radars</h1><main><div class=\\"wrapper\\"><div class=\\"tile\\"><h2>ios</h2><ul><li><a class=\\"link\\" href=\\"ios/2021-06-11\\">2021-06-11</a></li></ul></div><div class=\\"tile\\"><h2>js</h2><ul><li><a class=\\"link\\" href=\\"js/2021-06-12\\">2021-06-12</a></li></ul></div></div></main><footer><div style=\\"width: 100%; text-align: center; margin: 30px 0 10px 0; font-size: 80%\\"><a href=\\"https://github.com/qiwi/tech-radar\\">Tech-radar generator</a>. Based on <a href=\\"https://github.com/zalando/tech-radar\\">zalando/tech-radar</a>. Boosted with <a href=\\"https://github.com/11ty/eleventy/\\">11ty</a><br><a class=\\"link\\" href=\\"https://github.com/qiwi\\">QIWI ❤️ Open Source</a></div></footer></body>"
+`;
+
+exports[`generate 11ty app generate navigation page from custom templates 1`] = `
+"<!DOCTYPE html><head><meta charset=\\"utf-8\\"><link rel=\\"stylesheet\\" href=\\"index.css\\"><title>📡 Tech radars</title><style>body {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          height: 100vh;
+          margin: 0;
+      }
+      ul {
+          list-style-type: none;
+          padding: 0px;
+      }
+      .link {
+          color: black;
+          text-decoration: none;
+      }
+
+      li a {
+          min-width: 150px;
+          padding: 3px 10px;
+          border-radius: 20px;
+          display: inline-block;
+          font-size: 95%;
+      }
+
+      li a:hover {
+          background-color: #eaeef8;
+      }
+      * {
+          font-family: \\"Helvetiva, Museo Sans\\", sans-serif;
+          color: #333;
+
+          line-height: 1.6333;
+      }
+      main {
+          display: flex;
+          justify-content: center;
+          height: 100%;
+          min-width: 400px;
+      }
+      .wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          width: 90%;
+          flex: 1;
+      }
+      .tile{
+          text-align: center;
+          margin: 20px;
+      }
+      footer {
+          text-align: center;
+      }</style></head><body><h1>📡 Tech radars</h1><main><div class=\\"wrapper\\"><div class=\\"tile\\"><h2>.</h2><ul><li><a class=\\"link\\" href=\\"./2021-06-12\\">2021-06-12</a></li><li><a class=\\"link\\" href=\\"./2021-06-11\\">2021-06-11</a></li></ul></div></div></main><footer><div style=\\"width: 100%; text-align: center; margin: 30px 0 10px 0; font-size: 80%\\">Testing footer template</div></footer></body>"
 `;
 
 exports[`generate 11ty app generate navigation page title 1`] = `

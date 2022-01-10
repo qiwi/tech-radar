@@ -34,6 +34,7 @@ export const run = async ({
   navTitle,
   navFooter,
   temp,
+  templates
 } = {}) => {
   const ctx = {
     input,
@@ -45,6 +46,7 @@ export const run = async ({
     navTitle,
     navFooter,
     temp: temp || (await tempDir()),
+    templates,
   }
   ctx.ctx = ctx // context self-ref to simplify pipelining
 
