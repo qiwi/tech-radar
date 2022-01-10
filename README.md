@@ -27,6 +27,7 @@ Fully automated tech-radar generator. Based on [zalando/tech-radar](https://gith
     - [JS API](#js-api)
     - [Input-examples](#input-examples)
     - [CI/CD](#cicd)
+  - [Customization](#customization)
 - [Contributing](#contributing)
   - [Add new data](#add-new-radar-data)
   - [Enhance the generator](#enhance-the-generator)
@@ -36,7 +37,7 @@ Fully automated tech-radar generator. Based on [zalando/tech-radar](https://gith
 ## Key features
 * Builds radars by `csv`, `json` or `yaml` data
 * Renders a separate description page for each radar entry
-* Сompares radars of the same scope with each other and shows the movement of points
+* Compares radars of the same scope with each other and shows the movement of points
 * Assembles all the radars refs on the main navigation page
 * Redirects scope urls to the latest version of their radars
 * CLI / JS / TS API
@@ -268,6 +269,58 @@ Follow [gh-action usage example](https://github.com/qiwi/tech-radar/blob/master/
 },
 ```
 </details>
+
+## Customization
+### Group labels
+Every radar document provides its own definition of what each `quadrant` does represent. Change if necessary.
+```csv
+quadrant,   title
+q1,         Languages and frameworks
+q2,         Platforms
+q3,         Tools
+q4,         Techniques
+```
+
+### Ring colors
+The easiest way to change the look of your radar is by adding an alternative color scheme. `renderSettings` option is exactly for that:
+```json
+{
+  "svg_id": "radar",
+  "width": 1450,
+  "height": 1100,
+  "colors": {
+    "background": "#fff",
+    "grid": "#bbb",
+    "inactive": "#ddd"
+  },
+  "rings": [
+    { "name": "ADOPT", "color": "#93c47d", "id": "adopt" },
+    { "name": "TRIAL", "color": "#93d2c2", "id": "trial" },
+    { "name": "ASSESS", "color": "#fbdb84", "id": "assess" },
+    { "name": "HOLD", "color": "#efafa9", "id": "hold" }
+  ],
+  "print_layout": true
+}
+```
+
+### Templates
+For advanced tweaking, you can use your templates. Pass `template` option to navigate the dir, where your own custom `.njk` files are placed. Expected structure:
+```
+assets
+  favicon.ico
+  radar.css
+  radar.js
+_data/
+  settings.json
+_includes
+  footer.njk
+_layouts
+  entries.njk
+  page.njk
+  radar.njk
+  redirect.njk
+  root.njk
+```
 
 ## Contributing
 Feel free to open new issues: bug reports, feature requests or questions.
