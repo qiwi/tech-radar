@@ -11,12 +11,12 @@ export { parseCsvRadar, parseJsonRadar, parseYamlRadar }
 /**
  * Parse radarDocument
  * @param filePath
- * @returns {{data: any[], meta: {}, quadrantAliases?: {}}} radarDocument
+ * @returns {Promise<{data: any[], meta: {}, quadrantAliases?: {}}>} radarDocument
  */
-export const parse = (filePath) => {
+export const parse = async (filePath) => {
   try {
     const reader = getReader(path.extname(filePath))
-    const document = reader(filePath)
+    const document = await reader(filePath)
     const radar = normalizeEntries(document)
 
     return validate(radar)

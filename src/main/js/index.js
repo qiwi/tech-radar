@@ -1,7 +1,7 @@
 import fse from 'fs-extra'
 import path from 'path'
 
-import { tplDir } from './generator/constants.js'
+import { tplDir } from './constants.js'
 import { genNavPage, genRadars, genRedirects } from './generator/index.js'
 import { getSources, parse } from './parser/index.js'
 import { getDirs, tempDir } from './util.js'
@@ -46,6 +46,7 @@ const getContext = async ({
   navFooter,
   temp,
   templates,
+  renderSettings,
 } = {}) => {
   const ctx = {
     input,
@@ -58,6 +59,7 @@ const getContext = async ({
     navFooter,
     temp: temp || (await tempDir()),
     templates,
+    renderSettings,
   }
 
   ctx.ctx = ctx // context self-ref to simplify pipelining
@@ -72,16 +74,19 @@ const readSources = async ({ ctx, cwd, input }) => {
 }
 
 const parseRadars = async ({ ctx, sources, scopes }) => {
-  ctx.radars = sources.map((file, i) => {
-    const document = parse(file)
-    return {
-      document,
-      source: file,
-      scope: scopes[i],
-      date: document.meta.date,
-      title: document.meta.title,
-    }
-  })
+  ctx.radars = await Promise.all(
+    sources.map(async (file, i) => {
+      const document = await parse(file)
+
+      return {
+        document,
+        source: file,
+        scope: scopes[i],
+        date: document.meta.date,
+        title: document.meta.title,
+      }
+    }),
+  )
 
   return ctx
 }

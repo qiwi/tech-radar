@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fse from 'fs-extra'
 import path from 'path'
 
 /**
@@ -6,8 +6,8 @@ import path from 'path'
  * @param jsonPath
  * @returns {{data: any[], meta: {}}} radarDocument
  */
-export const parseJsonRadar = (jsonPath) => {
+export const parseJsonRadar = async (jsonPath) => {
   const jsonPathResolved = path.resolve(jsonPath)
-  const fileData = fs.readFileSync(jsonPathResolved, 'utf8')
+  const fileData = await fse.readFile(jsonPathResolved, 'utf8')
   return JSON.parse(fileData)
 }
