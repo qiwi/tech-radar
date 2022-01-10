@@ -70,12 +70,13 @@ npx @qiwi/tech-radar --input "/path/to/files/*.{json, csv, yml}" --output /radar
 | cwd | Current working dir | `process.cwd()`
 | input | [glob pattern](https://github.com/mrmlnc/fast-glob) to find radar data: csv/json/yml | `<cwd>/data/**/*.{json,csv,yml}`
 | output | Output directory | `<cwd>/radar`
-| autoscope | idenfify same-scoped files as subversions of a single radar | `false`
+| autoscope | identify same-scoped files as subversions of a single radar | `false`
 | base-prefix | base context path for web statics | `tech-radar`
 | nav-page | create navigation page | `false`
-| nav-title | navigation page title | 
+| nav-title | navigation page title | `📡 Tech radars`
 | nav-footer | navigation page footer |
 | temp | temporary assets dir | [`tempy.directory()`](https://github.com/sindresorhus/tempy)
+| templates | custom 11ty/nunjucks compatible templates directory. Its contents will be merged into default templates dir
 
 ### JS API
 ```js

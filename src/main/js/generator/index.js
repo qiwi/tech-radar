@@ -48,6 +48,7 @@ export const genRadars = async ({
   output,
   navFooter,
   basePrefix,
+  ctx,
 }) => {
   await Promise.all(
     radars.map(async (radar) => {
@@ -59,7 +60,7 @@ export const genRadars = async ({
       radar.footer = navFooter
 
       await genMdAssets(radar)
-      await render('radar', { ...radar, settings: genRadarSettings(radar) })
+      await render('radar', { ...ctx, ...radar, settings: genRadarSettings(radar) })
     }),
   )
 }
@@ -122,6 +123,9 @@ layout: ${template}.njk
 ---
 `,
   )
+  if (options.templates) {
+    await fse.copy(options.templates, temp)
+  }
 
   await elev.init()
   await elev.write()
