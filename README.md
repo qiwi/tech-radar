@@ -282,7 +282,7 @@ q4,         Techniques
 ```
 
 ### Ring colors
-The easiest way to change the look of your radar is by adding an alternative color scheme. `renderSettings` option is exactly for that:
+The easiest way to tweak up the look of your radar is by adding an alternative color scheme. `renderSettings` option is exactly for that:
 ```json
 {
   "svg_id": "radar",
@@ -304,7 +304,7 @@ The easiest way to change the look of your radar is by adding an alternative col
 ```
 
 ### Templates
-For advanced tweaking, you can use your templates. Pass `template` option to navigate the dir, where your own custom `.njk` files are placed. Expected structure:
+For advanced view modification, you can use your templates. Pass `template` option to navigate the dir, where your own custom `.njk` files are placed. Expected structure:
 ```
 assets
   favicon.ico
