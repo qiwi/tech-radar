@@ -3,12 +3,12 @@ import fse from 'fs-extra'
 import { uniq } from 'lodash-es'
 import path from 'path'
 
+import { rootDir, tplDir } from '../constants.js'
 import { tempDir } from '../util.js'
-import { __dirname, settings as defaultSettings, tplDir } from './constants.js'
 import { genMdAssets } from './markdown.js'
 
 export const genConfig = async ({ temp, output, prefix }) => {
-  const configExtPath = path.resolve(__dirname, '.eleventy.cjs')
+  const configExtPath = path.resolve(rootDir, 'generator/.eleventy.cjs')
   const configMixin = { extra: { temp, prefix, output } }
   const configPath = path.join(temp, 'config.js')
   const configContents = `
@@ -28,6 +28,7 @@ export const genRadarSettings = ({
   date,
   document,
   scope,
+  renderSettings,
 }) => {
   const quadrants = [
     { name: document.quadrantTitles.q1 || 'Q1', id: 'q1' },
@@ -44,7 +45,7 @@ export const genRadarSettings = ({
     footer: navFooter,
   }
 
-  return { ...defaultSettings, extra, quadrants }
+  return { ...renderSettings, extra, quadrants }
 }
 
 export const genRadars = async ({ radars, ctx }) => {
@@ -120,11 +121,21 @@ export const render = async (template, options) => {
   const configPath = await genConfig(options)
   const elev = new Eleventy(temp, output, { configPath })
 
+  // Copy templates
   await fse.copy(tplDir, temp)
+  if (templates) {
+    await fse.copy(templates, temp)
+  }
+
+  // Store settings
+  const settingsPath = path.join(temp, '_data/settings.json')
+  const _settings = await fse.readJson(settingsPath)
   await fse.outputFile(
-    path.join(temp, '_data/settings.json'),
-    JSON.stringify(settings),
+    settingsPath,
+    JSON.stringify({ ..._settings, ...settings }),
   )
+
+  // Prepare entry point template
   await fse.outputFile(
     path.join(temp, 'index.njk'),
     `---
@@ -132,10 +143,6 @@ layout: ${template}.njk
 ---
 `,
   )
-
-  if (templates) {
-    await fse.copy(templates, temp)
-  }
 
   await elev.init()
   await elev.write()

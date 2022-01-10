@@ -19,7 +19,7 @@ describe('generate md assets', () => {
     const outDir = path.join(__dirname, 'temp')
 
     await genMdAssets({
-      document: parse(csvPath),
+      document: await parse(csvPath),
       temp: outDir
     })
 

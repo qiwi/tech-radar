@@ -11,8 +11,6 @@ const out = path.resolve(process.cwd(), 'test')
 const input = path.join(__dirname, '../stub/data/**')
 const getFileStruct = (dir) => getSources('**/*', dir).then(getDirs)
 
-
-
 afterAll(async () => await fse.remove(out))
 
 describe('generate 11ty app', () => {
