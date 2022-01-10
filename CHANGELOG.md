@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/qiwi/tech-radar/compare/v1.7.5...v1.8.0) (2022-01-10)
+
+
+### Features
+
+* provide custom templates ([1de5b1c](https://github.com/qiwi/tech-radar/commit/1de5b1cac96494f5a18d2422a9a438d7b8d2404f))
+
 ## [1.7.5](https://github.com/qiwi/tech-radar/compare/v1.7.4...v1.7.5) (2022-01-07)
 
 
