@@ -133,10 +133,10 @@ await run({
     }
   ],
   "quadrantAliases": {
-    "languages-and-frameworks": "q1",
-    "platforms": "q2",
-    "tools": "q3",
-    "techniques": "q4"
+    "q1": "languages-and-frameworks",
+    "q2": "platforms",
+    "q3": "tools",
+    "q4": "techniques" 
   },
   "quadrantTitles": {
     "q1": "Languages and frameworks",
@@ -180,10 +180,14 @@ data:
     description: Унификации контракта интерфейсов различных слоев приложений
     moved: -1
 quadrantAliases:
-  languages-and-frameworks: q1
-  platforms: q2
-  tools: q3
-  techniques: q4
+  q1: 
+    - languages-and-frameworks
+    - lnf
+    - lang
+    - framework
+  q2: platforms
+  q3: tools
+  q4: techniques
 quadrantTitles:
   q1: Languages and frameworks
   q2: Platforms

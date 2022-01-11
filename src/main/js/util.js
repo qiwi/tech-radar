@@ -17,3 +17,7 @@ export const tempDir = async (base) =>
   base
     ? mkdirp(path.join(await base, nanoid(5)))
     : path.join(tempy.root, `tech-radar-${nanoid(5)}`)
+
+export const asArray = (v) => Array.isArray(v)
+  ? v
+  : [v]
