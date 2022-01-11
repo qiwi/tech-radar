@@ -1,6 +1,7 @@
 import { globby } from 'globby'
 import path from 'path'
 
+import { asArray } from '../util.js'
 import { parseCsvRadar } from './csv.js'
 import { parseJsonRadar } from './json.js'
 import { validate } from './validator.js'
@@ -56,7 +57,21 @@ export const getSources = async (pattern, cwd) =>
     cwd,
   })
 
+export const normalizeQuadrantAliases = (aliases) => Object.entries(aliases).reduce((m, [k, v]) => {
+  if (/^q[1-4]$/.test(k)) {
+    asArray(v).forEach(_v => {
+      m[_v] = k
+    })
+  } else {
+    m[k] = v
+  }
+
+  return m
+}, {})
+
 export const normalizeEntries = (doc) => {
+  doc.quadrantAliases = normalizeQuadrantAliases(doc.quadrantAliases)
+
   doc.data.forEach((entry) => {
     entry.ring = entry.ring.toLowerCase()
     entry.quadrant = getQuadrant(entry.quadrant, doc.quadrantAliases)
