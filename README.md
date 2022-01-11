@@ -308,7 +308,7 @@ The easiest way to tweak up the look of your radar is by adding an alternative c
 ```
 
 ### Templates
-For advanced view modification, you can use your templates. Pass `template` option to navigate the dir, where your own custom `.njk` files are placed. Expected structure:
+For advanced view modification, you can use your own templates. Pass `template` option to navigate the dir, where your own custom `.njk` files are placed. Expected structure:
 ```
 assets
   favicon.ico
