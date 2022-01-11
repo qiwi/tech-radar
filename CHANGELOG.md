@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/qiwi/tech-radar/compare/v1.10.0...v1.10.1) (2022-01-11)
+
+
+### Bug Fixes
+
+* restore date label ([a6bfab1](https://github.com/qiwi/tech-radar/commit/a6bfab150a543f9a782acce991d435959ddbdd7a))
+
 # [1.10.0](https://github.com/qiwi/tech-radar/compare/v1.9.0...v1.10.0) (2022-01-11)
 
 
