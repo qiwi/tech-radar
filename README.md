@@ -17,6 +17,12 @@
 Fully automated tech-radar generator. Based on [zalando/tech-radar](https://github.com/zalando/tech-radar). Boosted with [11ty](https://github.com/11ty/eleventy/)
 </div>
 
+## Purpose
+[Zalando's answer](https://opensource.zalando.com/tech-radar/):
+> The Tech Radar is a tool to inspire and support engineering teams at Zalando to pick the best technologies for new projects; it provides a platform to share knowledge and experience in technologies, to reflect on technology decisions and continuously evolve our technology landscape. Based on the pioneering work of ThoughtWorks, our Tech Radar sets out the changes in technologies that are interesting in software development — changes that we think our engineering teams should pay attention to and consider using in their projects.
+
+We've just _slightly_ modified [the original implementation](https://github.com/zalando/tech-radar) for our bloody enterprise requirements.
+
 ## Table of contents
 - [Getting started](#getting-started)
   - [Key features](#key-features)
