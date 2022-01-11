@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/qiwi/tech-radar/compare/v1.9.0...v1.10.0) (2022-01-11)
+
+
+### Features
+
+* introduce alternative q alias mapping, make radar schema stricter ([82744d2](https://github.com/qiwi/tech-radar/commit/82744d25220e6d3c3243e15be726fee258c406bc))
+
 # [1.9.0](https://github.com/qiwi/tech-radar/compare/v1.8.0...v1.9.0) (2022-01-10)
 
 
