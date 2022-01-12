@@ -338,18 +338,22 @@ You're always welcome to suggest a PR. Just fork this repo, write some code, add
 Any feedback is appreciated.
 
 ### Add new radar data
-1. Place a new radar data file to `data/<scope>/<date>.{csv|json|yaml}`
-2. Fill it as shown in [examples](#input-examples) / [its siblings](https://github.com/qiwi/tech-radar/tree/master/data)
-3. Run `yarn generate && yarn preview`
-4. Follow [http://localhost:3000/](http://localhost:3000/). Assess the result
-5. Push commit and create a pull request
+1. Clone the repo: `git clone git@github.com:qiwi/tech-radar.git`
+2. Install deps: `yarn install`
+3. Place a new radar data file to `data/<scope>/<date>.{csv|json|yaml}`
+4. Fill it as shown in [examples](#input-examples) / [its siblings](https://github.com/qiwi/tech-radar/tree/master/data)
+5. Run `yarn generate && yarn preview`
+6. Follow [http://localhost:3000/](http://localhost:3000/). Assess the result
+7. Push commit and create a pull request
 
 ### Enhance the generator
-1. Make some changes in `src/main/js`
-2. Put some tests to `src/test/js`
-3. Run `yarn test`
-4. Repeat if necessary steps 1 to 3
-5. Push commit and create a pull request
+1. Clone the repo: `git clone git@github.com:qiwi/tech-radar.git`
+2. Install deps: `yarn install`
+3. Make some changes in `src/main/js`
+4. Put some tests to `src/test/js`
+5. Run `yarn test`
+6. Repeat if necessary steps 1 to 3
+7. Push commit and create a pull request
 
 ## Alternatives
 * [https://github.com/thoughtworks/build-your-own-radar](https://github.com/thoughtworks/build-your-own-radar)
