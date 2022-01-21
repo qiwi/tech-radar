@@ -21,7 +21,7 @@
                 display: block;
                 color: #999;
             }
-            header, main, {
+            header, main {
                 display: inline-block;
             }
             header, main, table, tbody, thead {
@@ -49,7 +49,7 @@
     <body>
         <header>
             <h1 class="title">QIWI iOS Tech Radar</h1>
-            <p class="date">2022-01-21</p>
+            <p class="date">{{ settings.meta.date | safe }}</p>
         </header>
         <main>
             <table>
