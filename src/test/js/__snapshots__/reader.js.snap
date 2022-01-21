@@ -109,17 +109,19 @@ exports[`parser.js parse() 1`] = `
 Object {
   "data": Array [
     Object {
-      "description": "Статически, типизированный ЖС",
-      "moved": 1,
-      "name": "TypeScript",
-      "quadrant": "q1",
-      "ring": "adopt",
-    },
-    Object {
       "description": "",
       "moved": 0,
       "name": "Nodejs",
       "quadrant": "q2",
+      "quadrantTitle": "Platforms",
+      "ring": "adopt",
+    },
+    Object {
+      "description": "Статически, типизированный ЖС",
+      "moved": 1,
+      "name": "TypeScript",
+      "quadrant": "q1",
+      "quadrantTitle": "Languages and frameworks",
       "ring": "adopt",
     },
     Object {
@@ -127,6 +129,7 @@ Object {
       "moved": 0,
       "name": "codeclimate",
       "quadrant": "q3",
+      "quadrantTitle": "Tools",
       "ring": "trial",
     },
     Object {
@@ -134,6 +137,7 @@ Object {
       "moved": -1,
       "name": "Гексагональная архитектура",
       "quadrant": "q4",
+      "quadrantTitle": "Techniques",
       "ring": "assess",
     },
   ],
