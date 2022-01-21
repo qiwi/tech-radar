@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/qiwi/tech-radar/compare/v1.11.1...v1.12.0) (2022-01-21)
+
+
+### Features
+
+* add legend for table view radar ([be67147](https://github.com/qiwi/tech-radar/commit/be6714743782e33595af8d8c4b70133ea6e277cd))
+
 ## [1.11.1](https://github.com/qiwi/tech-radar/compare/v1.11.0...v1.11.1) (2022-01-21)
 
 
