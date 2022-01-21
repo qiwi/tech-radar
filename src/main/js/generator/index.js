@@ -30,13 +30,9 @@ export const genRadarSettings = ({
   scope,
   renderSettings,
 }) => {
-  const quadrants = [
-    { name: document.quadrantTitles.q1 || 'Q1', id: 'q1' },
-    { name: document.quadrantTitles.q2 || 'Q2', id: 'q2' },
-    { name: document.quadrantTitles.q3 || 'Q3', id: 'q3' },
-    { name: document.quadrantTitles.q4 || 'Q4', id: 'q4' },
-  ]
-
+  const quadrants = Object.entries(document.quadrantTitles).map(
+    ([name, id]) => ({ name, id }),
+  )
   const extra = {
     title,
     date,
@@ -52,20 +48,39 @@ export const genRadarSettings = ({
 export const genRadars = async ({ radars, ctx }) => {
   await Promise.all(
     radars.map(async (radar) => {
-      const temp = await tempDir(ctx.temp)
-      const output = path.join(ctx.output, radar.scope, radar.date)
-      const context = {
-        ...ctx,
-        ...radar,
-        output,
-        temp,
-      }
-      context.settings = genRadarSettings(context)
-
-      await genMdAssets(context)
-      await render('radar', context)
+      await genRadar({ ...ctx, radar })
+      await genTable({ ...ctx, radar })
     }),
   )
+}
+
+export const genRadar = async ({ ctx, radar }) => {
+  const temp = await tempDir(ctx.temp)
+  const output = path.join(ctx.output, radar.scope, radar.date)
+  const context = {
+    ...ctx,
+    ...radar,
+    output,
+    temp,
+  }
+  context.settings = genRadarSettings(context)
+
+  await genMdAssets(context)
+  await render('radar', context)
+}
+
+export const genTable = async ({ ctx, radar }) => {
+  const temp = await tempDir(ctx.temp)
+  const output = path.join(ctx.output, radar.scope, radar.date, 'table')
+  const settings = radar.document
+  const context = {
+    ...ctx,
+    ...radar,
+    settings,
+    output,
+    temp,
+  }
+  await render('table', context)
 }
 
 export const genRedirects = async ({ radars, output, ctx, temp }) => {

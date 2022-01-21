@@ -53,16 +53,28 @@ export const radarSchema = {
       },
       required: ['title', 'date'],
     },
+    quadrantTitles: {
+      type: 'object',
+      additionalProperties: false,
+      patternProperties: {
+        '^q[1-4]$': { type: 'string' },
+      },
+    },
     quadrantAliases: {
       type: 'object',
       patternProperties: {
-        '^q[1-4]$': { anyOf: [
-          {type: 'string', pattern: '^(?!q[1-4]$)'},
-          {type: 'array', items: {type: 'string', pattern: '^(?!q[1-4]$)'}}
-        ]},
-        '^(?!q[1-4]$)': {type: 'string', enum: ['q1', 'q2', 'q3', 'q4']}
+        '^q[1-4]$': {
+          anyOf: [
+            { type: 'string', pattern: '^(?!q[1-4]$)' },
+            {
+              type: 'array',
+              items: { type: 'string', pattern: '^(?!q[1-4]$)' },
+            },
+          ],
+        },
+        '^(?!q[1-4]$)': { type: 'string', enum: ['q1', 'q2', 'q3', 'q4'] },
       },
-      additionalProperties: false
+      additionalProperties: false,
     },
   },
   required: ['meta', 'data', 'quadrantAliases'],

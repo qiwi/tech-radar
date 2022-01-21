@@ -52,50 +52,52 @@ describe('validate', () => {
       [
         'q* → string',
         {
-          'q1': 'foo'
+          q1: 'foo',
         },
-        true
+        true,
       ],
       [
         'q* → string[]',
         {
-          'q1': ['foo']
+          q1: ['foo'],
         },
-        true
+        true,
       ],
       [
         'q* → number',
         {
-          'q1': 1
+          q1: 1,
         },
-        false
+        false,
       ],
       [
         'q* → q*',
         {
-          'q1': 'q1'
+          q1: 'q1',
         },
-        false
+        false,
       ],
       [
         '* → q* enum',
         {
-          'foo': 'q1'
+          foo: 'q1',
         },
-        true
+        true,
       ],
       [
         '* → q* enum',
         {
-          'foo': 'foo'
+          foo: 'foo',
         },
-        false
-      ]
+        false,
+      ],
     ]
 
     cases.forEach(([name, obj, result]) => {
       it(name, () => {
-        expect(_validate(obj, radarSchema.properties.quadrantAliases)).toBe(result)
+        expect(_validate(obj, radarSchema.properties.quadrantAliases)).toBe(
+          result,
+        )
       })
     })
   })
