@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/qiwi/tech-radar/compare/v1.10.1...v1.11.0) (2022-01-21)
+
+
+### Features
+
+* add template view ([38ce5ec](https://github.com/qiwi/tech-radar/commit/38ce5ecd023cefecfc6c7490ab5ede2e110c0ee8))
+
 ## [1.10.1](https://github.com/qiwi/tech-radar/compare/v1.10.0...v1.10.1) (2022-01-11)
 
 
