@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/qiwi/tech-radar/compare/v1.11.0...v1.11.1) (2022-01-21)
+
+
+### Bug Fixes
+
+* fix date render for table view ([7cef7f3](https://github.com/qiwi/tech-radar/commit/7cef7f3ff555563a7c18d468b7c8efc5e38a7c29))
+
 # [1.11.0](https://github.com/qiwi/tech-radar/compare/v1.10.1...v1.11.0) (2022-01-21)
 
 
