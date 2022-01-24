@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/qiwi/tech-radar/compare/v1.12.0...v1.12.1) (2022-01-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency globby to v13 ([f86fee3](https://github.com/qiwi/tech-radar/commit/f86fee3801817d901e7b189127f4e7626a17b3b3))
+
 # [1.12.0](https://github.com/qiwi/tech-radar/compare/v1.11.1...v1.12.0) (2022-01-21)
 
 
