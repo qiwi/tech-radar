@@ -31,7 +31,7 @@ export const genRadarSettings = ({
   renderSettings,
 }) => {
   const quadrants = Object.entries(document.quadrantTitles).map(
-    ([name, id]) => ({ name, id }),
+    ([id, name]) => ({ name, id }),
   )
   const extra = {
     title,
