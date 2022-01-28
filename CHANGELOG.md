@@ -1,3 +1,10 @@
+## [1.12.2](https://github.com/qiwi/tech-radar/compare/v1.12.1...v1.12.2) (2022-01-28)
+
+
+### Bug Fixes
+
+* fix quadrant labels ([cdf7021](https://github.com/qiwi/tech-radar/commit/cdf7021af46fff1f255858af7511b38b61e1dc20))
+
 ## [1.12.1](https://github.com/qiwi/tech-radar/compare/v1.12.0...v1.12.1) (2022-01-24)
 
 
