@@ -58,7 +58,7 @@
     "js-yaml": "^4.1.0",
     "lodash-es": "^4.17.21",
     "meow": "^10.1.2",
-    "nanoid": "^3.2.0",
+    "nanoid": "^4.0.0",
     "tempy": "^2.0.0"
   },
   "keywords": [
