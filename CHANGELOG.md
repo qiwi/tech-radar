@@ -1,3 +1,10 @@
+## [1.12.3](https://github.com/qiwi/tech-radar/compare/v1.12.2...v1.12.3) (2022-06-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency nanoid to v4 ([f14c094](https://github.com/qiwi/tech-radar/commit/f14c09485d5f90eff1f35fbba814e5fc4963c2c6))
+
 ## [1.12.2](https://github.com/qiwi/tech-radar/compare/v1.12.1...v1.12.2) (2022-01-28)
 
 
