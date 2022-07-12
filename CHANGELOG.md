@@ -1,3 +1,11 @@
+# [1.13.0](https://github.com/qiwi/tech-radar/compare/v1.12.3...v1.13.0) (2022-07-12)
+
+
+### Features
+
+* add qiwi ops tech-radar ([421c2d6](https://github.com/qiwi/tech-radar/commit/421c2d66608e7a00e705ccf9077a4ae7f67eed2b))
+* change legend layout from 2-2 tp 1-3 ([5e8ce59](https://github.com/qiwi/tech-radar/commit/5e8ce598423e61ca364ecfd5b8bfeda11e20cc42))
+
 ## [1.12.3](https://github.com/qiwi/tech-radar/compare/v1.12.2...v1.12.3) (2022-06-19)
 
 
