@@ -265,10 +265,13 @@ function radar_visualization(config) {
   }
 
   function legend_transform(quadrant, ring, index = null) {
-    var dx = ring < 2 ? 0 : 140
+    var dx = ring < 1 ? 0 : 140
     var dy = index == null ? -16 : index * 12
-    if (ring % 2 === 1) {
-      dy = dy + 36 + segmented[quadrant][ring - 1].length * 12
+    if (ring === 2 ) {
+      dy = dy + 36 + segmented[quadrant][1].length * 12
+    }
+    if (ring === 3 ) {
+      dy = dy + 36 * 2 + (segmented[quadrant][1].length + segmented[quadrant][2].length) * 12
     }
     return translate(
       legend_offset[quadrant].x + dx,
