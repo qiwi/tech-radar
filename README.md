@@ -6,7 +6,7 @@
 
 <div align="center"><h2>
 
-[📡 QIWI](https://qiwi.github.io/tech-radar/) • [Android](https://qiwi.github.io/tech-radar/android/) • [Backend](https://qiwi.github.io/tech-radar/backend/) • [iOS](https://qiwi.github.io/tech-radar/ios/) • [JS](https://qiwi.github.io/tech-radar/js/) • [QA](https://qiwi.github.io/tech-radar/qa/) * [OPS](https://qiwi.github.io/tech-radar/ops/)
+[📡 QIWI](https://qiwi.github.io/tech-radar/) • [Android](https://qiwi.github.io/tech-radar/android/) • [Backend](https://qiwi.github.io/tech-radar/backend/) • [iOS](https://qiwi.github.io/tech-radar/ios/) • [JS](https://qiwi.github.io/tech-radar/js/) • [QA](https://qiwi.github.io/tech-radar/qa/) • [OPS](https://qiwi.github.io/tech-radar/ops/)
 </h2>
 
 [![CI](https://github.com/qiwi/tech-radar/workflows/CI/badge.svg)](https://github.com/qiwi/tech-radar/actions)
