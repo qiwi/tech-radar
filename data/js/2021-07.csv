@@ -33,7 +33,7 @@ Nodejs,                     Platforms,  Adopt,
 Kuber,                      Platforms,  Adopt,
 Pijma,                      Platforms,  Trial,
 Yarn,                       Tools,      Adopt,  Пакетный менеджер вместо npm
-semantic-relese,            Tools,      Trial,  Движение к CD чтобы катать семантические релизы
+semantic-release,           Tools,      Trial,  Движение к CD чтобы катать семантические релизы
 Travis-ci,                  Tools,      Trial,  CI для OSS
 eslint,                     Tools,      Trial,  "Инструмент, который позволяет проводить анализ качества вашего кода, написанного на любом выбранном стандарте JavaScript."
 flp,                        Tools,      Assess, Провайдер клиентских событий
