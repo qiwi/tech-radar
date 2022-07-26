@@ -1,7 +1,7 @@
 import fse from 'fs-extra'
 import { nanoid } from 'nanoid'
 import path from 'path'
-import tempy from 'tempy'
+import tempRoot from 'temp-dir'
 
 export const mkdirp = async (dir) =>
   (await fse.mkdir(dir, { recursive: true })) && dir
@@ -16,6 +16,6 @@ export const getDirs = (files) =>
 export const tempDir = async (base) =>
   base
     ? mkdirp(path.join(await base, nanoid(5)))
-    : path.join(tempy.root, `tech-radar-${nanoid(5)}`)
+    : path.join(tempRoot, `tech-radar-${nanoid(5)}`)
 
 export const asArray = (v) => (Array.isArray(v) ? v : [v])
