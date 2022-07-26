@@ -97,13 +97,10 @@ jobs:
           coverageLocations: |
             ${{ github.workspace }}/coverage/lcov.info:lcov
 
-      - name: Lib-release
+      - name: Release
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GH_USER: 'qiwibot'
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GIT_AUTHOR_EMAIL: 'opensource@qiwi.com'
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           GIT_COMMITTER_EMAIL: 'opensource@qiwi.com'
-          GIT_AUTHOR_NAME: '@qiwibot'
-          GIT_COMMITTER_NAME: '@qiwibot'
-        run: yarn release
+          GIT_COMMITTER_NAME: 'qiwibot'
+        run: npm_config_yes=true npx zx-semrel
