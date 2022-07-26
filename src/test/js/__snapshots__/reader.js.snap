@@ -4,11 +4,11 @@ exports[`parser.js csvReader 1`] = `
 Object {
   "data": Array [
     Object {
-      "description": "Статически, типизированный ЖС",
-      "moved": "1",
-      "name": "TypeScript",
-      "quadrant": "language",
-      "ring": "Adopt",
+      "description": "Статический анализатор кода",
+      "moved": "0",
+      "name": "codeclimate",
+      "quadrant": "tools",
+      "ring": "Trial",
     },
     Object {
       "description": "",
@@ -18,11 +18,11 @@ Object {
       "ring": "Adopt",
     },
     Object {
-      "description": "Статический анализатор кода",
-      "moved": "0",
-      "name": "codeclimate",
-      "quadrant": "tools",
-      "ring": "Trial",
+      "description": "Статически, типизированный ЖС",
+      "moved": "1",
+      "name": "TypeScript",
+      "quadrant": "language",
+      "ring": "Adopt",
     },
     Object {
       "description": "Унификации контракта интерфейсов различных слоев приложений",
