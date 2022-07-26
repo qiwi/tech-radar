@@ -1,3 +1,11 @@
+## [1.13.1](https://github.com/qiwi/tech-radar/compare/v1.13.0...v1.13.1) (2022-07-26)
+
+### Fixes & improvements
+* perf: tech release, migrate to zx-semrel ([b2e3ff0](https://github.com/qiwi/tech-radar/commit/b2e3ff0a7db5e43bcb07256ae9fc30f8d3d9c998))
+* fix(pkg): add license ([e8c8925](https://github.com/qiwi/tech-radar/commit/e8c8925f53d06349d50b2c331c13a97ff3707975))
+* perf: up deps ([24ca07a](https://github.com/qiwi/tech-radar/commit/24ca07af07eacce2a7dd9f0d3bdcdbffc40141a5))
+* docs: update radars ([6a07c2f](https://github.com/qiwi/tech-radar/commit/6a07c2f5e8dee4152010a26c3e7579813f86663f))
+
 # [1.13.0](https://github.com/qiwi/tech-radar/compare/v1.12.3...v1.13.0) (2022-07-26)
 
 
