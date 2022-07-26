@@ -64,5 +64,6 @@
   "keywords": [
     "radar",
     "tech-radar"
-  ]
+  ],
+  "license": "MIT"
 }
