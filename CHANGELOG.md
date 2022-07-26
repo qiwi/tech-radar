@@ -1,3 +1,15 @@
+# [1.13.0](https://github.com/qiwi/tech-radar/compare/v1.12.3...v1.13.0) (2022-07-26)
+
+
+### Features
+
+* change legend layout from 2-2 tp 1-3 ([5e8ce59](https://github.com/qiwi/tech-radar/commit/5e8ce598423e61ca364ecfd5b8bfeda11e20cc42))
+
+
+### Performance Improvements
+
+* up deps ([24ca07a](https://github.com/qiwi/tech-radar/commit/24ca07af07eacce2a7dd9f0d3bdcdbffc40141a5))
+
 # [1.13.0](https://github.com/qiwi/tech-radar/compare/v1.12.3...v1.13.0) (2022-07-12)
 
 
