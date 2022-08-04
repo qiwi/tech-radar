@@ -1,3 +1,8 @@
+## [1.13.2](https://github.com/qiwi/tech-radar/compare/v1.13.1...v1.13.2) (2022-08-04)
+
+### Fixes & improvements
+* fix: move terser to prod deps (#79) ([897cd71](https://github.com/qiwi/tech-radar/commit/897cd71c3b89091c301e0909819fb5839a27e71c))
+
 ## [1.13.1](https://github.com/qiwi/tech-radar/compare/v1.13.0...v1.13.1) (2022-07-26)
 
 ### Fixes & improvements
