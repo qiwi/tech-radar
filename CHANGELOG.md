@@ -1,3 +1,8 @@
+## [1.13.3](https://github.com/qiwi/tech-radar/compare/v1.13.2...v1.13.3) (2022-09-26)
+
+### Fixes & improvements
+* fix(deps): update dependency temp-dir to v3 ([64be9fc](https://github.com/qiwi/tech-radar/commit/64be9fc799c891a1ebe03ac350d56f93ea47a097))
+
 ## [1.13.2](https://github.com/qiwi/tech-radar/compare/v1.13.1...v1.13.2) (2022-08-04)
 
 ### Fixes & improvements
