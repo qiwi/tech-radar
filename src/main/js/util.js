@@ -11,7 +11,7 @@ export const getDirs = (files) =>
     f.slice(
       [...files[0]].findIndex((c, i) => files.some((f) => f.charAt(i) !== c)),
     ),
-  )
+  ).sort()
 
 export const tempDir = async (base) =>
   base

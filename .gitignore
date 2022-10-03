@@ -68,3 +68,13 @@ buildcache
 
 #test
 src/test/js/temp
+
+# Coverage
+cc-reporter
+cc-reporter.*
+
+# Creds
+*.asc
+*.key
+*.pem
+*.cert

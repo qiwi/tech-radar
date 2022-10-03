@@ -1,30 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`parser.js csvReader 1`] = `
-Object {
-  "data": Array [
-    Object {
+{
+  "data": [
+    {
       "description": "Статический анализатор кода",
       "moved": "0",
       "name": "codeclimate",
       "quadrant": "tools",
       "ring": "Trial",
     },
-    Object {
+    {
       "description": "",
       "moved": "",
       "name": "Nodejs",
       "quadrant": "Platforms",
       "ring": "Adopt",
     },
-    Object {
+    {
       "description": "Статически, типизированный ЖС",
       "moved": "1",
       "name": "TypeScript",
       "quadrant": "language",
       "ring": "Adopt",
     },
-    Object {
+    {
       "description": "Унификации контракта интерфейсов различных слоев приложений",
       "moved": "-1",
       "name": "Гексагональная архитектура",
@@ -32,19 +32,19 @@ Object {
       "ring": "Assess",
     },
   ],
-  "meta": Object {
+  "meta": {
     "date": "2021-06-18",
     "legend": "bla bla bla",
     "title": "work it",
   },
-  "quadrantAliases": Object {
+  "quadrantAliases": {
     "language": "q1",
     "languages-and-frameworks": "q1",
     "platforms": "q2",
     "techniques": "q4",
     "tools": "q3",
   },
-  "quadrantTitles": Object {
+  "quadrantTitles": {
     "q1": "Languages and frameworks",
     "q2": "Platforms",
     "q3": "Tools",
@@ -54,30 +54,30 @@ Object {
 `;
 
 exports[`parser.js jsonReader 1`] = `
-Object {
-  "data": Array [
-    Object {
+{
+  "data": [
+    {
       "description": "Статически типизированный ЖС",
       "moved": "1",
       "name": "TypeScript",
       "quadrant": "languages-and-frameworks",
       "ring": "Adopt",
     },
-    Object {
+    {
       "description": "",
       "moved": "",
       "name": "Nodejs",
       "quadrant": "Platforms",
       "ring": "Adopt",
     },
-    Object {
+    {
       "description": "Статический анализатор кода",
       "moved": "0",
       "name": "codeclimate",
       "quadrant": "tools",
       "ring": "Trial",
     },
-    Object {
+    {
       "description": "Унификации контракта интерфейсов различных слоев приложений",
       "moved": "-1",
       "name": "Гексагональная архитектура",
@@ -85,18 +85,18 @@ Object {
       "ring": "Assess",
     },
   ],
-  "meta": Object {
+  "meta": {
     "date": "2021-06-12",
     "legend": "bla bla bla",
     "title": "tech radar js",
   },
-  "quadrantAliases": Object {
+  "quadrantAliases": {
     "languages-and-frameworks": "q1",
     "platforms": "q2",
     "techniques": "q4",
     "tools": "q3",
   },
-  "quadrantTitles": Object {
+  "quadrantTitles": {
     "q1": "Languages and frameworks",
     "q2": "Platforms",
     "q3": "Tools",
@@ -106,9 +106,9 @@ Object {
 `;
 
 exports[`parser.js parse() 1`] = `
-Object {
-  "data": Array [
-    Object {
+{
+  "data": [
+    {
       "description": "",
       "moved": 0,
       "name": "Nodejs",
@@ -116,7 +116,7 @@ Object {
       "quadrantTitle": "Platforms",
       "ring": "adopt",
     },
-    Object {
+    {
       "description": "Статически, типизированный ЖС",
       "moved": 1,
       "name": "TypeScript",
@@ -124,7 +124,7 @@ Object {
       "quadrantTitle": "Languages and frameworks",
       "ring": "adopt",
     },
-    Object {
+    {
       "description": "Статический анализатор кода",
       "moved": 0,
       "name": "codeclimate",
@@ -132,7 +132,7 @@ Object {
       "quadrantTitle": "Tools",
       "ring": "trial",
     },
-    Object {
+    {
       "description": "Унификации контракта интерфейсов различных слоев приложений",
       "moved": -1,
       "name": "Гексагональная архитектура",
@@ -141,19 +141,19 @@ Object {
       "ring": "assess",
     },
   ],
-  "meta": Object {
+  "meta": {
     "date": "2021-06-18",
     "legend": "bla bla bla",
     "title": "work it",
   },
-  "quadrantAliases": Object {
+  "quadrantAliases": {
     "language": "q1",
     "languages-and-frameworks": "q1",
     "platforms": "q2",
     "techniques": "q4",
     "tools": "q3",
   },
-  "quadrantTitles": Object {
+  "quadrantTitles": {
     "q1": "Languages and frameworks",
     "q2": "Platforms",
     "q3": "Tools",
@@ -163,30 +163,30 @@ Object {
 `;
 
 exports[`parser.js yamlReader 1`] = `
-Object {
-  "data": Array [
-    Object {
+{
+  "data": [
+    {
       "description": "Статически типизированный ЖС",
       "moved": 1,
       "name": "TypeScript",
       "quadrant": "languages-and-frameworks",
       "ring": "Adopt",
     },
-    Object {
+    {
       "description": null,
       "moved": null,
       "name": "Nodejs",
       "quadrant": "Platforms",
       "ring": "Adopt",
     },
-    Object {
+    {
       "description": "Статический анализатор кода",
       "moved": 0,
       "name": "codeclimate",
       "quadrant": "tools",
       "ring": "Trial",
     },
-    Object {
+    {
       "description": "Унификации контракта интерфейсов различных слоев приложений",
       "moved": -1,
       "name": "Гексагональная архитектура",
@@ -194,18 +194,18 @@ Object {
       "ring": "Assess",
     },
   ],
-  "meta": Object {
+  "meta": {
     "date": "2021-06-11",
     "legend": "bla bla bla",
     "title": "tech radar js",
   },
-  "quadrantAliases": Object {
+  "quadrantAliases": {
     "languages-and-frameworks": "q1",
     "platforms": "q2",
     "techniques": "q4",
     "tools": "q3",
   },
-  "quadrantTitles": Object {
+  "quadrantTitles": {
     "q1": "Languages and frameworks",
     "q2": "Platforms",
     "q3": "Tools",

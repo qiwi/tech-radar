@@ -38,7 +38,7 @@ export const genRadarSettings = ({
     date,
     target: path.join(scope, date),
     prefix: path.join(basePrefix, scope, date),
-    basePrefix: basePrefix,
+    basePrefix,
     footer: navFooter,
   }
 
