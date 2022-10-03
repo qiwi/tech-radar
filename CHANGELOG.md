@@ -1,3 +1,8 @@
+## [1.13.4](https://github.com/qiwi/tech-radar/compare/v1.13.3...v1.13.4) (2022-10-03)
+
+### Fixes & improvements
+* perf: up deps ([5c83ae3](https://github.com/qiwi/tech-radar/commit/5c83ae3bf0b8391fef26fa65ca1dffa1147ac0da))
+
 ## [1.13.3](https://github.com/qiwi/tech-radar/compare/v1.13.2...v1.13.3) (2022-09-26)
 
 ### Fixes & improvements
