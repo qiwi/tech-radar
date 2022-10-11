@@ -1,3 +1,8 @@
+## [1.13.5](https://github.com/qiwi/tech-radar/compare/v1.13.4...v1.13.5) (2022-10-11)
+
+### Fixes & improvements
+* fix(deps): update dependency meow to v11 ([a2dce52](https://github.com/qiwi/tech-radar/commit/a2dce52c62eb9605a7ee819b21a19332c5edb4f3))
+
 ## [1.13.4](https://github.com/qiwi/tech-radar/compare/v1.13.3...v1.13.4) (2022-10-03)
 
 ### Fixes & improvements
