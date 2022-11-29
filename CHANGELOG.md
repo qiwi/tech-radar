@@ -1,3 +1,8 @@
+## [1.13.6](https://github.com/qiwi/tech-radar/compare/v1.13.5...v1.13.6) (2022-11-29)
+
+### Fixes & improvements
+* fix(deps): update dependency fs-extra to v11 ([fba00d2](https://github.com/qiwi/tech-radar/commit/fba00d2cef70c97dcbbaa71243d3fdfd266a6b9e))
+
 ## [1.13.5](https://github.com/qiwi/tech-radar/compare/v1.13.4...v1.13.5) (2022-10-11)
 
 ### Fixes & improvements
