@@ -1,3 +1,8 @@
+## [1.13.7](https://github.com/qiwi/tech-radar/compare/v1.13.6...v1.13.7) (2023-03-03)
+
+### Fixes & improvements
+* docs: update QA radar (#90) ([7f9b16b](https://github.com/qiwi/tech-radar/commit/7f9b16bdac6c7561d41411c2218019eba3cb4acb))
+
 ## [1.13.6](https://github.com/qiwi/tech-radar/compare/v1.13.5...v1.13.6) (2022-11-29)
 
 ### Fixes & improvements
