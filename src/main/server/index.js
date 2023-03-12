@@ -1,5 +1,5 @@
 import finalhandler from 'finalhandler'
-import http from 'http'
+import http from 'node:http'
 import serveStatic from 'serve-static'
 
 // Serve up public folder

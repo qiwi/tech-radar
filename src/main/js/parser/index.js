@@ -1,5 +1,5 @@
 import { globby } from 'globby'
-import path from 'path'
+import path from 'node:path'
 
 import { asArray } from '../util.js'
 import { parseCsvRadar } from './csv.js'
@@ -7,7 +7,9 @@ import { parseJsonRadar } from './json.js'
 import { validate } from './validator.js'
 import { parseYamlRadar } from './yaml.js'
 
-export { parseCsvRadar, parseJsonRadar, parseYamlRadar }
+export { parseCsvRadar } from './csv.js'
+export { parseJsonRadar } from './json.js'
+export { parseYamlRadar } from './yaml.js'
 
 /**
  * Parse radarDocument

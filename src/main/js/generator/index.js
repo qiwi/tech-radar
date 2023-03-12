@@ -1,7 +1,7 @@
 import Eleventy from '@11ty/eleventy'
 import fse from 'fs-extra'
 import { uniq } from 'lodash-es'
-import path from 'path'
+import path from 'node:path'
 
 import { rootDir, tplDir } from '../constants.js'
 import { tempDir } from '../util.js'

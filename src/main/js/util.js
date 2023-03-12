@@ -1,6 +1,6 @@
 import fse from 'fs-extra'
 import { nanoid } from 'nanoid'
-import path from 'path'
+import path from 'node:path'
 import tempRoot from 'temp-dir'
 
 export const mkdirp = async (dir) =>

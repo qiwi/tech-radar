@@ -1,5 +1,5 @@
 import fse from 'fs-extra'
-import path from 'path'
+import path from 'node:path'
 
 import { tplDir } from './constants.js'
 import { genNavPage, genRadars, genRedirects } from './generator/index.js'
