@@ -1,3 +1,8 @@
+## [1.13.8](https://github.com/qiwi/tech-radar/compare/v1.13.7...v1.13.8) (2023-03-15)
+
+### Fixes & improvements
+* perf: up 11ty to v2 ([a171429](https://github.com/qiwi/tech-radar/commit/a1714290e1acc1c24b36ae214efc7f71c10e16af))
+
 ## [1.13.7](https://github.com/qiwi/tech-radar/compare/v1.13.6...v1.13.7) (2023-03-03)
 
 ### Fixes & improvements
