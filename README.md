@@ -65,7 +65,7 @@ npm i @qiwi/tech-radar
 ## Usage
 ### CLI
 ```shell
-# as local dep
+# via local dep
 techradar --input "/path/to/files/*.{json, csv, yml}" --output /radar
 
 # through npx
