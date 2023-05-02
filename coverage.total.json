@@ -3,8 +3,8 @@
     "branch": "master",
     "build_identifier": "",
     "build_url": "",
-    "commit_sha": "a1714290e1acc1c24b36ae214efc7f71c10e16af",
-    "committed_at": 1678896706,
+    "commit_sha": "40bb0cebea9e98d028bd45b4aaf5809add9e5e30",
+    "committed_at": 1683055695,
     "name": "true"
   },
   "environment": {
@@ -13,13 +13,13 @@
     "pwd": "/home/runner/work/tech-radar/tech-radar",
     "prefix": "/home/runner/work/tech-radar/tech-radar",
     "rails_root": "",
-    "reporter_version": "0.11.0",
+    "reporter_version": "0.11.1",
     "simplecov_root": ""
   },
   "git": {
     "branch": "master",
-    "head": "a1714290e1acc1c24b36ae214efc7f71c10e16af",
-    "committed_at": 1678896706
+    "head": "40bb0cebea9e98d028bd45b4aaf5809add9e5e30",
+    "committed_at": 1683055695
   },
   "covered_percent": 98.01980198019803,
   "covered_strength": 0,
@@ -29,6 +29,30 @@
     "total": 202
   },
   "source_files": [
+    {
+      "blob_id": "7dcef35052ff9aeb6d3c3c455254c2f3994df288",
+      "coverage": "[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,4,20,20,20,19,null,19,null,1,1,null,null,null,null,null,null,null,4,23,7,null,16,9,null,7,7,null,0,null,null,null,null,null,null,null,null,4,15,null,null,null,null,null,4,19,81,24,40,null,null,57,null,null,81,null,null,19,null,null,null,null,null,null,null,4,19,19,null,19,76,76,76,76,null,100,null,19,null,null,4,76,76]",
+      "covered_percent": 97.43589743589743,
+      "covered_strength": 29.76923076923077,
+      "line_counts": {
+        "missed": 1,
+        "covered": 38,
+        "total": 39
+      },
+      "name": "src/main/js/parser/index.js"
+    },
+    {
+      "blob_id": "1141e5b8e1595b55e7951ac64e33a25b763e68b5",
+      "coverage": "[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,2,10,null,10,null,null,null,null,10,null,null,2,null,null,null,null,null,null,null,null,null,null,null,null,10,null,null,null,null,null,null,null,null,null,null,null,null,null,10,null,10,null,null,2,10,10,10,null,null,2,10,null,17,null,17,null,null,null,null,null,null,null,null,null,10,null,null,2,10,10,10,10,null,null,null,10,null,null,2,10,9,null,null,1,null,null,null,null,null,null,1,null,1,2,8,8,8,null,8,null,null,0,null,8,null,null,null,8,null,null,null,1,null,null,2,10,7,6,null,6,null,null,10,null,null,2,10,10]",
+      "covered_percent": 97.87234042553192,
+      "covered_strength": 7.276595744680851,
+      "line_counts": {
+        "missed": 1,
+        "covered": 46,
+        "total": 47
+      },
+      "name": "src/main/js/index.js"
+    },
     {
       "blob_id": "979de18b1cce85b7ef10ec1965b18589127498e3",
       "coverage": "[null,null,null,null,null,null,null,null,4,7,7,null,null,null,null,null,7,40,null,null,null,39,null,39,6,33,6,30,null,null,27,6,24,null,null,null,21,null,null,6,null,null,4,7,null,null,19,13,null,225]",
@@ -42,28 +66,16 @@
       "name": "src/main/js/parser/csv.js"
     },
     {
-      "blob_id": "0cb7ae1de6202592138c884a0ff666244e0cacc8",
-      "coverage": "[null,null,null,null,null,null,null,4]",
-      "covered_percent": 100,
-      "covered_strength": 4,
+      "blob_id": "6aad639b45077ae58ff168c16b47fa2aa04e1257",
+      "coverage": "[null,null,5,null,5,33,33,5,5,null,null,28,28,null,28,4,null,null,28,null,null,5,20,0,null,null,20,null,null,5]",
+      "covered_percent": 93.75,
+      "covered_strength": 15.75,
       "line_counts": {
-        "missed": 0,
-        "covered": 1,
-        "total": 1
+        "missed": 1,
+        "covered": 15,
+        "total": 16
       },
-      "name": "src/main/js/parser/json.js"
-    },
-    {
-      "blob_id": "09ab2e5cb5b85fe6070ddf630b60475fffd1995d",
-      "coverage": "[null,null,null,null,null,4,56,null,4,15,79,43535,null,null,null,4,66,null,null,null,24]",
-      "covered_percent": 100,
-      "covered_strength": 4865.222222222223,
-      "line_counts": {
-        "missed": 0,
-        "covered": 9,
-        "total": 9
-      },
-      "name": "src/main/js/util.js"
+      "name": "src/main/js/parser/validator.js"
     },
     {
       "blob_id": "49887108c6e1fb90a9a5929e9c6c092d47a8229e",
@@ -78,28 +90,28 @@
       "name": "src/main/js/generator/markdown.js"
     },
     {
-      "blob_id": "7dcef35052ff9aeb6d3c3c455254c2f3994df288",
-      "coverage": "[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,4,20,20,20,19,null,19,null,1,1,null,null,null,null,null,null,null,4,23,7,null,16,9,null,7,7,null,0,null,null,null,null,null,null,null,null,4,15,null,null,null,null,null,4,19,81,24,40,null,null,57,null,null,81,null,null,19,null,null,null,null,null,null,null,4,19,19,null,19,76,76,76,76,null,100,null,19,null,null,4,76,76]",
-      "covered_percent": 97.43589743589743,
-      "covered_strength": 29.76923076923077,
+      "blob_id": "09ab2e5cb5b85fe6070ddf630b60475fffd1995d",
+      "coverage": "[null,null,null,null,null,4,56,null,4,15,79,43535,null,null,null,4,66,null,null,null,24]",
+      "covered_percent": 100,
+      "covered_strength": 4865.222222222223,
       "line_counts": {
-        "missed": 1,
-        "covered": 38,
-        "total": 39
+        "missed": 0,
+        "covered": 9,
+        "total": 9
       },
-      "name": "src/main/js/parser/index.js"
+      "name": "src/main/js/util.js"
     },
     {
-      "blob_id": "6aad639b45077ae58ff168c16b47fa2aa04e1257",
-      "coverage": "[null,null,5,null,5,33,33,5,5,null,null,28,28,null,28,4,null,null,28,null,null,5,20,0,null,null,20,null,null,5]",
-      "covered_percent": 93.75,
-      "covered_strength": 15.75,
+      "blob_id": "0cb7ae1de6202592138c884a0ff666244e0cacc8",
+      "coverage": "[null,null,null,null,null,null,null,4]",
+      "covered_percent": 100,
+      "covered_strength": 4,
       "line_counts": {
-        "missed": 1,
-        "covered": 15,
-        "total": 16
+        "missed": 0,
+        "covered": 1,
+        "total": 1
       },
-      "name": "src/main/js/parser/validator.js"
+      "name": "src/main/js/parser/json.js"
     },
     {
       "blob_id": "19d0dc12dbb32e2a396b89a492a5e8daed898437",
@@ -136,18 +148,6 @@
         "total": 53
       },
       "name": "src/main/js/generator/index.js"
-    },
-    {
-      "blob_id": "1141e5b8e1595b55e7951ac64e33a25b763e68b5",
-      "coverage": "[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,2,10,null,10,null,null,null,null,10,null,null,2,null,null,null,null,null,null,null,null,null,null,null,null,10,null,null,null,null,null,null,null,null,null,null,null,null,null,10,null,10,null,null,2,10,10,10,null,null,2,10,null,17,null,17,null,null,null,null,null,null,null,null,null,10,null,null,2,10,10,10,10,null,null,null,10,null,null,2,10,9,null,null,1,null,null,null,null,null,null,1,null,1,2,8,8,8,null,8,null,null,0,null,8,null,null,null,8,null,null,null,1,null,null,2,10,7,6,null,6,null,null,10,null,null,2,10,10]",
-      "covered_percent": 97.87234042553192,
-      "covered_strength": 7.276595744680851,
-      "line_counts": {
-        "missed": 1,
-        "covered": 46,
-        "total": 47
-      },
-      "name": "src/main/js/index.js"
     }
   ],
   "repo_token": "ce5c896459e8bcbef5e6442991ca6d45f62cd6dfa67645b148084f6dfa4ab394"
