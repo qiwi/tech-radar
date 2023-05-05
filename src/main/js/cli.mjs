@@ -53,7 +53,7 @@ export const cli = meow(
       },
       templates: {
         type: 'string',
-        alias: 'tpl'
+        shortFlag: 'tpl'
       }
     },
   },
