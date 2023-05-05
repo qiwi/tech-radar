@@ -1,3 +1,8 @@
+## [1.13.10](https://github.com/qiwi/tech-radar/compare/v1.13.9...v1.13.10) (2023-05-05)
+
+### Fixes & improvements
+* fix: update meow cli declaration ([739ff8f](https://github.com/qiwi/tech-radar/commit/739ff8fa25cb461c68b6fa62325e1ffa0d0db4b5))
+
 ## [1.13.9](https://github.com/qiwi/tech-radar/compare/v1.13.8...v1.13.9) (2023-05-02)
 
 ### Fixes & improvements
