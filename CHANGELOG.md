@@ -1,3 +1,8 @@
+## [1.13.11](https://github.com/qiwi/tech-radar/compare/v1.13.10...v1.13.11) (2023-06-13)
+
+### Fixes & improvements
+* fix: fix `moved` fallback resolution ([7ad4c8c](https://github.com/qiwi/tech-radar/commit/7ad4c8c1b7e45dff2e2cb09293a9a97fcabc6497))
+
 ## [1.13.10](https://github.com/qiwi/tech-radar/compare/v1.13.9...v1.13.10) (2023-05-05)
 
 ### Fixes & improvements
