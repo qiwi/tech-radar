@@ -118,7 +118,7 @@ const resolveMoves = async ({ ctx, radars, autoscope }) => {
 
   radars.forEach(({ document: { data }, scope }, i) => {
     data.forEach((entry) => {
-      const { name, ring } = entry
+      const { name, ring, moved } = entry
       const lowerName = name.toLowerCase()
       const prevRadar = radars[i + 1] // NOTE sorted by desc date
       const prevEntry =
@@ -127,11 +127,10 @@ const resolveMoves = async ({ ctx, radars, autoscope }) => {
         prevRadar.document.data.find(
           ({ name: _name }) => _name.toLowerCase() === lowerName,
         )
-      const moved = prevEntry
-        ? Math.sign(getRingWeight(ring) - getRingWeight(prevEntry.ring))
-        : 0
 
-      entry.moved = moved
+      entry.moved = prevEntry
+        ? Math.sign(getRingWeight(ring) - getRingWeight(prevEntry.ring))
+        : moved || 0
     })
   })
 
