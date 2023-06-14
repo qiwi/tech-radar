@@ -1,6 +1,6 @@
 import fse from 'fs-extra'
-import path from 'path'
-import {fileURLToPath} from 'url'
+import path from 'node:path'
+import {fileURLToPath} from 'node:url'
 
 import { run } from '../../main/js/index.js'
 import { getDirs, tempDir } from '../../main/js/util.js'

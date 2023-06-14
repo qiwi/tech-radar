@@ -72,18 +72,18 @@ techradar --input "/path/to/files/*.{json, csv, yml}" --output /radar
 npx @qiwi/tech-radar --input "/path/to/files/*.{json, csv, yml}" --output /radar
 ```
 
-| Option | Description | Default
-|---|---|---
-| cwd | Current working dir | `process.cwd()`
-| input | [glob pattern](https://github.com/mrmlnc/fast-glob) to find radar data: csv/json/yml | `<cwd>/data/**/*.{json,csv,yml}`
-| output | Output directory | `<cwd>/radar`
-| autoscope | identify same-scoped files as subversions of a single radar | `false`
-| base-prefix | base context path for web statics | `tech-radar`
-| nav-page | create navigation page | `false`
-| nav-title | navigation page title | `📡 Tech radars`
-| nav-footer | navigation page footer |
-| temp | temporary assets dir | [`tempy.directory()`](https://github.com/sindresorhus/tempy)
-| templates | custom 11ty/nunjucks compatible templates directory. Its contents will be merged into default templates dir
+| Option      | Description                                                                                                 | Default                                                      |
+|-------------|-------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| cwd         | Current working dir                                                                                         | `process.cwd()`                                              |
+| input       | [glob pattern](https://github.com/mrmlnc/fast-glob) to find radar data: csv/json/yml                        | `<cwd>/data/**/*.{json,csv,yml}`                             |
+| output      | Output directory                                                                                            | `<cwd>/radar`                                                |
+| autoscope   | identify same-scoped files as subversions of a single radar                                                 | `false`                                                      |
+| base-prefix | base context path for web statics                                                                           | `tech-radar`                                                 |
+| nav-page    | create navigation page                                                                                      | `false`                                                      |
+| nav-title   | navigation page title                                                                                       | `📡 Tech radars`                                             |
+| nav-footer  | navigation page footer                                                                                      |                                                              |
+| temp        | temporary assets dir                                                                                        | [`tempy.directory()`](https://github.com/sindresorhus/tempy) |
+| templates   | custom `11ty/nunjucks` compatible templates directory. Its contents will be merged into default templates dir |
 
 ### JS API
 ```js
@@ -337,7 +337,7 @@ Feel free to open new issues: bug reports, feature requests or questions.
 You're always welcome to suggest a PR. Just fork this repo, write some code, add some tests and push your changes.
 Any feedback is appreciated.
 
-### Add new radar data
+### Update the radar data
 1. Clone the repo: `git clone git@github.com:qiwi/tech-radar.git`
 2. Install deps: `yarn install`
 3. Place a new radar data file to `data/<scope>/<date>.{csv|json|yaml}`

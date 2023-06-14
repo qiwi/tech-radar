@@ -9,7 +9,7 @@
   },
   "type": "module",
   "files": [
-    "src/main"
+    "src/main/js"
   ],
   "scripts": {
     "test": "npm-run-all -p -l lint test:unit test:depcheck",

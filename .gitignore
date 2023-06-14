@@ -66,12 +66,14 @@ buildcache
 .rts2_cache_es/
 .rts2_cache_umd/
 
-#test
+# Temp
 src/test/js/temp
 
-# Coverage
+# Code Climate
 cc-reporter
 cc-reporter.*
+codeclimate.*
+coverage.*
 
 # Creds
 *.asc
