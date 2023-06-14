@@ -1,3 +1,8 @@
+## [1.13.12](https://github.com/qiwi/tech-radar/compare/v1.13.11...v1.13.12) (2023-06-14)
+
+### Fixes & improvements
+* perf: exclude test assets from publishing ([8487a1e](https://github.com/qiwi/tech-radar/commit/8487a1e68023dc9126cb3af5d283b9df435a0f51))
+
 ## [1.13.11](https://github.com/qiwi/tech-radar/compare/v1.13.10...v1.13.11) (2023-06-13)
 
 ### Fixes & improvements
