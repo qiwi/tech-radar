@@ -2,22 +2,7 @@
 name: CI
 on: [push, pull_request]
 jobs:
-  # Handle [skip ci] / [ci skip] directives in commit messages
-  skipci:
-    name: skipci
-    runs-on: ubuntu-latest
-    outputs:
-      skip: ${{ steps.ci-skip-step.outputs.ci-skip }}
-      skip-not: ${{ steps.ci-skip-step.outputs.ci-skip-not }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - id: ci-skip-step
-        uses: mstachniuk/ci-skip@v1
-
   test:
-    needs: skipci
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -101,6 +86,6 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          GIT_COMMITTER_EMAIL: 'opensource@qiwi.com'
-          GIT_COMMITTER_NAME: 'qiwibot'
+          GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
+          GIT_COMMITTER_NAME: ${{ secrets.GIT_COMMITTER_NAME }}
         run: npm_config_yes=true npx zx-semrel
