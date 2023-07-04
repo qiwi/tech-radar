@@ -1,3 +1,8 @@
+## [1.13.13](https://github.com/qiwi/tech-radar/compare/v1.13.12...v1.13.13) (2023-07-04)
+
+### Fixes & improvements
+* fix: include tpl dir to pkg assets ([a4b5b33](https://github.com/qiwi/tech-radar/commit/a4b5b33b9aaf31501ace3f48ab47095a404f1fb9))
+
 ## [1.13.12](https://github.com/qiwi/tech-radar/compare/v1.13.11...v1.13.12) (2023-06-14)
 
 ### Fixes & improvements
