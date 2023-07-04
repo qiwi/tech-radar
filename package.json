@@ -9,7 +9,8 @@
   },
   "type": "module",
   "files": [
-    "src/main/js"
+    "src/main/js",
+    "src/main/tpl"
   ],
   "scripts": {
     "test": "npm-run-all -p -l lint test:unit test:depcheck",
