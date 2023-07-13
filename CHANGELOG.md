@@ -1,3 +1,8 @@
+## [1.13.14](https://github.com/qiwi/tech-radar/compare/v1.13.13...v1.13.14) (2023-07-13)
+
+### Fixes & improvements
+* docs: update java version for qa radar ([a97f2db](https://github.com/qiwi/tech-radar/commit/a97f2db8a4f890a34f61a8405adf5134fdb13aad))
+
 ## [1.13.13](https://github.com/qiwi/tech-radar/compare/v1.13.12...v1.13.13) (2023-07-04)
 
 ### Fixes & improvements
