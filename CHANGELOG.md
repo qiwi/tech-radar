@@ -1,3 +1,8 @@
+## [1.13.15](https://github.com/qiwi/tech-radar/compare/v1.13.14...v1.13.15) (2023-08-04)
+
+### Fixes & improvements
+* docs: update JS radar (#103) ([d9d40b2](https://github.com/qiwi/tech-radar/commit/d9d40b2114d81ecbd7ccb9e3691f1d0e81e725cb))
+
 ## [1.13.14](https://github.com/qiwi/tech-radar/compare/v1.13.13...v1.13.14) (2023-07-13)
 
 ### Fixes & improvements
