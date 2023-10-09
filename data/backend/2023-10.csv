@@ -24,7 +24,9 @@ Java 17,                    langlib,       Trial,  Следующая LTS Java
 Kotlin,                     langlib,       Adopt,  Как Java только Kotlin
 Scala,                      langlib,       Hold,   Scala
 Groovy,                     langlib,       Hold,   Groovy
-GoLang,                     langlib,       Assess, Системный язык программирования
+GoLang,                     langlib,       Adopt,  Системный язык программирования
+Chi,						langlib,	   Adopt,  Библиотека для роутинга GoLang
+gRPC,						langlib,	   Assess, RPC фреймворк для взаимодействия между микросервисами
 Python 3.12,                langlib,       Assess, Python
 Python 3.11,                langlib,       Adopt,  Python
 Python 3.9,                 langlib,       Adopt,  Python
@@ -65,6 +67,8 @@ Kafka,                      data,          Adopt,  Распределенная 
 Cassandra,                  data,          Adopt,  Масштабируемая распределенная база данных
 Liquibase,                  data,          Adopt,  Инструмент для миграций
 Redis,                      data,          Adopt,  Key-value база данных (со встречи по питону)
+Couchbase,                  data,          Adopt,  Key-value база данных (со встречи по го)
+Nats,                  		data,          Assess, Брокер сообщений (со встречи по го)
 
 Общие API-модели,           techtools,     Adopt,  Переиспользуем API-модели между сервером и клиентами
 Микросервисы,               techtools,     Adopt,  Позволяет разрабатывать приложения разными командами более независимо
