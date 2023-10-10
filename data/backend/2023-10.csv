@@ -45,17 +45,23 @@ Thrift,                     langlib,       Adopt,  RPC фреймворк для
 Resilience4j,               langlib,       Assess, Implementation of Circuit-Breaker pattern
 Logback,                    langlib,       Adopt,  Библиотека для логирования
 Log4j,                      langlib,       Hold,   Библиотека для логирования
-.NET Core 6 LTS,            langlib,       Adopt,  .NET
-.NET Core 5,                langlib,       Hold,   .NET
-ASP.NET,                    langlib,       Adopt,  Web-фреймворк
-MSTest2,                    langlib,       Adopt,  Фреймворк для тестов .NET
+.NET 8,            			langlib,       Assess, .NET следующая LTS
+.NET 6,            			langlib,       Adopt,  .NET текущая LTS
+.NET 5,                		langlib,       Hold,   .NET
+ASP.NET,                    langlib,       Adopt,  Web-фреймворк для .NET
+xUnit,                    	langlib,       Adopt,  Фреймворк для тестов .NET (юнит тесты)
+NUnit,                    	langlib,       Adopt,  Фреймворк для тестов .NET (интеграционные тесты)
+MSTest2,                    langlib,       Hold,   Фреймворк для тестов .NET (юнит тесты)
 App.Metrics,                langlib,       Adopt,  Измерение и отправка метрик .NET
-Dapper,                     langlib,       Adopt,  Легковесный ORM
-Serilog,                    langlib,       Adopt,  Библиотека для логирования
+Dapper,                     langlib,       Adopt,  Легковесный ORM для .NET
+Serilog,                    langlib,       Adopt,  Библиотека для логирования для .NET
 MediatR,                    langlib,       Adopt,  Медиатор .NET
+Delphi 7,                   langlib,       Hold,   Легаси стек на старых проектах (со встречи по .NET)
+Delphi 10.3,                langlib,       Hold,   Легаси стек на старых проектах (со встречи по .NET)
 
 OracleDB,                   data,          Adopt,  Одна из основных баз данных
-MsSQL,                      data,          Adopt,  SQL база данных
+MSSQL 2014,                 data,          Adopt,  SQL база данных
+MSSQL 2022,                 data,          Assess, SQL база данных
 PostgreSQL,                 data,          Adopt,  Основная база данных
 Patroni,                    data,          Adopt,  PostgreSQL в кластере
 CockroachDB,                data,          Assess, Распределенная SQL-база данных
@@ -74,6 +80,7 @@ Nats,                  		data,          Assess, Брокер сообщений 
 Микросервисы,               techtools,     Adopt,  Позволяет разрабатывать приложения разными командами более независимо
 Trunk-Based Development,    techtools,     Adopt,  Фиче-флаги вместо фич-бранчей
 SonarQube,                  techtools,     Adopt,
+Allure,                  	techtools,     Trial,  Отчёты по тестам (со встречи по .NET)
 OpenAPI 3.0,                techtools,     Adopt,  Стандарт описания АПИ (со встречи по питону)
 
 Kubernetes,                 infra,         Adopt,  Основная платформа для запуска приложений
