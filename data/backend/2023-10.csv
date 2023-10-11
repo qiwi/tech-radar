@@ -23,10 +23,14 @@ Java 11,                    langlib,       Adopt,  Актуальная LTS Java
 Java 17,                    langlib,       Trial,  Следующая LTS Java
 Kotlin,                     langlib,       Adopt,  Как Java только Kotlin
 Scala,                      langlib,       Hold,   Scala
+Spring 5,                   langlib,       Adopt,  Application Framework
+Spring Boot,                langlib,       Adopt,  Инструмент для запуска комбайна
+Resilience4j,               langlib,       Assess, Implementation of Circuit-Breaker pattern
+Logback,                    langlib,       Adopt,  Библиотека для логирования
+Log4j,                      langlib,       Hold,   Библиотека для логирования
 Groovy,                     langlib,       Hold,   Groovy
 GoLang,                     langlib,       Adopt,  Системный язык программирования
 Chi,						langlib,	   Adopt,  Библиотека для роутинга GoLang
-gRPC,						langlib,	   Assess, RPC фреймворк для взаимодействия между микросервисами
 Python 3.12,                langlib,       Assess, Python
 Python 3.11,                langlib,       Adopt,  Python
 Python 3.9,                 langlib,       Adopt,  Python
@@ -39,12 +43,6 @@ SQLAlchemy,                 langlib,       Adopt,  ORM для Python
 Celery,						langlib,	   Adopt,  Очередь задач для Python
 Poetry,						langlib,	   Adopt,  Менеджер зависимостей для Python
 Pytest,						langlib,	   Adopt,  Тест-фреймворк для Python
-Spring 5,                   langlib,       Adopt,  Application Framework
-Spring Boot,                langlib,       Adopt,  Инструмент для запуска комбайна
-Thrift,                     langlib,       Adopt,  RPC фреймворк для взаимодействия между микросервисами
-Resilience4j,               langlib,       Assess, Implementation of Circuit-Breaker pattern
-Logback,                    langlib,       Adopt,  Библиотека для логирования
-Log4j,                      langlib,       Hold,   Библиотека для логирования
 .NET 8,            			langlib,       Assess, .NET следующая LTS
 .NET 6,            			langlib,       Adopt,  .NET текущая LTS
 .NET 5,                		langlib,       Hold,   .NET
@@ -58,6 +56,8 @@ Serilog,                    langlib,       Adopt,  Библиотека для �
 MediatR,                    langlib,       Adopt,  Медиатор .NET
 Delphi 7,                   langlib,       Hold,   Легаси стек на старых проектах (со встречи по .NET)
 Delphi 10.3,                langlib,       Hold,   Легаси стек на старых проектах (со встречи по .NET)
+gRPC,						langlib,	   Assess, RPC фреймворк для взаимодействия между микросервисами
+Thrift,                     langlib,       Adopt,  RPC фреймворк для взаимодействия между микросервисами
 
 OracleDB,                   data,          Adopt,  Одна из основных баз данных
 MSSQL 2014,                 data,          Adopt,  SQL база данных
