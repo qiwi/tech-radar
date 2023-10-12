@@ -34,7 +34,7 @@ TestNG,                     langlib,       Hold,   Тест-фреймворк �
 Maven,                      langlib,       Adopt,  Инструмент сборки для JVM
 Hibernate,                  langlib,       Hold,   ORM для JVM
 GoLang,                     langlib,       Adopt,  Системный язык программирования
-Chi,						langlib,	   Adopt,  Библиотека для роутинга GoLang
+Chi,                        langlib,       Adopt,  Библиотека для роутинга GoLang
 Python 3.12,                langlib,       Assess, Python
 Python 3.11,                langlib,       Adopt,  Python
 Python 3.9,                 langlib,       Adopt,  Python
@@ -44,15 +44,15 @@ Flask,                      langlib,       Hold,   Бэкенд-фреймвор
 FastApi,                    langlib,       Adopt,  Бэкенд-фреймворк для Python
 Django,                     langlib,       Hold,   Бэкенд-фреймворк для Python
 SQLAlchemy,                 langlib,       Adopt,  ORM для Python
-Celery,						langlib,	   Adopt,  Очередь задач для Python
-Poetry,						langlib,	   Adopt,  Менеджер зависимостей для Python
-Pytest,						langlib,	   Adopt,  Тест-фреймворк для Python
-.NET 8,            			langlib,       Assess, .NET следующая LTS
-.NET 6,            			langlib,       Adopt,  .NET текущая LTS
-.NET 5,                		langlib,       Hold,   .NET
+Celery,                     langlib,       Adopt,  Очередь задач для Python
+Poetry,                     langlib,       Adopt,  Менеджер зависимостей для Python
+Pytest,                     langlib,       Adopt,  Тест-фреймворк для Python
+.NET 8,                     langlib,       Assess, .NET следующая LTS
+.NET 6,                     langlib,       Adopt,  .NET текущая LTS
+.NET 5,                     langlib,       Hold,   .NET
 ASP.NET,                    langlib,       Adopt,  Web-фреймворк для .NET
-xUnit,                    	langlib,       Adopt,  Фреймворк для тестов .NET (юнит тесты)
-NUnit,                    	langlib,       Adopt,  Фреймворк для тестов .NET (интеграционные тесты)
+xUnit,                      langlib,       Adopt,  Фреймворк для тестов .NET (юнит тесты)
+NUnit,                      langlib,       Adopt,  Фреймворк для тестов .NET (интеграционные тесты)
 MSTest2,                    langlib,       Hold,   Фреймворк для тестов .NET (юнит тесты)
 App.Metrics,                langlib,       Adopt,  Измерение и отправка метрик .NET
 Dapper,                     langlib,       Adopt,  Легковесный ORM для .NET
@@ -61,7 +61,7 @@ MediatR,                    langlib,       Adopt,  Медиатор .NET
 Delphi 7,                   langlib,       Hold,   Легаси стек на старых проектах
 Delphi 10.3,                langlib,       Hold,   Легаси стек на старых проектах
 1С:Предприятие 8.3,         langlib,       Adopt,  Платформа разработки внутренних приложений
-gRPC,						langlib,	   Assess, RPC фреймворк для взаимодействия между микросервисами
+gRPC,                       langlib,       Assess, RPC фреймворк для взаимодействия между микросервисами
 Thrift,                     langlib,       Adopt,  RPC фреймворк для взаимодействия между микросервисами
 
 OracleDB,                   data,          Hold,   База данных для старых приложений
@@ -79,7 +79,7 @@ Cassandra,                  data,          Adopt,  Масштабируемая 
 Liquibase,                  data,          Trial,  Инструмент для миграций
 Redis,                      data,          Adopt,  Key-value база данных
 Couchbase,                  data,          Adopt,  Документоориентированная база данных
-Nats,                  		data,          Assess, Брокер сообщений
+Nats,                       data,          Assess, Брокер сообщений
 RabbitMQ,                   data,          Adopt,  Брокер сообщений
 MySQL,                      data,          Hold,   SQL база данных
 Vertica,                    data,          Adopt,  Колоночная база данных
@@ -88,12 +88,12 @@ Vertica,                    data,          Adopt,  Колоночная база
 Микросервисы,               techtools,     Adopt,  Позволяет разрабатывать приложения разными командами более независимо
 Trunk-Based Development,    techtools,     Adopt,  Фиче-флаги вместо фич-бранчей
 SonarQube,                  techtools,     Adopt,
-Allure,                  	techtools,     Trial,  Отчёты по тестам
-OpenAPI,                	techtools,     Adopt,  Стандарт описания АПИ
+Allure,                     techtools,     Trial,  Отчёты по тестам
+OpenAPI,                    techtools,     Adopt,  Стандарт описания АПИ
 Camunda 7,                  techtools,     Adopt,  Платформа для моделирования и создания бизнес-процессов
 Camunda 8,                  techtools,     Assess, Платформа для моделирования и создания бизнес-процессов
 Платформенный подход,       techtools,     Adopt,  Общие платформы для разработки приложений под каждый стек
-GitOps подход,       		techtools,     Trial,  Репозиторий отражает состояние production среды
+GitOps подход,              techtools,     Trial,  Репозиторий отражает состояние production среды
 Gerrit,                     techtools,     Adopt,  Система контроля версий
 GitHub,                     techtools,     Hold,   Система контроля версий
 
@@ -109,5 +109,5 @@ Grafana,                    infra,         Adopt,
 Kibana,                     infra,         Adopt,
 Zabbix,                     infra,         Adopt,
 Prometheus,                 infra,         Adopt,
-Sentry,                 	infra,         Assess,
+Sentry,                     infra,         Assess,
 Jaeger,                     infra,         Adopt,  Бэкенд трассировки
