@@ -1,3 +1,8 @@
+## [1.13.16](https://github.com/qiwi/tech-radar/compare/v1.13.15...v1.13.16) (2023-10-12)
+
+### Fixes & improvements
+* docs: actualize backend tech radar (#108) ([73558b5](https://github.com/qiwi/tech-radar/commit/73558b5dd34d454c6f961cb26c0ae0957076d343))
+
 ## [1.13.15](https://github.com/qiwi/tech-radar/compare/v1.13.14...v1.13.15) (2023-08-04)
 
 ### Fixes & improvements
