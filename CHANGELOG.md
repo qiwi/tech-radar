@@ -1,3 +1,8 @@
+## [1.13.17](https://github.com/qiwi/tech-radar/compare/v1.13.16...v1.13.17) (2023-10-17)
+
+### Fixes & improvements
+* docs(js): add ORM (#109) ([945d8d5](https://github.com/qiwi/tech-radar/commit/945d8d5edf133f57faf06cad3d59485aa3deaca2))
+
 ## [1.13.16](https://github.com/qiwi/tech-radar/compare/v1.13.15...v1.13.16) (2023-10-12)
 
 ### Fixes & improvements
