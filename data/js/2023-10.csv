@@ -1,0 +1,79 @@
+title
+QIWI JS Tech Radar
+===
+date
+2023-09-21
+===
+quadrant,   alias
+q1,         lang
+q2,         Platforms
+q3,         tools
+q4,         tech
+===
+quadrant,   title
+q1,         "Languages, frameworks, libs"
+q2,         Platforms
+q3,         Tools
+q4,         Techniques
+===
+name,                       quadrant,   ring,   description
+TypeScript,                 lang,       Adopt,  "TypeScript is a typed superset of JavaScript that compiles to plain JavaScript."
+es2015,                     lang,       Adopt,  es2015
+es2021,                     lang,       Trial,  es2021
+Nest.js,                    lang,       Adopt,  Spring для TS
+React,                      lang,       Adopt,  "Декларативная, эффективная и гибкая JavaScript библиотека для создания пользовательских интерфейсов."
+emotion,                    lang,       Adopt,  CSS in JS
+jest,                       lang,       Adopt,  Фреймворк для unit автотестов
+lodash,                     lang,       Adopt,  Стандартная библиотека
+react-scripts,              lang,       Adopt,  Create React apps with no build configuration.
+react-router,               lang,       Adopt,  Маршрутизация в React
+testing-library,            lang,       Adopt,  Либо для тестов React компонентов
+playwright,                 lang,       Adopt,  Фреймворк для e2e тестов
+vite,                       lang,       Assess, Create React apps with no build configuration.
+nodejs test runner,         lang,       Assess, Нативный тест-раннер ноды
+React Native,               lang,       Assess, Разработка нативных приложений для Android и iOS на React
+Next.js     ,               lang,       Assess, Фреймворк для React-приложений
+Vue,                        lang,       Hold,   VueJS
+express,                    lang,       Hold,   Мидлвары поверх http-server
+uvu,                        lang,       Hold,   «Легкая» либа для автотестирования
+mocha,                      lang,       Hold,   legacy либа для автотестов
+cypress,                    lang,       Hold,   Фреймворк для e2e тестов
+Flow,                       lang,       Hold,   "Статический анализатор кода и набор синтаксических конструкций, для прямого указания типа переменной"
+enzyme,                     lang,       Hold,   Либо для тестов React компонентов
+antd,                       lang,       Hold,   ui компоненты
+material-ui,                lang,       Hold,   ui компоненты
+tailwindcss,                lang,       Hold,   CSS framework
+react-bootstrap,            lang,       Hold,   CSS framework
+styled-components,          lang,       Hold,   CSS in JS
+radium,                     lang,       Hold,   inline styles on React elements
+Nodejs 18,                  Platforms,  Adopt,  Nodejs 18
+Nodejs 20,                  Platforms,  Trial,  Nodejs 20
+Kubernetes,                 Platforms,  Adopt,  "https://kubernetes.io/"
+Pijma,                      Platforms,  Adopt,  "QIWI UI Kit (react 18)"
+Yarn classic,               Platforms,  Adopt,  Пакетный менеджер вместо npm
+Yarn 4,                     Platforms,  Adopt,  yarn 4
+qiwi/nestjs-enterprise,     Platforms,  Adopt,  Платформа модулей для работы с Nest js https://github.com/qiwi/nestjs-enterprise
+eslint,                     Tools,      Adopt,  "Инструмент, который позволяет проводить анализ качества вашего кода, написанного на любом выбранном стандарте JavaScript."
+prettier,                   Tools,      Adopt,  Code Formatter
+flp,                        Tools,      Adopt,  Провайдер клиентских событий
+codeclimate,                Tools,      Adopt,  "Статический анализатор кода https://github.com/codeclimate/codeclimate"
+zx-bulk-release,            Tools,      Adopt,  zx-based alternative for multi-semantic-release
+GithubActions,              Tools,      Adopt,  "GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD"
+Teamcity,                   Tools,      Adopt,  TeamCity — мощный инструмент непрерывной интеграции и развертывания для разработчиков и DevOps-инженеров
+sonar,                      Tools,      Adopt,  Статический анализатор кода
+zx-semrel,                  Tools,      Trial,  "Провайдер семантических релизов, совместимый с gerrit"
+zx,                         tools,      trial,  "Замена bash"
+Storybook,                  Tools,      Assess, "https://storybook.js.org/"
+semantic-release,           Tools,      Hold,   "Движение к CD, раннер семантических релизов"
+multi-semantic-release,     Tools,      Hold,   Враппер semrel для совместимости с монорепами. Меняем на zx-bulk-release
+Travis-ci,                  Tools,      Hold,   "CI для OSS. GH победил. Выпиливаем. И Appveyor тоже"
+React Styleguidist,         Tools,      Hold,   "https://react-styleguidist.js.org/"
+tslint,                     Tools,      Hold,   линтер
+stylelint,                  Tools,      Hold,   css линтер
+standard,                   Tools,      Hold,   линтер
+jshint,                     Tools,      Hold,   линтер
+Monorepo,                   Tech,       Adopt,  Обобщение кодовой базы на уровне домена продукта
+OSS,                        Tech,       adopt,  "Публичная разработка https://github.com/qiwi"
+Typeorm                     lang,       Assess,  ORM
+Sequelize                   lang,       Assess,  ORM
+Prisma                      lang,       Assess,  ORM
