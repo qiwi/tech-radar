@@ -82,4 +82,4 @@ Rematch,                    lang,       Hold,    Wrapper for redux, hasn't been 
 React-query,                lang,       Assess,  State and query manager
 Zustand,                    lang,       Assess,  State manager
 @reduxjs/toolkit,           lang,       Assess,  Official wrapper for redux
-Mobx,                        lang,       Assess,  State manager
+Mobx,                       lang,       Assess,  State manager
