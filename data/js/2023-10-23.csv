@@ -2,7 +2,7 @@ title
 QIWI JS Tech Radar
 ===
 date
-2023-09-21
+2023-10-23
 ===
 quadrant,   alias
 q1,         lang
@@ -77,8 +77,8 @@ OSS,                        Tech,       adopt,  "Публичная разраб
 Typeorm,                    lang,       Assess,  ORM
 Sequelize,                  lang,       Assess,  ORM
 Prisma,                     lang,       Assess,  ORM
-Redux,                      lang,       Hold,    State manager, too much boilerplate. We use wrappers instead
-Rematch,                    lang,       Hold,    Wrapper for redux, hasn't been updated since 2021
+Redux,                      lang,       Hold,    State manager. Too much boilerplate. We use wrappers instead
+Rematch,                    lang,       Hold,    Wrapper for redux. Hasn't been updated since 2021
 React-query,                lang,       Assess,  State and query manager
 Zustand,                    lang,       Assess,  State manager
 @reduxjs/toolkit,           lang,       Assess,  Official wrapper for redux
