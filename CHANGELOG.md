@@ -1,3 +1,8 @@
+## [1.13.18](https://github.com/qiwi/tech-radar/compare/v1.13.17...v1.13.18) (2023-10-23)
+
+### Fixes & improvements
+* docs(js): rename 2023-10 to 2023-10-17, add 2023-10-23, fix typos (#110) ([85e9cbe](https://github.com/qiwi/tech-radar/commit/85e9cbeee8f314bfad10a02cc576cebfc4a6ca1c))
+
 ## [1.13.17](https://github.com/qiwi/tech-radar/compare/v1.13.16...v1.13.17) (2023-10-17)
 
 ### Fixes & improvements
