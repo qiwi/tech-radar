@@ -2,7 +2,7 @@ title
 QIWI JS Tech Radar
 ===
 date
-2023-09-21
+2023-10-17
 ===
 quadrant,   alias
 q1,         lang
@@ -74,6 +74,6 @@ standard,                   Tools,      Hold,   линтер
 jshint,                     Tools,      Hold,   линтер
 Monorepo,                   Tech,       Adopt,  Обобщение кодовой базы на уровне домена продукта
 OSS,                        Tech,       adopt,  "Публичная разработка https://github.com/qiwi"
-Typeorm                     lang,       Assess,  ORM
-Sequelize                   lang,       Assess,  ORM
-Prisma                      lang,       Assess,  ORM
+Typeorm,                    lang,       Assess,  ORM
+Sequelize,                  lang,       Assess,  ORM
+Prisma,                     lang,       Assess,  ORM
