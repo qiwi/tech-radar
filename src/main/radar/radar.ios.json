@@ -1,0 +1,570 @@
+{
+  "$schema": "../resources/radar-schema.json",
+  "type": "sectors",
+  "title": "QIWI iOS Tech Radar",
+  "statuses": [
+    {
+      "name": "adopt",
+      "title": "Adopt",
+      "description": "",
+      "size": 150,
+      "thick": 8
+    },
+    {
+      "name": "trial",
+      "title": "Trial",
+      "description": "",
+      "size": 50,
+      "thick": 4
+    },
+    {
+      "name": "assess",
+      "title": "Assess",
+      "description": "",
+      "size": 50,
+      "thick": 2
+    },
+    {
+      "name": "hold",
+      "title": "Hold",
+      "description": "",
+      "size": 50,
+      "thick": 1
+    }
+  ],
+  "sectors": [
+    {
+      "name": "language",
+      "title": "Languages and frameworks",
+      "color": "#F2A25C"
+    },
+    {
+      "name": "platforms",
+      "title": "Platforms",
+      "color": "#84BFA4"
+    },
+    {
+      "name": "tools",
+      "title": "Tools",
+      "color": "#248EA6"
+    },
+    {
+      "name": "tech",
+      "title": "Techniques",
+      "color": "#F25244"
+    }
+  ],
+  "items": [
+    {
+      "name": "design-system",
+      "title": "Дизайн-система",
+      "sector": "tech",
+      "status": "adopt",
+      "description": ""
+    },
+    {
+      "name": "modular-architecture",
+      "title": "Модульная архитектура",
+      "sector": "tech",
+      "status": "adopt",
+      "description": ""
+    },
+    {
+      "name": "continuous-delivery",
+      "title": "Continuous delivery",
+      "sector": "tech",
+      "status": "adopt",
+      "description": "Каждый спринт отправляем сборки в стор"
+    },
+    {
+      "name": "continuous-integration",
+      "title": "Continuous integration",
+      "sector": "tech",
+      "status": "adopt",
+      "description": "Каждый пулл реквест проверяется автоматическими чеками: swiftLint"
+    },
+    {
+      "name": "mvvm",
+      "title": "MVVM",
+      "sector": "tech",
+      "status": "adopt",
+      "description": "Паттерн проектирования"
+    },
+    {
+      "name": "rest",
+      "title": "REST",
+      "sector": "tech",
+      "status": "adopt",
+      "description": "REST (от англ. Representational State Transfer — «передача состояния представления») — архитектурный стиль взаимодействия компонентов распределённого приложения в сети."
+    },
+    {
+      "name": "soa",
+      "title": "SOA",
+      "sector": "tech",
+      "status": "adopt",
+      "description": "Service-oriented architecture"
+    },
+    {
+      "name": "solid",
+      "title": "SOLID",
+      "sector": "tech",
+      "status": "adopt",
+      "description": "Мнемонический акроним для 5 основных принципов объектно-ориентированного программирования и проектирования."
+    },
+    {
+      "name": "ui-tests",
+      "title": "UI tests",
+      "sector": "tech",
+      "status": "adopt",
+      "description": "Каждая фича покрывается UI тестами"
+    },
+    {
+      "name": "unit-tests",
+      "title": "Unit tests",
+      "sector": "tech",
+      "status": "adopt",
+      "description": "Каждая фича покрывается unit тестами"
+    },
+    {
+      "name": "graphql",
+      "title": "GraphQL",
+      "sector": "tech",
+      "status": "assess",
+      "description": "A query language for APIs and a runtime for fulfilling those queries with your existing data"
+    },
+    {
+      "name": "redux",
+      "title": "Redux",
+      "sector": "tech",
+      "status": "assess",
+      "description": "Архитектурный паттерн"
+    },
+    {
+      "name": "composable-architecture",
+      "title": "Composable architecture",
+      "sector": "tech",
+      "status": "hold",
+      "description": "Архитектурный паттерн"
+    },
+    {
+      "name": "appium",
+      "title": "Appium",
+      "sector": "tools",
+      "status": "adopt",
+      "description": "Tool for automation UI tests"
+    },
+    {
+      "name": "confluence",
+      "title": "Confluence",
+      "sector": "tools",
+      "status": "adopt",
+      "description": "Wiki"
+    },
+    {
+      "name": "fastlane",
+      "title": "Fastlane",
+      "sector": "tools",
+      "status": "adopt",
+      "description": "Тул для автоматизации CI/CD и других штук"
+    },
+    {
+      "name": "figma",
+      "title": "Figma",
+      "sector": "tools",
+      "status": "adopt",
+      "description": "В ней дизайнеры накидыват интерфейсы"
+    },
+    {
+      "name": "github",
+      "title": "Github",
+      "sector": "tools",
+      "status": "adopt",
+      "description": "Система контроля версий исползуемая в основном frontend'ового кода."
+    },
+    {
+      "name": "intellij-idea",
+      "title": "Intellij idea",
+      "sector": "tools",
+      "status": "adopt",
+      "description": "IDE для разработки на Java/Kotlin"
+    },
+    {
+      "name": "jira",
+      "title": "Jira",
+      "sector": "tools",
+      "status": "adopt",
+      "description": "Bug tracker"
+    },
+    {
+      "name": "kaiten",
+      "title": "Kaiten",
+      "sector": "tools",
+      "status": "adopt",
+      "description": "Система управления задачами"
+    },
+    {
+      "name": "kibana",
+      "title": "Kibana",
+      "sector": "tools",
+      "status": "adopt",
+      "description": "Визуализация логов"
+    },
+    {
+      "name": "swiftlint",
+      "title": "SwiftLint",
+      "sector": "tools",
+      "status": "adopt",
+      "description": "Linter for Swift code"
+    },
+    {
+      "name": "tableau",
+      "title": "Tableau",
+      "sector": "tools",
+      "status": "adopt",
+      "description": "Решение для построения дашбордов"
+    },
+    {
+      "name": "teamcity",
+      "title": "TeamCity",
+      "sector": "tools",
+      "status": "adopt",
+      "description": "Сервер для CI/CD"
+    },
+    {
+      "name": "testflight",
+      "title": "TestFlight",
+      "sector": "tools",
+      "status": "adopt",
+      "description": "Share test builds for testers"
+    },
+    {
+      "name": "xcode",
+      "title": "Xcode",
+      "sector": "tools",
+      "status": "adopt",
+      "description": "IDE для разработки под iOS"
+    },
+    {
+      "name": "grafana",
+      "title": "Grafana",
+      "sector": "tools",
+      "status": "trial",
+      "description": "Решение для построения дашбордов и мониторинга"
+    },
+    {
+      "name": "zeplin",
+      "title": "Zeplin",
+      "sector": "tools",
+      "status": "hold",
+      "description": "An organized workspace to publish designs"
+    },
+    {
+      "name": "firebase-crashlytics",
+      "title": "Firebase Crashlytics",
+      "sector": "platforms",
+      "status": "adopt",
+      "description": "Креш трекер"
+    },
+    {
+      "name": "firebase-remote-config",
+      "title": "Firebase Remote Config",
+      "sector": "platforms",
+      "status": "adopt",
+      "description": "С его помощью делаем фича флаги"
+    },
+    {
+      "name": "google-maps",
+      "title": "Google Maps",
+      "sector": "platforms",
+      "status": "adopt",
+      "description": "Карта терминалов"
+    },
+    {
+      "name": "goluber",
+      "title": "Goluber",
+      "sector": "platforms",
+      "status": "trial",
+      "description": "лоток для логов"
+    },
+    {
+      "name": "yandex-appmetrica",
+      "title": "Yandex AppMetrica",
+      "sector": "platforms",
+      "status": "trial",
+      "description": "Analytics framework"
+    },
+    {
+      "name": "chipagecontrol",
+      "title": "CHIPageControl",
+      "sector": "language",
+      "status": "adopt",
+      "description": "A set of cool animated page controls to replace boring UIPageControl"
+    },
+    {
+      "name": "devicekit",
+      "title": "DeviceKit",
+      "sector": "language",
+      "status": "adopt",
+      "description": "DeviceKit is a value-type replacement of UIDevice"
+    },
+    {
+      "name": "formattabletextview",
+      "title": "FormattableTextView",
+      "sector": "language",
+      "status": "adopt",
+      "description": "A framework which allows you to format user input according to your mask"
+    },
+    {
+      "name": "inappprovisioningutils",
+      "title": "InAppProvisioningUtils",
+      "sector": "language",
+      "status": "adopt",
+      "description": "Библиотека для работы с Apple Pay в приложении."
+    },
+    {
+      "name": "keychainaccess",
+      "title": "KeychainAccess",
+      "sector": "language",
+      "status": "adopt",
+      "description": "Keychain framework"
+    },
+    {
+      "name": "kingfisher",
+      "title": "Kingfisher",
+      "sector": "language",
+      "status": "adopt",
+      "description": "A powerful"
+    },
+    {
+      "name": "materialtextview",
+      "title": "MaterialTextView",
+      "sector": "language",
+      "status": "adopt",
+      "description": "Реализация текстовых полей по Material Design"
+    },
+    {
+      "name": "python",
+      "title": "Python",
+      "sector": "language",
+      "status": "adopt",
+      "description": "Язык программирования"
+    },
+    {
+      "name": "qiwibuttons",
+      "title": "QiwiButtons",
+      "sector": "language",
+      "status": "adopt",
+      "description": "Customizable buttons for iOS apps."
+    },
+    {
+      "name": "snapkit",
+      "title": "SnapKit",
+      "sector": "language",
+      "status": "adopt",
+      "description": "DSL to make Auto Layout easy on iOS"
+    },
+    {
+      "name": "snapshottesting",
+      "title": "SnapshotTesting",
+      "sector": "language",
+      "status": "adopt",
+      "description": "Delightful Swift snapshot testing."
+    },
+    {
+      "name": "swagger",
+      "title": "Swagger",
+      "sector": "language",
+      "status": "adopt",
+      "description": "Фреймворк описания API"
+    },
+    {
+      "name": "swift",
+      "title": "Swift",
+      "sector": "language",
+      "status": "adopt",
+      "description": "Язык программирования"
+    },
+    {
+      "name": "swift-pm",
+      "title": "Swift PM",
+      "sector": "language",
+      "status": "adopt",
+      "description": "Менеджер зависимостей"
+    },
+    {
+      "name": "edna",
+      "title": "Edna",
+      "sector": "language",
+      "status": "trial",
+      "description": "Фреймворк для чата с пользователями"
+    },
+    {
+      "name": "kotlin-multiplatform",
+      "title": "Kotlin Multiplatform",
+      "sector": "language",
+      "status": "trial",
+      "description": "Позволяет писать общий код логики для iOS"
+    },
+    {
+      "name": "swaggen",
+      "title": "SwagGen",
+      "sector": "language",
+      "status": "trial",
+      "description": "OpenAPI/Swagger 3.0 Parser and Swift code generator"
+    },
+    {
+      "name": "xctassertnoleak",
+      "title": "XCTAssertNoLeak",
+      "sector": "language",
+      "status": "trial",
+      "description": "Фреймворк для обнаружения утечек памяти"
+    },
+    {
+      "name": "alamofire",
+      "title": "Alamofire",
+      "sector": "language",
+      "status": "assess",
+      "description": "An HTTP networking library written in Swift"
+    },
+    {
+      "name": "apollo-graphql",
+      "title": "Apollo GraphQL",
+      "sector": "language",
+      "status": "assess",
+      "description": "GraphQL framework for Swift"
+    },
+    {
+      "name": "metrickit",
+      "title": "MetricKit",
+      "sector": "language",
+      "status": "assess",
+      "description": "A framework which aggregates and analyzes per-device reports on exception and crash diagnostics"
+    },
+    {
+      "name": "reactivecocoa",
+      "title": "ReactiveCocoa",
+      "sector": "language",
+      "status": "assess",
+      "description": "Фрейморк для реактивного программирования"
+    },
+    {
+      "name": "swiftui",
+      "title": "SwiftUI",
+      "sector": "language",
+      "status": "assess",
+      "description": "UI framework"
+    },
+    {
+      "name": "swinject",
+      "title": "Swinject",
+      "sector": "language",
+      "status": "assess",
+      "description": "A lightweight dependency injection framework for Swift"
+    },
+    {
+      "name": "adjust",
+      "title": "Adjust",
+      "sector": "language",
+      "status": "hold",
+      "description": "Marketing analytics framework"
+    },
+    {
+      "name": "afnetworking",
+      "title": "AFNetworking",
+      "sector": "language",
+      "status": "hold",
+      "description": "Network layer framework"
+    },
+    {
+      "name": "carthage",
+      "title": "Carthage",
+      "sector": "language",
+      "status": "hold",
+      "description": "Менеджер зависимостей"
+    },
+    {
+      "name": "cocoapods",
+      "title": "CocoaPods",
+      "sector": "language",
+      "status": "hold",
+      "description": "Менеджер зависимостей"
+    },
+    {
+      "name": "combine",
+      "title": "Combine",
+      "sector": "language",
+      "status": "hold",
+      "description": "Reactive framework от Apple"
+    },
+    {
+      "name": "dwifft",
+      "title": "Dwifft",
+      "sector": "language",
+      "status": "hold",
+      "description": "A small Swift library that tells you what the 'diff' is between two collections"
+    },
+    {
+      "name": "mbprogresshud",
+      "title": "MBProgressHUD",
+      "sector": "language",
+      "status": "hold",
+      "description": "Индикатор загрузки"
+    },
+    {
+      "name": "objective-c",
+      "title": "Objective-C",
+      "sector": "language",
+      "status": "hold",
+      "description": "Язык программирования"
+    },
+    {
+      "name": "reactiveobjc",
+      "title": "ReactiveObjc",
+      "sector": "language",
+      "status": "hold",
+      "description": "Objective-C фреймворк для реактивного программирования"
+    },
+    {
+      "name": "rxswift",
+      "title": "RxSwift",
+      "sector": "language",
+      "status": "hold",
+      "description": "Swift фрейвморк для реактивного программирования"
+    },
+    {
+      "name": "sdwebimage",
+      "title": "SDWebImage",
+      "sector": "language",
+      "status": "hold",
+      "description": "Async image downloader with cache support"
+    },
+    {
+      "name": "swipecellkit",
+      "title": "SwipeCellKit",
+      "sector": "language",
+      "status": "hold",
+      "description": "Swipeable UITableViewCell/UICollectionViewCell based on the stock Mail.app"
+    },
+    {
+      "name": "tttattributedlabel",
+      "title": "TTTAttributedLabel",
+      "sector": "language",
+      "status": "hold",
+      "description": "A drop-in replacement for UILabel that supports attributes"
+    },
+    {
+      "name": "typhoon",
+      "title": "Typhoon",
+      "sector": "language",
+      "status": "hold",
+      "description": "Dependency Injection framework"
+    },
+    {
+      "name": "yapdatabase",
+      "title": "YapDatabase",
+      "sector": "language",
+      "status": "hold",
+      "description": "A collection/key/value store."
+    }
+  ]
+}

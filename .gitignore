@@ -1,82 +1,33 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
+# misc
 
-# Diagnostic reports (https://nodejs.org/api/report.html)
-report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+.DS_Store
+/.idea
 
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
+# local
 
-# Coverage
-flow-coverage
-lib-cov
-coverage
-.nyc_output
-*.lcov
+*.local
 
-# Bundles
-bundle/
-build/
-dist/
-target/
-typings/
-flow-typed/
-buildstamp.json
+# yarn
 
-# Docs
-docs
-doc
+/.pnp.*
+/.yarn/cache
+/.yarn/unplugged
+/.yarn/install-state.gz
+/yarn-error.log
 
-# Deps
-node_modules
-jspm_packages
-bower_components
-package-lock.json
-npm-shrinkwrap.json
+# open-ssl
 
-#IDE
-.idea
-.idea/
-
-# Yarn Integrity file
-.yarn-integrity
-
-.npm
-.eslintcache
-.node_repl_history
-.env
-
-# Typescript
-*.tsbuildinfo
-.tsbuildinfo
-buildcache
-.buildcache
-
-# Microbundle cache
-.rpt2_cache/
-.rts2_cache_cjs/
-.rts2_cache_es/
-.rts2_cache_umd/
-
-# Temp
-src/test/js/temp
-
-# Code Climate
-cc-reporter
-cc-reporter.*
-codeclimate.*
-coverage.*
-
-# Creds
-*.asc
-*.key
+*.ca
+*.crt
+*.csr
+*.der
+*.kdb
+*.org
+*.p12
 *.pem
-*.cert
+*.rnd
+*.ssleay
+*.smime
+
+/node_modules
+/target

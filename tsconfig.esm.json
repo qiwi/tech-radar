@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "target": "es2022",
+    "module": "es2022",
+    "rootDir": "./src/main/ts",
+    "outDir": "./target/esm",
+    "tsBuildInfoFile": "./target/esm/.tsbuildinfo"
+  },
+  "include": [
+    "./src/main/ts"
+  ],
+  "references": []
+}

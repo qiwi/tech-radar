@@ -1,0 +1,451 @@
+{
+  "$schema": "../resources/radar-schema.json",
+  "type": "sectors",
+  "title": "QIWI QA Tech Radar",
+  "statuses": [
+    {
+      "name": "adopt",
+      "title": "Adopt",
+      "description": "",
+      "size": 150,
+      "thick": 8
+    },
+    {
+      "name": "trial",
+      "title": "Trial",
+      "description": "",
+      "size": 50,
+      "thick": 4
+    },
+    {
+      "name": "assess",
+      "title": "Assess",
+      "description": "",
+      "size": 50,
+      "thick": 2
+    },
+    {
+      "name": "hold",
+      "title": "Hold",
+      "description": "",
+      "size": 50,
+      "thick": 1
+    }
+  ],
+  "sectors": [
+    {
+      "name": "lang",
+      "title": "Languages and frameworks",
+      "color": "#F2A25C"
+    },
+    {
+      "name": "platforms",
+      "title": "Platforms and infrastructure",
+      "color": "#84BFA4"
+    },
+    {
+      "name": "tools",
+      "title": "Tools",
+      "color": "#248EA6"
+    },
+    {
+      "name": "tech",
+      "title": "Techniques",
+      "color": "#F25244"
+    }
+  ],
+  "items": [
+    {
+      "name": "java-8",
+      "title": "Java 8",
+      "description": "Обычная Java",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "java-11",
+      "title": "Java 11",
+      "description": "Актуальная LTS Java",
+      "sector": "lang",
+      "status": "adopt"
+    },
+    {
+      "name": "kotlin",
+      "title": "Kotlin",
+      "description": "Статически типизированный",
+      "sector": "lang",
+      "status": "adopt"
+    },
+    {
+      "name": "typescript",
+      "title": "TypeScript",
+      "description": "TypeScript — язык программирования",
+      "sector": "lang",
+      "status": "adopt"
+    },
+    {
+      "name": "go",
+      "title": "Go",
+      "description": "Компилируемый многопоточный язык программирования",
+      "sector": "lang",
+      "status": "adopt"
+    },
+    {
+      "name": "jest",
+      "title": "jest",
+      "description": "Фреймворк для unit автотестов",
+      "sector": "lang",
+      "status": "adopt"
+    },
+    {
+      "name": "cypress",
+      "title": "Cypress",
+      "description": "Фреймворк для e2e тестов",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "c-dash",
+      "title": "C#",
+      "description": "язык программирования",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "groovy",
+      "title": "Groovy",
+      "description": "Объектно-ориентированный язык программирования",
+      "sector": "lang",
+      "status": "adopt"
+    },
+    {
+      "name": "kubernetes",
+      "title": "Kubernetes",
+      "description": "Основная платформа для запуска приложений",
+      "sector": "platforms",
+      "status": "adopt"
+    },
+    {
+      "name": "docker",
+      "title": "Docker",
+      "description": "Контейренизация",
+      "sector": "platforms",
+      "status": "adopt"
+    },
+    {
+      "name": "teamcity",
+      "title": "TeamCity",
+      "description": "CI/CD инструмент",
+      "sector": "platforms",
+      "status": "adopt"
+    },
+    {
+      "name": "tekton",
+      "title": "Tekton",
+      "description": "Легковесный CI инструмент",
+      "sector": "platforms",
+      "status": "access"
+    },
+    {
+      "name": "sonarqube",
+      "title": "SonarQube",
+      "description": "Платформа с открытым исходным кодом для непрерывного анализа и измерения качества программного кода",
+      "sector": "platforms",
+      "status": "adopt"
+    },
+    {
+      "name": "moon",
+      "title": "Moon",
+      "description": "Организация ручного и автоматизированного тестирования веб-приложений в настольных и мобильных браузерах на основе протокола Selenium WebDriver",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "appium",
+      "title": "Appium",
+      "description": "Tool for automation UI tests",
+      "sector": "tools",
+      "status": "hold"
+    },
+    {
+      "name": "cucumber",
+      "title": "Cucumber",
+      "description": "Tool for automation UI tests",
+      "sector": "tools",
+      "status": "hold"
+    },
+    {
+      "name": "playwright",
+      "title": "PlayWright",
+      "description": "Tool for automation UI tests",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "selenium",
+      "title": "Selenium",
+      "description": "Tool for automation UI tests",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "junit",
+      "title": "JUnit",
+      "description": "Среда тестирования",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "apidoc",
+      "title": "apiDoc",
+      "description": "Встроенная документация для вебинтерфейса Restful",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "testng",
+      "title": "TestNG",
+      "description": "Среда тестирования",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "nunit",
+      "title": "NUnit",
+      "description": "Среда тестирования",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "confluence",
+      "title": "Confluence",
+      "description": "Wiki",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "swagger",
+      "title": "Swagger",
+      "description": "Фреймворк описания API",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "miro",
+      "title": "Miro",
+      "description": "Wiki",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "github",
+      "title": "Github",
+      "description": "Система контроля версий исползуемая в основном frontend'ового кода",
+      "sector": "tools",
+      "status": "hold"
+    },
+    {
+      "name": "gerrit",
+      "title": "Gerrit",
+      "description": "Система контроля версий.",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "intellij-idea",
+      "title": "Intellij idea",
+      "description": "IDE для разработки на Java/Kotlin",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "jira",
+      "title": "Jira",
+      "description": "Bug tracker",
+      "sector": "tools",
+      "status": "hold"
+    },
+    {
+      "name": "kaiten",
+      "title": "Kaiten",
+      "description": "Система управления задачами",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "kibana",
+      "title": "Kibana",
+      "description": "Визуализация логов",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "teamcity",
+      "title": "TeamCity",
+      "description": "Сервер для CI/CD",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "testflight",
+      "title": "TestFlight",
+      "description": "Share test builds for testers",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "grafana",
+      "title": "Grafana",
+      "description": "Решение для построения дашбордов и мониторинга",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "testrail",
+      "title": "Testrail",
+      "description": "Управление тест-кейсами для команд QA",
+      "sector": "tools",
+      "status": "hold"
+    },
+    {
+      "name": "postman",
+      "title": "Postman",
+      "description": "Инструмент для тестирования API",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "browserstack",
+      "title": "Browserstack",
+      "description": "Облачная платформа для веб-тестирования и тестирования мобильных устройств",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "codenarc",
+      "title": "CodeNarc",
+      "description": "инструмент статического анализа исходного кода Groovy",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "fets",
+      "title": "Fets",
+      "description": "Bug tracker",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "gatling",
+      "title": "Gatling",
+      "description": "Инструмент для тестирования нагрузки и производительности с открытым исходным кодом",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "gradle",
+      "title": "Gradle",
+      "description": "Система автоматической сборки",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "charles",
+      "title": "Charles",
+      "description": "Кроссплатформенное приложение прокси-сервера отладки HTTP",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "continuous-delivery",
+      "title": "Continuous delivery",
+      "description": "С помощью teamcity и прохождения автоматических автотестов",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "native-api-tests",
+      "title": "Native API tests",
+      "description": "Нативное тестирование API",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "native-ui-tests",
+      "title": "Native UI tests",
+      "description": "Нативное тестирования для UI тестов",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "bdd",
+      "title": "BDD",
+      "description": "Методология разработки ПО",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "continuous-integration",
+      "title": "Continuous integration",
+      "description": "Каждый пулл реквест проверяется автоматическими чеками",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "continuous-deployment",
+      "title": "Continuous deployment",
+      "description": "Практика автоматизации всего процесса релиза ПО",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "rest",
+      "title": "REST",
+      "description": "Архитектурный стиль взаимодействия компонентов распределённого приложения в сети.",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "soa",
+      "title": "SOA",
+      "description": "Service-oriented architecture",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "solid",
+      "title": "SOLID",
+      "description": "Мнемонический акроним для 5 основных принципов объектно-ориентированного программирования и проектирования.",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "ui-tests",
+      "title": "UI tests",
+      "description": "фича покрывается UI тестами",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "unit-tests",
+      "title": "Unit tests",
+      "description": "фича покрывается unit тестами",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "integration-tests",
+      "title": "Integration tests",
+      "description": "фича покрывается интеграционными тестами",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "acceptance-tests",
+      "title": "Acceptance tests",
+      "description": "фича покрывается приемочными тестами",
+      "sector": "tech",
+      "status": "adopt"
+    }
+  ]
+}

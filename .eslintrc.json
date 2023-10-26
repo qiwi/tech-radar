@@ -1,11 +1,3 @@
 {
-    "extends": [
-        "eslint-config-qiwi",
-        "prettier"
-    ],
-    "ignorePatterns": ["src/main/tpl/**/*.js"],
-    "rules": {
-        "unicorn/prefer-type-error": 0,
-        "unicorn/consistent-function-scoping": 0
-    }
+  "extends": "eslint-config-qiwi"
 }

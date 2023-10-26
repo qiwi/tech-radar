@@ -1,0 +1,21 @@
+{
+  "name": "tech-radar",
+  "description": "tech-radar",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev"
+  },
+  "dependencies": {
+    "@types/node": "20.8.9",
+    "@types/react": "18.2.33",
+    "@types/react-dom": "18.2.14",
+    "d3": "7.8.5",
+    "next": "13.4.19",
+    "query-string": "8.1.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "4.9.5"
+  }
+}
