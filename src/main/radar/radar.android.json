@@ -1,0 +1,248 @@
+{
+  "$schema": "../resources/radar-schema.json",
+  "type": "sectors",
+  "title": "QIWI Android Tech Radar",
+  "statuses": [
+    {
+      "name": "adopt",
+      "title": "Adopt",
+      "description": "",
+      "size": 150,
+      "thick": 8
+    },
+    {
+      "name": "trial",
+      "title": "Trial",
+      "description": "",
+      "size": 50,
+      "thick": 4
+    },
+    {
+      "name": "assess",
+      "title": "Assess",
+      "description": "",
+      "size": 50,
+      "thick": 2
+    },
+    {
+      "name": "hold",
+      "title": "Hold",
+      "description": "",
+      "size": 50,
+      "thick": 1
+    }
+  ],
+  "sectors": [
+    {
+      "name": "language",
+      "title": "Languages and frameworks",
+      "color": "#F2A25C"
+    },
+    {
+      "name": "platforms",
+      "title": "Platforms",
+      "color": "#84BFA4"
+    },
+    {
+      "name": "tools",
+      "title": "Tools",
+      "color": "#248EA6"
+    },
+    {
+      "name": "tech",
+      "title": "Techniques",
+      "color": "#F25244"
+    }
+  ],
+  "items": [
+    {
+      "name": "continuous-delivery",
+      "title": "Continuous delivery",
+      "description": "",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "continuous-integration",
+      "title": "Continuous integration",
+      "description": "",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "ui-tests",
+      "title": "UI tests",
+      "description": "",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "unit-tests",
+      "title": "Unit tests",
+      "description": "",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "mvi",
+      "title": "MVI",
+      "description": "",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "solid",
+      "title": "SOLID",
+      "description": "",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "feature-flags",
+      "title": "Feature flags",
+      "description": "",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "trunk-based-development",
+      "title": "Trunk based development",
+      "description": "",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "appium",
+      "title": "Appium",
+      "description": "",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "kubernetes",
+      "title": "Kubernetes",
+      "description": "",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "tekton",
+      "title": "Tekton",
+      "description": "",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "device-farm",
+      "title": "Device farm",
+      "description": "",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "github",
+      "title": "Github",
+      "description": "",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "kibana",
+      "title": "Kibana",
+      "description": "",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "grafana",
+      "title": "Grafana",
+      "description": "",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "firebase-crashlytics",
+      "title": "Firebase Crashlytics",
+      "description": "",
+      "sector": "platforms",
+      "status": "adopt"
+    },
+    {
+      "name": "firebase-remote-config",
+      "title": "Firebase Remote Config",
+      "description": "",
+      "sector": "platforms",
+      "status": "adopt"
+    },
+    {
+      "name": "kotlin-multiplatform",
+      "title": "Kotlin Multiplatform",
+      "description": "",
+      "sector": "platforms",
+      "status": "adopt"
+    },
+    {
+      "name": "java",
+      "title": "Java",
+      "description": "",
+      "sector": "language",
+      "status": "hold"
+    },
+    {
+      "name": "rxjava",
+      "title": "RxJava",
+      "description": "",
+      "sector": "language",
+      "status": "hold"
+    },
+    {
+      "name": "kotlin",
+      "title": "Kotlin",
+      "description": "",
+      "sector": "language",
+      "status": "adopt"
+    },
+    {
+      "name": "kotlin-multiplatform",
+      "title": "Kotlin Multiplatform",
+      "description": "",
+      "sector": "language",
+      "status": "adopt"
+    },
+    {
+      "name": "kotlin-coroutines",
+      "title": "Kotlin Coroutines",
+      "description": "",
+      "sector": "language",
+      "status": "adopt"
+    },
+    {
+      "name": "ktor",
+      "title": "Ktor",
+      "description": "",
+      "sector": "language",
+      "status": "adopt"
+    },
+    {
+      "name": "sqldelight",
+      "title": "SQLDelight",
+      "description": "",
+      "sector": "language",
+      "status": "adopt"
+    },
+    {
+      "name": "dart-flutter",
+      "title": "Dart (Flutter)",
+      "description": "",
+      "sector": "language",
+      "status": "assess"
+    },
+    {
+      "name": "jetpack-compose",
+      "title": "Jetpack compose",
+      "description": "",
+      "sector": "language",
+      "status": "assess"
+    }
+  ]
+}

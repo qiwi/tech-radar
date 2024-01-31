@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "module": "es2022",
+    "target": "es2022",
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "removeComments": false,
+    "downlevelIteration": true,
+    "importHelpers": true,
+    "baseUrl": "./",
+    "types": [
+      "node"
+    ],
+    "paths": {}
+  },
+  "include": [
+    "./src/main/ts",
+    "./src/test/ts"
+  ],
+  "exclude": [
+    "./node_modules"
+  ]
+}

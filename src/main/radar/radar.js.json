@@ -1,0 +1,525 @@
+{
+  "$schema": "../resources/radar-schema.json",
+  "type": "sectors",
+  "title": "QIWI JS Tech Radar",
+  "statuses": [
+    {
+      "name": "adopt",
+      "title": "Adopt",
+      "description": "",
+      "size": 150,
+      "thick": 8
+    },
+    {
+      "name": "trial",
+      "title": "Trial",
+      "description": "",
+      "size": 50,
+      "thick": 4
+    },
+    {
+      "name": "assess",
+      "title": "Assess",
+      "description": "",
+      "size": 50,
+      "thick": 2
+    },
+    {
+      "name": "hold",
+      "title": "Hold",
+      "description": "",
+      "size": 50,
+      "thick": 1
+    }
+  ],
+  "sectors": [
+    {
+      "name": "lang",
+      "title": "Languages, Frameworks, Libs",
+      "description": "bla-bla-bla about languages",
+      "color": "#F2A25C"
+    },
+    {
+      "name": "tools",
+      "title": "Tools",
+      "description": "bla-bla-bla about tools",
+      "color": "#84BFA4"
+    },
+    {
+      "name": "tech",
+      "title": "Techniques",
+      "description": "bla-bla-bla about techniques",
+      "color": "#248EA6"
+    },
+    {
+      "name": "platforms",
+      "title": "Platforms",
+      "description": "bla-bla-bla about platforms",
+      "color": "#F25244"
+    }
+  ],
+  "items": [
+    {
+      "name": "typescript",
+      "title": "TypeScript",
+      "description": "TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.",
+      "sector": "lang",
+      "status": "adopt"
+    },
+    {
+      "name": "es2015",
+      "title": "es2015",
+      "description": "es2015",
+      "sector": "lang",
+      "status": "adopt"
+    },
+    {
+      "name": "es2021",
+      "title": "es2021",
+      "description": "es2021",
+      "sector": "lang",
+      "status": "trial"
+    },
+    {
+      "name": "nest-js",
+      "title": "Nest.js",
+      "description": "Spring для TS",
+      "sector": "lang",
+      "status": "adopt"
+    },
+    {
+      "name": "react",
+      "title": "React",
+      "description": "Декларативная",
+      "sector": "lang",
+      "status": "adopt"
+    },
+    {
+      "name": "emotion",
+      "title": "emotion",
+      "description": "CSS in JS",
+      "sector": "lang",
+      "status": "adopt"
+    },
+    {
+      "name": "jest",
+      "title": "jest",
+      "description": "Фреймворк для unit автотестов",
+      "sector": "lang",
+      "status": "adopt"
+    },
+    {
+      "name": "lodash",
+      "title": "lodash",
+      "description": "Стандартная библиотека",
+      "sector": "lang",
+      "status": "adopt"
+    },
+    {
+      "name": "react-scripts",
+      "title": "react-scripts",
+      "description": "Create React apps with no build configuration.",
+      "sector": "lang",
+      "status": "adopt"
+    },
+    {
+      "name": "react-router",
+      "title": "react-router",
+      "description": "Маршрутизация в React",
+      "sector": "lang",
+      "status": "adopt"
+    },
+    {
+      "name": "testing-library",
+      "title": "testing-library",
+      "description": "Либо для тестов React компонентов",
+      "sector": "lang",
+      "status": "adopt"
+    },
+    {
+      "name": "playwright",
+      "title": "playwright",
+      "description": "Фреймворк для e2e тестов",
+      "sector": "lang",
+      "status": "adopt"
+    },
+    {
+      "name": "vite",
+      "title": "vite",
+      "description": "Create React apps with no build configuration.",
+      "sector": "lang",
+      "status": "assess"
+    },
+    {
+      "name": "nodejs-test-runner",
+      "title": "nodejs test runner",
+      "description": "Нативный тест-раннер ноды",
+      "sector": "lang",
+      "status": "assess"
+    },
+    {
+      "name": "react-native",
+      "title": "React Native",
+      "description": "Разработка нативных приложений для Android и iOS на React",
+      "sector": "lang",
+      "status": "assess"
+    },
+    {
+      "name": "next-js",
+      "title": "Next.js",
+      "description": "Фреймворк для React-приложений",
+      "sector": "lang",
+      "status": "assess"
+    },
+    {
+      "name": "vue",
+      "title": "Vue",
+      "description": "VueJS",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "express",
+      "title": "express",
+      "description": "Мидлвары поверх http-server",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "uvu",
+      "title": "uvu",
+      "description": "«Легкая» либа для автотестирования",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "mocha",
+      "title": "mocha",
+      "description": "legacy либа для автотестов",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "cypress",
+      "title": "cypress",
+      "description": "Фреймворк для e2e тестов",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "flow",
+      "title": "Flow",
+      "description": "Статический анализатор кода и набор синтаксических конструкций",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "enzyme",
+      "title": "enzyme",
+      "description": "Либо для тестов React компонентов",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "antd",
+      "title": "antd",
+      "description": "ui компоненты",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "material-ui",
+      "title": "material-ui",
+      "description": "ui компоненты",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "tailwindcss",
+      "title": "tailwindcss",
+      "description": "CSS framework",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "react-bootstrap",
+      "title": "react-bootstrap",
+      "description": "CSS framework",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "styled-components",
+      "title": "styled-components",
+      "description": "CSS in JS",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "radium",
+      "title": "radium",
+      "description": "inline styles on React elements",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "nodejs-18",
+      "title": "Nodejs 18",
+      "description": "Nodejs 18",
+      "sector": "platforms",
+      "status": "adopt"
+    },
+    {
+      "name": "nodejs-20",
+      "title": "Nodejs 20",
+      "description": "Nodejs 20",
+      "sector": "platforms",
+      "status": "trial"
+    },
+    {
+      "name": "kubernetes",
+      "title": "Kubernetes",
+      "description": "https://kubernetes.io/",
+      "sector": "platforms",
+      "status": "adopt"
+    },
+    {
+      "name": "pijma",
+      "title": "Pijma",
+      "description": "QIWI UI Kit (react 18)",
+      "sector": "platforms",
+      "status": "adopt"
+    },
+    {
+      "name": "yarn-classic",
+      "title": "Yarn classic",
+      "description": "Пакетный менеджер вместо npm",
+      "sector": "platforms",
+      "status": "adopt"
+    },
+    {
+      "name": "yarn-4",
+      "title": "Yarn 4",
+      "description": "yarn 4",
+      "sector": "platforms",
+      "status": "adopt"
+    },
+    {
+      "name": "qiwi-nestjs-enterprise",
+      "title": "qiwi/nestjs-enterprise",
+      "description": "Платформа модулей для работы с Nest js https://github.com/qiwi/nestjs-enterprise",
+      "sector": "platforms",
+      "status": "adopt"
+    },
+    {
+      "name": "eslint",
+      "title": "eslint",
+      "description": "Инструмент",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "prettier",
+      "title": "prettier",
+      "description": "Code Formatter",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "flp",
+      "title": "flp",
+      "description": "Провайдер клиентских событий",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "codeclimate",
+      "title": "codeclimate",
+      "description": "Статический анализатор кода https://github.com/codeclimate/codeclimate",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "zx-bulk-release",
+      "title": "zx-bulk-release",
+      "description": "zx-based alternative for multi-semantic-release",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "githubactions",
+      "title": "GithubActions",
+      "description": "GitHub Actions makes it easy to automate all your software workflows",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "teamcity",
+      "title": "Teamcity",
+      "description": "TeamCity — мощный инструмент непрерывной интеграции и развертывания для разработчиков и DevOps-инженеров",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "sonar",
+      "title": "sonar",
+      "description": "Статический анализатор кода",
+      "sector": "tools",
+      "status": "adopt"
+    },
+    {
+      "name": "zx-semrel",
+      "title": "zx-semrel",
+      "description": "Провайдер семантических релизов",
+      "sector": "tools",
+      "status": "trial"
+    },
+    {
+      "name": "zx",
+      "title": "zx",
+      "description": "Замена bash",
+      "sector": "tools",
+      "status": "trial"
+    },
+    {
+      "name": "storybook",
+      "title": "Storybook",
+      "description": "https://storybook.js.org/",
+      "sector": "tools",
+      "status": "assess"
+    },
+    {
+      "name": "semantic-release",
+      "title": "semantic-release",
+      "description": "Движение к CD",
+      "sector": "tools",
+      "status": "hold"
+    },
+    {
+      "name": "multi-semantic-release",
+      "title": "multi-semantic-release",
+      "description": "Враппер semrel для совместимости с монорепами. Меняем на zx-bulk-release",
+      "sector": "tools",
+      "status": "hold"
+    },
+    {
+      "name": "travis-ci",
+      "title": "Travis-ci",
+      "description": "CI для OSS. GH победил. Выпиливаем. И Appveyor тоже",
+      "sector": "tools",
+      "status": "hold"
+    },
+    {
+      "name": "react-styleguidist",
+      "title": "React Styleguidist",
+      "description": "https://react-styleguidist.js.org/",
+      "sector": "tools",
+      "status": "hold"
+    },
+    {
+      "name": "tslint",
+      "title": "tslint",
+      "description": "линтер",
+      "sector": "tools",
+      "status": "hold"
+    },
+    {
+      "name": "stylelint",
+      "title": "stylelint",
+      "description": "css линтер",
+      "sector": "tools",
+      "status": "hold"
+    },
+    {
+      "name": "standard",
+      "title": "standard",
+      "description": "линтер",
+      "sector": "tools",
+      "status": "hold"
+    },
+    {
+      "name": "jshint",
+      "title": "jshint",
+      "description": "линтер",
+      "sector": "tools",
+      "status": "hold"
+    },
+    {
+      "name": "monorepo",
+      "title": "Monorepo",
+      "description": "Обобщение кодовой базы на уровне домена продукта",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "oss",
+      "title": "OSS",
+      "description": "Публичная разработка https://github.com/qiwi",
+      "sector": "tech",
+      "status": "adopt"
+    },
+    {
+      "name": "typeorm",
+      "title": "Typeorm",
+      "description": "ORM",
+      "sector": "lang",
+      "status": "assess"
+    },
+    {
+      "name": "sequelize",
+      "title": "Sequelize",
+      "description": "ORM",
+      "sector": "lang",
+      "status": "assess"
+    },
+    {
+      "name": "prisma",
+      "title": "Prisma",
+      "description": "ORM",
+      "sector": "lang",
+      "status": "assess"
+    },
+    {
+      "name": "redux",
+      "title": "Redux",
+      "description": "State manager. Too much boilerplate. We use wrappers instead",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "rematch",
+      "title": "Rematch",
+      "description": "Wrapper for redux. Hasn't been updated since 2021",
+      "sector": "lang",
+      "status": "hold"
+    },
+    {
+      "name": "react-query",
+      "title": "React-query",
+      "description": "State and query manager",
+      "sector": "lang",
+      "status": "assess"
+    },
+    {
+      "name": "zustand",
+      "title": "Zustand",
+      "description": "State manager",
+      "sector": "lang",
+      "status": "assess"
+    },
+    {
+      "name": "reduxjs-toolkit",
+      "title": "@reduxjs/toolkit",
+      "description": "Official wrapper for redux",
+      "sector": "lang",
+      "status": "assess"
+    },
+    {
+      "name": "mobx",
+      "title": "Mobx",
+      "description": "State manager",
+      "sector": "lang",
+      "status": "assess"
+    }
+  ]
+}

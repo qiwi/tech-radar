@@ -1,0 +1,33 @@
+.sectors {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, 25%);
+}
+
+.sector {
+  padding: 1rem;
+}
+
+.sector h2 {
+  padding: 1rem 0;
+}
+
+.sector h3 {
+  padding: 1rem 0;
+}
+
+.section p {
+  padding: 0.5rem 0;
+}
+
+@media (max-width: 1201px) {
+  .sectors {
+    grid-template-columns: repeat(2, 50%);
+  }
+}
+
+@media (max-width: 701px) {
+  .sectors {
+    grid-template-columns: 1fr;
+  }
+}

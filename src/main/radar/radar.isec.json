@@ -1,0 +1,514 @@
+{
+  "$schema": "../resources/radar-schema.json",
+  "type": "sectors",
+  "title": "QIWI ISEC Tech Radar",
+  "statuses": [
+    {
+      "name": "adopt",
+      "title": "Adopt",
+      "description": "",
+      "size": 150,
+      "thick": 8
+    },
+    {
+      "name": "trial",
+      "title": "Trial",
+      "description": "",
+      "size": 50,
+      "thick": 4
+    },
+    {
+      "name": "assess",
+      "title": "Assess",
+      "description": "",
+      "size": 50,
+      "thick": 2
+    },
+    {
+      "name": "hold",
+      "title": "Hold",
+      "description": "",
+      "size": 50,
+      "thick": 1
+    }
+  ],
+  "sectors": [
+    {
+      "name": "monitor",
+      "title": "Monitoring",
+      "color": "#F2A25C"
+    },
+    {
+      "name": "scanner",
+      "title": "Scanners & crawlers",
+      "color": "#84BFA4"
+    },
+    {
+      "name": "infra",
+      "title": "Infrastructure",
+      "color": "#248EA6"
+    },
+    {
+      "name": "techtools",
+      "title": "Tools and Techniques",
+      "color": "#F25244"
+    }
+  ],
+  "items": [
+    {
+      "name": "███████",
+      "title": "███████",
+      "description": "██████ █████████",
+      "sector": "monitor",
+      "status": "adopt"
+    },
+    {
+      "name": "███████",
+      "title": "███████",
+      "description": "████ ██████████",
+      "sector": "monitor",
+      "status": "assess"
+    },
+    {
+      "name": "████-██████████",
+      "title": "████ ██████████",
+      "description": "███████ █████ ████████████ 3█",
+      "sector": "monitor",
+      "status": "adopt"
+    },
+    {
+      "name": "███████",
+      "title": "███████",
+      "description": "",
+      "sector": "monitor",
+      "status": "adopt"
+    },
+    {
+      "name": "██████████████",
+      "title": "██████████████",
+      "description": "",
+      "sector": "monitor",
+      "status": "trial"
+    },
+    {
+      "name": "████████████",
+      "title": "████████████",
+      "description": "████ ████ █ ██████ ███ ███",
+      "sector": "monitor",
+      "status": "adopt"
+    },
+    {
+      "name": "██████",
+      "title": "██████",
+      "description": "██████████ ███ ███████████",
+      "sector": "monitor",
+      "status": "hold"
+    },
+    {
+      "name": "███████-v6",
+      "title": "███████ v6",
+      "description": "",
+      "sector": "monitor",
+      "status": "adopt"
+    },
+    {
+      "name": "███",
+      "title": "███",
+      "description": "",
+      "sector": "monitor",
+      "status": "hold"
+    },
+    {
+      "name": "████-███",
+      "title": "████ ███",
+      "description": "████ ██ ████████ ███ ██████",
+      "sector": "scanner",
+      "status": "adopt"
+    },
+    {
+      "name": "██-█████-██████████",
+      "title": "██ █████ ██████████",
+      "description": "█████ ████ ██████",
+      "sector": "scanner",
+      "status": "adopt"
+    },
+    {
+      "name": "███████████",
+      "title": "███████████",
+      "description": "████████ ████ ██████",
+      "sector": "scanner",
+      "status": "adopt"
+    },
+    {
+      "name": "███████",
+      "title": "███████",
+      "description": "██████████ █ ████████",
+      "sector": "scanner",
+      "status": "adopt"
+    },
+    {
+      "name": "██████-█-███",
+      "title": "██████ █ ███",
+      "description": "██████████████-████ ██████",
+      "sector": "scanner",
+      "status": "assess"
+    },
+    {
+      "name": "██████████",
+      "title": "██████████",
+      "description": "██████████ ████ ██████",
+      "sector": "scanner",
+      "status": "adopt"
+    },
+    {
+      "name": "█████████████",
+      "title": "█████████████",
+      "description": "",
+      "sector": "scanner",
+      "status": "adopt"
+    },
+    {
+      "name": "█████████",
+      "title": "█████████",
+      "description": "In-Memory ██████████████ ████ ██████",
+      "sector": "scanner",
+      "status": "assess"
+    },
+    {
+      "name": "███████",
+      "title": "███████",
+      "description": "████████████████████████ ████ ██████",
+      "sector": "scanner",
+      "status": "assess"
+    },
+    {
+      "name": "█████████",
+      "title": "█████████",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "████████",
+      "title": "████████",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "████████",
+      "title": "████████",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "██████████",
+      "title": "██████████",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "████████",
+      "title": "████████",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "████████",
+      "title": "████████",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "██████",
+      "title": "██████",
+      "description": "",
+      "sector": "techtools",
+      "status": "trial"
+    },
+    {
+      "name": "█████████",
+      "title": "█████████",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "████",
+      "title": "████",
+      "description": "",
+      "sector": "techtools",
+      "status": "trial"
+    },
+    {
+      "name": "████2███",
+      "title": "████2███",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "███-████████-███████",
+      "title": "███ ████████ ███████",
+      "description": "",
+      "sector": "techtools",
+      "status": "trial"
+    },
+    {
+      "name": "█████████-███████",
+      "title": "█████████ ███████",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "███████",
+      "title": "███████",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "███████-███████",
+      "title": "███████ ███████",
+      "description": "",
+      "sector": "techtools",
+      "status": "assess"
+    },
+    {
+      "name": "███████████",
+      "title": "███████████",
+      "description": "",
+      "sector": "techtools",
+      "status": "trial"
+    },
+    {
+      "name": "██████████-████",
+      "title": "██████████ ████",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "██████████-█████",
+      "title": "██████████ █████",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "██████████-███",
+      "title": "██████████ ███",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "███",
+      "title": "███",
+      "description": "",
+      "sector": "techtools",
+      "status": "hold"
+    },
+    {
+      "name": "████████",
+      "title": "████████",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "███████-██████",
+      "title": "███████ ██████",
+      "description": "",
+      "sector": "techtools",
+      "status": "trial"
+    },
+    {
+      "name": "█████",
+      "title": "█████",
+      "description": "",
+      "sector": "techtools",
+      "status": "trial"
+    },
+    {
+      "name": "███-████████",
+      "title": "███ ████████",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "████",
+      "title": "████",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "█████████-███",
+      "title": "█████████ ███",
+      "description": "",
+      "sector": "techtools",
+      "status": "trial"
+    },
+    {
+      "name": "████████-███-████████",
+      "title": "████████ ███ ████████",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "████████-███-█████",
+      "title": "████████ ███ █████",
+      "description": "",
+      "sector": "techtools",
+      "status": "trial"
+    },
+    {
+      "name": "█████-███",
+      "title": "█████ ███",
+      "description": "",
+      "sector": "techtools",
+      "status": "access"
+    },
+    {
+      "name": "██████",
+      "title": "██████",
+      "description": "",
+      "sector": "techtools",
+      "status": "trial"
+    },
+    {
+      "name": "████",
+      "title": "████",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "███████",
+      "title": "███████",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "██",
+      "title": "██",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "██████████",
+      "title": "██████████",
+      "description": "████████ █████████ ███ ███████ ██████████",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "██████",
+      "title": "██████",
+      "description": "██████-█████████",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "█████",
+      "title": "█████",
+      "description": "█████████ ████████",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "█████",
+      "title": "█████",
+      "description": "█████████ ████████",
+      "sector": "infra",
+      "status": "hold"
+    },
+    {
+      "name": "███████",
+      "title": "███████",
+      "description": "██████████ ██████████████ ██",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "██████",
+      "title": "██████",
+      "description": "███████████████",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "████████",
+      "title": "████████",
+      "description": "█████ ██████████",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "██████",
+      "title": "██████",
+      "description": "█████ ██ ████████ ████████",
+      "sector": "infra",
+      "status": "trial"
+    },
+    {
+      "name": "███████",
+      "title": "███████",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "██████",
+      "title": "██████",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "███████",
+      "title": "███████",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "██████████",
+      "title": "██████████",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "██████",
+      "title": "██████",
+      "description": "",
+      "sector": "infra",
+      "status": "trial"
+    },
+    {
+      "name": "█████████████-███████",
+      "title": "█████████████ ███████",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "██████-███████",
+      "title": "██████ ███████",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    }
+  ]
+}

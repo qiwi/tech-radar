@@ -1,34 +1,60 @@
 {
+  "displayName": "@qiwi/tech-radar",
+  "injectGlobals": false,
+  "clearMocks": true,
+  "resetMocks": true,
   "testEnvironment": "node",
-  "transform": {},
-  "transformIgnorePatterns": [
-    "/!node_modules\\/lodash-es/",
-    "<roodDir>/node_modules/(?!lodash-es)"
-  ],
-  "moduleNameMapper": {
-    "csv-parse/sync": "<rootDir>/node_modules/csv-parse//lib/sync.js"
-  },
-  "collectCoverage": true,
-  "collectCoverageFrom": [
-    "<rootDir>/src/main/js/**/*.js"
-  ],
-  "coveragePathIgnorePatterns": [],
-  "testTimeout": 10000,
   "testMatch": [
-    "<rootDir>/src/test/js/**/*.js",
-    "<rootDir>/src/test/js/**/*.mjs"
+    "<rootDir>/src/test/[jt]s/**/*.[jt]s?(x)"
   ],
   "testPathIgnorePatterns": [
-    "/node_modules/",
-    "<rootDir>/src/test/stub",
-    "<rootDir>/src/test/temp"
+    "__mocks__",
+    "__snapshots__"
   ],
-  "moduleFileExtensions": [
-    "js",
-    "mjs",
-    "cjs",
-    "jsx",
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "<rootDir>/src/main/[jt]s/**/*.[jt]s?(x)"
+  ],
+  "coverageDirectory": "<rootDir>/target/coverage",
+  "coveragePathIgnorePatterns": [
+    "<rootDir>/node_modules",
+    "<rootDir>/target"
+  ],
+  "coverageProvider": "v8",
+  "coverageReporters": [
     "json",
-    "node"
+    "lcov"
+  ],
+  "snapshotResolver": "@packasso/jest-snapshot-resolver",
+  "moduleNameMapper": {},
+  "transform": {
+    "^.+\\.svg$": "@packasso/jest-svgr-transformer",
+    "^.+\\.[jt]sx?$": [
+      "@swc/jest",
+      {
+        "jsc": {
+          "parser": {
+            "syntax": "typescript",
+            "tsx": true,
+            "decorators": true,
+            "dynamicImport": true
+          },
+          "transform": {
+            "react": {
+              "runtime": "automatic"
+            },
+            "legacyDecorator": true,
+            "decoratorMetadata": true
+          }
+        }
+      }
+    ]
+  },
+  "extensionsToTreatAsEsm": [
+    ".ts",
+    ".tsx"
+  ],
+  "transformIgnorePatterns": [
+    "/node_modules/"
   ]
 }

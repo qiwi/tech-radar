@@ -1,0 +1,166 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Tech Radar Schema",
+  "definitions": {
+    "scope": {
+      "type": "object",
+      "required": ["name", "title", "radar"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "radar": {
+          "$ref": "#/definitions/radar"
+        }
+      }
+    },
+    "sector": {
+      "type": "object",
+      "required": ["name", "title"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "required": ["name", "title", "size", "thick"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "size": {
+          "type": "number"
+        },
+        "thick": {
+          "type": "number"
+        }
+      }
+    },
+    "item": {
+      "type": "object",
+      "required": ["name", "title", "status", "sector"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9█][a-z0-9-█]*$"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "sector": {
+          "type": "string"
+        }
+      }
+    },
+    "radar": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/path-radar"
+        },
+        {
+          "$ref": "#/definitions/sectors-radar"
+        },
+        {
+          "$ref": "#/definitions/scope-radar"
+        }
+      ]
+    },
+    "path-radar": {
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["path"]
+        },
+        "path": {
+          "type": "string"
+        }
+      }
+    },
+    "scope-radar": {
+      "type": "object",
+      "required": ["type", "title", "scopes"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["scopes"]
+        },
+        "title": {
+          "type": "string"
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/scope"
+          }
+        }
+      }
+    },
+    "sectors-radar": {
+      "type": "object",
+      "required": ["title", "type", "items"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["sectors"]
+        },
+        "title": {
+          "type": "string"
+        },
+        "statuses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/status"
+          }
+        },
+        "sectors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/sector"
+          }
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/item"
+          }
+        }
+      }
+    }
+  },
+  "$ref": "#/definitions/radar"
+}

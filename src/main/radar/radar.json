@@ -1,0 +1,70 @@
+{
+  "$schema": "../resources/radar-schema.json",
+  "type": "scopes",
+  "title": "QIWI Tech Radars",
+  "scopes": [
+    {
+      "name": "js",
+      "title": "JS",
+      "description": "js",
+      "radar": {
+        "type": "path",
+        "path": "radar.js.json"
+      }
+    },
+    {
+      "name": "backend",
+      "title": "Backend",
+      "description": "backend",
+      "radar": {
+        "type": "path",
+        "path": "radar.backend.json"
+      }
+    },
+    {
+      "name": "android",
+      "title": "Android",
+      "description": "android",
+      "radar": {
+        "type": "path",
+        "path": "radar.android.json"
+      }
+    },
+    {
+      "name": "ios",
+      "title": "iOS",
+      "description": "ios",
+      "radar": {
+        "type": "path",
+        "path": "radar.ios.json"
+      }
+    },
+    {
+      "name": "qa",
+      "title": "QA",
+      "description": "qa",
+      "radar": {
+        "type": "path",
+        "path": "radar.qa.json"
+      }
+    },
+    {
+      "name": "ops",
+      "title": "OPS",
+      "description": "ops",
+      "radar": {
+        "type": "path",
+        "path": "radar.ops.json"
+      }
+    },
+    {
+      "name": "isec",
+      "title": "ISEC",
+      "description": "isec",
+      "radar": {
+        "type": "path",
+        "path": "radar.isec.json"
+      }
+    }
+  ]
+}

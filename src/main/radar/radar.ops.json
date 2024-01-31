@@ -1,0 +1,584 @@
+{
+  "$schema": "../resources/radar-schema.json",
+  "type": "sectors",
+  "title": "QIWI OPS Tech Radar",
+  "statuses": [
+    {
+      "name": "adopt",
+      "title": "Adopt",
+      "description": "",
+      "size": 150,
+      "thick": 8
+    },
+    {
+      "name": "trial",
+      "title": "Trial",
+      "description": "",
+      "size": 50,
+      "thick": 4
+    },
+    {
+      "name": "assess",
+      "title": "Assess",
+      "description": "",
+      "size": 50,
+      "thick": 2
+    },
+    {
+      "name": "hold",
+      "title": "Hold",
+      "description": "",
+      "size": 50,
+      "thick": 1
+    }
+  ],
+  "sectors": [
+    {
+      "name": "langlib",
+      "title": "Languages and frameworks",
+      "color": "#F2A25C"
+    },
+    {
+      "name": "data",
+      "title": "Data management",
+      "color": "#84BFA4"
+    },
+    {
+      "name": "infra",
+      "title": "Infrastructure",
+      "color": "#248EA6"
+    },
+    {
+      "name": "techtools",
+      "title": "Tools and Techniques",
+      "color": "#F25244"
+    }
+  ],
+  "items": [
+    {
+      "name": "java",
+      "title": "Java",
+      "description": "Обычная Java",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "golang",
+      "title": "GoLang",
+      "description": "Системный язык программирования",
+      "sector": "langlib",
+      "status": "assess"
+    },
+    {
+      "name": "python-3",
+      "title": "Python 3",
+      "description": "Python",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "flask",
+      "title": "Flask",
+      "description": "",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "fastapi",
+      "title": "FastApi",
+      "description": "",
+      "sector": "langlib",
+      "status": "trial"
+    },
+    {
+      "name": "logback",
+      "title": "Logback",
+      "description": "Библиотека для логирования",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "log4j",
+      "title": "Log4j",
+      "description": "Библиотека для логирования",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "net-core-6-lts",
+      "title": ".NET Core 6 LTS",
+      "description": ".NET",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "net-core-5",
+      "title": ".NET Core 5",
+      "description": ".NET",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "asp-net",
+      "title": "ASP.NET",
+      "description": "Web-фреймворк",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "mstest2",
+      "title": "MSTest2",
+      "description": "Фреймворк для тестов .NET",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "app-metrics",
+      "title": "App.Metrics",
+      "description": "Измерение и отправка метрик .NET",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "lua",
+      "title": "Lua",
+      "description": "",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "oracledb",
+      "title": "OracleDB",
+      "description": "Одна из основных баз данных",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "mssql",
+      "title": "MsSQL",
+      "description": "SQL база данных",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "postgresql",
+      "title": "PostgreSQL",
+      "description": "Основная база данных",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "patroni",
+      "title": "Patroni",
+      "description": "PostgreSQL в кластере",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "cockroachdb",
+      "title": "CockroachDB",
+      "description": "Распределенная SQL-база данных",
+      "sector": "data",
+      "status": "assess"
+    },
+    {
+      "name": "clickhouse",
+      "title": "Clickhouse",
+      "description": "Колоночная база данных",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "elasticsearch",
+      "title": "Elasticsearch",
+      "description": "",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "hazelcast",
+      "title": "Hazelcast",
+      "description": "In-Memory распределенная база данных",
+      "sector": "data",
+      "status": "assess"
+    },
+    {
+      "name": "mongodb",
+      "title": "MongoDB",
+      "description": "Документоориентированная база данных",
+      "sector": "data",
+      "status": "assess"
+    },
+    {
+      "name": "kafka",
+      "title": "Kafka",
+      "description": "Распределенная шина для поточно обработки данных",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "cassandra",
+      "title": "Cassandra",
+      "description": "Масштабируемая распределенная база данных",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "victoriametrics",
+      "title": "Victoriametrics",
+      "description": "",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "sonarqube",
+      "title": "SonarQube",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "graphite",
+      "title": "Graphite",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "asterisk",
+      "title": "Asterisk",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "freeswitch",
+      "title": "Freeswitch",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "proxysql",
+      "title": "Proxysql",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "metabase",
+      "title": "Metabase",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "vuejs",
+      "title": "VueJS",
+      "description": "",
+      "sector": "techtools",
+      "status": "trial"
+    },
+    {
+      "name": "librenms",
+      "title": "Librenms",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "nats",
+      "title": "Nats",
+      "description": "",
+      "sector": "techtools",
+      "status": "trial"
+    },
+    {
+      "name": "stor2rrd",
+      "title": "Stor2rrd",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "ibm-spectrum-control",
+      "title": "Ibm spectrum control",
+      "description": "",
+      "sector": "techtools",
+      "status": "trial"
+    },
+    {
+      "name": "commvault-simpana",
+      "title": "Commvault Simpana",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "graylog",
+      "title": "Graylog",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "noction-netflow",
+      "title": "Noction netflow",
+      "description": "",
+      "sector": "techtools",
+      "status": "assess"
+    },
+    {
+      "name": "sccm",
+      "title": "SCCM",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "azure-arc",
+      "title": "Azure ARC",
+      "description": "",
+      "sector": "techtools",
+      "status": "access"
+    },
+    {
+      "name": "adfs",
+      "title": "ADFS",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "azuread",
+      "title": "AzureAD",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "ad",
+      "title": "AD",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "kubernetes",
+      "title": "Kubernetes",
+      "description": "Основная платформа для запуска приложений",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "consul",
+      "title": "Consul",
+      "description": "Сервис-дискавери",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "vault",
+      "title": "Vault",
+      "description": "Хранилище секретов",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "hiera",
+      "title": "Hiera",
+      "description": "Хранилище секретов",
+      "sector": "infra",
+      "status": "hold"
+    },
+    {
+      "name": "puppet",
+      "title": "Puppet",
+      "description": "Управление конфигурациями VM",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "docker",
+      "title": "Docker",
+      "description": "Контейренизация",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "teamcity",
+      "title": "TeamCity",
+      "description": "CI/CD инструмент",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "argocd",
+      "title": "ArgoCD",
+      "description": "CD и IaC для Kubernetes",
+      "sector": "infra",
+      "status": "trial"
+    },
+    {
+      "name": "grafana",
+      "title": "Grafana",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "kibana",
+      "title": "Kibana",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "zabbix",
+      "title": "Zabbix",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "prometheus",
+      "title": "Prometheus",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "zipkin",
+      "title": "Zipkin",
+      "description": "",
+      "sector": "infra",
+      "status": "trial"
+    },
+    {
+      "name": "clickhouse",
+      "title": "Clickhouse",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "telegraf",
+      "title": "Telegraf",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "jitsi",
+      "title": "Jitsi",
+      "description": "",
+      "sector": "infra",
+      "status": "assess"
+    },
+    {
+      "name": "vmware",
+      "title": "VMware",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "kamailio",
+      "title": "Kamailio",
+      "description": "",
+      "sector": "infra",
+      "status": "trial"
+    },
+    {
+      "name": "cisco-call-manager",
+      "title": "Cisco Call Manager",
+      "description": "",
+      "sector": "infra",
+      "status": "hold"
+    },
+    {
+      "name": "cisco-contact-center",
+      "title": "Cisco Contact Center",
+      "description": "",
+      "sector": "infra",
+      "status": "hold"
+    },
+    {
+      "name": "janus",
+      "title": "Janus",
+      "description": "",
+      "sector": "infra",
+      "status": "trial"
+    },
+    {
+      "name": "sentry",
+      "title": "Sentry",
+      "description": "",
+      "sector": "infra",
+      "status": "assess"
+    },
+    {
+      "name": "ms-teams",
+      "title": "MS Teams",
+      "description": "",
+      "sector": "infra",
+      "status": "trial"
+    },
+    {
+      "name": "apple-business-manager",
+      "title": "Apple Business Manager",
+      "description": "",
+      "sector": "infra",
+      "status": "trial"
+    },
+    {
+      "name": "onedrive-for-business",
+      "title": "Onedrive for business",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "sharepoint-online",
+      "title": "Sharepoint Online",
+      "description": "",
+      "sector": "infra",
+      "status": "trial"
+    },
+    {
+      "name": "microsoft-teams",
+      "title": "Microsoft Teams",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "office-365",
+      "title": "Office 365",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "windows-365",
+      "title": "Windows 365",
+      "description": "",
+      "sector": "infra",
+      "status": "access"
+    },
+    {
+      "name": "exchange-2019",
+      "title": "Exchange 2019",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "exchange-2016",
+      "title": "Exchange 2016",
+      "description": "",
+      "sector": "infra",
+      "status": "hold"
+    }
+  ]
+}

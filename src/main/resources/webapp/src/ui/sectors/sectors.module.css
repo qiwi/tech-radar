@@ -1,0 +1,11 @@
+.main {
+  padding: 2rem;
+  min-height: 100vh;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.main h1 {
+  padding-bottom: 2rem;
+}

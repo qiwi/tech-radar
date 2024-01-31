@@ -1,0 +1,696 @@
+{
+  "$schema": "../resources/radar-schema.json",
+  "type": "sectors",
+  "title": "QIWI Backend Tech Radar",
+  "statuses": [
+    {
+      "name": "adopt",
+      "title": "Adopt",
+      "description": "",
+      "size": 150,
+      "thick": 8
+    },
+    {
+      "name": "trial",
+      "title": "Trial",
+      "description": "",
+      "size": 50,
+      "thick": 4
+    },
+    {
+      "name": "assess",
+      "title": "Assess",
+      "description": "",
+      "size": 50,
+      "thick": 2
+    },
+    {
+      "name": "hold",
+      "title": "Hold",
+      "description": "",
+      "size": 50,
+      "thick": 1
+    }
+  ],
+  "sectors": [
+    {
+      "name": "langlib",
+      "title": "Languages and frameworks",
+      "color": "#F2A25C"
+    },
+    {
+      "name": "data",
+      "title": "Data management",
+      "color": "#84BFA4"
+    },
+    {
+      "name": "infra",
+      "title": "Infrastructure",
+      "color": "#248EA6"
+    },
+    {
+      "name": "techtools",
+      "title": "Tools and Techniques",
+      "color": "#F25244"
+    }
+  ],
+  "items": [
+    {
+      "name": "java-8",
+      "title": "Java 8",
+      "description": "Обычная Java",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "java-11",
+      "title": "Java 11",
+      "description": "Устаревшшая LTS Java",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "java-17",
+      "title": "Java 17",
+      "description": "Актуальная LTS Java",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "java-21",
+      "title": "Java 21",
+      "description": "Следующая LTS Java",
+      "sector": "langlib",
+      "status": "assess"
+    },
+    {
+      "name": "kotlin",
+      "title": "Kotlin",
+      "description": "Как Java только Kotlin",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "scala",
+      "title": "Scala",
+      "description": "Scala",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "spring-boot-2",
+      "title": "Spring Boot 2",
+      "description": "Spring boot",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "spring-boot-3",
+      "title": "Spring Boot 3",
+      "description": "Spring boot поновее",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "resilience4j",
+      "title": "Resilience4j",
+      "description": "Implementation of Circuit-Breaker pattern",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "logback",
+      "title": "Logback",
+      "description": "Библиотека для логирования для JVM",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "log4j",
+      "title": "Log4j",
+      "description": "Библиотека для логирования для JVM",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "junit-5",
+      "title": "JUnit 5",
+      "description": "Тест-фреймворк для JVM",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "junit-4",
+      "title": "JUnit 4",
+      "description": "Тест-фреймворк для JVM",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "testng",
+      "title": "TestNG",
+      "description": "Тест-фреймворк для JVM",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "maven",
+      "title": "Maven",
+      "description": "Инструмент сборки для JVM",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "hibernate",
+      "title": "Hibernate",
+      "description": "ORM для JVM",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "golang",
+      "title": "GoLang",
+      "description": "Системный язык программирования",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "chi",
+      "title": "Chi",
+      "description": "Библиотека для роутинга GoLang",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "python-3-12",
+      "title": "Python 3.12",
+      "description": "Python",
+      "sector": "langlib",
+      "status": "assess"
+    },
+    {
+      "name": "python-3-11",
+      "title": "Python 3.11",
+      "description": "Python",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "python-3-9",
+      "title": "Python 3.9",
+      "description": "Python",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "python-3-8",
+      "title": "Python 3.8",
+      "description": "Python",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "python-3-7",
+      "title": "Python 3.7",
+      "description": "Python",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "flask",
+      "title": "Flask",
+      "description": "Бэкенд-фреймворк для Python",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "fastapi",
+      "title": "FastApi",
+      "description": "Бэкенд-фреймворк для Python",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "django",
+      "title": "Django",
+      "description": "Бэкенд-фреймворк для Python",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "sqlalchemy",
+      "title": "SQLAlchemy",
+      "description": "ORM для Python",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "celery",
+      "title": "Celery",
+      "description": "Очередь задач для Python",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "poetry",
+      "title": "Poetry",
+      "description": "Менеджер зависимостей для Python",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "pytest",
+      "title": "Pytest",
+      "description": "Тест-фреймворк для Python",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "net-8",
+      "title": ".NET 8",
+      "description": ".NET следующая LTS",
+      "sector": "langlib",
+      "status": "assess"
+    },
+    {
+      "name": "net-6",
+      "title": ".NET 6",
+      "description": ".NET текущая LTS",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "net-5",
+      "title": ".NET 5",
+      "description": ".NET",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "asp-net",
+      "title": "ASP.NET",
+      "description": "Web-фреймворк для .NET",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "xunit",
+      "title": "xUnit",
+      "description": "Фреймворк для тестов .NET (юнит тесты)",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "nunit",
+      "title": "NUnit",
+      "description": "Фреймворк для тестов .NET (интеграционные тесты)",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "mstest2",
+      "title": "MSTest2",
+      "description": "Фреймворк для тестов .NET (юнит тесты)",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "app-metrics",
+      "title": "App.Metrics",
+      "description": "Измерение и отправка метрик .NET",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "dapper",
+      "title": "Dapper",
+      "description": "Легковесный ORM для .NET",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "serilog",
+      "title": "Serilog",
+      "description": "Библиотека для логирования для .NET",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "mediatr",
+      "title": "MediatR",
+      "description": "Медиатор .NET",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "delphi-7",
+      "title": "Delphi 7",
+      "description": "Легаси стек на старых проектах",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "delphi-10-3",
+      "title": "Delphi 10.3",
+      "description": "Легаси стек на старых проектах",
+      "sector": "langlib",
+      "status": "hold"
+    },
+    {
+      "name": "1c-enterprise-8-3",
+      "title": "1С:Предприятие 8.3",
+      "description": "Платформа разработки внутренних приложений",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "grpc",
+      "title": "gRPC",
+      "description": "RPC фреймворк для взаимодействия между микросервисами",
+      "sector": "langlib",
+      "status": "assess"
+    },
+    {
+      "name": "thrift",
+      "title": "Thrift",
+      "description": "RPC фреймворк для взаимодействия между микросервисами",
+      "sector": "langlib",
+      "status": "adopt"
+    },
+    {
+      "name": "oracledb",
+      "title": "OracleDB",
+      "description": "База данных для старых приложений",
+      "sector": "data",
+      "status": "hold"
+    },
+    {
+      "name": "mssql-2014",
+      "title": "MSSQL 2014",
+      "description": "SQL база данных",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "mssql-2022",
+      "title": "MSSQL 2022",
+      "description": "SQL база данных",
+      "sector": "data",
+      "status": "assess"
+    },
+    {
+      "name": "postgresql",
+      "title": "PostgreSQL",
+      "description": "Основная база данных",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "patroni",
+      "title": "Patroni",
+      "description": "PostgreSQL в кластере",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "cockroachdb",
+      "title": "CockroachDB",
+      "description": "Распределенная SQL-база данных",
+      "sector": "data",
+      "status": "trial"
+    },
+    {
+      "name": "clickhouse",
+      "title": "Clickhouse",
+      "description": "Колоночная база данных",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "elasticsearch",
+      "title": "Elasticsearch",
+      "description": "",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "hazelcast",
+      "title": "Hazelcast",
+      "description": "In-Memory распределенная база данных",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "mongodb",
+      "title": "MongoDB",
+      "description": "Документоориентированная база данных",
+      "sector": "data",
+      "status": "hold"
+    },
+    {
+      "name": "kafka",
+      "title": "Kafka",
+      "description": "Распределенная шина для поточно обработки данных",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "cassandra",
+      "title": "Cassandra",
+      "description": "Масштабируемая распределенная база данных",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "liquibase",
+      "title": "Liquibase",
+      "description": "Инструмент для миграций",
+      "sector": "data",
+      "status": "trial"
+    },
+    {
+      "name": "redis",
+      "title": "Redis",
+      "description": "Key-value база данных",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "couchbase",
+      "title": "Couchbase",
+      "description": "Документоориентированная база данных",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "nats",
+      "title": "Nats",
+      "description": "Брокер сообщений",
+      "sector": "data",
+      "status": "assess"
+    },
+    {
+      "name": "rabbitmq",
+      "title": "RabbitMQ",
+      "description": "Брокер сообщений",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "mysql",
+      "title": "MySQL",
+      "description": "SQL база данных",
+      "sector": "data",
+      "status": "hold"
+    },
+    {
+      "name": "vertica",
+      "title": "Vertica",
+      "description": "Колоночная база данных",
+      "sector": "data",
+      "status": "adopt"
+    },
+    {
+      "name": "common-api-models",
+      "title": "Общие API-модели",
+      "description": "Переиспользуем API-модели между сервером и клиентами",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "microservices",
+      "title": "Микросервисы",
+      "description": "Позволяет разрабатывать приложения разными командами более независимо",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "trunk-based-development",
+      "title": "Trunk-Based Development",
+      "description": "Фиче-флаги вместо фич-бранчей",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "sonarqube",
+      "title": "SonarQube",
+      "description": "",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "allure",
+      "title": "Allure",
+      "description": "Отчёты по тестам",
+      "sector": "techtools",
+      "status": "trial"
+    },
+    {
+      "name": "openapi",
+      "title": "OpenAPI",
+      "description": "Стандарт описания АПИ",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "camunda-7",
+      "title": "Camunda 7",
+      "description": "Платформа для моделирования и создания бизнес-процессов",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "camunda-8",
+      "title": "Camunda 8",
+      "description": "Платформа для моделирования и создания бизнес-процессов",
+      "sector": "techtools",
+      "status": "assess"
+    },
+    {
+      "name": "platform-approach",
+      "title": "Платформенный подход",
+      "description": "Общие платформы для разработки приложений под каждый стек",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "gitops-approach",
+      "title": "GitOps подход",
+      "description": "Репозиторий отражает состояние production среды",
+      "sector": "techtools",
+      "status": "trial"
+    },
+    {
+      "name": "gerrit",
+      "title": "Gerrit",
+      "description": "Система контроля версий",
+      "sector": "techtools",
+      "status": "adopt"
+    },
+    {
+      "name": "github",
+      "title": "GitHub",
+      "description": "Система контроля версий",
+      "sector": "techtools",
+      "status": "hold"
+    },
+    {
+      "name": "kubernetes",
+      "title": "Kubernetes",
+      "description": "Основная платформа для запуска приложений",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "consul",
+      "title": "Consul",
+      "description": "Сервис-дискавери",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "vault",
+      "title": "Vault",
+      "description": "Хранилище секретов",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "hiera",
+      "title": "Hiera",
+      "description": "Хранилище секретов",
+      "sector": "infra",
+      "status": "hold"
+    },
+    {
+      "name": "puppet",
+      "title": "Puppet",
+      "description": "Управление конфигурациями VM",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "docker",
+      "title": "Docker",
+      "description": "Контейнеризация",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "teamcity",
+      "title": "TeamCity",
+      "description": "CI/CD инструмент",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "argocd-and-argorollout",
+      "title": "ArgoCD & ArgoRollout",
+      "description": "Инструменты для GitOps подхода",
+      "sector": "infra",
+      "status": "trial"
+    },
+    {
+      "name": "grafana",
+      "title": "Grafana",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "kibana",
+      "title": "Kibana",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "zabbix",
+      "title": "Zabbix",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "prometheus",
+      "title": "Prometheus",
+      "description": "",
+      "sector": "infra",
+      "status": "adopt"
+    },
+    {
+      "name": "sentry",
+      "title": "Sentry",
+      "description": "",
+      "sector": "infra",
+      "status": "assess"
+    },
+    {
+      "name": "jaeger",
+      "title": "Jaeger",
+      "description": "Бэкенд трассировки",
+      "sector": "infra",
+      "status": "adopt"
+    }
+  ]
+}
