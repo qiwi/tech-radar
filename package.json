@@ -43,7 +43,7 @@
     "jsdoc": "^4.0.2",
     "prettier": "^3.0.0",
     "prettier-config-qiwi": "^2.1.2",
-    "serve-static": "^1.15.0"
+    "serve-static": "^2.0.0"
   },
   "engines": {
     "node": ">=14",
