@@ -69,6 +69,7 @@ const getContext = async ({
 
 const readSources = async ({ ctx, cwd, input }) => {
   ctx.sources = await getSources(input, cwd)
+  ctx.sources.sort()
   ctx.scopes = getDirs(ctx.sources).map(path.dirname)
   return ctx
 }
