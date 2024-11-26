@@ -1,3 +1,8 @@
+## [1.13.19](https://github.com/qiwi/tech-radar/compare/v1.13.18...v1.13.19) (2024-11-26)
+
+### Fixes & improvements
+* fix: apply sources sorting ([6bce303](https://github.com/qiwi/tech-radar/commit/6bce303507d25374a8aa934eb5816a62b62e12d3))
+
 ## [1.13.18](https://github.com/qiwi/tech-radar/compare/v1.13.17...v1.13.18) (2023-10-23)
 
 ### Fixes & improvements
