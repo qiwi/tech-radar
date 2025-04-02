@@ -1,3 +1,8 @@
+## [1.13.22](https://github.com/qiwi/tech-radar/compare/v1.13.21...v1.13.22) (2025-04-02)
+
+### Fixes & improvements
+* fix: ci permissions ([81956f5](https://github.com/qiwi/tech-radar/commit/81956f5e472085e24799f91fe8f5b00d35845da5))
+
 ## [1.13.21](https://github.com/qiwi/tech-radar/compare/v1.13.20...v1.13.21) (2025-04-02)
 
 ### Fixes & improvements
