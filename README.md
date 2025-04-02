@@ -9,7 +9,7 @@
 [📡 QIWI](https://qiwi.github.io/tech-radar/) • [Android](https://qiwi.github.io/tech-radar/android/) • [Backend](https://qiwi.github.io/tech-radar/backend/) • [iOS](https://qiwi.github.io/tech-radar/ios/) • [ISEC](https://qiwi.github.io/tech-radar/isec/) • [JS](https://qiwi.github.io/tech-radar/js/) • [OPS](https://qiwi.github.io/tech-radar/ops/) • [QA](https://qiwi.github.io/tech-radar/qa/)
 </h2>
 
-[![CI](https://github.com/qiwi/tech-radar/workflows/CI/badge.svg)](https://github.com/qiwi/tech-radar/actions)
+[![CI](https://github.com/qiwi/tech-radar/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/qiwi/tech-radar/actions/workflows/ci.yaml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b04b40063c8974a8ca31/maintainability)](https://codeclimate.com/github/qiwi/tech-radar/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/b04b40063c8974a8ca31/test_coverage)](https://codeclimate.com/github/qiwi/tech-radar/test_coverage)
 [![npm (scoped)](https://img.shields.io/npm/v/@qiwi/tech-radar?color=09e)](https://www.npmjs.com/package/@qiwi/tech-radar)
