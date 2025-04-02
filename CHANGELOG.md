@@ -1,3 +1,8 @@
+## [1.13.21](https://github.com/qiwi/tech-radar/compare/v1.13.20...v1.13.21) (2025-04-02)
+
+### Fixes & improvements
+* fix: apply npm audit fix ([bd86859](https://github.com/qiwi/tech-radar/commit/bd86859fb480a35fa134935f476d6b76fdd2844c))
+
 ## [1.13.20](https://github.com/qiwi/tech-radar/compare/v1.13.19...v1.13.20) (2025-04-02)
 
 ### Fixes & improvements
