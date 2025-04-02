@@ -1,14 +1,16 @@
+import path from 'node:path'
 import Eleventy from '@11ty/eleventy'
 import fse from 'fs-extra'
 import { uniq } from 'lodash-es'
-import path from 'node:path'
 
 import { rootDir, tplDir } from '../constants.js'
 import { tempDir } from '../util.js'
 import { genMdAssets } from './markdown.js'
 
+const local = path[process.platform === 'win32' ? 'win32' : 'posix']
+
 export const genConfig = async ({ temp, output, prefix }) => {
-  const configExtPath = path.resolve(rootDir, 'generator/.eleventy.cjs')
+  const configExtPath = local.resolve(rootDir, 'generator/.eleventy.cjs')
   const configMixin = { extra: { temp, prefix, output } }
   const configPath = path.join(temp, 'config.js')
   const configContents = `
