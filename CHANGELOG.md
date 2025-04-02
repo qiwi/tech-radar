@@ -1,3 +1,8 @@
+## [1.13.23](https://github.com/qiwi/tech-radar/compare/v1.13.22...v1.13.23) (2025-04-02)
+
+### Fixes & improvements
+* fix: ci add repo url ([f444ef5](https://github.com/qiwi/tech-radar/commit/f444ef5867cf633bc1d00827b094495229a542db))
+
 ## [1.13.22](https://github.com/qiwi/tech-radar/compare/v1.13.21...v1.13.22) (2025-04-02)
 
 ### Fixes & improvements
