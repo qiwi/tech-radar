@@ -1,3 +1,9 @@
+## [1.13.20](https://github.com/qiwi/tech-radar/compare/v1.13.19...v1.13.20) (2025-04-02)
+
+### Fixes & improvements
+* fix: apply platform-specific path normalizer ([3bcfc85](https://github.com/qiwi/tech-radar/commit/3bcfc850fe7a576584a79174582023e4156b2611))
+* fix: up deps ([561fea6](https://github.com/qiwi/tech-radar/commit/561fea6cd0583fdb51ca687fb476f0494970af1a))
+
 ## [1.13.19](https://github.com/qiwi/tech-radar/compare/v1.13.18...v1.13.19) (2024-11-26)
 
 ### Fixes & improvements
