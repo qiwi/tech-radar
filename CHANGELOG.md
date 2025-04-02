@@ -1,3 +1,8 @@
+## [1.13.24](https://github.com/qiwi/tech-radar/compare/v1.13.23...v1.13.24) (2025-04-02)
+
+### Fixes & improvements
+* fix(deps): update dependency nanoid to v5 [security] ([633c3ab](https://github.com/qiwi/tech-radar/commit/633c3ab85b0312c712a2d4a938caf6e09d5b3953))
+
 ## [1.13.23](https://github.com/qiwi/tech-radar/compare/v1.13.22...v1.13.23) (2025-04-02)
 
 ### Fixes & improvements
