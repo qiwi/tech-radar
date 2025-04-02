@@ -1,3 +1,8 @@
+## [1.13.25](https://github.com/qiwi/tech-radar/compare/v1.13.24...v1.13.25) (2025-04-02)
+
+### Fixes & improvements
+* fix: apply `slash` ([0e9467a](https://github.com/qiwi/tech-radar/commit/0e9467af860c829507f89d7e6f13bbf936f1f0ef))
+
 ## [1.13.24](https://github.com/qiwi/tech-radar/compare/v1.13.23...v1.13.24) (2025-04-02)
 
 ### Fixes & improvements
