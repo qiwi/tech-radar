@@ -26,7 +26,7 @@ module.exports = (config) => {
         ),
         moved: entity.data.moved || 0,
         label: entity.fileSlug,
-        link: config.javascriptFunctions.url(entity.url, prefix),
+        link: config.javascript.functions.url(entity.url, prefix),
         active: false,
       }))
       .filter((entity) => entity.ring >= 0)
