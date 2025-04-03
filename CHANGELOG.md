@@ -1,3 +1,8 @@
+## [1.13.27](https://github.com/qiwi/tech-radar/compare/v1.13.26...v1.13.27) (2025-04-03)
+
+### Fixes & improvements
+* fix(deps): update dependency @11ty/eleventy to v3 ([98f7bc1](https://github.com/qiwi/tech-radar/commit/98f7bc1c264b6d058278b16095b63ae44d42f950))
+
 ## [1.13.26](https://github.com/qiwi/tech-radar/compare/v1.13.25...v1.13.26) (2025-04-03)
 
 ### Fixes & improvements
