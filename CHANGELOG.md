@@ -1,3 +1,8 @@
+## [1.13.26](https://github.com/qiwi/tech-radar/compare/v1.13.25...v1.13.26) (2025-04-03)
+
+### Fixes & improvements
+* fix(win32): apply slash to `temp` and `output` values ([15e0386](https://github.com/qiwi/tech-radar/commit/15e0386281e6a1033c521a4f4ea170c433454476))
+
 ## [1.13.25](https://github.com/qiwi/tech-radar/compare/v1.13.24...v1.13.25) (2025-04-02)
 
 ### Fixes & improvements
