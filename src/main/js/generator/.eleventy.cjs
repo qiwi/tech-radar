@@ -1,6 +1,5 @@
 const htmlmin = require('html-minifier')
 const terser = require('terser')
-const path = require('path')
 const util = require('util')
 
 module.exports = (config) => {
@@ -55,12 +54,10 @@ module.exports = (config) => {
 
   config.addTransform('htmlmin', (content, outputPath) => {
     if (outputPath && outputPath.endsWith('.html')) {
-      const result = htmlmin.minify(content, {
+      return htmlmin.minify(content, {
         removeComments: true,
         collapseWhitespace: true,
       })
-
-      return result
     }
     return content
   })

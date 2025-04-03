@@ -137,7 +137,7 @@ export const genNavPage = async ({
 export const render = async (template, options) => {
   const { temp, output, settings, templates } = options
   const configPath = await genConfig(options)
-  const elev = new Eleventy(temp, output, { configPath })
+  const elev = new Eleventy(slash(temp), slash(output), { configPath })
 
   // Copy templates
   await fse.copy(tplDir, temp)
