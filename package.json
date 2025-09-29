@@ -57,7 +57,7 @@
     "html-minifier": "^4.0.0",
     "js-yaml": "^4.1.0",
     "lodash-es": "^4.17.21",
-    "meow": "^12.0.1",
+    "meow": "^14.0.0",
     "nanoid": "^5.0.0",
     "slash": "^5.1.0",
     "temp-dir": "^3.0.0",
