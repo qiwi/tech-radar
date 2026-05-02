@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`parser.js csvReader 1`] = `
+exports[`parser.js > csvReader 1`] = `
 {
   "data": [
     {
@@ -53,7 +53,7 @@ exports[`parser.js csvReader 1`] = `
 }
 `;
 
-exports[`parser.js jsonReader 1`] = `
+exports[`parser.js > jsonReader 1`] = `
 {
   "data": [
     {
@@ -105,7 +105,7 @@ exports[`parser.js jsonReader 1`] = `
 }
 `;
 
-exports[`parser.js parse() 1`] = `
+exports[`parser.js > parse() 1`] = `
 {
   "data": [
     {
@@ -162,7 +162,7 @@ exports[`parser.js parse() 1`] = `
 }
 `;
 
-exports[`parser.js yamlReader 1`] = `
+exports[`parser.js > yamlReader 1`] = `
 {
   "data": [
     {

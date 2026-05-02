@@ -1,4 +1,4 @@
-const htmlmin = require('html-minifier')
+const htmlmin = require('html-minifier-terser')
 const terser = require('terser')
 const util = require('util')
 

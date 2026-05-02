@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`generate 11ty app from .csv file 1`] = `
+exports[`generate 11ty app > from .csv file 1`] = `
 [
   "2021-06-18/entries/q1/TypeScript/index.html",
   "2021-06-18/entries/q2/Nodejs/index.html",
@@ -15,7 +15,7 @@ exports[`generate 11ty app from .csv file 1`] = `
 ]
 `;
 
-exports[`generate 11ty app from .json file 1`] = `
+exports[`generate 11ty app > from .json file 1`] = `
 [
   "2021-06-12/entries/q1/TypeScript/index.html",
   "2021-06-12/entries/q2/Nodejs/index.html",
@@ -30,7 +30,7 @@ exports[`generate 11ty app from .json file 1`] = `
 ]
 `;
 
-exports[`generate 11ty app from .yml file 1`] = `
+exports[`generate 11ty app > from .yml file 1`] = `
 [
   "2021-06-11/entries/q1/TypeScript/index.html",
   "2021-06-11/entries/q2/Nodejs/index.html",
@@ -45,7 +45,7 @@ exports[`generate 11ty app from .yml file 1`] = `
 ]
 `;
 
-exports[`generate 11ty app from multiple files 1`] = `
+exports[`generate 11ty app > from multiple files 1`] = `
 [
   "2021-06-12/entries/q1/TypeScript/index.html",
   "2021-06-12/entries/q2/Nodejs/index.html",
@@ -66,7 +66,7 @@ exports[`generate 11ty app from multiple files 1`] = `
 ]
 `;
 
-exports[`generate 11ty app from multiple files with the same date 1`] = `
+exports[`generate 11ty app > from multiple files with the same date 1`] = `
 [
   "2021-06-12/entries/q1/TypeScript/index.html",
   "2021-06-12/entries/q2/Nodejs/index.html",
@@ -87,7 +87,7 @@ exports[`generate 11ty app from multiple files with the same date 1`] = `
 ]
 `;
 
-exports[`generate 11ty app generate custom navigation page: title, footer 1`] = `
+exports[`generate 11ty app > generate custom navigation page: title, footer 1`] = `
 "<!DOCTYPE html><head><meta charset="utf-8"><link rel="stylesheet" href="index.css"><title>test</title><style>body {
           display: flex;
           flex-direction: column;
@@ -142,7 +142,7 @@ exports[`generate 11ty app generate custom navigation page: title, footer 1`] = 
       }</style></head><body><h1>test</h1><main><div class="wrapper"><div class="tile"><h2>.</h2><ul><li><a class="link" href="./2021-06-12">2021-06-12</a></li><li><a class="link" href="./2021-06-11">2021-06-11</a></li></ul></div></div></main><footer>foobarbaz</footer></body>"
 `;
 
-exports[`generate 11ty app generate navigation page 1`] = `
+exports[`generate 11ty app > generate navigation page 1`] = `
 "<!DOCTYPE html><head><meta charset="utf-8"><link rel="stylesheet" href="index.css"><title>📡 Tech radars</title><style>body {
           display: flex;
           flex-direction: column;
@@ -197,7 +197,7 @@ exports[`generate 11ty app generate navigation page 1`] = `
       }</style></head><body><h1>📡 Tech radars</h1><main><div class="wrapper"><div class="tile"><h2>.</h2><ul><li><a class="link" href="./2021-06-12">2021-06-12</a></li><li><a class="link" href="./2021-06-11">2021-06-11</a></li></ul></div></div></main><footer><div style="width: 100%; text-align: center; margin: 30px 0 10px 0; font-size: 80%"><a href="https://github.com/qiwi/tech-radar">Tech-radar generator</a>. Based on <a href="https://github.com/zalando/tech-radar">zalando/tech-radar</a>. Boosted with <a href="https://github.com/11ty/eleventy/">11ty</a><br><a class="link" href="https://github.com/qiwi">QIWI ❤️ Open Source</a></div></footer></body>"
 `;
 
-exports[`generate 11ty app generate navigation page by data2 1`] = `
+exports[`generate 11ty app > generate navigation page by data2 1`] = `
 "<!DOCTYPE html><head><meta charset="utf-8"><link rel="stylesheet" href="index.css"><title>📡 Tech radars</title><style>body {
           display: flex;
           flex-direction: column;
@@ -252,7 +252,7 @@ exports[`generate 11ty app generate navigation page by data2 1`] = `
       }</style></head><body><h1>📡 Tech radars</h1><main><div class="wrapper"><div class="tile"><h2>ios</h2><ul><li><a class="link" href="ios/2021-06-11">2021-06-11</a></li></ul></div><div class="tile"><h2>js</h2><ul><li><a class="link" href="js/2021-06-12">2021-06-12</a></li></ul></div></div></main><footer><div style="width: 100%; text-align: center; margin: 30px 0 10px 0; font-size: 80%"><a href="https://github.com/qiwi/tech-radar">Tech-radar generator</a>. Based on <a href="https://github.com/zalando/tech-radar">zalando/tech-radar</a>. Boosted with <a href="https://github.com/11ty/eleventy/">11ty</a><br><a class="link" href="https://github.com/qiwi">QIWI ❤️ Open Source</a></div></footer></body>"
 `;
 
-exports[`generate 11ty app generate navigation page from custom templates 1`] = `
+exports[`generate 11ty app > generate navigation page from custom templates 1`] = `
 "<!DOCTYPE html><head><meta charset="utf-8"><link rel="stylesheet" href="index.css"><title>test</title><style>body {
           display: flex;
           flex-direction: column;
@@ -307,7 +307,7 @@ exports[`generate 11ty app generate navigation page from custom templates 1`] = 
       }</style></head><body><h1>test</h1><main><div class="wrapper"><div class="tile"><h2>.</h2><ul><li><a class="link" href="./2021-06-12">2021-06-12</a></li><li><a class="link" href="./2021-06-11">2021-06-11</a></li></ul></div></div></main><footer><div style="width: 100%; text-align: center; margin: 30px 0 10px 0; font-size: 80%">Testing footer template</div></footer></body>"
 `;
 
-exports[`generate 11ty app generate navigation page title 1`] = `
+exports[`generate 11ty app > generate navigation page title 1`] = `
 "<!DOCTYPE html><head><meta charset="utf-8"><link rel="stylesheet" href="index.css"><title>title</title><style>body {
           display: flex;
           flex-direction: column;

@@ -250,15 +250,16 @@ Follow [gh-action usage example](https://github.com/qiwi/tech-radar/blob/master/
         uses: actions/checkout@v2
 
       - name: Setup NodeJS
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v5
         with:
-          node-version: 16
+          node-version: 22
+          cache: npm
 
       - name: Install deps
-        run: yarn
+        run: npm ci
 
       - name: Generate
-        run: yarn generate
+        run: npm run generate
 
       - name: Publish gh-pages
         uses: peaceiris/actions-gh-pages@v3
@@ -339,19 +340,19 @@ Any feedback is appreciated.
 
 ### Update the radar data
 1. Clone the repo: `git clone git@github.com:qiwi/tech-radar.git`
-2. Install deps: `yarn install`
+2. Install deps: `npm install`
 3. Place a new radar data file to `data/<scope>/<date>.{csv|json|yaml}`
 4. Fill it as shown in [examples](#input-examples) / [its siblings](https://github.com/qiwi/tech-radar/tree/master/data)
-5. Run `yarn generate && yarn preview`
+5. Run `npm run generate && npm run preview`
 6. Follow [http://localhost:3000/](http://localhost:3000/). Assess the result
 7. Push commit and create a pull request
 
 ### Enhance the generator
 1. Clone the repo: `git clone git@github.com:qiwi/tech-radar.git`
-2. Install deps: `yarn install`
+2. Install deps: `npm install`
 3. Make some changes in `src/main/js`
 4. Put some tests to `src/test/js`
-5. Run `yarn test`
+5. Run `npm test`
 6. Repeat if necessary steps 1 to 3
 7. Push commit and create a pull request
 

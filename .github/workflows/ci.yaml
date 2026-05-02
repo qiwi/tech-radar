@@ -12,12 +12,13 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: 22
+          cache: npm
 
       - name: Install deps
-        run: yarn
+        run: npm ci
 
       - name: Test
-        run: yarn test
+        run: npm test
 
   release_radar:
     name: Publish radar to gh-pages
@@ -26,21 +27,22 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
-      - name: Checkuout
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup NodeJS
         uses: actions/setup-node@v5
         with:
           node-version: 22
+          cache: npm
 
       - name: Install deps
-        run: yarn
+        run: npm ci
 
       - name: Generate
         run: |
-          yarn generate
-          yarn docs
+          npm run generate
+          npm run docs
 
       - name: Publish gh-pages
         uses: peaceiris/actions-gh-pages@v4
@@ -73,12 +75,13 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
+          cache: npm
 
       - name: Install deps
-        run: yarn
+        run: npm ci
 
       - name: Test
-        run: yarn test:unit
+        run: npm run test:unit
 
       - name: Codeclimate
         uses: paambaati/codeclimate-action@v9.0.0
