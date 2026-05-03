@@ -3,35 +3,23 @@
 exports[`generate md assets > files write check 1`] = `
 {
   "codMdData": "---
-layout: entries.njk
-tags: entries
 ring: trial
 moved: 0
-quadrant: 2
 ---
 Статический анализатор кода",
   "hexMdData": "---
-layout: entries.njk
-tags: entries
 ring: assess
 moved: -1
-quadrant: 3
 ---
 Унификации контракта интерфейсов различных слоев приложений",
   "nodeMdData": "---
-layout: entries.njk
-tags: entries
 ring: adopt
 moved: 0
-quadrant: 1
 ---
 ",
   "tsMdData": "---
-layout: entries.njk
-tags: entries
 ring: adopt
 moved: 1
-quadrant: 0
 ---
 Статически, типизированный ЖС",
 }

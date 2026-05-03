@@ -1,9 +1,14 @@
 const htmlmin = require('html-minifier-terser')
 const terser = require('terser')
 const util = require('util')
+const path = require('path')
 
 module.exports = (config) => {
   const { temp, prefix, output } = config.extra
+  // 11ty 3.x walks the data-file directory cascade only when input is a path
+  // relative to cwd; absolute paths skip intermediate dirs.
+  const relInput = path.relative(process.cwd(), temp) || '.'
+  const relOutput = path.relative(process.cwd(), output) || '.'
   // const assetsPath = path.join(temp, 'assets')
   // config.addPassthroughCopy({
   //   [assetsPath]: '/',
@@ -83,8 +88,8 @@ module.exports = (config) => {
 
   return {
     dir: {
-      input: temp,
-      output: output,
+      input: relInput,
+      output: relOutput,
       layouts: '_layouts',
     },
     pathPrefix: prefix,
