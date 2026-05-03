@@ -26,7 +26,7 @@ jobs:
         run: npm test
 
       - name: Upload coverage to Qlty
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: qltysh/qlty-action/coverage@v1
         with:
           token: ${{ secrets.QLTY_TOKEN }}
