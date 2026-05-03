@@ -55,7 +55,7 @@
     "globby": "^16.2.0",
     "html-minifier-terser": "^7.2.0",
     "js-yaml": "^4.1.1",
-    "lodash-es": "^4.17.21",
+    "lodash-es": "^4.18.1",
     "meow": "^14.1.0",
     "nanoid": "^5.1.11",
     "slash": "^5.1.0",
