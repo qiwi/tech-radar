@@ -1,3 +1,8 @@
+## [1.13.29](https://github.com/qiwi/tech-radar/compare/v1.13.28...v1.13.29) (2026-05-03)
+
+### Fixes & improvements
+* perf: deps revision ([8e6e9d9](https://github.com/qiwi/tech-radar/commit/8e6e9d9c83f358ba527af220602b9dd57131c8b5))
+
 ## [1.13.27](https://github.com/qiwi/tech-radar/compare/v1.13.26...v1.13.27) (2025-04-03)
 
 ### Fixes & improvements
