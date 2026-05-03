@@ -18,13 +18,13 @@ module.exports = (config) => {
 
   // Resolves an asset URL based on `settings.extra.basePrefix`:
   //  - URL-shaped (http(s)://… or //…) — used as-is, supports CDN / cross-origin hosting.
-  //  - any path-shaped value (incl. default `tech-radar`, empty) — relative to current page,
-  //    so the output works at any sub-path (gh-pages, IDE static server, file://).
+  //  - any path-shaped value or empty — relative to the current page, so the output
+  //    works at any sub-path (gh-pages, IDE static server, file://).
   config.addFilter('asset', (asset, settings, page) => {
-    const path = String(asset).replace(/^\//, '')
+    const assetPath = String(asset).replace(/^\//, '')
     const basePrefix = settings?.extra?.basePrefix
     if (basePrefix && /^(https?:)?\/\//.test(basePrefix)) {
-      return basePrefix.replace(/\/$/, '') + '/' + path
+      return basePrefix.replace(/\/$/, '') + '/' + assetPath
     }
     const targetDepth = settings?.extra?.target
       ? settings.extra.target.split('/').filter(Boolean).length
@@ -32,7 +32,7 @@ module.exports = (config) => {
     const pageDepth = (page?.url || '/').split('/').filter(Boolean).length
     const total = targetDepth + pageDepth
     const prefix = total === 0 ? './' : '../'.repeat(total)
-    return prefix + path
+    return prefix + assetPath
   })
 
   // NOTE It's cached by template renderer, so we need to pass extra options through settings injection
