@@ -10,8 +10,8 @@
 </h2>
 
 [![CI](https://github.com/qiwi/tech-radar/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/qiwi/tech-radar/actions/workflows/ci.yaml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/b04b40063c8974a8ca31/maintainability)](https://codeclimate.com/github/qiwi/tech-radar/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/b04b40063c8974a8ca31/test_coverage)](https://codeclimate.com/github/qiwi/tech-radar/test_coverage)
+[![Maintainability](https://qlty.sh/gh/qiwi/projects/tech-radar/maintainability.svg)](https://qlty.sh/gh/qiwi/projects/tech-radar)
+[![Code Coverage](https://qlty.sh/gh/qiwi/projects/tech-radar/coverage.svg)](https://qlty.sh/gh/qiwi/projects/tech-radar)
 [![npm (scoped)](https://img.shields.io/npm/v/@qiwi/tech-radar?color=09e)](https://www.npmjs.com/package/@qiwi/tech-radar)
 
 Fully automated tech-radar generator. Based on [zalando/tech-radar](https://github.com/zalando/tech-radar). Boosted with [11ty](https://github.com/11ty/eleventy/)
