@@ -1,3 +1,8 @@
+## [1.13.28](https://github.com/qiwi/tech-radar/compare/v1.13.27...v1.13.28) (2026-05-03)
+
+### Fixes & improvements
+* fix: restore `input` and `output` defaults ([2a12db1](https://github.com/qiwi/tech-radar/commit/2a12db137b5788cf0525ac1afcbfcce4341dd296))
+
 ## [1.13.27](https://github.com/qiwi/tech-radar/compare/v1.13.26...v1.13.27) (2025-04-03)
 
 ### Fixes & improvements
