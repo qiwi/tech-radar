@@ -72,18 +72,18 @@ techradar --input "/path/to/files/*.{json, csv, yml}" --output /radar
 npx @qiwi/tech-radar --input "/path/to/files/*.{json, csv, yml}" --output /radar
 ```
 
-| Option      | Description                                                                                                       | Default                                                      |
-|-------------|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| cwd         | Current working dir                                                                                               | `process.cwd()`                                              |
-| input       | [glob pattern](https://github.com/mrmlnc/fast-glob) to find radar data: csv/json/yml                              | `<cwd>/data/**/*.{json,csv,yml}`                             |
-| output      | Output directory                                                                                                  | `<cwd>/radar`                                                |
-| autoscope   | identify same-scoped files as subversions of a single radar                                                       | `false`                                                      |
-| base-prefix | base context path for web statics                                                                                 | `tech-radar`                                                 |
-| nav-page    | create navigation page                                                                                            | `false`                                                      |
-| nav-title   | navigation page title                                                                                             | `📡 Tech radars`                                             |
-| nav-footer  | navigation page footer                                                                                            |                                                              |
-| temp        | temporary assets dir                                                                                              | [`tempy.directory()`](https://github.com/sindresorhus/tempy) |
-| templates   | custom `11ty/nunjucks` compatible templates directory. Its contents will be merged into the default templates dir |
+| Option      | Description                                                                                                                                                  | Default                                                                  |
+|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| cwd         | Current working dir                                                                                                                                          | `process.cwd()`                                                          |
+| input       | [glob pattern](https://github.com/mrmlnc/fast-glob) to find radar data: csv/json/yml                                                                         | `<cwd>/data/**/*.{json,csv,yml}`                                         |
+| output      | Output directory                                                                                                                                             | `<cwd>/radar`                                                            |
+| autoscope   | identify same-scoped files as subversions of a single radar; derive each entry `moved` indicator from the previous snapshot of the same scope (auto-trail)   | `false`                                                                  |
+| base-prefix | base context for assets. Path-shaped (`tech-radar`, empty) → relative URLs at any mount; URL-shaped (`https://cdn…`, `//cdn…`) → kept as absolute (CDN case) | `'/'`                                                                    |
+| nav-page    | create navigation page                                                                                                                                       | `false`                                                                  |
+| nav-title   | navigation page title                                                                                                                                        | `📡 Tech radars`                                                         |
+| nav-footer  | navigation page footer                                                                                                                                       |                                                                          |
+| temp        | temporary assets dir                                                                                                                                         | [`temp-dir`](https://github.com/sindresorhus/temp-dir) + random subfolder |
+| templates   | custom `11ty/nunjucks` compatible templates directory. Its contents will be merged into the default templates dir                                            |                                                                          |
 
 ### JS API
 ```js
@@ -236,18 +236,18 @@ q4,         Techniques
 ### CI/CD
 Follow [gh-action usage example](https://github.com/qiwi/tech-radar/blob/master/.github/workflows/ci.yaml):
 <details>
-  <summary>release_radar action</summary>
+  <summary>publish radar to gh-pages</summary>
 
 ```yaml
-  release_radar:
-    name: Publish radar to gh-pages
-    # https://github.community/t/trigger-job-on-tag-push-only/18076
+jobs:
+  publish:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
-    needs: test
+    permissions:
+      contents: write
     steps:
-      - name: Checkuout
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Setup NodeJS
         uses: actions/setup-node@v5
@@ -261,14 +261,13 @@ Follow [gh-action usage example](https://github.com/qiwi/tech-radar/blob/master/
       - name: Generate
         run: npm run generate
 
-      - name: Publish gh-pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          commit_message: "docs: update tech-radar static"
-          allow_empty_commit: true
-          enable_jekyll: false
+      # Pushes dist/ to the gh-pages branch via ggcp (no third-party action).
+      - name: Push to gh-pages
+        env:
+          GIT_COMMITTER_NAME: ${{ secrets.GIT_COMMITTER_NAME }}
+          GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
+        run: |
+          npx ggcp 'dist>**/*' https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git/gh-pages --message='docs: update tech-radar static'
 ```
 </details>
 <details>
@@ -315,22 +314,30 @@ The easiest way to tweak up the look of your radar is by adding an alternative c
 ```
 
 ### Templates
-For advanced view modification, you can use your own templates. Pass `template` option to navigate the dir, where your own custom `.njk` files are placed. Expected structure:
+For advanced view modification, you can use your own templates. Pass the `templates` option to point at a directory where your own custom files live. The directory is merged on top of the bundled templates (matching files override). Expected structure:
 ```
-assets
+assets/
   favicon.ico
   radar.css
   radar.js
 _data/
   settings.json
-_includes
+_includes/
   footer.njk
-_layouts
+  legend.njk
+_layouts/
   entries.njk
   page.njk
   radar.njk
   redirect.njk
   root.njk
+  table.njk
+entries/
+  entries.11tydata.json   # applies to all entry .md files (layout, tags)
+  q1/q1.11tydata.json     # quadrant index per directory: { "quadrant": 0 }
+  q2/q2.11tydata.json     # ...                                       1
+  q3/q3.11tydata.json     # ...                                       2
+  q4/q4.11tydata.json     # ...                                       3
 ```
 
 ## Contributing

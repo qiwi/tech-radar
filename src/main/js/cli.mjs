@@ -24,11 +24,9 @@ export const cli = meow(
     flags: {
       input: {
         type: 'string',
-        isRequired: true,
       },
       output: {
         type: 'string',
-        isRequired: true,
       },
       basePrefix: {
         type: 'string',

@@ -36,8 +36,8 @@ export const run = async (options) => {
 }
 
 const getContext = async ({
-  input,
-  output,
+  input = 'data/**/*.{json,csv,yml}',
+  output = 'radar',
   cwd = process.cwd(),
   basePrefix = '/',
   autoscope = false,
