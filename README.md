@@ -10,8 +10,8 @@
 </h2>
 
 [![CI](https://github.com/qiwi/tech-radar/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/qiwi/tech-radar/actions/workflows/ci.yaml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/b04b40063c8974a8ca31/maintainability)](https://codeclimate.com/github/qiwi/tech-radar/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/b04b40063c8974a8ca31/test_coverage)](https://codeclimate.com/github/qiwi/tech-radar/test_coverage)
+[![Maintainability](https://qlty.sh/gh/qiwi/projects/tech-radar/maintainability.svg)](https://qlty.sh/gh/qiwi/projects/tech-radar)
+[![Code Coverage](https://qlty.sh/gh/qiwi/projects/tech-radar/coverage.svg)](https://qlty.sh/gh/qiwi/projects/tech-radar)
 [![npm (scoped)](https://img.shields.io/npm/v/@qiwi/tech-radar?color=09e)](https://www.npmjs.com/package/@qiwi/tech-radar)
 
 Fully automated tech-radar generator. Based on [zalando/tech-radar](https://github.com/zalando/tech-radar). Boosted with [11ty](https://github.com/11ty/eleventy/)
@@ -49,7 +49,7 @@ We've just _slightly_ modified [the original implementation](https://github.com/
 * CLI / JS / TS API
 
 ## Requirements
-* Node.js >= 14.13
+* Node.js >= 22
 * macOS / linux
 
 ## Install
@@ -250,15 +250,16 @@ Follow [gh-action usage example](https://github.com/qiwi/tech-radar/blob/master/
         uses: actions/checkout@v2
 
       - name: Setup NodeJS
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v5
         with:
-          node-version: 16
+          node-version: 24
+          cache: npm
 
       - name: Install deps
-        run: yarn
+        run: npm ci
 
       - name: Generate
-        run: yarn generate
+        run: npm run generate
 
       - name: Publish gh-pages
         uses: peaceiris/actions-gh-pages@v3
@@ -339,19 +340,19 @@ Any feedback is appreciated.
 
 ### Update the radar data
 1. Clone the repo: `git clone git@github.com:qiwi/tech-radar.git`
-2. Install deps: `yarn install`
+2. Install deps: `npm install`
 3. Place a new radar data file to `data/<scope>/<date>.{csv|json|yaml}`
 4. Fill it as shown in [examples](#input-examples) / [its siblings](https://github.com/qiwi/tech-radar/tree/master/data)
-5. Run `yarn generate && yarn preview`
+5. Run `npm run generate && npm run preview`
 6. Follow [http://localhost:3000/](http://localhost:3000/). Assess the result
 7. Push commit and create a pull request
 
 ### Enhance the generator
 1. Clone the repo: `git clone git@github.com:qiwi/tech-radar.git`
-2. Install deps: `yarn install`
+2. Install deps: `npm install`
 3. Make some changes in `src/main/js`
 4. Put some tests to `src/test/js`
-5. Run `yarn test`
+5. Run `npm test`
 6. Repeat if necessary steps 1 to 3
 7. Push commit and create a pull request
 

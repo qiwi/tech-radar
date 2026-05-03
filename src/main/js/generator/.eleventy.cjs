@@ -1,9 +1,14 @@
-const htmlmin = require('html-minifier')
+const htmlmin = require('html-minifier-terser')
 const terser = require('terser')
 const util = require('util')
+const path = require('path')
 
 module.exports = (config) => {
   const { temp, prefix, output } = config.extra
+  // 11ty 3.x walks the data-file directory cascade only when input is a path
+  // relative to cwd; absolute paths skip intermediate dirs.
+  const relInput = path.relative(process.cwd(), temp) || '.'
+  const relOutput = path.relative(process.cwd(), output) || '.'
   // const assetsPath = path.join(temp, 'assets')
   // config.addPassthroughCopy({
   //   [assetsPath]: '/',
@@ -11,13 +16,32 @@ module.exports = (config) => {
 
   config.addFilter('console', (value) => util.inspect(value))
 
+  // Resolves an asset URL based on `settings.extra.basePrefix`:
+  //  - URL-shaped (http(s)://… or //…) — used as-is, supports CDN / cross-origin hosting.
+  //  - any path-shaped value or empty — relative to the current page, so the output
+  //    works at any sub-path (gh-pages, IDE static server, file://).
+  config.addFilter('asset', (asset, settings, page) => {
+    const assetPath = String(asset).replace(/^\//, '')
+    const basePrefix = settings?.extra?.basePrefix
+    if (basePrefix && /^(https?:)?\/\//.test(basePrefix)) {
+      return basePrefix.replace(/\/$/, '') + '/' + assetPath
+    }
+    const targetDepth = settings?.extra?.target
+      ? settings.extra.target.split('/').filter(Boolean).length
+      : 0
+    const pageDepth = (page?.url || '/').split('/').filter(Boolean).length
+    const total = targetDepth + pageDepth
+    const prefix = total === 0 ? './' : '../'.repeat(total)
+    return prefix + assetPath
+  })
+
   // NOTE It's cached by template renderer, so we need to pass extra options through settings injection
   config.addShortcode('makeBootScript', (settings, collections) => {
     if (!collections || !settings) {
       return
     }
 
-    const { title, prefix, date } = settings.extra
+    const { title, date } = settings.extra
     const entries = collections
       .map((entity) => ({
         quadrant: entity.data.quadrant,
@@ -26,7 +50,7 @@ module.exports = (config) => {
         ),
         moved: entity.data.moved || 0,
         label: entity.fileSlug,
-        link: config.javascript.functions.url(entity.url, prefix),
+        link: entity.url.replace(/^\//, ''),
         active: false,
       }))
       .filter((entity) => entity.ring >= 0)
@@ -64,8 +88,8 @@ module.exports = (config) => {
 
   return {
     dir: {
-      input: temp,
-      output: output,
+      input: relInput,
+      output: relOutput,
       layouts: '_layouts',
     },
     pathPrefix: prefix,
