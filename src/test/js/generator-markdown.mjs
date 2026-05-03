@@ -48,6 +48,8 @@ describe('generate md assets', () => {
 
   it('generateMd ', () => {
     const contentMd = `---
+layout: entries.njk
+tags: entries
 ring: Hold
 moved: undefined
 ---

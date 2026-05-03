@@ -49,7 +49,7 @@ We've just _slightly_ modified [the original implementation](https://github.com/
 * CLI / JS / TS API
 
 ## Requirements
-* Node.js >= 14.13
+* Node.js >= 22
 * macOS / linux
 
 ## Install
@@ -252,7 +252,7 @@ Follow [gh-action usage example](https://github.com/qiwi/tech-radar/blob/master/
       - name: Setup NodeJS
         uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
 
       - name: Install deps

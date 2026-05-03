@@ -11,13 +11,32 @@ module.exports = (config) => {
 
   config.addFilter('console', (value) => util.inspect(value))
 
+  // Resolves an asset URL based on `settings.extra.basePrefix`:
+  //  - URL-shaped (http(s)://… or //…) — used as-is, supports CDN / cross-origin hosting.
+  //  - any path-shaped value (incl. default `tech-radar`, empty) — relative to current page,
+  //    so the output works at any sub-path (gh-pages, IDE static server, file://).
+  config.addFilter('asset', (asset, settings, page) => {
+    const path = String(asset).replace(/^\//, '')
+    const basePrefix = settings?.extra?.basePrefix
+    if (basePrefix && /^(https?:)?\/\//.test(basePrefix)) {
+      return basePrefix.replace(/\/$/, '') + '/' + path
+    }
+    const targetDepth = settings?.extra?.target
+      ? settings.extra.target.split('/').filter(Boolean).length
+      : 0
+    const pageDepth = (page?.url || '/').split('/').filter(Boolean).length
+    const total = targetDepth + pageDepth
+    const prefix = total === 0 ? './' : '../'.repeat(total)
+    return prefix + path
+  })
+
   // NOTE It's cached by template renderer, so we need to pass extra options through settings injection
   config.addShortcode('makeBootScript', (settings, collections) => {
     if (!collections || !settings) {
       return
     }
 
-    const { title, prefix, date } = settings.extra
+    const { title, date } = settings.extra
     const entries = collections
       .map((entity) => ({
         quadrant: entity.data.quadrant,
@@ -26,7 +45,7 @@ module.exports = (config) => {
         ),
         moved: entity.data.moved || 0,
         label: entity.fileSlug,
-        link: config.javascript.functions.url(entity.url, prefix),
+        link: entity.url.replace(/^\//, ''),
         active: false,
       }))
       .filter((entity) => entity.ring >= 0)

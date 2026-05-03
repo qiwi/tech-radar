@@ -88,7 +88,7 @@ exports[`generate 11ty app > from multiple files with the same date 1`] = `
 `;
 
 exports[`generate 11ty app > generate custom navigation page: title, footer 1`] = `
-"<!DOCTYPE html><head><meta charset="utf-8"><link rel="stylesheet" href="index.css"><title>test</title><style>body {
+"<!DOCTYPE html><head><meta charset="utf-8"><title>test</title><style>body {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -143,7 +143,7 @@ exports[`generate 11ty app > generate custom navigation page: title, footer 1`] 
 `;
 
 exports[`generate 11ty app > generate navigation page 1`] = `
-"<!DOCTYPE html><head><meta charset="utf-8"><link rel="stylesheet" href="index.css"><title>📡 Tech radars</title><style>body {
+"<!DOCTYPE html><head><meta charset="utf-8"><title>📡 Tech radars</title><style>body {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -198,7 +198,7 @@ exports[`generate 11ty app > generate navigation page 1`] = `
 `;
 
 exports[`generate 11ty app > generate navigation page by data2 1`] = `
-"<!DOCTYPE html><head><meta charset="utf-8"><link rel="stylesheet" href="index.css"><title>📡 Tech radars</title><style>body {
+"<!DOCTYPE html><head><meta charset="utf-8"><title>📡 Tech radars</title><style>body {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -253,7 +253,7 @@ exports[`generate 11ty app > generate navigation page by data2 1`] = `
 `;
 
 exports[`generate 11ty app > generate navigation page from custom templates 1`] = `
-"<!DOCTYPE html><head><meta charset="utf-8"><link rel="stylesheet" href="index.css"><title>test</title><style>body {
+"<!DOCTYPE html><head><meta charset="utf-8"><title>test</title><style>body {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -308,7 +308,7 @@ exports[`generate 11ty app > generate navigation page from custom templates 1`] 
 `;
 
 exports[`generate 11ty app > generate navigation page title 1`] = `
-"<!DOCTYPE html><head><meta charset="utf-8"><link rel="stylesheet" href="index.css"><title>title</title><style>body {
+"<!DOCTYPE html><head><meta charset="utf-8"><title>title</title><style>body {
           display: flex;
           flex-direction: column;
           align-items: center;
