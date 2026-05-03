@@ -1,7 +1,6 @@
 import path from 'node:path'
 import Eleventy from '@11ty/eleventy'
 import fse from 'fs-extra'
-import { uniq } from 'lodash-es'
 import slash from 'slash'
 
 import { rootDir, tplDir } from '../constants.js'
@@ -116,7 +115,7 @@ export const genNavPage = async ({
   navTitle,
   navFooter,
 }) => {
-  const scopes = uniq(radars.map((r) => r.scope))
+  const scopes = [...new Set(radars.map((r) => r.scope))]
   const settings = {
     extra: {
       radars,

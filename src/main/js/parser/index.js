@@ -43,7 +43,7 @@ export const getReader = (ext) => {
   if (ext === '.yml' || ext === '.yaml') {
     return parseYamlRadar
   }
-  throw new Error('Unsupported format', ext)
+  throw new Error(`Unsupported format: ${ext}`)
 }
 
 /**
@@ -75,7 +75,7 @@ export const normalizeQuadrantAliases = (aliases) =>
 export const normalizeQuadrantTitles = (titles) => ({
   q1: 'Q1',
   q2: 'Q2',
-  q3: 'Q4',
+  q3: 'Q3',
   q4: 'Q4',
   ...titles,
 })

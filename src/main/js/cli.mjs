@@ -6,12 +6,12 @@ import {run} from './index.js'
 export const cli = meow(
   `
     Usage:
-      techradar  --input /path/to/csv --output /radar --basePrefix tech-radar --autoscope true --nav-page true --nav-title title --nav-footer footer
+      techradar  --input /path/to/csv --output /radar --base-prefix tech-radar --autoscope true --nav-page true --nav-title title --nav-footer footer
     Options
       --cwd
       --input
       --output
-      --basePrefix
+      --base-prefix
       --autoscope
       --nav-page
       --nav-title
