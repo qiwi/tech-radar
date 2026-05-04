@@ -4,6 +4,8 @@
 name: CI
 on: [push, pull_request]
 
+permissions: {}
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -11,7 +13,9 @@ jobs:
       contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
 
       - name: Setup NodeJS
         uses: actions/setup-node@v5
@@ -27,7 +31,7 @@ jobs:
 
       - name: Upload coverage to Qlty
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        uses: qltysh/qlty-action/coverage@v1
+        uses: qltysh/qlty-action/coverage@a2277a908db90c4c868832fb9204521fb940fdb4 # v1
         with:
           token: ${{ secrets.QLTY_TOKEN }}
           files: coverage/lcov.info
@@ -45,7 +49,7 @@ jobs:
       id-token: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           persist-credentials: false
           fetch-depth: 0
@@ -81,5 +85,7 @@ jobs:
         env:
           GIT_COMMITTER_NAME: ${{ secrets.GIT_COMMITTER_NAME }}
           GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
         run: |
-          npx ggcp 'dist>**/*' https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git/gh-pages --message='docs: update tech-radar static'
+          npx ggcp 'dist>**/*' "https://x-access-token:$GH_TOKEN@github.com/$REPO.git/gh-pages" --message='docs: update tech-radar static'

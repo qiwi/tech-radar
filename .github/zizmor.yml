@@ -1,0 +1,9 @@
+rules:
+  unpinned-uses:
+    config:
+      policies:
+        # First-party actions — tags are acceptable.
+        actions/*: ref-pin
+        github/*: ref-pin
+        # Anything else must be pinned to a commit SHA.
+        '*': hash-pin
