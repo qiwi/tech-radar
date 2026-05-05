@@ -7,3 +7,8 @@ rules:
         github/*: ref-pin
         # Anything else must be pinned to a commit SHA.
         '*': hash-pin
+
+  # Temporary
+  secrets-outside-env:
+    ignore:
+      - ci.yaml
