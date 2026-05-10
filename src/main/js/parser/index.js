@@ -28,22 +28,22 @@ export const parse = async (filePath) => {
     return {}
   }
 }
+const READERS = {
+  '.csv': parseCsvRadar,
+  '.json': parseJsonRadar,
+  '.yml': parseYamlRadar,
+  '.yaml': parseYamlRadar,
+}
+
 /**
  * selection of the reading function depending on the extension
  * @param ext
  * @returns {(function(*=): {data: any[], meta: {}})}
  */
 export const getReader = (ext) => {
-  if (ext === '.csv') {
-    return parseCsvRadar
-  }
-  if (ext === '.json') {
-    return parseJsonRadar
-  }
-  if (ext === '.yml' || ext === '.yaml') {
-    return parseYamlRadar
-  }
-  throw new Error(`Unsupported format: ${ext}`)
+  const reader = READERS[ext]
+  if (!reader) throw new Error(`Unsupported format: ${ext}`)
+  return reader
 }
 
 /**

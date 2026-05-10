@@ -2,18 +2,21 @@ import Ajv from 'ajv'
 
 const validators = new Map()
 
-export const _validate = (target, schema) => {
-  const validator = validators.get(schema)
+const getValidator = (schema) => {
+  let validator = validators.get(schema)
   if (!validator) {
-    validators.set(schema, new Ajv().compile(schema))
-    return _validate(target, schema)
+    validator = new Ajv().compile(schema)
+    validators.set(schema, validator)
   }
+  return validator
+}
 
+export const _validate = (target, schema) => {
+  const validator = getValidator(schema)
   const result = validator(target)
-  const error = validator.errors
 
-  if (error) {
-    console.error('validation error', error)
+  if (validator.errors) {
+    console.error('validation error', validator.errors)
   }
 
   return result

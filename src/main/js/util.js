@@ -3,8 +3,10 @@ import { nanoid } from 'nanoid'
 import path from 'node:path'
 import tempRoot from 'temp-dir'
 
-export const mkdirp = async (dir) =>
-  (await fse.mkdir(dir, { recursive: true })) && dir
+export const mkdirp = async (dir) => {
+  await fse.mkdir(dir, { recursive: true })
+  return dir
+}
 
 export const getDirs = (files) =>
   files.map((f) =>

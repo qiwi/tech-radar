@@ -55,15 +55,15 @@ export const genRadars = async ({ radars, ctx }) => {
   )
 }
 
+const buildRadarContext = async ({ ctx, radar, subPath = '' }) => ({
+  ...ctx,
+  ...radar,
+  output: path.join(ctx.output, radar.scope, radar.date, subPath),
+  temp: await tempDir(ctx.temp),
+})
+
 export const genRadar = async ({ ctx, radar }) => {
-  const temp = await tempDir(ctx.temp)
-  const output = path.join(ctx.output, radar.scope, radar.date)
-  const context = {
-    ...ctx,
-    ...radar,
-    output,
-    temp,
-  }
+  const context = await buildRadarContext({ ctx, radar })
   context.settings = genRadarSettings(context)
 
   await genMdAssets(context)
@@ -71,16 +71,9 @@ export const genRadar = async ({ ctx, radar }) => {
 }
 
 export const genTable = async ({ ctx, radar }) => {
-  const temp = await tempDir(ctx.temp)
-  const output = path.join(ctx.output, radar.scope, radar.date, 'table')
-  const settings = radar.document
-  const context = {
-    ...ctx,
-    ...radar,
-    settings,
-    output,
-    temp,
-  }
+  const context = await buildRadarContext({ ctx, radar, subPath: 'table' })
+  context.settings = radar.document
+
   await render('table', context)
 }
 
