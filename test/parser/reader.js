@@ -4,20 +4,20 @@ import {
   parseCsvRadar,
   parseJsonRadar,
   parseYamlRadar,
-} from '../../main/js/parser/index.js'
+} from '../../src/parser/index.js'
 
 describe('parser.js', () => {
   it('parse()', async () => {
-    expect(await parse('src/test/stub/test.csv')).toMatchSnapshot()
+    expect(await parse('test/fixtures/test.csv')).toMatchSnapshot()
   })
   it('csvReader', async () => {
-    expect(await parseCsvRadar('src/test/stub/test.csv')).toMatchSnapshot()
+    expect(await parseCsvRadar('test/fixtures/test.csv')).toMatchSnapshot()
   })
   it('jsonReader', async () => {
-    expect(await parseJsonRadar('src/test/stub/test.json')).toMatchSnapshot()
+    expect(await parseJsonRadar('test/fixtures/test.json')).toMatchSnapshot()
   })
   it('yamlReader', async () => {
-    expect(await parseYamlRadar('src/test/stub/test.yml')).toMatchSnapshot()
+    expect(await parseYamlRadar('test/fixtures/test.yml')).toMatchSnapshot()
   })
   it('getReader ', () => {
     expect(getReader('.csv')).toBe(parseCsvRadar)
@@ -25,6 +25,6 @@ describe('parser.js', () => {
     expect(getReader('.yml')).toBe(parseYamlRadar)
   })
   it('invalid .csv', async () => {
-    expect(await parse('src/test/stub/invalid.csv')).toStrictEqual({})
+    expect(await parse('test/fixtures/invalid.csv')).toStrictEqual({})
   })
 })

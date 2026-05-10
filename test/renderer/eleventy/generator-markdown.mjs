@@ -6,8 +6,8 @@ import {
   genMdAssets,
   genMdContent,
   genMdPath,
-} from '../../main/js/generator/markdown.js'
-import { parse } from '../../main/js/parser'
+} from '../../../src/renderer/eleventy/markdown.js'
+import { parse } from '../../../src/parser/index.js'
 import {fileURLToPath} from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -15,7 +15,7 @@ export const langAndFw = 'languages-and-frameworks'
 
 describe('generate md assets', () => {
   it('files write check', async () => {
-    const csvPath = path.join(__dirname, '../stub/test.csv')
+    const csvPath = path.join(__dirname, '../../fixtures/test.csv')
     const outDir = path.join(__dirname, 'temp')
 
     await genMdAssets({

@@ -275,7 +275,7 @@ jobs:
 
 ```json
 "scripts": {
-  "generate": "node ./src/main/js/cli.mjs --input \"data/**/*.{csv,json,yml}\"  --output dist --base-prefix tech-radar --autoscope true --nav-page true && touch dist/.nojekyll"
+  "generate": "node ./src/cli.mjs --input \"data/**/*.{csv,json,yml}\"  --output dist --base-prefix tech-radar --autoscope true --nav-page true && touch dist/.nojekyll"
 },
 ```
 </details>
@@ -357,8 +357,8 @@ Any feedback is appreciated.
 ### Enhance the generator
 1. Clone the repo: `git clone git@github.com:qiwi/tech-radar.git`
 2. Install deps: `npm install`
-3. Make some changes in `src/main/js`
-4. Put some tests to `src/test/js`
+3. Make some changes in `src/`
+4. Put some tests to `test/`
 5. Run `npm test`
 6. Repeat if necessary steps 1 to 3
 7. Push commit and create a pull request

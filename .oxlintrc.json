@@ -23,9 +23,10 @@
     "import/no-named-as-default-member": "off"
   },
   "ignorePatterns": [
-    "src/main/tpl/**/*.js",
-    "src/test/stub/**",
-    "src/test/tpl/**",
+    "src/renderer/eleventy/templates/**/*.js",
+    "test/fixtures/**",
+    "test/templates/**",
+    "test-output",
     "dist",
     "node_modules",
     "coverage"

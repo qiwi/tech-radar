@@ -2,20 +2,20 @@ import fse from 'fs-extra'
 import path from 'node:path'
 import {fileURLToPath} from 'node:url'
 
-import { run } from '../../main/js/index.js'
-import { getDirs, tempDir } from '../../main/js/util.js'
-import { getSources } from '../../main/js/parser/index.js'
+import { run } from '../src/index.js'
+import { getDirs, tempDir } from '../src/util.js'
+import { getSources } from '../src/parser/index.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const out = path.resolve(process.cwd(), 'test')
-const input = path.join(__dirname, '../stub/data/**')
+const out = path.resolve(process.cwd(), 'test-output')
+const input = path.join(__dirname, 'fixtures/data/**')
 const getFileStruct = (dir) => getSources('**/*', dir).then(getDirs)
 
 afterAll(async () => await fse.remove(out))
 
 describe('generate 11ty app', () => {
   it('from .csv file', async () => {
-    const csvPath = path.join(__dirname, '../stub/test.csv')
+    const csvPath = path.join(__dirname, 'fixtures/test.csv')
     const output = await tempDir(out)
 
     await run({ input: csvPath, output})
@@ -25,20 +25,20 @@ describe('generate 11ty app', () => {
 
   it('from multiple files with the same date', async () => {
     const output = await tempDir(out)
-    await run({ input: 'src/test/stub/test.{csv,json,yaml}', output })
+    await run({ input: 'test/fixtures/test.{csv,json,yaml}', output })
 
     expect(await getFileStruct(output)).toMatchSnapshot()
   })
 
   it('from multiple files', async () => {
     const output = await tempDir(out)
-    await run({ input: 'src/test/stub/test.{csv,json}', output })
+    await run({ input: 'test/fixtures/test.{csv,json}', output })
 
     expect(await getFileStruct(output)).toMatchSnapshot()
   })
 
   it('from .json file', async () => {
-    const input = path.join(__dirname, '../stub/test.json')
+    const input = path.join(__dirname, 'fixtures/test.json')
     const output = await tempDir(out)
 
     await run({ input, output })
@@ -47,7 +47,7 @@ describe('generate 11ty app', () => {
   })
 
   it('from .yml file', async () => {
-    const input = path.join(__dirname, '../stub/test.yml')
+    const input = path.join(__dirname, 'fixtures/test.yml')
     const output = await tempDir(out)
 
     await run({ input, output })
@@ -90,7 +90,7 @@ describe('generate 11ty app', () => {
       input,
       output,
       navTitle: 'test',
-      templates: path.join(__dirname, '../tpl'),
+      templates: path.join(__dirname, 'templates'),
       navPage: true,
     })
     expect(fse.readFileSync(path.join(output, 'index.html'),'utf8')).toMatchSnapshot()
@@ -98,7 +98,7 @@ describe('generate 11ty app', () => {
 
   it('generate navigation page by data2', async () => {
     const output = await tempDir(out)
-    const input = 'src/test/stub/data2/**'
+    const input = 'test/fixtures/data2/**'
 
     await run({
       input,

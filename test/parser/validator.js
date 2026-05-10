@@ -2,7 +2,7 @@ import {
   _validate,
   radarSchema,
   validate,
-} from '../../main/js/parser/validator.js'
+} from '../../src/parser/validator.js'
 
 describe('validate', () => {
   it('validate is not undefined ', () => {
