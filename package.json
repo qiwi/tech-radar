@@ -10,13 +10,7 @@
   },
   "type": "module",
   "files": [
-    "src/index.js",
-    "src/index.d.ts",
-    "src/cli.mjs",
-    "src/constants.js",
-    "src/util.js",
-    "src/parser",
-    "src/renderer"
+    "src"
   ],
   "scripts": {
     "build": "exit 0",
