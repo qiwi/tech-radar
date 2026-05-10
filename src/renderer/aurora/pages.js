@@ -16,6 +16,10 @@ const escape = (s = '') =>
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;')
 
+/** Inline-runs before the stylesheet — applies saved theme/chroma to <html>
+ *  so we don't flash the default palette on a fresh load. */
+const THEME_BOOT = `<script>try{var p=JSON.parse(localStorage.getItem('aurora-prefs')||'{}');var h=document.documentElement;h.dataset.theme=p.theme||'dark';h.dataset.chroma=p.chroma||'color';}catch(e){}</script>`
+
 /** Path-safe entry slug: keep the original name (matches eleventy backend),
  *  only strip path separators that would break the directory layout. */
 const entrySlug = (name) => String(name).replaceAll(/[/\\]/g, '-').trim()
@@ -23,21 +27,23 @@ const entryHref = (name) => encodeURIComponent(entrySlug(name))
 
 /** Render a single radar SVG (full viewBox). */
 const renderSvg = (radar, entries) => {
-  // Sector backgrounds — nested SVG defs hold radial gradient per quadrant.
+  // Per-quadrant radial gradients — each quadrant gets its own hue, glowing
+  // from the centre outward. Alpha is baked into the stop colours so the
+  // theme can swap between a saturated mid-light "ink on dark" wash and a
+  // pastel "watercolour on paper" wash without touching SVG attributes.
   const defs = QUADRANTS.map(
     (q) => `
       <radialGradient id="grad-${q.id}" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="hsl(${q.accent} 70% 18%)" stop-opacity="0.7"/>
-        <stop offset="100%" stop-color="hsl(${q.accent} 60% 8%)" stop-opacity="0.05"/>
+        <stop offset="0%"   stop-color="var(--${q.id}-grad-0)"/>
+        <stop offset="100%" stop-color="var(--${q.id}-grad-1)"/>
       </radialGradient>`,
   ).join('')
 
   const sectors = QUADRANTS.flatMap((q, qIdx) =>
     RINGS.map(
-      (r, rIdx) => `
-        <path d="${sectorPath(qIdx, rIdx)}"
-              fill="url(#grad-${q.id})"
-              fill-opacity="${0.95 - rIdx * 0.18}"
+      (r, rIdx) =>
+        `<path d="${sectorPath(qIdx, rIdx)}" fill="url(#grad-${q.id})"
+              fill-opacity="${(0.98 - rIdx * 0.16).toFixed(2)}"
               class="sector" data-q="${q.id}" data-r="${r.id}"/>`,
     ),
   ).join('')
@@ -63,7 +69,7 @@ const renderSvg = (radar, entries) => {
         : (RINGS[rIdx - 1].outer + r.outer) / 2
     return `
       <defs><path id="${arcId}" d="${arcPath(-Math.PI / 2 - 0.3, -Math.PI / 2 + 0.3, labelRadius)}"/></defs>
-      <text class="ring-label">
+      <text class="ring-label" data-r="${r.id}">
         <textPath href="#${arcId}" startOffset="50%" text-anchor="middle">${r.label}</textPath>
       </text>`
   }).join('')
@@ -81,7 +87,7 @@ const renderSvg = (radar, entries) => {
     const title = radar.document.quadrantTitles[q.id] || q.id.toUpperCase()
     return `<text class="quad-label" x="${c.x}" y="${c.y}"
       text-anchor="${c.anchor}" dominant-baseline="${c.baseline}"
-      fill="hsl(${q.accent} 70% 72%)">${escape(title)}</text>`
+      fill="var(--${q.id}-accent)">${escape(title)}</text>`
   }).join('')
 
   // Entries — circle + number, wrapped in <a> linking to detail page
@@ -101,11 +107,8 @@ const renderSvg = (radar, entries) => {
 
   const blips = entries
     .map((e) => {
-      const qIdx = QUADRANTS.findIndex((q) => q.id === e.quadrant)
-      const accent = QUADRANTS[qIdx]?.accent ?? 200
-      const tone = e.ring === 'hold' ? 50 : e.ring === 'assess' ? 60 : e.ring === 'trial' ? 65 : 70
-      const accentColor = `hsl(${accent} ${tone}% 65%)`
-      // CSS color drives stroke + number fill + drop-shadow's currentColor.
+      // CSS color = quadrant accent (from theme tokens) → drives stroke,
+      // number fill and drop-shadow glow via currentColor inheritance.
       const numDy = e.moved > 0 ? 6 : e.moved < 0 ? 2 : 4
       // Entry pages live next to the radar page (not at dist root).
       const href = `entries/${e.quadrant}/${entryHref(e.name)}/`
@@ -113,7 +116,6 @@ const renderSvg = (radar, entries) => {
         <a href="${href}" class="blip-link" tabindex="0">
           <g class="blip" data-q="${e.quadrant}" data-r="${e.ring}" data-num="${e.num}"
              transform="translate(${e.x.toFixed(1)} ${e.y.toFixed(1)})"
-             style="color:${accentColor}"
              data-name="${escape(e.name)}"
              data-desc="${escape(e.description || '')}"
              data-ring="${escape(e.ring.toUpperCase())}"
@@ -207,7 +209,7 @@ const renderLegend = (radar, entries) => {
         </div>`
     }).join('')
     return `
-      <section class="legend-quad" style="--accent: ${q.accent}">
+      <section class="legend-quad" data-q="${q.id}">
         <h3>${escape(title)}</h3>
         ${ringGroups}
       </section>`
@@ -252,8 +254,9 @@ export const radarPage = ({
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <style>html,body{background:#07080d;color:#e6e9f0;margin:0}</style>
+  <meta name="color-scheme" content="dark light">
+  <style>html,body{background:#07080d;color:#e6e9f0;margin:0}html[data-theme="light"],html[data-theme="light"] body{background:#f6f7fa;color:#11151c}</style>
+  ${THEME_BOOT}
   <title>${title}</title>
   <link rel="stylesheet" href="${basePath}aurora.css">
   <link rel="icon" href="${basePath}favicon.ico">
@@ -267,6 +270,8 @@ export const radarPage = ({
     ${renderScopeTabs(scopes, scopeLatest, scope)}
     <div class="topbar-meta">
       <span class="meta-date" id="metaDate" data-default="${escape(date)}">${escape(date)}</span>
+      <button class="toggle toggle--chroma" data-toggle="chroma" type="button" aria-label="Toggle colour"></button>
+      <button class="toggle toggle--theme"  data-toggle="theme"  type="button" aria-label="Toggle theme"></button>
     </div>
   </header>
   ${renderTimeline(timeline, date)}
@@ -315,8 +320,9 @@ export const entryPage = ({
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <style>html,body{background:#07080d;color:#e6e9f0;margin:0}</style>
+  <meta name="color-scheme" content="dark light">
+  <style>html,body{background:#07080d;color:#e6e9f0;margin:0}html[data-theme="light"],html[data-theme="light"] body{background:#f6f7fa;color:#11151c}</style>
+  ${THEME_BOOT}
   <title>${escape(entry.name)} — ${escape(scope)} ${escape(date)}</title>
   <link rel="stylesheet" href="${basePath}aurora.css">
   <link rel="icon" href="${basePath}favicon.ico">
@@ -330,6 +336,8 @@ export const entryPage = ({
     <div class="topbar-meta">
       <a href="${radarPath}" class="meta-scope">${escape(scope)}</a>
       <span class="meta-date">${escape(date)}</span>
+      <button class="toggle toggle--chroma" data-toggle="chroma" type="button" aria-label="Toggle colour"></button>
+      <button class="toggle toggle--theme"  data-toggle="theme"  type="button" aria-label="Toggle theme"></button>
     </div>
   </header>
   <main class="entry-shell">

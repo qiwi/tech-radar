@@ -3,6 +3,33 @@
 // between scope/timeline/entry pages with native View Transitions crossfade.
 
 export const js = `(() => {
+  // ── Theme + chroma persistence ──────────────────────────────────
+  // Inline <script> in <head> applies stored prefs before paint to avoid
+  // FOUC; this block handles the toggle clicks and writes back.
+  const PREFS_KEY = 'aurora-prefs'
+  const readPrefs = () => {
+    try { return JSON.parse(localStorage.getItem(PREFS_KEY) || '{}') } catch { return {} }
+  }
+  const writePrefs = (p) => {
+    try { localStorage.setItem(PREFS_KEY, JSON.stringify(p)) } catch {}
+  }
+  const applyPrefs = () => {
+    const p = readPrefs()
+    document.documentElement.dataset.theme  = p.theme  || 'dark'
+    document.documentElement.dataset.chroma = p.chroma || 'color'
+  }
+  applyPrefs()
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest && e.target.closest('[data-toggle]')
+    if (!btn) return
+    const key = btn.dataset.toggle
+    const p = readPrefs()
+    if (key === 'theme')  p.theme  = (p.theme  || 'dark')  === 'dark'  ? 'light' : 'dark'
+    if (key === 'chroma') p.chroma = (p.chroma || 'color') === 'color' ? 'mono'  : 'color'
+    writePrefs(p)
+    applyPrefs()
+  })
+
   const init = () => {
     const card = document.getElementById('hoverCard')
     if (!card) return
