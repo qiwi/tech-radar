@@ -196,37 +196,29 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
   filter: drop-shadow(0 1px 8px rgba(0,0,0,.6));
 }
 .blip-link { cursor: pointer; outline: none; }
-/* IMPORTANT: don't transform-scale .blip on hover — in dense clusters the
-   scaled bbox overlaps a neighbouring <a>, the cursor flickers between them,
-   and the hover-card strobes. Use glow filter only — bbox stays put. */
-.blip-bg {
-  opacity: .55;
-  transition: opacity .15s ease;
-  filter: blur(2px);
-}
+/* Outlined blips: fill matches the page background so the SVG sector
+   gradient doesn't leak through; stroke + number both pick up the
+   <g style="color:…"> accent. Keeps numbers legible without a solid disc.
+   IMPORTANT: don't transform-scale .blip on hover — bbox flicker in dense
+   clusters strobes the hover-card. Glow filter only. */
 .blip-fg {
-  stroke: rgba(255,255,255,.18);
-  stroke-width: 1.2;
-  transition: filter .15s ease, stroke .15s ease;
+  fill: var(--bg);
+  stroke: currentColor;
+  stroke-width: 2;
+  transition: filter .15s ease, stroke-width .15s ease, fill .15s ease;
 }
 .blip-num {
-  fill: rgba(255,255,255,.95);
+  fill: currentColor;
   font: 700 12px/1 sans-serif;
   pointer-events: none;
   font-variant-numeric: tabular-nums;
-  paint-order: stroke fill;
-  stroke: rgba(0,0,0,.35);
-  stroke-width: 2;
 }
-.blip.is-active .blip-bg,
-.blip-link:hover .blip-bg,
-.blip-link:focus-visible .blip-bg { opacity: 1; }
 .blip.is-active .blip-fg,
 .blip-link:hover .blip-fg,
 .blip-link:focus-visible .blip-fg {
-  /* currentColor inherits from <g style="color:..."> on each blip — glow tints */
-  filter: drop-shadow(0 0 12px currentColor) brightness(1.2);
-  stroke: rgba(255,255,255,.45);
+  filter: drop-shadow(0 0 10px currentColor);
+  stroke-width: 2.5;
+  fill: color-mix(in srgb, currentColor 14%, var(--bg));
 }
 
 /* ── Legend (sidebar) ────────────────────────────────────────────── */
@@ -308,9 +300,24 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
 .entry-shell {
   max-width: 720px; margin: 0 auto; padding: 32px 32px 64px;
 }
-.back { display: inline-block; margin-bottom: 18px; color: var(--fg-mute); font-size: 13px; }
-.back:hover { color: var(--fg); }
-.entry-title { font-size: 36px; line-height: 1.15; margin-bottom: 14px; }
+.entry-title {
+  font-size: 36px; line-height: 1.15; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 16px;
+}
+.entry-title .back {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 999px;
+  color: var(--fg-mute);
+  font-size: 24px; font-weight: 400; line-height: 1;
+  border: 1px solid var(--line);
+  transition: color .15s ease, border-color .15s ease, background .15s ease;
+}
+.entry-title .back:hover {
+  color: var(--fg);
+  border-color: var(--fg-mute);
+  background: rgba(255,255,255,.04);
+}
 .entry-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
 .badge {
   display: inline-flex; align-items: center; gap: 6px;
