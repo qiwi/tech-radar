@@ -61,7 +61,8 @@ buildcache
 .rts2_cache_umd/
 
 # Temp
-src/test/js/temp
+test/renderer/eleventy/temp
+test-output
 
 # Code Climate
 cc-reporter

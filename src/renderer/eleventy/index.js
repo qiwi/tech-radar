@@ -3,13 +3,13 @@ import Eleventy from '@11ty/eleventy'
 import fse from 'fs-extra'
 import slash from 'slash'
 
-import { rootDir, tplDir } from '../constants.js'
-import { tempDir } from '../util.js'
+import { rootDir, tplDir } from '../../constants.js'
+import { tempDir } from '../../util.js'
 import { genMdAssets } from './markdown.js'
 
 export const genConfig = async ({ temp, output, prefix }) => {
   const configPath = path.join(temp, 'config.js')
-  const configLoaderAbsPath = path.resolve(rootDir, 'generator/.eleventy.cjs')
+  const configLoaderAbsPath = path.resolve(rootDir, 'renderer/eleventy/config.cjs')
   const configLoaderRelPath = slash(path.relative(temp, configLoaderAbsPath))
   const configMixin = { extra: { temp, prefix, output } }
   const configContents = `

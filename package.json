@@ -2,35 +2,42 @@
   "name": "@qiwi/tech-radar",
   "description": "Fully automated tech-radar generator",
   "version": "1.13.29",
-  "main": "./src/main/js/index.js",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
   "type": "module",
   "files": [
-    "src/main/js",
-    "src/main/tpl"
+    "src/index.js",
+    "src/index.d.ts",
+    "src/cli.mjs",
+    "src/constants.js",
+    "src/util.js",
+    "src/parser",
+    "src/renderer"
   ],
   "scripts": {
     "build": "exit 0",
     "test": "npm-run-all -p -l lint test:unit test:depcheck",
     "test:unit": "vitest run --coverage",
     "test:depcheck": "npm_config_yes=true npx -p depcheck depcheck --ignores espree",
-    "docs": "jsdoc -d dist/docs src/main/js/index.js",
+    "docs": "jsdoc -d dist/docs src/index.js",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "format": "prettier --write \"src/**/*.js\"",
-    "generate": "node ./src/main/js/cli.mjs --input \"data/**/*.{csv,json,yml}\"  --output dist --base-prefix tech-radar --autoscope true --nav-page true && touch dist/.nojekyll",
-    "preview": "node src/main/server",
+    "generate": "node ./src/cli.mjs --input \"data/**/*.{csv,json,yml}\"  --output dist --base-prefix tech-radar --autoscope true --nav-page true && touch dist/.nojekyll",
+    "preview": "node src/preview",
     "postupdate": "npm install && npm audit fix && npm test && npm run generate"
   },
   "prettier": "prettier-config-qiwi",
   "exports": {
-    "import": "./src/main/js/index.js"
+    "types": "./src/index.d.ts",
+    "import": "./src/index.js"
   },
   "bin": {
-    "techradar": "src/main/js/cli.mjs"
+    "techradar": "src/cli.mjs"
   },
   "devDependencies": {
     "@qiwi/npm-run-all": "^4.1.7",

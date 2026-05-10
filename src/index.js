@@ -2,7 +2,7 @@ import fse from 'fs-extra'
 import path from 'node:path'
 
 import { tplDir } from './constants.js'
-import { genNavPage, genRadars, genRedirects } from './generator/index.js'
+import { genNavPage, genRadars, genRedirects } from './renderer/eleventy/index.js'
 import { getSources, parse } from './parser/index.js'
 import { getDirs, tempDir } from './util.js'
 

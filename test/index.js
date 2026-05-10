@@ -1,4 +1,4 @@
-import { run } from '../../main/js/index.js'
+import { run } from '../src/index.js'
 
 describe('has proper exports', () => {
   it('run', function () {
