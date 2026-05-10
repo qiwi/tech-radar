@@ -6,7 +6,7 @@ import {run} from './index.js'
 export const cli = meow(
   `
     Usage:
-      techradar  --input /path/to/csv --output /radar --base-prefix tech-radar --autoscope true --nav-page true --nav-title title --nav-footer footer
+      techradar  --input /path/to/csv --output /radar --base-prefix tech-radar --autoscope true --nav-page true --nav-title title --nav-footer footer --renderer eleventy
     Options
       --cwd
       --input
@@ -18,6 +18,7 @@ export const cli = meow(
       --nav-footer
       --temp
       --templates
+      --renderer  output backend: "eleventy" (default) or "aurora"
 `,
   {
     importMeta: import.meta,
@@ -52,6 +53,9 @@ export const cli = meow(
       templates: {
         type: 'string',
         shortFlag: 'tpl'
+      },
+      renderer: {
+        type: 'string'
       }
     },
   },

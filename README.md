@@ -84,6 +84,7 @@ npx @qiwi/tech-radar --input "/path/to/files/*.{json, csv, yml}" --output /radar
 | nav-footer  | navigation page footer                                                                                                                                       |                                                                          |
 | temp        | temporary assets dir                                                                                                                                         | [`temp-dir`](https://github.com/sindresorhus/temp-dir) + random subfolder |
 | templates   | custom `11ty/nunjucks` compatible templates directory. Its contents will be merged into the default templates dir                                            |                                                                          |
+| renderer    | output backend: `eleventy` (Zalando-style d3 radar via 11ty) or `aurora` (pure-SVG dark-themed renderer with a built-in snapshot timeline)                   | `eleventy`                                                               |
 
 ### JS API
 ```js
@@ -312,6 +313,24 @@ The easiest way to tweak up the look of your radar is by adding an alternative c
   "print_layout": true
 }
 ```
+
+### Renderers
+The same input data can be rendered into two different output styles. Pick one with the `renderer` option (or `--renderer` flag).
+
+| `renderer`         | Description                                                                                                                                                                                                                       |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `eleventy` *(default)* | Classic Zalando-style radar built via 11ty + d3, hardened with the customisations described in this README (custom templates, asset filter, etc.).                                                                          |
+| `aurora`           | Self-contained pure-SVG renderer. Dark theme, deterministic entry placement (no jitter on regen), built-in per-scope timeline, hover details, sidebar legend with cross-highlight. No client-side d3, no runtime. |
+
+```shell
+techradar --input "data/**" --output dist --renderer aurora --autoscope
+```
+
+```js
+await run({ input: 'data/**', output: 'dist', renderer: 'aurora', autoscope: true })
+```
+
+The `templates` option below applies only to the `eleventy` renderer. Aurora is purely server-side rendered and not template-customisable; tweak it via `src/renderer/aurora/styles.js` if needed.
 
 ### Templates
 For advanced view modification, you can use your own templates. Pass the `templates` option to point at a directory where your own custom files live. The directory is merged on top of the bundled templates (matching files override). Expected structure:
