@@ -2,10 +2,12 @@ import Ajv from 'ajv'
 
 const validators = new Map()
 
+// `allowUnionTypes`: silence the strict-mode warning from radarSchema's
+// `moved: { type: ['string','integer','null'] }` — the union is intentional.
 const getValidator = (schema) => {
   let validator = validators.get(schema)
   if (!validator) {
-    validator = new Ajv().compile(schema)
+    validator = new Ajv({ allowUnionTypes: true }).compile(schema)
     validators.set(schema, validator)
   }
   return validator

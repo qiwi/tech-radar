@@ -67,14 +67,14 @@ export const genRadar = async ({ ctx, radar }) => {
   context.settings = genRadarSettings(context)
 
   await genMdAssets(context)
-  await render('radar', context)
+  await renderTemplate('radar', context)
 }
 
 export const genTable = async ({ ctx, radar }) => {
   const context = await buildRadarContext({ ctx, radar, subPath: 'table' })
   context.settings = radar.document
 
-  await render('table', context)
+  await renderTemplate('table', context)
 }
 
 export const genRedirects = async ({ radars, output, ctx, temp }) => {
@@ -89,7 +89,7 @@ export const genRedirects = async ({ radars, output, ctx, temp }) => {
         return m
       }, {}),
     ).map(async ([scope, date]) =>
-      render('redirect', {
+      renderTemplate('redirect', {
         ...ctx,
         temp: await tempDir(temp),
         output: path.join(output, scope),
@@ -118,7 +118,7 @@ export const genNavPage = async ({
     },
   }
 
-  await render('root', {
+  await renderTemplate('root', {
     ...ctx,
     temp: await tempDir(temp),
     output,
@@ -126,7 +126,7 @@ export const genNavPage = async ({
   })
 }
 
-export const render = async (template, options) => {
+export const renderTemplate = async (template, options) => {
   const { temp, output, settings, templates } = options
   const configPath = await genConfig(options)
   const elev = new Eleventy(slash(temp), slash(output), { configPath })
@@ -156,4 +156,19 @@ layout: ${template}.njk
 
   await elev.init()
   await elev.write()
+}
+
+/**
+ * Public renderer entry — implements the renderer-interface contract.
+ * Consumes ctx (radars, output, basePrefix, …) and writes the full static
+ * site (radar pages, nav, redirects, shared assets) under ctx.output.
+ *
+ * @param {Object} ctx
+ * @returns {Promise<void>}
+ */
+export const render = async (ctx) => {
+  await genRadars({ radars: ctx.radars, ctx })
+  await genNavPage(ctx)
+  await genRedirects(ctx)
+  await fse.copy(path.join(tplDir, 'assets'), ctx.output)
 }

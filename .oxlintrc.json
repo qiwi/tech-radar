@@ -28,6 +28,7 @@
     "test/templates/**",
     "test-output",
     "dist",
+    "dist-*",
     "node_modules",
     "coverage"
   ]

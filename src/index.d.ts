@@ -24,6 +24,7 @@ interface Options {
   temp?: string
   templates?: string
   renderSettings?: RenderSettings
+  renderer?: 'eleventy' | 'aurora'
 }
 
 export declare function run(options?: Options): Promise<void>

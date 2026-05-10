@@ -1,9 +1,8 @@
 import fse from 'fs-extra'
 import path from 'node:path'
 
-import { tplDir } from './constants.js'
-import { genNavPage, genRadars, genRedirects } from './renderer/eleventy/index.js'
 import { getSources, parse } from './parser/index.js'
+import { render } from './renderer/index.js'
 import { getDirs, tempDir } from './util.js'
 
 /**
@@ -23,6 +22,7 @@ import { getDirs, tempDir } from './util.js'
  * @param {string} [options.temp] temp directory
  * @param {string} [options.templates] path to a directory whose contents are merged on top of bundled templates
  * @param {Object} [options.renderSettings] custom render settings (rings, colors, dimensions) for `radar.js`
+ * @param {('eleventy'|'aurora')} [options.renderer] output backend (default `eleventy`)
  *
  * @return {Promise<void>}
  */
@@ -49,6 +49,7 @@ const getContext = async ({
   temp,
   templates,
   renderSettings,
+  renderer = 'eleventy',
 } = {}) => {
   const ctx = {
     input,
@@ -62,6 +63,7 @@ const getContext = async ({
     temp: temp || (await tempDir()),
     templates,
     renderSettings,
+    renderer,
   }
 
   ctx.ctx = ctx // context self-ref to simplify pipelining
@@ -94,14 +96,8 @@ const parseRadars = async ({ ctx, sources, scopes }) => {
   return ctx
 }
 
-const renderRadars = async ({ ctx, output }) => {
-  await genRadars(ctx)
-  await genNavPage(ctx)
-  await genRedirects(ctx)
-  await fse.copy(path.join(tplDir, 'assets'), output) // shared static assets
-
-  // console.log('radars', radars)
-  // console.log('radar', JSON.stringify(radars[3], null, 2))
+const renderRadars = async ({ ctx }) => {
+  await render(ctx)
   return ctx
 }
 
