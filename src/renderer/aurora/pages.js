@@ -86,16 +86,17 @@ const renderSvg = (radar, entries) => {
 
   // Entries — circle + number, wrapped in <a> linking to detail page
   // Blip shape encodes movement: triangle up (moved=1), down (moved=-1),
-  // circle (no move). Background is a slightly larger same-shape under-glow
-  // for definition on dark sectors. Number always sits centred on top.
-  const blipShape = (moved, r, cls, fill) => {
+  // circle (no move). Shape is stroke-only (outline + number in the
+  // sector's accent colour, fill in the page background) — keeps numbers
+  // legible against the sector gradients.
+  const blipShape = (moved, r, cls) => {
     if (moved > 0) {
-      return `<path class="${cls}" fill="${fill}" d="M 0 -${r} L ${(r * 0.95).toFixed(1)} ${(r * 0.62).toFixed(1)} L -${(r * 0.95).toFixed(1)} ${(r * 0.62).toFixed(1)} Z"/>`
+      return `<path class="${cls}" d="M 0 -${r} L ${(r * 0.95).toFixed(1)} ${(r * 0.62).toFixed(1)} L -${(r * 0.95).toFixed(1)} ${(r * 0.62).toFixed(1)} Z"/>`
     }
     if (moved < 0) {
-      return `<path class="${cls}" fill="${fill}" d="M 0 ${r} L ${(r * 0.95).toFixed(1)} -${(r * 0.62).toFixed(1)} L -${(r * 0.95).toFixed(1)} -${(r * 0.62).toFixed(1)} Z"/>`
+      return `<path class="${cls}" d="M 0 ${r} L ${(r * 0.95).toFixed(1)} -${(r * 0.62).toFixed(1)} L -${(r * 0.95).toFixed(1)} -${(r * 0.62).toFixed(1)} Z"/>`
     }
-    return `<circle class="${cls}" r="${r}" fill="${fill}"/>`
+    return `<circle class="${cls}" r="${r}"/>`
   }
 
   const blips = entries
@@ -103,9 +104,8 @@ const renderSvg = (radar, entries) => {
       const qIdx = QUADRANTS.findIndex((q) => q.id === e.quadrant)
       const accent = QUADRANTS[qIdx]?.accent ?? 200
       const tone = e.ring === 'hold' ? 50 : e.ring === 'assess' ? 60 : e.ring === 'trial' ? 65 : 70
-      const fgColor = `hsl(${accent} ${tone}% 60%)`
-      const bgColor = `hsl(${accent} ${tone}% 26%)`
-      // CSS color is read by drop-shadow's currentColor → glow in the blip's hue.
+      const accentColor = `hsl(${accent} ${tone}% 65%)`
+      // CSS color drives stroke + number fill + drop-shadow's currentColor.
       const numDy = e.moved > 0 ? 6 : e.moved < 0 ? 2 : 4
       // Entry pages live next to the radar page (not at dist root).
       const href = `entries/${e.quadrant}/${entryHref(e.name)}/`
@@ -113,13 +113,12 @@ const renderSvg = (radar, entries) => {
         <a href="${href}" class="blip-link" tabindex="0">
           <g class="blip" data-q="${e.quadrant}" data-r="${e.ring}" data-num="${e.num}"
              transform="translate(${e.x.toFixed(1)} ${e.y.toFixed(1)})"
-             style="color:${fgColor}"
+             style="color:${accentColor}"
              data-name="${escape(e.name)}"
              data-desc="${escape(e.description || '')}"
              data-ring="${escape(e.ring.toUpperCase())}"
              data-moved="${e.moved}">
-            ${blipShape(e.moved, 17, 'blip-bg', bgColor)}
-            ${blipShape(e.moved, 14, 'blip-fg', fgColor)}
+            ${blipShape(e.moved, 14, 'blip-fg')}
             <text class="blip-num" text-anchor="middle" dy="${numDy}">${e.num}</text>
           </g>
         </a>`
@@ -334,8 +333,10 @@ export const entryPage = ({
     </div>
   </header>
   <main class="entry-shell">
-    <a class="back" href="${radarPath}">← back to radar</a>
-    <h1 class="entry-title">${escape(entry.name)}</h1>
+    <h1 class="entry-title">
+      <a class="back" href="${radarPath}" aria-label="Back to radar">←</a>
+      ${escape(entry.name)}
+    </h1>
     <div class="entry-badges">
       <span class="badge badge--quad">${escape(quadTitle)}</span>
       <span class="badge badge--ring badge--ring-${entry.ring}">${escape(entry.ring.toUpperCase())}</span>
@@ -343,6 +344,7 @@ export const entryPage = ({
     </div>
     <div class="entry-desc">${escape(entry.description || '')}</div>
   </main>
+  <script src="${basePath}aurora.js" defer></script>
 </body>
 </html>
 `
