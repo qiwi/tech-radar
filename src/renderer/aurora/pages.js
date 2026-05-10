@@ -68,31 +68,59 @@ const renderSvg = (radar, entries) => {
       </text>`
   }).join('')
 
-  // Quadrant titles live in the sidebar legend — keeping the SVG clean.
-  const quadLabels = ''
+  // Quadrant titles in the four corners of the SVG, anchored toward the
+  // radar centre so long names lean inward and stay within viewBox.
+  const quadCorners = {
+    q1: { x: SIZE - 24, y: SIZE - 24, anchor: 'end',   baseline: 'auto' },     // bottom-right
+    q2: { x: 24,        y: SIZE - 24, anchor: 'start', baseline: 'auto' },     // bottom-left
+    q3: { x: 24,        y: 24,        anchor: 'start', baseline: 'hanging' },  // top-left
+    q4: { x: SIZE - 24, y: 24,        anchor: 'end',   baseline: 'hanging' },  // top-right
+  }
+  const quadLabels = QUADRANTS.map((q) => {
+    const c = quadCorners[q.id]
+    const title = radar.document.quadrantTitles[q.id] || q.id.toUpperCase()
+    return `<text class="quad-label" x="${c.x}" y="${c.y}"
+      text-anchor="${c.anchor}" dominant-baseline="${c.baseline}"
+      fill="hsl(${q.accent} 70% 72%)">${escape(title)}</text>`
+  }).join('')
 
   // Entries — circle + number, wrapped in <a> linking to detail page
+  // Blip shape encodes movement: triangle up (moved=1), down (moved=-1),
+  // circle (no move). Background is a slightly larger same-shape under-glow
+  // for definition on dark sectors. Number always sits centred on top.
+  const blipShape = (moved, r, cls, fill) => {
+    if (moved > 0) {
+      return `<path class="${cls}" fill="${fill}" d="M 0 -${r} L ${(r * 0.95).toFixed(1)} ${(r * 0.62).toFixed(1)} L -${(r * 0.95).toFixed(1)} ${(r * 0.62).toFixed(1)} Z"/>`
+    }
+    if (moved < 0) {
+      return `<path class="${cls}" fill="${fill}" d="M 0 ${r} L ${(r * 0.95).toFixed(1)} -${(r * 0.62).toFixed(1)} L -${(r * 0.95).toFixed(1)} -${(r * 0.62).toFixed(1)} Z"/>`
+    }
+    return `<circle class="${cls}" r="${r}" fill="${fill}"/>`
+  }
+
   const blips = entries
     .map((e) => {
       const qIdx = QUADRANTS.findIndex((q) => q.id === e.quadrant)
       const accent = QUADRANTS[qIdx]?.accent ?? 200
       const tone = e.ring === 'hold' ? 50 : e.ring === 'assess' ? 60 : e.ring === 'trial' ? 65 : 70
-      const moveSym =
-        e.moved > 0 ? '▲' : e.moved < 0 ? '▼' : ''
+      const fgColor = `hsl(${accent} ${tone}% 60%)`
+      const bgColor = `hsl(${accent} ${tone}% 26%)`
+      // CSS color is read by drop-shadow's currentColor → glow in the blip's hue.
+      const numDy = e.moved > 0 ? 6 : e.moved < 0 ? 2 : 4
       // Entry pages live next to the radar page (not at dist root).
       const href = `entries/${e.quadrant}/${entryHref(e.name)}/`
       return `
         <a href="${href}" class="blip-link" tabindex="0">
           <g class="blip" data-q="${e.quadrant}" data-r="${e.ring}" data-num="${e.num}"
              transform="translate(${e.x.toFixed(1)} ${e.y.toFixed(1)})"
+             style="color:${fgColor}"
              data-name="${escape(e.name)}"
              data-desc="${escape(e.description || '')}"
              data-ring="${escape(e.ring.toUpperCase())}"
              data-moved="${e.moved}">
-            <circle r="16" class="blip-bg" fill="hsl(${accent} ${tone}% 22%)"/>
-            <circle r="14" class="blip-fg" fill="hsl(${accent} ${tone}% 55%)"/>
-            <text class="blip-num" text-anchor="middle" dy="4">${e.num}</text>
-            ${moveSym ? `<text class="blip-move" text-anchor="middle" y="-22">${moveSym}</text>` : ''}
+            ${blipShape(e.moved, 17, 'blip-bg', bgColor)}
+            ${blipShape(e.moved, 14, 'blip-fg', fgColor)}
+            <text class="blip-num" text-anchor="middle" dy="${numDy}">${e.num}</text>
           </g>
         </a>`
     })
@@ -108,25 +136,48 @@ const renderSvg = (radar, entries) => {
 </svg>`
 }
 
-/** Timeline strip — one dot per available date for the current scope.
- *  Hrefs are sibling-relative (`../<date>/`) — independent of basePath. */
+/** Timeline strip — range covers full calendar years that contain data
+ *  (Jan 1 minYear → Jan 1 maxYear+1). Snapshot dots sit at their real
+ *  day-of-year offset; year labels are separate ticks on the line.
+ *  Always renders the empty container so radar-page height stays stable
+ *  across scopes with different snapshot counts. */
 const renderTimeline = (timeline, currentDate) => {
-  if (timeline.length <= 1) return ''
-  const items = timeline
+  if (timeline.length <= 1) {
+    return '<nav class="timeline" aria-label="Snapshot timeline"><div class="tl-items"></div></nav>'
+  }
+  const sorted = timeline.toSorted(
+    (a, b) => Date.parse(a.date) - Date.parse(b.date),
+  )
+  const minYear = Number(String(sorted[0].date).slice(0, 4))
+  const maxYear = Number(String(sorted[sorted.length - 1].date).slice(0, 4))
+  const minTs = Date.UTC(minYear, 0, 1)
+  const maxTs = Date.UTC(maxYear + 1, 0, 1)
+  const span = maxTs - minTs
+
+  const yearTicks = []
+  for (let y = minYear; y <= maxYear; y++) {
+    const p = (Date.UTC(y, 0, 1) - minTs) / span
+    yearTicks.push(
+      `<span class="tl-year-tick" style="--p:${p.toFixed(4)}">${y}</span>`,
+    )
+  }
+
+  const dots = sorted
     .map((t) => {
+      const p = (Date.parse(t.date) - minTs) / span
       const cls = t.date === currentDate ? 'tl-dot tl-dot--current' : 'tl-dot'
       const href = `../${encodeURIComponent(t.date)}/`
       return `
-        <a class="${cls}" href="${href}" data-date="${escape(t.date)}">
+        <a class="${cls}" href="${href}" style="--p:${p.toFixed(4)}"
+           data-date="${escape(t.date)}" aria-label="${escape(t.date)}">
           <span class="tl-marker"></span>
-          <span class="tl-date">${escape(t.date)}</span>
         </a>`
     })
     .join('')
+
   return `
     <nav class="timeline" aria-label="Snapshot timeline">
-      <div class="tl-track"></div>
-      <div class="tl-items">${items}</div>
+      <div class="tl-items">${dots}${yearTicks.join('')}</div>
     </nav>`
 }
 
@@ -165,14 +216,18 @@ const renderLegend = (radar, entries) => {
   return `<aside class="legend">${groups}</aside>`
 }
 
-/** Scope-switcher tabs in the topbar (current → static, others → sibling redirect). */
-const renderScopeTabs = (scopes, currentScope) => {
+/** Scope-switcher tabs in the topbar — link directly to each scope's latest
+ *  snapshot, skipping the intermediate redirect page so SPA navigation lands
+ *  on a real radar page in one hop. */
+const renderScopeTabs = (scopes, scopeLatest, currentScope) => {
   if (scopes.length <= 1) return ''
   const tabs = scopes
     .map((s) => {
       const cls = s === currentScope ? 'tab tab--current' : 'tab'
-      // From <scope>/<date>/, climb 2 levels to dist root then dive into target scope.
-      const href = s === currentScope ? '#' : `../../${encodeURIComponent(s)}/`
+      const latest = scopeLatest[s]
+      const href = s === currentScope || !latest
+        ? '#'
+        : `../../${encodeURIComponent(s)}/${encodeURIComponent(latest)}/`
       return `<a class="${cls}" href="${href}">${escape(s)}</a>`
     })
     .join('')
@@ -184,6 +239,7 @@ export const radarPage = ({
   radar,
   scope,
   scopes,
+  scopeLatest,
   date,
   timeline,
   basePath,
@@ -197,6 +253,8 @@ export const radarPage = ({
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <style>html,body{background:#07080d;color:#e6e9f0;margin:0}</style>
   <title>${title}</title>
   <link rel="stylesheet" href="${basePath}aurora.css">
   <link rel="icon" href="${basePath}favicon.ico">
@@ -207,9 +265,9 @@ export const radarPage = ({
       <span class="brand-mark">📡</span>
       <span class="brand-text">${escape(navTitle || 'Tech radar')}</span>
     </span>
-    ${renderScopeTabs(scopes, scope)}
+    ${renderScopeTabs(scopes, scopeLatest, scope)}
     <div class="topbar-meta">
-      <span class="meta-date">${escape(date)}</span>
+      <span class="meta-date" id="metaDate" data-default="${escape(date)}">${escape(date)}</span>
     </div>
   </header>
   ${renderTimeline(timeline, date)}
@@ -258,6 +316,8 @@ export const entryPage = ({
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <style>html,body{background:#07080d;color:#e6e9f0;margin:0}</style>
   <title>${escape(entry.name)} — ${escape(scope)} ${escape(date)}</title>
   <link rel="stylesheet" href="${basePath}aurora.css">
   <link rel="icon" href="${basePath}favicon.ico">

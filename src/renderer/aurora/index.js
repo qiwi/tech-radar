@@ -46,6 +46,10 @@ export const render = async (ctx) => {
   const scopes = [...new Set(radars.map((r) => r.scope))]
     .filter((s) => s !== '.')
     .toSorted()
+  // Map: scope → latest snapshot date. Used by scope-tabs to deep-link.
+  const scopeLatest = Object.fromEntries(
+    scopes.map((s) => [s, timelines.get(s)?.[0]?.date]),
+  )
 
   // --- Per-radar pages -----------------------------------------------------
   await Promise.all(
@@ -62,6 +66,7 @@ export const render = async (ctx) => {
           radar,
           scope,
           scopes,
+          scopeLatest,
           date,
           timeline: timelines.get(scope) || [],
           basePath,

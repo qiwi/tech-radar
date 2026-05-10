@@ -1,7 +1,13 @@
 // Aurora stylesheet served as a static asset — single dark theme,
 // system font stack, no external resources.
 
-export const css = `:root {
+export const css = `/* Smooth crossfade between same-origin radar pages.
+   Modern browsers (Chrome 126+, Edge, Safari TP) — older fall back to native nav. */
+@view-transition { navigation: auto; }
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: 220ms; }
+
+:root {
   color-scheme: dark;
   --bg: #07080d;
   --bg-elev: #0c0f1a;
@@ -20,7 +26,7 @@ export const css = `:root {
 }
 
 * { box-sizing: border-box; }
-html, body { height: 100%; }
+html, body { height: 100%; overflow: hidden; }
 body {
   margin: 0;
   background:
@@ -40,13 +46,18 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
   align-items: center;
   justify-content: space-between;
   padding: 14px 28px;
-  border-bottom: 1px solid var(--line);
   background: linear-gradient(to bottom, var(--bg-elev), transparent);
   position: sticky; top: 0; z-index: 5;
   backdrop-filter: blur(6px);
 }
-.brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; }
-.brand-mark { font-size: 18px; filter: drop-shadow(0 0 6px var(--accent-glow)); }
+.brand {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-weight: 600; font-size: 14px;
+  opacity: .55;
+  transition: opacity .15s ease;
+}
+.brand:hover { opacity: 1; }
+.brand-mark { font-size: 16px; filter: drop-shadow(0 0 6px var(--accent-glow)); }
 .brand-text { color: var(--fg); }
 .topbar-meta { display: flex; align-items: baseline; gap: 14px; font-size: 13px; color: var(--fg-soft); }
 .meta-scope { color: var(--fg); font-weight: 500; }
@@ -77,54 +88,97 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
 }
 
 /* ── Timeline ────────────────────────────────────────────────────── */
+/* Fixed total height — keeps page layout stable when switching between
+   scopes whose timelines have different dot counts (or none). */
 .timeline {
   position: relative;
-  padding: 28px 32px 18px;
-  overflow-x: auto;
-  border-bottom: 1px solid var(--line);
+  padding: 8px 32px 6px;
+  min-height: 44px;
 }
-.tl-track {
-  position: absolute; top: 50%; left: 32px; right: 32px;
-  height: 1px; background: var(--line);
+.tl-items {
+  position: relative;
+  height: 30px;
+  margin: 0 auto;
+  max-width: 1200px;
 }
-.tl-items { position: relative; display: flex; gap: 32px; min-width: max-content; padding-bottom: 6px; }
-.tl-dot { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 60px; }
+.tl-items::before {
+  content: '';
+  position: absolute;
+  left: 16px; right: 16px;
+  top: 5px;
+  height: 1px;
+  background: var(--line);
+}
+.tl-track { display: none; }
+.tl-dot {
+  position: absolute;
+  top: 0;
+  /* Inset by 16px so the first/last dots sit on the line ends, not off-screen. */
+  left: calc(16px + var(--p, 0) * (100% - 32px));
+  transform: translateX(-50%);
+  text-decoration: none;
+}
+.tl-year-tick {
+  position: absolute;
+  bottom: 0;
+  left: calc(16px + var(--p, 0) * (100% - 32px));
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: var(--fg-mute);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .04em;
+  pointer-events: none;
+}
+/* Tiny tick mark above year label, sitting on the line. */
+.tl-year-tick::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -12px;
+  width: 1px;
+  height: 4px;
+  background: var(--line);
+  transform: translateX(-50%);
+}
 .tl-marker {
-  width: 12px; height: 12px; border-radius: 999px;
-  background: var(--bg-elev); border: 2px solid var(--fg-mute);
-  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+  width: 11px; height: 11px; border-radius: 999px;
+  background: var(--bg-elev); border: 1.5px solid var(--fg-mute);
+  transition: transform .15s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
+  z-index: 1;
 }
 .tl-dot:hover .tl-marker {
   border-color: var(--r-adopt);
   background: var(--r-adopt);
+  transform: scale(1.2);
 }
 .tl-dot--current .tl-marker {
-  width: 18px; height: 18px;
   background: var(--r-adopt);
   border-color: var(--r-adopt);
-  box-shadow: 0 0 0 4px hsl(150 60% 55% / 0.18), 0 0 24px hsl(150 60% 55% / 0.45);
+  box-shadow: 0 0 0 3px hsl(150 60% 55% / 0.18), 0 0 18px hsl(150 60% 55% / 0.5);
 }
-.tl-date { font-size: 12px; color: var(--fg-soft); font-variant-numeric: tabular-nums; }
-.tl-dot--current .tl-date { color: var(--fg); font-weight: 500; }
 
 /* ── Radar shell ─────────────────────────────────────────────────── */
 .radar-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
-  gap: 24px;
-  padding: 24px 32px 48px;
-  max-width: 1500px;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 20px;
+  padding: 8px 24px 24px;
+  max-width: 1700px;
   margin: 0 auto;
+  align-items: start;
 }
 @media (max-width: 960px) {
   .radar-shell { grid-template-columns: 1fr; }
 }
+/* Stage is a square that fills the remaining viewport height (after topbar +
+   timeline + paddings) and the column width — whichever is smaller wins. */
 .radar-stage {
   position: relative;
+  width: min(100%, calc(100vh - 140px));
   aspect-ratio: 1;
-  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto;
 }
-.radar-svg { width: 100%; height: 100%; }
+.radar-svg { width: 100%; height: 100%; display: block; }
 
 /* ── SVG ─────────────────────────────────────────────────────────── */
 .sector { transition: filter .2s ease, opacity .2s ease; }
@@ -144,20 +198,25 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
 .blip-link { cursor: pointer; outline: none; }
 /* IMPORTANT: don't transform-scale .blip on hover — in dense clusters the
    scaled bbox overlaps a neighbouring <a>, the cursor flickers between them,
-   and the hover-card strobes. Use a glow filter only — bbox stays put. */
-.blip-bg { opacity: .9; transition: opacity .15s ease; }
-.blip-fg { transition: filter .15s ease; }
+   and the hover-card strobes. Use glow filter only — bbox stays put. */
+.blip-bg {
+  opacity: .55;
+  transition: opacity .15s ease;
+  filter: blur(2px);
+}
+.blip-fg {
+  stroke: rgba(255,255,255,.18);
+  stroke-width: 1.2;
+  transition: filter .15s ease, stroke .15s ease;
+}
 .blip-num {
-  fill: rgba(255,255,255,.92);
-  font: 600 12px/1 sans-serif;
+  fill: rgba(255,255,255,.95);
+  font: 700 12px/1 sans-serif;
   pointer-events: none;
   font-variant-numeric: tabular-nums;
-}
-.blip-move {
-  fill: #fff;
-  font: 700 14px/1 sans-serif;
-  pointer-events: none;
-  filter: drop-shadow(0 0 6px rgba(255,255,255,.6));
+  paint-order: stroke fill;
+  stroke: rgba(0,0,0,.35);
+  stroke-width: 2;
 }
 .blip.is-active .blip-bg,
 .blip-link:hover .blip-bg,
@@ -165,9 +224,10 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
 .blip.is-active .blip-fg,
 .blip-link:hover .blip-fg,
 .blip-link:focus-visible .blip-fg {
-  filter: drop-shadow(0 0 14px currentColor) brightness(1.25);
+  /* currentColor inherits from <g style="color:..."> on each blip — glow tints */
+  filter: drop-shadow(0 0 12px currentColor) brightness(1.2);
+  stroke: rgba(255,255,255,.45);
 }
-.blip-link:focus-visible .blip-fg { stroke: #fff; stroke-width: 2; }
 
 /* ── Legend (sidebar) ────────────────────────────────────────────── */
 .legend {
