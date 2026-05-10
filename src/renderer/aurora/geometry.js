@@ -81,39 +81,56 @@ const mulberry32 = (seed) => () => {
   return ((t ^ (t >>> 14)) >>> 0) / 4294967296
 }
 
+const MIN_DIST = 34 // ≈ 2× blip radius (14) + breathing gap
+const MAX_ATTEMPTS = 28
+
 /**
- * Deterministic placement: same entries land in the same spots across renders,
- * which means timeline transitions only animate the ones that actually moved.
- * Up to 6 entries → single row; 7+ → two staggered rows.
+ * Deterministic-random placement with collision avoidance. Each entry
+ * seeds its own PRNG by name, samples up to N candidates inside the
+ * sector annulus and picks the first one that respects MIN_DIST from
+ * every blip already placed (across all sectors — passed via `placed`).
+ * Falls back to the candidate that maximised the nearest-neighbour gap
+ * if no perfect fit found. Stable across renders.
  */
-export const placeEntries = (entries, qIdx, rIdx) => {
+export const placeEntries = (entries, qIdx, rIdx, placed) => {
   const q = QUADRANTS[qIdx]
   const innerBound = rIdx === 0 ? 22 : RINGS[rIdx - 1].outer + 14
   const outerBound = RINGS[rIdx].outer - 14
-  const angularPad = 0.05
+  const angularPad = 0.06
   const a0 = q.start + angularPad
   const a1 = q.end - angularPad
 
   const sorted = entries.toSorted((x, y) => x.name.localeCompare(y.name))
-  const N = sorted.length
-  const twoRows = N > 6
-  const slots = twoRows ? Math.ceil(N / 2) : N
-
-  return sorted.map((entry, i) => {
+  for (const entry of sorted) {
     const rand = mulberry32(hashSeed(entry.name))
-    const slot = twoRows ? Math.floor(i / 2) : i
-    const rowBias = twoRows ? (i % 2 === 0 ? 0.32 : 0.68) : 0.5
-    const tAngular = (slot + 0.5) / Math.max(slots, 1)
-    const angle = a0 + tAngular * (a1 - a0) + (rand() - 0.5) * 0.025
-    const radius =
-      innerBound + (outerBound - innerBound) * (rowBias + (rand() - 0.5) * 0.08)
-    const { x, y } = polar(angle, radius)
-    return { ...entry, x, y, angle, radius }
-  })
+    let best = null
+    let bestGap = -1
+    for (let i = 0; i < MAX_ATTEMPTS; i++) {
+      const angle = a0 + rand() * (a1 - a0)
+      const radius = innerBound + rand() * (outerBound - innerBound)
+      const { x, y } = polar(angle, radius)
+      let nearest = Infinity
+      for (const p of placed) {
+        const d = Math.hypot(x - p.x, y - p.y)
+        if (d < nearest) nearest = d
+      }
+      if (nearest >= MIN_DIST) {
+        best = { ...entry, x, y, angle, radius }
+        break
+      }
+      if (nearest > bestGap) {
+        bestGap = nearest
+        best = { ...entry, x, y, angle, radius }
+      }
+    }
+    if (best) placed.push(best)
+  }
 }
 
-/** Group radar entries by (quadrant, ring) and run placement for each cell.
- *  Numbering walks quadrant-major, ring-major (adopt → hold) for stable output. */
+/** Group radar entries by (quadrant, ring) and place each cell, sharing
+ *  a single `placed` array so blips in adjacent sectors don't collide
+ *  across cell boundaries either. Numbering walks quadrant-major,
+ *  ring-major (adopt → hold) for stable output. */
 export const layoutRadar = (radar) => {
   const cells = new Map()
   for (const entry of radar.document.data) {
@@ -125,15 +142,12 @@ export const layoutRadar = (radar) => {
     cells.get(key).push({ ...entry, qIdx, rIdx })
   }
   const placed = []
-  let counter = 1
   for (let qIdx = 0; qIdx < QUADRANTS.length; qIdx++) {
     for (let rIdx = 0; rIdx < RINGS.length; rIdx++) {
       const list = cells.get(qIdx * 4 + rIdx)
       if (!list) continue
-      for (const entry of placeEntries(list, qIdx, rIdx)) {
-        placed.push({ ...entry, num: counter++ })
-      }
+      placeEntries(list, qIdx, rIdx, placed)
     }
   }
-  return placed
+  return placed.map((p, i) => ({ ...p, num: i + 1 }))
 }
