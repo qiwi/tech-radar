@@ -11,16 +11,18 @@ import { getDirs, tempDir } from './util.js'
  * Generate static sites from csv/json/yml radar declarations
  *
  * @func
- * @param {Object} options
- * @param {string} options.input globby pattern for input files
- * @param {string} options.output output directory
- * @param {string} options.cwd current working directory
- * @param {string?} options.basePrefix web app root level prefix
- * @param {boolean?} options.autoscope consider same-scoped files as subversions of a single radar
- * @param {boolean?} options.navPage Generate navigation page
- * @param {string?} options.navTitle Nav page title
- * @param {string?} options.navFooter Nav page footer
- * @param {string?} options.temp Temp directory
+ * @param {Object} [options]
+ * @param {string} [options.input] globby pattern for input files (default `data/**\/*.{json,csv,yml}`)
+ * @param {string} [options.output] output directory (default `radar`)
+ * @param {string} [options.cwd] current working directory
+ * @param {string} [options.basePrefix] web app root level prefix; URL-shaped values (`https://…`, `//…`) become absolute, others relative
+ * @param {boolean} [options.autoscope] consider same-scoped files as subversions of a single radar
+ * @param {boolean} [options.navPage] generate navigation page
+ * @param {string} [options.navTitle] nav page title
+ * @param {string} [options.navFooter] nav page footer
+ * @param {string} [options.temp] temp directory
+ * @param {string} [options.templates] path to a directory whose contents are merged on top of bundled templates
+ * @param {Object} [options.renderSettings] custom render settings (rings, colors, dimensions) for `radar.js`
  *
  * @return {Promise<void>}
  */
@@ -103,19 +105,19 @@ const renderRadars = async ({ ctx, output }) => {
   return ctx
 }
 
+const RING_WEIGHT = {
+  hold: 0,
+  assess: 1,
+  trial: 2,
+  adopt: 3,
+}
+
+const getRingWeight = (ring) => RING_WEIGHT[ring.toLowerCase()]
+
 const resolveMoves = async ({ ctx, radars, autoscope }) => {
   if (!autoscope) {
     return ctx
   }
-
-  const rings = {
-    hold: 0,
-    assess: 1,
-    trial: 2,
-    adopt: 3,
-  }
-
-  const getRingWeight = (ring) => rings[ring.toLowerCase()]
 
   radars.forEach(({ document: { data }, scope }, i) => {
     data.forEach((entry) => {
@@ -139,12 +141,11 @@ const resolveMoves = async ({ ctx, radars, autoscope }) => {
 }
 
 const sortRadars = async ({ ctx, radars }) => {
-  radars.sort((a, b) => {
-    if (path.dirname(a.source) > path.dirname(b.source)) return 1
-    if (path.dirname(a.source) < path.dirname(b.source)) return -1
-
-    return Math.sign(Date.parse(b.date) - Date.parse(a.date))
-  })
+  radars.sort(
+    (a, b) =>
+      path.dirname(a.source).localeCompare(path.dirname(b.source)) ||
+      Date.parse(b.date) - Date.parse(a.date),
+  )
 
   return ctx
 }
