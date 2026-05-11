@@ -12,7 +12,11 @@ export default defineConfig({
       reporter: ['text', 'lcov'],
       include: ['src/**/*.js'],
       exclude: [
+        // Server-side glue around 11ty — no JS code, just a config factory.
         'src/renderer/zalando/config.cjs',
+        // Njk templates + vendor d3 client library — never executed in Node.
+        'src/renderer/zalando/templates/**',
+        // Preview server — local dev-only helper.
         'src/preview/**',
       ],
     },
