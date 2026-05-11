@@ -59,16 +59,23 @@ const renderSvg = (radar, entries) => {
     <line x1="${CENTER}" y1="20" x2="${CENTER}" y2="${SIZE - 20}" class="axis"/>
     <line x1="20" y1="${CENTER}" x2="${SIZE - 20}" y2="${CENTER}" class="axis"/>`
 
-  // Ring labels — text along arc at each ring's outer boundary, north position
+  // Ring labels — text along an arc at the radial midpoint of each ring,
+  // centred on top (-π/2). The arc must be long enough to fit the longest
+  // label at its radius — for the inner (ADOPT) ring this means a wider
+  // angular spread, otherwise textPath silently truncates ("DOP" bug).
+  // Span scales with 1/radius so the on-screen chord length is roughly
+  // constant across rings (≈ 130–150 px → enough for "ADOPT" w/ tracking).
   const ringLabels = RINGS.map((r, rIdx) => {
-    // Place text along inner edge at top (slightly above CENTER)
     const arcId = `arc-ring-${r.id}`
     const labelRadius =
       rIdx === 0
         ? r.outer / 2
         : (RINGS[rIdx - 1].outer + r.outer) / 2
+    // 140 px chord ÷ radius → half-angle (radians). Clamp so outer rings
+    // don't end up with an absurdly tiny spread.
+    const half = Math.max(0.18, Math.min(0.9, 70 / labelRadius))
     return `
-      <defs><path id="${arcId}" d="${arcPath(-Math.PI / 2 - 0.3, -Math.PI / 2 + 0.3, labelRadius)}"/></defs>
+      <defs><path id="${arcId}" d="${arcPath(-Math.PI / 2 - half, -Math.PI / 2 + half, labelRadius)}"/></defs>
       <text class="ring-label" data-r="${r.id}">
         <textPath href="#${arcId}" startOffset="50%" text-anchor="middle">${r.label}</textPath>
       </text>`
@@ -214,7 +221,18 @@ const renderLegend = (radar, entries) => {
         ${ringGroups}
       </section>`
   }).join('')
-  return `<aside class="legend">${groups}</aside>`
+  // Footer lives OUTSIDE the scrollable legend panel — sibling in the
+  // sticky column wrapper so it sits visually under the panel, not inside it.
+  // Single-line credit; middle dot separates link from the OS line.
+  return `
+    <div class="legend-col">
+      <aside class="legend">${groups}</aside>
+      <div class="legend-footer">
+        <a href="https://github.com/qiwi/tech-radar" target="_blank" rel="noopener">Tech-radar generator</a>
+        <span class="sep">·</span>
+        <span>QIWI <span class="heart">❤</span> Open Source</span>
+      </div>
+    </div>`
 }
 
 /** Scope-switcher tabs in the topbar — link directly to each scope's latest
@@ -270,8 +288,7 @@ export const radarPage = ({
     ${renderScopeTabs(scopes, scopeLatest, scope)}
     <div class="topbar-meta">
       <span class="meta-date" id="metaDate" data-default="${escape(date)}">${escape(date)}</span>
-      <button class="toggle toggle--chroma" data-toggle="chroma" type="button" aria-label="Toggle colour"></button>
-      <button class="toggle toggle--theme"  data-toggle="theme"  type="button" aria-label="Toggle theme"></button>
+      <button class="toggle toggle--mode" data-toggle="mode" type="button" aria-label="Cycle theme &amp; colour mode"></button>
     </div>
   </header>
   ${renderTimeline(timeline, date)}
@@ -336,8 +353,7 @@ export const entryPage = ({
     <div class="topbar-meta">
       <a href="${radarPath}" class="meta-scope">${escape(scope)}</a>
       <span class="meta-date">${escape(date)}</span>
-      <button class="toggle toggle--chroma" data-toggle="chroma" type="button" aria-label="Toggle colour"></button>
-      <button class="toggle toggle--theme"  data-toggle="theme"  type="button" aria-label="Toggle theme"></button>
+      <button class="toggle toggle--mode" data-toggle="mode" type="button" aria-label="Cycle theme &amp; colour mode"></button>
     </div>
   </header>
   <main class="entry-shell">

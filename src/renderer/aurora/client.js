@@ -19,14 +19,25 @@ export const js = `(() => {
     document.documentElement.dataset.chroma = p.chroma || 'color'
   }
   applyPrefs()
+  // Single-button cycle through all 4 (theme × chroma) combinations.
+  // Order keeps each step a one-axis flip, so the visual change is gradual:
+  //   dark+color → dark+mono → light+mono → light+color → dark+color → …
+  const MODE_CYCLE = [
+    { theme: 'dark',  chroma: 'color' },
+    { theme: 'dark',  chroma: 'mono'  },
+    { theme: 'light', chroma: 'mono'  },
+    { theme: 'light', chroma: 'color' },
+  ]
   document.addEventListener('click', (e) => {
     const btn = e.target.closest && e.target.closest('[data-toggle]')
     if (!btn) return
-    const key = btn.dataset.toggle
+    if (btn.dataset.toggle !== 'mode') return
     const p = readPrefs()
-    if (key === 'theme')  p.theme  = (p.theme  || 'dark')  === 'dark'  ? 'light' : 'dark'
-    if (key === 'chroma') p.chroma = (p.chroma || 'color') === 'color' ? 'mono'  : 'color'
-    writePrefs(p)
+    const cur = MODE_CYCLE.findIndex(
+      (m) => m.theme === (p.theme || 'dark') && m.chroma === (p.chroma || 'color'),
+    )
+    const next = MODE_CYCLE[(cur + 1) % MODE_CYCLE.length]
+    writePrefs(next)
     applyPrefs()
   })
 
@@ -119,6 +130,21 @@ export const js = `(() => {
         if (href) navigate(new URL(href, location.href).href)
       })
     })
+
+    // Entry-page back arrow — prefer history.back() when we have a real prior
+    // entry in the SPA stack. Otherwise fall through to the <a href="..."> path
+    // which the global click listener turns into an SPA navigation. We must
+    // stopPropagation so the document-level handler doesn't double-fire.
+    const back = document.querySelector('.entry-title .back')
+    if (back) {
+      back.addEventListener('click', (e) => {
+        if (history.length > 1) {
+          e.preventDefault()
+          e.stopPropagation()
+          history.back()
+        }
+      })
+    }
   }
 
   // ── SPA navigation ──────────────────────────────────────────────
