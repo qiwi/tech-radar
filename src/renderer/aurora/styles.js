@@ -16,6 +16,8 @@ export const css = `/* Smooth crossfade between same-origin radar pages.
   color-scheme: dark;
   --bg: #07080d;
   --bg-elev: #0c0f1a;
+  /* Slightly brighter than --bg-elev so panels (legend) read as lifted. */
+  --bg-panel: #161b2acc;
   --bg-card: #11162478;
   --bg-glow-1: hsl(220 50% 12%);
   --bg-glow-2: hsl(280 40% 10%);
@@ -23,6 +25,10 @@ export const css = `/* Smooth crossfade between same-origin radar pages.
   --fg-soft: #aab1c4;
   --fg-mute: #7a8093;
   --line: #1f2436;
+  /* UI-state accent (current snapshot, active toggle dot, focus ring).
+     Detached from ring/quadrant semantics so "selected" never collides
+     with "ADOPT". */
+  --accent: hsl(200 85% 65%);
   --accent-glow: rgba(120, 200, 255, 0.45);
   --r-adopt:  hsl(150 60% 55%);
   --r-trial:  hsl(195 65% 60%);
@@ -52,6 +58,7 @@ export const css = `/* Smooth crossfade between same-origin radar pages.
   color-scheme: light;
   --bg: #f6f7fa;
   --bg-elev: #ffffff;
+  --bg-panel: rgba(255, 255, 255, 0.92);
   --bg-card: rgba(255, 255, 255, 0.72);
   /* Subtle pastel glow corners — won't muddy the radar but breaks the flat-white. */
   --bg-glow-1: hsl(200 75% 95%);
@@ -60,6 +67,7 @@ export const css = `/* Smooth crossfade between same-origin radar pages.
   --fg-soft: #475064;
   --fg-mute: #6c7484;
   --line: #dfe3ea;
+  --accent: hsl(220 85% 52%);
   --accent-glow: rgba(60, 110, 200, 0.35);
   --r-adopt:  hsl(150 55% 38%);
   --r-trial:  hsl(195 55% 42%);
@@ -88,6 +96,7 @@ export const css = `/* Smooth crossfade between same-origin radar pages.
 
 /* Monochrome — collapse all semantic accents (and gradient stops) to neutral. */
 [data-chroma="mono"] {
+  --accent: var(--fg-soft);
   --r-adopt:  var(--fg-soft);
   --r-trial:  var(--fg-soft);
   --r-assess: var(--fg-soft);
@@ -145,45 +154,37 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
 .meta-scope { color: var(--fg); font-weight: 500; }
 .meta-date { font-variant-numeric: tabular-nums; color: var(--fg-mute); margin-right: 4px; }
 
-/* ── Theme + chroma toggles ──────────────────────────────────────── */
+/* ── Mode toggle (theme + chroma in one) ─────────────────────────── */
+/* One round button cycles through 4 states: dark+color → dark+mono →
+   light+mono → light+color → … The glyph encodes BOTH axes:
+     • dot size  → theme (dark = filled, light = small inset dot)
+     • dot colour → chroma (color = accent, mono = grey) */
 .toggle {
   appearance: none;
-  width: 24px; height: 24px;
+  width: 26px; height: 26px;
   padding: 0;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1.5px solid var(--fg-mute);
   background: transparent;
-  color: var(--fg-mute);
   cursor: pointer;
-  display: inline-flex; align-items: center; justify-content: center;
-  transition: color .15s ease, border-color .15s ease, background .15s ease;
+  position: relative;
+  transition: border-color .15s ease, transform .15s ease;
 }
-.toggle:hover { color: var(--fg); border-color: var(--fg-mute); }
-.toggle:focus-visible { outline: 2px solid var(--q1-accent); outline-offset: 2px; }
+.toggle:hover { border-color: var(--fg); transform: scale(1.06); }
+.toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-/* Chroma toggle — a single coloured dot (or grey when in mono). */
-.toggle--chroma::before {
+.toggle--mode::before {
   content: '';
-  width: 8px; height: 8px;
+  position: absolute;
+  inset: 3px;
   border-radius: 999px;
-  background: var(--q1-accent);
-  transition: background .15s ease;
+  background: var(--accent);
+  transform: scale(1);
+  transition: background .2s ease, transform .2s ease;
 }
-[data-chroma="mono"] .toggle--chroma::before { background: var(--fg-mute); }
-
-/* Theme toggle — sun glyph that adapts to current theme via the colour. */
-.toggle--theme::before {
-  content: '';
-  width: 10px; height: 10px;
-  border-radius: 999px;
-  background: var(--fg);
-  box-shadow: 0 0 0 2px var(--bg) inset;
-  transition: background .15s ease, box-shadow .15s ease;
-}
-[data-theme="light"] .toggle--theme::before {
-  background: var(--bg);
-  box-shadow: 0 0 0 2px var(--fg) inset;
-}
+[data-chroma="mono"] .toggle--mode::before { background: var(--fg-mute); }
+/* Light theme → smaller inset dot (visually reads as "less filled"). */
+[data-theme="light"] .toggle--mode::before { transform: scale(0.5); }
 
 /* ── Scope tabs ──────────────────────────────────────────────────── */
 .scope-tabs {
@@ -198,14 +199,17 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
   border-radius: 999px;
   font-size: 13px; font-weight: 500;
   color: var(--fg-mute);
-  border: 1px solid transparent;
-  transition: color .15s ease, background .15s ease, border-color .15s ease;
+  transition: color .15s ease, background .15s ease;
 }
-.scope-tabs .tab:hover { color: var(--fg); background: rgba(255,255,255,.04); }
+/* Theme-agnostic hover/active fills — derived from --fg so they read in both
+   light and dark surfaces. Hardcoded white-alpha was invisible on the white. */
+.scope-tabs .tab:hover {
+  color: var(--fg);
+  background: color-mix(in srgb, var(--fg) 8%, transparent);
+}
 .scope-tabs .tab--current {
   color: var(--fg);
-  background: rgba(255,255,255,.06);
-  border-color: rgba(255,255,255,.1);
+  background: color-mix(in srgb, var(--fg) 12%, transparent);
   pointer-events: none;
 }
 
@@ -269,16 +273,16 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
   z-index: 1;
 }
 .tl-dot:hover .tl-marker {
-  border-color: var(--r-adopt);
-  background: var(--r-adopt);
+  border-color: var(--accent);
+  background: var(--accent);
   transform: scale(1.2);
 }
 .tl-dot--current .tl-marker {
-  background: var(--r-adopt);
-  border-color: var(--r-adopt);
+  background: var(--accent);
+  border-color: var(--accent);
   box-shadow:
-    0 0 0 3px color-mix(in srgb, var(--r-adopt) 18%, transparent),
-    0 0 18px color-mix(in srgb, var(--r-adopt) 50%, transparent);
+    0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent),
+    0 0 18px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 /* ── Radar shell ─────────────────────────────────────────────────── */
@@ -397,15 +401,80 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
   fill: color-mix(in srgb, currentColor 14%, var(--bg));
 }
 
+/* ── Light + colour: solid-filled blips, no sector wash ─────────────
+   On the dark canvas a coloured wash + outlined blip read well together
+   (signal-on-fog). On white we drop the wash entirely and let the blip
+   colour carry. Key fixes against "dirty colour":
+     • dedicated vivid --qN-blip tokens (--qN-accent stays darker for
+       strokes/text on white — different jobs);
+     • no stroke (dark stroke muddies the hue);
+     • no saturate() filter on blip (it pushes solid fills toward grey);
+     • softer opacity ramp so hold-ring blips fade but don't go ghost. */
+[data-theme="light"][data-chroma="color"] {
+  /* Brighter, cooler palette — lifted lightness, higher saturation. The
+     hue shifts a touch: q1 → mint, q4 → cerulean, q3 → tangerine. */
+  --q1-blip: hsl(168 72% 46%);
+  --q2-blip: hsl(275 68% 64%);
+  --q3-blip: hsl(34  96% 56%);
+  --q4-blip: hsl(198 82% 54%);
+}
+[data-theme="light"][data-chroma="color"] .sector { fill: transparent; }
+[data-theme="light"][data-chroma="color"] .ring-line {
+  stroke: color-mix(in srgb, var(--fg) 14%, transparent);
+}
+[data-theme="light"][data-chroma="color"] .axis {
+  stroke: color-mix(in srgb, var(--fg) 10%, transparent);
+}
+[data-theme="light"][data-chroma="color"] .blip[data-q="q1"] { color: var(--q1-blip); }
+[data-theme="light"][data-chroma="color"] .blip[data-q="q2"] { color: var(--q2-blip); }
+[data-theme="light"][data-chroma="color"] .blip[data-q="q3"] { color: var(--q3-blip); }
+[data-theme="light"][data-chroma="color"] .blip[data-q="q4"] { color: var(--q4-blip); }
+[data-theme="light"][data-chroma="color"] .blip { filter: none; }
+[data-theme="light"][data-chroma="color"] .blip[data-r="adopt"]  { opacity: 1;    }
+[data-theme="light"][data-chroma="color"] .blip[data-r="trial"]  { opacity: 0.92; }
+[data-theme="light"][data-chroma="color"] .blip[data-r="assess"] { opacity: 0.78; }
+[data-theme="light"][data-chroma="color"] .blip[data-r="hold"]   { opacity: 0.55; }
+[data-theme="light"][data-chroma="color"] .blip.is-active,
+[data-theme="light"][data-chroma="color"] .blip-link:hover .blip,
+[data-theme="light"][data-chroma="color"] .blip-link:focus-visible .blip {
+  opacity: 1;
+  filter: none;
+}
+[data-theme="light"][data-chroma="color"] .blip-fg {
+  fill: currentColor;
+  stroke: none;
+}
+[data-theme="light"][data-chroma="color"] .blip-num {
+  fill: #fff;
+}
+[data-theme="light"][data-chroma="color"] .blip.is-active .blip-fg,
+[data-theme="light"][data-chroma="color"] .blip-link:hover .blip-fg,
+[data-theme="light"][data-chroma="color"] .blip-link:focus-visible .blip-fg {
+  fill: currentColor;
+  stroke: none;
+  filter: drop-shadow(0 3px 10px color-mix(in srgb, currentColor 55%, transparent));
+}
+
 /* ── Legend (sidebar) ────────────────────────────────────────────── */
-.legend {
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 16px 18px;
-  max-height: calc(100vh - 200px);
-  overflow-y: auto;
+/* The whole column (legend panel + footer credit) sticks together; only the
+   list inside the panel scrolls when entries overflow.
+   Max-height matches the radar-stage (calc(100vh - 140px)) so the column
+   bottom never falls below the radar — leaves room for topbar + timeline
+   + shell padding (~120 px) plus a small viewport margin. */
+.legend-col {
   position: sticky; top: 80px;
+  display: flex; flex-direction: column;
+  gap: 8px;
+  max-height: calc(100vh - 140px);
+  min-height: 0;
+}
+.legend {
+  background: var(--bg-panel);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
   font-size: 13px;
 }
 .legend-quad + .legend-quad { margin-top: 22px; padding-top: 18px; border-top: 1px dashed var(--line); }
@@ -429,10 +498,41 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
   border-radius: 6px; padding-left: 4px;
   transition: background .15s ease;
 }
-.legend-ring li:hover { background: rgba(255,255,255,.04); }
+/* Theme-agnostic — derived from --fg so it shows on both light + dark. */
+.legend-ring li:hover { background: color-mix(in srgb, var(--fg) 6%, transparent); }
 .legend-ring li.is-active {
-  background: rgba(255,255,255,.08);
+  background: color-mix(in srgb, var(--fg) 12%, transparent);
 }
+
+/* Generator credit — sits OUTSIDE .legend so the panel's bg/radius don't
+   wrap it. Just plain text on the page background, no chrome.
+   Single row; flex: 0 0 auto so the scrollable panel above can't squeeze
+   it out. Some breathing room above the line so it doesn't crowd the
+   legend's bottom items. */
+.legend-footer {
+  flex: 0 0 auto;
+  padding: 8px 6px 0;
+  font-size: 11px;
+  color: var(--fg-mute);
+  line-height: 1.4;
+  display: flex; flex-flow: row wrap; align-items: baseline;
+  gap: 0 6px;
+}
+.legend-footer .sep { opacity: .55; }
+/* Link inherits the same muted grey as the slogan — it's a credit, not a CTA.
+   Underline stays as the only affordance; brightens on hover. */
+.legend-footer a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--fg-mute) 35%, transparent);
+  text-underline-offset: 2px;
+}
+.legend-footer a:hover {
+  color: var(--fg-soft);
+  text-decoration-color: var(--fg-mute);
+}
+.legend-footer .heart { color: hsl(2 75% 60%); }
+[data-chroma="mono"] .legend-footer .heart { color: var(--fg-mute); }
 .li-num {
   display: inline-block; min-width: 24px;
   font-variant-numeric: tabular-nums;

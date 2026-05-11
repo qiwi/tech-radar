@@ -7,12 +7,15 @@ export const SIZE = 1100
 export const CENTER = SIZE / 2
 
 // Outer radius of each ring (concentric, adopt innermost).
-// Total radar radius = 480, leaves 70px viewBox margin for labels & glow.
+// ADOPT is intentionally widest — that's where the entries that matter most
+// live, so it deserves room. Outer rings have similar widths.
+// Total radius = 500, leaves 50px viewBox margin for the corner quadrant
+// labels.
 export const RINGS = [
-  { id: 'adopt', outer: 180, label: 'ADOPT' },
-  { id: 'trial', outer: 280, label: 'TRIAL' },
-  { id: 'assess', outer: 380, label: 'ASSESS' },
-  { id: 'hold', outer: 480, label: 'HOLD' },
+  { id: 'adopt', outer: 220, label: 'ADOPT' },
+  { id: 'trial', outer: 320, label: 'TRIAL' },
+  { id: 'assess', outer: 410, label: 'ASSESS' },
+  { id: 'hold', outer: 500, label: 'HOLD' },
 ]
 
 // Quadrant angular ranges (radians, SVG convention).
