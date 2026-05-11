@@ -104,7 +104,7 @@
     
 
     
-    <h4 class="name" id="run"><span class="type-signature"></span>run<span class="signature">(options)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    <h4 class="name" id="run"><span class="type-signature"></span>run<span class="signature">(options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
     
 
     
@@ -136,6 +136,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -160,6 +162,16 @@
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -207,6 +219,8 @@
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
 
@@ -216,7 +230,7 @@
 
             
 
-            <td class="description last">globby pattern for input files</td>
+            <td class="description last">globby pattern for input files (default `data/**\/*.{json,csv,yml}`)</td>
         </tr>
 
     
@@ -238,6 +252,8 @@
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
 
@@ -247,7 +263,7 @@
 
             
 
-            <td class="description last">output directory</td>
+            <td class="description last">output directory (default `radar`)</td>
         </tr>
 
     
@@ -268,6 +284,8 @@
 
             
                 <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
                 
@@ -300,9 +318,9 @@
             
                 <td class="attributes">
                 
-
+                    &lt;optional><br>
                 
-                    &lt;nullable><br>
+
                 
 
                 
@@ -311,7 +329,7 @@
 
             
 
-            <td class="description last">web app root level prefix</td>
+            <td class="description last">web app root level prefix; URL-shaped values (`https://…`, `//…`) become absolute, others relative</td>
         </tr>
 
     
@@ -333,9 +351,9 @@
             
                 <td class="attributes">
                 
-
+                    &lt;optional><br>
                 
-                    &lt;nullable><br>
+
                 
 
                 
@@ -366,9 +384,9 @@
             
                 <td class="attributes">
                 
-
+                    &lt;optional><br>
                 
-                    &lt;nullable><br>
+
                 
 
                 
@@ -377,7 +395,7 @@
 
             
 
-            <td class="description last">Generate navigation page</td>
+            <td class="description last">generate navigation page</td>
         </tr>
 
     
@@ -399,9 +417,9 @@
             
                 <td class="attributes">
                 
-
+                    &lt;optional><br>
                 
-                    &lt;nullable><br>
+
                 
 
                 
@@ -410,7 +428,7 @@
 
             
 
-            <td class="description last">Nav page title</td>
+            <td class="description last">nav page title</td>
         </tr>
 
     
@@ -432,9 +450,9 @@
             
                 <td class="attributes">
                 
-
+                    &lt;optional><br>
                 
-                    &lt;nullable><br>
+
                 
 
                 
@@ -443,7 +461,7 @@
 
             
 
-            <td class="description last">Nav page footer</td>
+            <td class="description last">nav page footer</td>
         </tr>
 
     
@@ -465,9 +483,9 @@
             
                 <td class="attributes">
                 
-
+                    &lt;optional><br>
                 
-                    &lt;nullable><br>
+
                 
 
                 
@@ -476,7 +494,208 @@
 
             
 
-            <td class="description last">Temp directory</td>
+            <td class="description last">temp directory</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>templates</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">path to a directory whose contents are merged on top of bundled templates</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>renderSettings</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">custom render settings (rings, colors, dimensions) for `radar.js`</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>renderer</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">'zalando'</span>
+|
+
+<span class="param-type">'aurora'</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">output backend (default `zalando`)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>favicon</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">path to a custom favicon (`.ico`/`.png`) — copied to `<output>/favicon.ico`. If not provided, the bundled default is used.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>about</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">path to a .md or .html file with radar overview (aurora only)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>credits</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">include the generator credit in the legend footer (default `true`; aurora only)</td>
         </tr>
 
     
@@ -524,7 +743,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line27">line 27</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line32">line 32</a>
     </li></ul></dd>
     
 
@@ -594,7 +813,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Sat May 09 2026 07:21:50 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Mon May 11 2026 08:21:00 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

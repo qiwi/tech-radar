@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><title>test</title><meta charset="utf-8"><style>body {
+                font-family: Helvetica, Arial;
+                display: block;
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+            .title {
+                font-size: 20pt;
+                margin: 25px 0;
+            }
+            .date {
+                padding: 0;
+                font-size: 12px;
+                margin: -23px 0 40px 0;
+                display: block;
+                color: #999;
+            }
+            header, main {
+                display: inline-block;
+            }
+            header, main, table, tbody, thead {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            table {
+                border-spacing: 0;
+                font-size: 13px;
+            }
+            th, td {
+                padding: 0 30px 15px 0;
+                margin: 0;
+                text-align: left;
+                vertical-align: top;
+            }
+            th {
+                font-weight: normal;
+                padding-bottom: 10px;
+                color: #999;
+            }
+            tr th {
+                border-bottom: 1px solid #DDD;
+            }
+
+            tbody tr:first-child td {
+                padding-top: 20px;
+            }
+
+            hr {
+                height: 1px;
+                border: none;
+                color: #DDD;
+                background-color: #DDD;
+                margin: 40px 0 20px 0;
+            }</style></head><body><header><h1 class="title">QIWI iOS Tech Radar</h1><p class="date">2021-07-16</p></header><main><table><thead><tr><th>Name</th><th>Ring</th><th>Quadrant</th><th>Description</th></tr></thead><tbody><tr><td><b>ArgoCD</b></td><td>trial</td><td>Infrastructure</td><td>CD и IaC для Kubernetes</td></tr><tr><td><b>Arrow</b></td><td>access</td><td>Languages and frameworks</td><td>Функциональщина для Java/Kotlin</td></tr><tr><td><b>Cassandra</b></td><td>adopt</td><td>Data management</td><td>Масштабируемая распределенная база данных</td></tr><tr><td><b>CockroachDB</b></td><td>access</td><td>Data management</td><td>Распределенная SQL база данных</td></tr><tr><td><b>Docker</b></td><td>adopt</td><td>Infrastructure</td><td>Контейренизация</td></tr><tr><td><b>Groovy</b></td><td>hold</td><td>Languages and frameworks</td><td>Groovy</td></tr><tr><td><b>Java 11</b></td><td>adopt</td><td>Languages and frameworks</td><td>Актуальная LTS Java</td></tr><tr><td><b>Java 16</b></td><td>trial</td><td>Languages and frameworks</td><td>Следующая LTS Java</td></tr><tr><td><b>Java 8</b></td><td>adopt</td><td>Languages and frameworks</td><td>Обычная Java</td></tr><tr><td><b>Kafka</b></td><td>trial</td><td>Data management</td><td>Распределенная шина для поточно обработки данных</td></tr><tr><td><b>Kotlin</b></td><td>adopt</td><td>Languages and frameworks</td><td>Как Java только Kotlin</td></tr><tr><td><b>Kubernetes</b></td><td>adopt</td><td>Infrastructure</td><td>Основная платформа для запуска приложений</td></tr><tr><td><b>Liquibase</b></td><td>trial</td><td>Data management</td><td>Инструмент для миграций</td></tr><tr><td><b>Oracle</b></td><td>adopt</td><td>Data management</td><td>Одна из основных баз данных</td></tr><tr><td><b>PostgreSQL</b></td><td>adopt</td><td>Data management</td><td>Основная база данных</td></tr><tr><td><b>Scala</b></td><td>hold</td><td>Languages and frameworks</td><td>Scala</td></tr><tr><td><b>Spring</b></td><td>adopt</td><td>Languages and frameworks</td><td>СI движок и комбайн</td></tr><tr><td><b>Spring Boot</b></td><td>adopt</td><td>Languages and frameworks</td><td>Инcтрумент для запуска комбайна</td></tr><tr><td><b>TeamCity</b></td><td>adopt</td><td>Infrastructure</td><td>CI/CD инструмент</td></tr><tr><td><b>Tekton</b></td><td>access</td><td>Infrastructure</td><td>Легковесный CI инструмент</td></tr><tr><td><b>Thrfit</b></td><td>adopt</td><td>Languages and frameworks</td><td>Бинарный протокол и реализация клиента-сервера</td></tr><tr><td><b>Trunk-based development</b></td><td>adopt</td><td>Tools and Techniques</td><td>Фиче-флаги вместо фич-бранчей</td></tr><tr><td><b>log4j</b></td><td>hold</td><td>Languages and frameworks</td><td>Библиотека для логирования</td></tr><tr><td><b>logback</b></td><td>adopt</td><td>Languages and frameworks</td><td>Библиотека-фасал для логирования</td></tr><tr><td><b>resilience4j</b></td><td>trial</td><td>Languages and frameworks</td><td>Implemeneation of Circuit breaker pattern</td></tr><tr><td><b>Микросервисы</b></td><td>adopt</td><td>Tools and Techniques</td><td>Позволяет разрабатывать приложения разными командами более независимо</td></tr><tr><td><b>Общие API-модели</b></td><td>adopt</td><td>Tools and Techniques</td><td>Переиспользуем API-модели между сервером и клиентами</td></tr></tbody></table></main><hr><style>.legend li {
+  margin: 25px 50px 0 0;
+}
+
+.legend table {
+  width: 1000px;
+  margin: 0;
+  font-size: 80%;
+}
+
+.legend td {
+  width: 50%;
+  vertical-align: top;
+  padding-right: 60px;
+}</style><div class="legend"><table><tr><td><h3>Технологический радар</h3><span>Удобный инструмент, помогающий компании управлять своей платформой разработки и технологической стратегией. Радар объединяет используемые технологии в четыре категории: техники, языки и фреймворки, инструменты и платформы. Каждая из этих областей ранжируется по стадии внедрения:</span><ul><li><strong>ADOPT</strong> &mdash; технологии, в которых мы уверены, и рекомендованы к широкому использованию в QIWI, соответствуют культуре и целям компании.</li><li><strong>TRIAL</strong> &mdash; новый стек, используемый лишь в отдельных проектах для оценки рисков перед массовым внедрением.</li><li><strong>ASSESS</strong> &mdash; блидин эдж, ёрли превью, всякие экспериментальные штуки, потенциально имеющие ценность.</li><li><strong>HOLD</strong> &mdash; депрекейтед легаси. Отжившие свой век технологии, которые не рекомендуется использовать для новых проектов, но допустимо сохранять в старых.</li></ul></td><td><h3>Цели</h3><ul><li>Держать под контролем свои компетенции. Подготовка радара — это анализ происходящего — способ посмотреть в какую сторону движется индустрия, и как общие тренды соотносятся с нашим зоопарком.</li><li>Принимать правильные архитектурные решения. У команд появляется источник информации о том, какие решения рекомендуется использовать для тех или иных целей.</li></ul><br><br><h3>Наполнение</h3><span>Технический радар поддерживается разработчиками в формате холивара. В нем отражены наши стремления, успехи и ошибки.</span></td></tr></table><legend><footer><div style="width: 100%; text-align: center; margin: 30px 0 10px 0; font-size: 80%"><a href="https://github.com/qiwi/tech-radar">Tech-radar generator</a>. Based on <a href="https://github.com/zalando/tech-radar">zalando/tech-radar</a>. Boosted with <a href="https://github.com/11ty/eleventy/">11ty</a><br><a class="link" href="https://github.com/qiwi">QIWI ❤️ Open Source</a></div></footer></legend></div></body></html>

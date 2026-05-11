@@ -1,0 +1,13 @@
+body {
+  font-family: helvetica, arial, 'Source Sans Pro', sans-serif;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+body.page__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

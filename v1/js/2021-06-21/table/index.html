@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><title>test</title><meta charset="utf-8"><style>body {
+                font-family: Helvetica, Arial;
+                display: block;
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+            .title {
+                font-size: 20pt;
+                margin: 25px 0;
+            }
+            .date {
+                padding: 0;
+                font-size: 12px;
+                margin: -23px 0 40px 0;
+                display: block;
+                color: #999;
+            }
+            header, main {
+                display: inline-block;
+            }
+            header, main, table, tbody, thead {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            table {
+                border-spacing: 0;
+                font-size: 13px;
+            }
+            th, td {
+                padding: 0 30px 15px 0;
+                margin: 0;
+                text-align: left;
+                vertical-align: top;
+            }
+            th {
+                font-weight: normal;
+                padding-bottom: 10px;
+                color: #999;
+            }
+            tr th {
+                border-bottom: 1px solid #DDD;
+            }
+
+            tbody tr:first-child td {
+                padding-top: 20px;
+            }
+
+            hr {
+                height: 1px;
+                border: none;
+                color: #DDD;
+                background-color: #DDD;
+                margin: 40px 0 20px 0;
+            }</style></head><body><header><h1 class="title">QIWI iOS Tech Radar</h1><p class="date">2021-06-21</p></header><main><table><thead><tr><th>Name</th><th>Ring</th><th>Quadrant</th><th>Description</th></tr></thead><tbody><tr><td><b>Flow</b></td><td>hold</td><td>Languages and frameworks</td><td>Статически типизированный ЖС</td></tr><tr><td><b>JavaScript</b></td><td>adopt</td><td>Languages and frameworks</td><td>ЖС</td></tr><tr><td><b>Kuber</b></td><td>adopt</td><td>Platforms</td><td></td></tr><tr><td><b>Monorepo</b></td><td>trial</td><td>Techniques</td><td>Обобщение кодовой базы на уровне домена продукта</td></tr><tr><td><b>Nestjs</b></td><td>trial</td><td>Languages and frameworks</td><td>Spring для TS</td></tr><tr><td><b>Nodejs</b></td><td>adopt</td><td>Platforms</td><td></td></tr><tr><td><b>OSS</b></td><td>trial</td><td>Techniques</td><td>Публичная разработка</td></tr><tr><td><b>Pijma</b></td><td>trial</td><td>Platforms</td><td></td></tr><tr><td><b>React</b></td><td>adopt</td><td>Languages and frameworks</td><td></td></tr><tr><td><b>Redux</b></td><td>adopt</td><td>Languages and frameworks</td><td>Стейт-менеджмент провайдер</td></tr><tr><td><b>Rematch</b></td><td>trial</td><td>Languages and frameworks</td><td>Shortcut-flow абстракция над redux</td></tr><tr><td><b>Travis-ci</b></td><td>trial</td><td>Tools</td><td>CI для OSS</td></tr><tr><td><b>Trunk-based Development</b></td><td>adopt</td><td>Techniques</td><td>Фиче-флаги вместо фич-бранчей</td></tr><tr><td><b>TypeScript</b></td><td>adopt</td><td>Languages and frameworks</td><td>Статически типизированный ЖС</td></tr><tr><td><b>Yarn</b></td><td>adopt</td><td>Tools</td><td>Пакетный менеджер вместо npm</td></tr><tr><td><b>codeclimate</b></td><td>trial</td><td>Tools</td><td>Статический анализатор кода</td></tr><tr><td><b>cypress</b></td><td>assess</td><td>Languages and frameworks</td><td>Фреймворк для e2e тестов</td></tr><tr><td><b>emotion</b></td><td>trial</td><td>Languages and frameworks</td><td>CSSinJS</td></tr><tr><td><b>eslint</b></td><td>trial</td><td>Tools</td><td>Перекатываемся tslint deprecated скоро</td></tr><tr><td><b>express</b></td><td>hold</td><td>Languages and frameworks</td><td>Мидвары поверх http-server</td></tr><tr><td><b>flp</b></td><td>assess</td><td>Tools</td><td>Провайдер клиентских событий</td></tr><tr><td><b>jest</b></td><td>adopt</td><td>Languages and frameworks</td><td>Фреймворк для unit автотестов</td></tr><tr><td><b>lodash</b></td><td>adopt</td><td>Languages and frameworks</td><td>Стандартная библиотека</td></tr><tr><td><b>mocha</b></td><td>hold</td><td>Tools</td><td>Либа для автотестов</td></tr><tr><td><b>semantic-relese</b></td><td>trial</td><td>Tools</td><td>Движение к CD чтобы катать семантические релизы</td></tr><tr><td><b>Гексагональная архитектура</b></td><td>assess</td><td>Techniques</td><td>Унификации контракта интерфейсов различных слоев приложений</td></tr></tbody></table></main><hr><style>.legend li {
+  margin: 25px 50px 0 0;
+}
+
+.legend table {
+  width: 1000px;
+  margin: 0;
+  font-size: 80%;
+}
+
+.legend td {
+  width: 50%;
+  vertical-align: top;
+  padding-right: 60px;
+}</style><div class="legend"><table><tr><td><h3>Технологический радар</h3><span>Удобный инструмент, помогающий компании управлять своей платформой разработки и технологической стратегией. Радар объединяет используемые технологии в четыре категории: техники, языки и фреймворки, инструменты и платформы. Каждая из этих областей ранжируется по стадии внедрения:</span><ul><li><strong>ADOPT</strong> &mdash; технологии, в которых мы уверены, и рекомендованы к широкому использованию в QIWI, соответствуют культуре и целям компании.</li><li><strong>TRIAL</strong> &mdash; новый стек, используемый лишь в отдельных проектах для оценки рисков перед массовым внедрением.</li><li><strong>ASSESS</strong> &mdash; блидин эдж, ёрли превью, всякие экспериментальные штуки, потенциально имеющие ценность.</li><li><strong>HOLD</strong> &mdash; депрекейтед легаси. Отжившие свой век технологии, которые не рекомендуется использовать для новых проектов, но допустимо сохранять в старых.</li></ul></td><td><h3>Цели</h3><ul><li>Держать под контролем свои компетенции. Подготовка радара — это анализ происходящего — способ посмотреть в какую сторону движется индустрия, и как общие тренды соотносятся с нашим зоопарком.</li><li>Принимать правильные архитектурные решения. У команд появляется источник информации о том, какие решения рекомендуется использовать для тех или иных целей.</li></ul><br><br><h3>Наполнение</h3><span>Технический радар поддерживается разработчиками в формате холивара. В нем отражены наши стремления, успехи и ошибки.</span></td></tr></table><legend><footer><div style="width: 100%; text-align: center; margin: 30px 0 10px 0; font-size: 80%"><a href="https://github.com/qiwi/tech-radar">Tech-radar generator</a>. Based on <a href="https://github.com/zalando/tech-radar">zalando/tech-radar</a>. Boosted with <a href="https://github.com/11ty/eleventy/">11ty</a><br><a class="link" href="https://github.com/qiwi">QIWI ❤️ Open Source</a></div></footer></legend></div></body></html>

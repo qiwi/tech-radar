@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <style>html,body{background:#07080d;color:#e6e9f0;margin:0}html[data-theme="light"],html[data-theme="light"] body{background:#f6f7fa;color:#11151c}</style>
+  <script>try{var p=JSON.parse(localStorage.getItem('aurora-prefs')||'{}');var h=document.documentElement;h.dataset.theme=p.theme||'dark';h.dataset.chroma=p.chroma||'color';}catch(e){}</script>
+  <title>QIWI OPS Tech Radar — 2022-07-01</title>
+  <link rel="stylesheet" href="../../aurora.css">
+  <link rel="icon" href="../../favicon.ico">
+</head>
+<body class="page-radar">
+  <header class="topbar">
+    <a class="brand" href="../../">
+      <span class="brand-mark">📡</span>
+      <span class="brand-text">Tech radar</span>
+    </a>
+    <nav class="scope-tabs" aria-label="Scope"><a class="tab" href="../../android/2022-01-12/">android</a><a class="tab" href="../../backend/2023-10-13/">backend</a><a class="tab" href="../../ios/2021-06-21/">ios</a><a class="tab" href="../../isec/2022-07-24/">isec</a><a class="tab" href="../../js/2023-10-23/">js</a><a class="tab tab--current" href="#">ops</a><a class="tab" href="../../qa/2023-07-12/">qa</a></nav>
+    <div class="topbar-meta">
+      <span class="meta-date" id="metaDate" data-default="2022-07-01">2022-07-01</span>
+      <button class="toggle toggle--mode" data-toggle="mode" type="button" aria-label="Cycle theme &amp; colour mode"></button>
+    </div>
+  </header>
+  <nav class="timeline" aria-label="Snapshot timeline"><div class="tl-items"></div></nav>
+  <main class="radar-shell">
+    <div class="radar-stage">
+<svg viewBox="0 0 1100 1100" xmlns="http://www.w3.org/2000/svg" class="radar-svg" role="img" aria-label="Tech radar">
+  <defs>
+      <radialGradient id="grad-q1" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"   stop-color="var(--q1-grad-0)"/>
+        <stop offset="100%" stop-color="var(--q1-grad-1)"/>
+      </radialGradient>
+      <radialGradient id="grad-q2" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"   stop-color="var(--q2-grad-0)"/>
+        <stop offset="100%" stop-color="var(--q2-grad-1)"/>
+      </radialGradient>
+      <radialGradient id="grad-q3" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"   stop-color="var(--q3-grad-0)"/>
+        <stop offset="100%" stop-color="var(--q3-grad-1)"/>
+      </radialGradient>
+      <radialGradient id="grad-q4" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"   stop-color="var(--q4-grad-0)"/>
+        <stop offset="100%" stop-color="var(--q4-grad-1)"/>
+      </radialGradient></defs>
+  <g class="radar-sectors"><path d="M 550 550 L 770 550 A 220 220 0 0 1 550 770 Z" fill="url(#grad-q1)"
+              fill-opacity="0.98"
+              class="sector" data-q="q1" data-r="adopt"/><path d="M 870 550 A 320 320 0 0 1 550 870 L 550 770 A 220 220 0 0 0 770 550 Z" fill="url(#grad-q1)"
+              fill-opacity="0.82"
+              class="sector" data-q="q1" data-r="trial"/><path d="M 960 550 A 410 410 0 0 1 550 960 L 550 870 A 320 320 0 0 0 870 550 Z" fill="url(#grad-q1)"
+              fill-opacity="0.66"
+              class="sector" data-q="q1" data-r="assess"/><path d="M 1050 550 A 500 500 0 0 1 550 1050 L 550 960 A 410 410 0 0 0 960 550 Z" fill="url(#grad-q1)"
+              fill-opacity="0.50"
+              class="sector" data-q="q1" data-r="hold"/><path d="M 550 550 L 550 770 A 220 220 0 0 1 330 550 Z" fill="url(#grad-q2)"
+              fill-opacity="0.98"
+              class="sector" data-q="q2" data-r="adopt"/><path d="M 550 870 A 320 320 0 0 1 230 550 L 330 550 A 220 220 0 0 0 550 770 Z" fill="url(#grad-q2)"
+              fill-opacity="0.82"
+              class="sector" data-q="q2" data-r="trial"/><path d="M 550 960 A 410 410 0 0 1 140 550 L 230 550 A 320 320 0 0 0 550 870 Z" fill="url(#grad-q2)"
+              fill-opacity="0.66"
+              class="sector" data-q="q2" data-r="assess"/><path d="M 550 1050 A 500 500 0 0 1 50 550.0000000000001 L 140 550 A 410 410 0 0 0 550 960 Z" fill="url(#grad-q2)"
+              fill-opacity="0.50"
+              class="sector" data-q="q2" data-r="hold"/><path d="M 550 550 L 330 550 A 220 220 0 0 1 550 330 Z" fill="url(#grad-q3)"
+              fill-opacity="0.98"
+              class="sector" data-q="q3" data-r="adopt"/><path d="M 230 550 A 320 320 0 0 1 549.9999999999999 230 L 550 330 A 220 220 0 0 0 330 550 Z" fill="url(#grad-q3)"
+              fill-opacity="0.82"
+              class="sector" data-q="q3" data-r="trial"/><path d="M 140 550 A 410 410 0 0 1 549.9999999999999 140 L 549.9999999999999 230 A 320 320 0 0 0 230 550 Z" fill="url(#grad-q3)"
+              fill-opacity="0.66"
+              class="sector" data-q="q3" data-r="assess"/><path d="M 50 550.0000000000001 A 500 500 0 0 1 549.9999999999999 50 L 549.9999999999999 140 A 410 410 0 0 0 140 550 Z" fill="url(#grad-q3)"
+              fill-opacity="0.50"
+              class="sector" data-q="q3" data-r="hold"/><path d="M 550 550 L 550 330 A 220 220 0 0 1 770 550 Z" fill="url(#grad-q4)"
+              fill-opacity="0.98"
+              class="sector" data-q="q4" data-r="adopt"/><path d="M 549.9999999999999 230 A 320 320 0 0 1 870 549.9999999999999 L 770 550 A 220 220 0 0 0 550 330 Z" fill="url(#grad-q4)"
+              fill-opacity="0.82"
+              class="sector" data-q="q4" data-r="trial"/><path d="M 549.9999999999999 140 A 410 410 0 0 1 960 549.9999999999999 L 870 549.9999999999999 A 320 320 0 0 0 549.9999999999999 230 Z" fill="url(#grad-q4)"
+              fill-opacity="0.66"
+              class="sector" data-q="q4" data-r="assess"/><path d="M 549.9999999999999 50 A 500 500 0 0 1 1050 549.9999999999999 L 960 549.9999999999999 A 410 410 0 0 0 549.9999999999999 140 Z" fill="url(#grad-q4)"
+              fill-opacity="0.50"
+              class="sector" data-q="q4" data-r="hold"/></g>
+  <g class="radar-rings"><circle cx="550" cy="550" r="220" class="ring-line"/><circle cx="550" cy="550" r="320" class="ring-line"/><circle cx="550" cy="550" r="410" class="ring-line"/><circle cx="550" cy="550" r="500" class="ring-line"/>
+    <line x1="550" y1="20" x2="550" y2="1080" class="axis"/>
+    <line x1="20" y1="550" x2="1080" y2="550" class="axis"/></g>
+  <g class="radar-labels">
+      <defs><path id="arc-ring-adopt" d="M 484.62977336968817 461.53117232436233 A 110 110 0 0 1 615.3702266303119 461.5311723243624"/></defs>
+      <text class="ring-label" data-r="adopt">
+        <textPath href="#arc-ring-adopt" startOffset="50%" text-anchor="middle">ADOPT</textPath>
+      </text>
+      <defs><path id="arc-ring-trial" d="M 480.7815480100728 289.02336138244453 A 270 270 0 0 1 619.2184519899272 289.02336138244453"/></defs>
+      <text class="ring-label" data-r="trial">
+        <textPath href="#arc-ring-trial" startOffset="50%" text-anchor="middle">TRIAL</textPath>
+      </text>
+      <defs><path id="arc-ring-assess" d="M 480.4283102234193 191.69178075066264 A 365 365 0 0 1 619.5716897765808 191.69178075066264"/></defs>
+      <text class="ring-label" data-r="assess">
+        <textPath href="#arc-ring-assess" startOffset="50%" text-anchor="middle">ASSESS</textPath>
+      </text>
+      <defs><path id="arc-ring-hold" d="M 468.54154409125005 102.35111978140475 A 455 455 0 0 1 631.45845590875 102.35111978140475"/></defs>
+      <text class="ring-label" data-r="hold">
+        <textPath href="#arc-ring-hold" startOffset="50%" text-anchor="middle">HOLD</textPath>
+      </text><text class="quad-label" x="1076" y="1076"
+      text-anchor="end" dominant-baseline="auto"
+      fill="var(--q1-accent)">Languages and frameworks</text><text class="quad-label" x="24" y="1076"
+      text-anchor="start" dominant-baseline="auto"
+      fill="var(--q2-accent)">Data management</text><text class="quad-label" x="24" y="24"
+      text-anchor="start" dominant-baseline="hanging"
+      fill="var(--q3-accent)">Infrastructure</text><text class="quad-label" x="1076" y="24"
+      text-anchor="end" dominant-baseline="hanging"
+      fill="var(--q4-accent)">Tools and Techniques</text></g>
+  <g class="radar-blips">
+        <a href="entries/q1/.NET%20Core%206%20LTS/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q1" data-r="adopt" data-num="1"
+             transform="translate(590.6 583.4)"
+             data-name=".NET Core 6 LTS"
+             data-desc=".NET"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">1</text>
+          </g>
+        </a>
+        <a href="entries/q1/App.Metrics/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q1" data-r="adopt" data-num="2"
+             transform="translate(591.6 674.3)"
+             data-name="App.Metrics"
+             data-desc="Измерение и отправка метрик .NET"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">2</text>
+          </g>
+        </a>
+        <a href="entries/q1/ASP.NET/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q1" data-r="adopt" data-num="3"
+             transform="translate(693.8 567.8)"
+             data-name="ASP.NET"
+             data-desc="Web-фреймворк"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">3</text>
+          </g>
+        </a>
+        <a href="entries/q1/Flask/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q1" data-r="adopt" data-num="4"
+             transform="translate(634.1 578.8)"
+             data-name="Flask"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">4</text>
+          </g>
+        </a>
+        <a href="entries/q1/Java/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q1" data-r="adopt" data-num="5"
+             transform="translate(570.3 751.2)"
+             data-name="Java"
+             data-desc="Обычная Java"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">5</text>
+          </g>
+        </a>
+        <a href="entries/q1/Logback/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q1" data-r="adopt" data-num="6"
+             transform="translate(658.4 635.7)"
+             data-name="Logback"
+             data-desc="Библиотека для логирования"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">6</text>
+          </g>
+        </a>
+        <a href="entries/q1/Lua/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q1" data-r="adopt" data-num="7"
+             transform="translate(648.5 671.6)"
+             data-name="Lua"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">7</text>
+          </g>
+        </a>
+        <a href="entries/q1/MSTest2/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q1" data-r="adopt" data-num="8"
+             transform="translate(558.7 655.4)"
+             data-name="MSTest2"
+             data-desc="Фреймворк для тестов .NET"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">8</text>
+          </g>
+        </a>
+        <a href="entries/q1/Python%203/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q1" data-r="adopt" data-num="9"
+             transform="translate(595.8 725.4)"
+             data-name="Python 3"
+             data-desc="Python"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">9</text>
+          </g>
+        </a>
+        <a href="entries/q1/FastApi/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q1" data-r="trial" data-num="10"
+             transform="translate(735.3 750.0)"
+             data-name="FastApi"
+             data-desc=""
+             data-ring="TRIAL"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">10</text>
+          </g>
+        </a>
+        <a href="entries/q1/GoLang/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q1" data-r="assess" data-num="11"
+             transform="translate(899.6 640.0)"
+             data-name="GoLang"
+             data-desc="Системный язык программирования"
+             data-ring="ASSESS"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">11</text>
+          </g>
+        </a>
+        <a href="entries/q1/.NET%20Core%205/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q1" data-r="hold" data-num="12"
+             transform="translate(741.4 947.1)"
+             data-name=".NET Core 5"
+             data-desc=".NET"
+             data-ring="HOLD"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">12</text>
+          </g>
+        </a>
+        <a href="entries/q1/Log4j/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q1" data-r="hold" data-num="13"
+             transform="translate(803.8 944.8)"
+             data-name="Log4j"
+             data-desc="Библиотека для логирования"
+             data-ring="HOLD"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">13</text>
+          </g>
+        </a>
+        <a href="entries/q2/Cassandra/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q2" data-r="adopt" data-num="14"
+             transform="translate(478.4 580.9)"
+             data-name="Cassandra"
+             data-desc="Масштабируемая распределенная база данных"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">14</text>
+          </g>
+        </a>
+        <a href="entries/q2/Clickhouse/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q2" data-r="adopt" data-num="15"
+             transform="translate(459.2 665.2)"
+             data-name="Clickhouse"
+             data-desc="Колоночная база данных"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">15</text>
+          </g>
+        </a>
+        <a href="entries/q2/Elasticsearch/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q2" data-r="adopt" data-num="16"
+             transform="translate(396.1 603.1)"
+             data-name="Elasticsearch"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">16</text>
+          </g>
+        </a>
+        <a href="entries/q2/Kafka/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q2" data-r="adopt" data-num="17"
+             transform="translate(439.8 560.5)"
+             data-name="Kafka"
+             data-desc="Распределенная шина для поточно обработки данных"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">17</text>
+          </g>
+        </a>
+        <a href="entries/q2/MsSQL/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q2" data-r="adopt" data-num="18"
+             transform="translate(512.8 573.5)"
+             data-name="MsSQL"
+             data-desc="SQL база данных"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">18</text>
+          </g>
+        </a>
+        <a href="entries/q2/OracleDB/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q2" data-r="adopt" data-num="19"
+             transform="translate(515.2 611.2)"
+             data-name="OracleDB"
+             data-desc="Одна из основных баз данных"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">19</text>
+          </g>
+        </a>
+        <a href="entries/q2/Patroni/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q2" data-r="adopt" data-num="20"
+             transform="translate(527.9 682.7)"
+             data-name="Patroni"
+             data-desc="PostgreSQL в кластере"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">20</text>
+          </g>
+        </a>
+        <a href="entries/q2/PostgreSQL/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q2" data-r="adopt" data-num="21"
+             transform="translate(475.2 706.9)"
+             data-name="PostgreSQL"
+             data-desc="Основная база данных"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">21</text>
+          </g>
+        </a>
+        <a href="entries/q2/Victoriametrics/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q2" data-r="adopt" data-num="22"
+             transform="translate(444.3 722.9)"
+             data-name="Victoriametrics"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">22</text>
+          </g>
+        </a>
+        <a href="entries/q2/CockroachDB/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q2" data-r="assess" data-num="23"
+             transform="translate(233.1 682.4)"
+             data-name="CockroachDB"
+             data-desc="Распределенная SQL-база данных"
+             data-ring="ASSESS"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">23</text>
+          </g>
+        </a>
+        <a href="entries/q2/Hazelcast/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q2" data-r="assess" data-num="24"
+             transform="translate(180.5 659.5)"
+             data-name="Hazelcast"
+             data-desc="In-Memory распределенная база данных"
+             data-ring="ASSESS"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">24</text>
+          </g>
+        </a>
+        <a href="entries/q2/MongoDB/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q2" data-r="assess" data-num="25"
+             transform="translate(311.0 818.1)"
+             data-name="MongoDB"
+             data-desc="Документоориентированная база данных"
+             data-ring="ASSESS"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">25</text>
+          </g>
+        </a>
+        <a href="entries/q3/Clickhouse/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="adopt" data-num="26"
+             transform="translate(434.8 459.2)"
+             data-name="Clickhouse"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">26</text>
+          </g>
+        </a>
+        <a href="entries/q3/Consul/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="adopt" data-num="27"
+             transform="translate(523.9 505.8)"
+             data-name="Consul"
+             data-desc="Сервис-дискавери"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">27</text>
+          </g>
+        </a>
+        <a href="entries/q3/Docker/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="adopt" data-num="28"
+             transform="translate(471.0 496.6)"
+             data-name="Docker"
+             data-desc="Контейренизация"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">28</text>
+          </g>
+        </a>
+        <a href="entries/q3/Exchange%202019/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="adopt" data-num="29"
+             transform="translate(475.6 438.9)"
+             data-name="Exchange 2019"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">29</text>
+          </g>
+        </a>
+        <a href="entries/q3/Grafana/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="adopt" data-num="30"
+             transform="translate(505.6 357.7)"
+             data-name="Grafana"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">30</text>
+          </g>
+        </a>
+        <a href="entries/q3/Kibana/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="adopt" data-num="31"
+             transform="translate(385.1 493.5)"
+             data-name="Kibana"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">31</text>
+          </g>
+        </a>
+        <a href="entries/q3/Kubernetes/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="adopt" data-num="32"
+             transform="translate(473.8 389.4)"
+             data-name="Kubernetes"
+             data-desc="Основная платформа для запуска приложений"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">32</text>
+          </g>
+        </a>
+        <a href="entries/q3/Microsoft%20Teams/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="adopt" data-num="33"
+             transform="translate(531.5 443.2)"
+             data-name="Microsoft Teams"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">33</text>
+          </g>
+        </a>
+        <a href="entries/q3/Office%20365/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="adopt" data-num="34"
+             transform="translate(468.7 534.6)"
+             data-name="Office 365"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">34</text>
+          </g>
+        </a>
+        <a href="entries/q3/Onedrive%20for%20business/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="adopt" data-num="35"
+             transform="translate(537.3 380.2)"
+             data-name="Onedrive for business"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">35</text>
+          </g>
+        </a>
+        <a href="entries/q3/Prometheus/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="adopt" data-num="36"
+             transform="translate(503.9 415.4)"
+             data-name="Prometheus"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">36</text>
+          </g>
+        </a>
+        <a href="entries/q3/Puppet/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="adopt" data-num="37"
+             transform="translate(428.1 410.1)"
+             data-name="Puppet"
+             data-desc="Управление конфигурациями VM"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">37</text>
+          </g>
+        </a>
+        <a href="entries/q3/TeamCity/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="adopt" data-num="38"
+             transform="translate(388.2 449.1)"
+             data-name="TeamCity"
+             data-desc="CI/CD инструмент"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">38</text>
+          </g>
+        </a>
+        <a href="entries/q3/Telegraf/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="adopt" data-num="39"
+             transform="translate(431.9 516.0)"
+             data-name="Telegraf"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">39</text>
+          </g>
+        </a>
+        <a href="entries/q3/Vault/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="adopt" data-num="40"
+             transform="translate(357.2 531.0)"
+             data-name="Vault"
+             data-desc="Хранилище секретов"
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">40</text>
+          </g>
+        </a>
+        <a href="entries/q3/VMware/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="adopt" data-num="41"
+             transform="translate(527.2 473.4)"
+             data-name="VMware"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">41</text>
+          </g>
+        </a>
+        <a href="entries/q3/Zabbix/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="adopt" data-num="42"
+             transform="translate(530.3 537.0)"
+             data-name="Zabbix"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">42</text>
+          </g>
+        </a>
+        <a href="entries/q3/Apple%20Business%20Manager/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="trial" data-num="43"
+             transform="translate(332.7 351.4)"
+             data-name="Apple Business Manager"
+             data-desc=""
+             data-ring="TRIAL"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">43</text>
+          </g>
+        </a>
+        <a href="entries/q3/ArgoCD/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="trial" data-num="44"
+             transform="translate(280.0 511.8)"
+             data-name="ArgoCD"
+             data-desc="CD и IaC для Kubernetes"
+             data-ring="TRIAL"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">44</text>
+          </g>
+        </a>
+        <a href="entries/q3/Janus/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="trial" data-num="45"
+             transform="translate(451.9 328.0)"
+             data-name="Janus"
+             data-desc=""
+             data-ring="TRIAL"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">45</text>
+          </g>
+        </a>
+        <a href="entries/q3/Kamailio/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="trial" data-num="46"
+             transform="translate(282.0 417.9)"
+             data-name="Kamailio"
+             data-desc=""
+             data-ring="TRIAL"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">46</text>
+          </g>
+        </a>
+        <a href="entries/q3/MS%20Teams/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="trial" data-num="47"
+             transform="translate(505.4 263.4)"
+             data-name="MS Teams"
+             data-desc=""
+             data-ring="TRIAL"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">47</text>
+          </g>
+        </a>
+        <a href="entries/q3/Sharepoint%20Online/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="trial" data-num="48"
+             transform="translate(335.2 408.0)"
+             data-name="Sharepoint Online"
+             data-desc=""
+             data-ring="TRIAL"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">48</text>
+          </g>
+        </a>
+        <a href="entries/q3/Zipkin/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="trial" data-num="49"
+             transform="translate(398.7 315.1)"
+             data-name="Zipkin"
+             data-desc=""
+             data-ring="TRIAL"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">49</text>
+          </g>
+        </a>
+        <a href="entries/q3/Jitsi/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="assess" data-num="50"
+             transform="translate(168.3 487.0)"
+             data-name="Jitsi"
+             data-desc=""
+             data-ring="ASSESS"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">50</text>
+          </g>
+        </a>
+        <a href="entries/q3/Sentry/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="assess" data-num="51"
+             transform="translate(267.2 295.0)"
+             data-name="Sentry"
+             data-desc=""
+             data-ring="ASSESS"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">51</text>
+          </g>
+        </a>
+        <a href="entries/q3/Cisco%20Call%20Manager/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="hold" data-num="52"
+             transform="translate(430.5 137.1)"
+             data-name="Cisco Call Manager"
+             data-desc=""
+             data-ring="HOLD"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">52</text>
+          </g>
+        </a>
+        <a href="entries/q3/Cisco%20Contact%20Center/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="hold" data-num="53"
+             transform="translate(242.0 241.9)"
+             data-name="Cisco Contact Center"
+             data-desc=""
+             data-ring="HOLD"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">53</text>
+          </g>
+        </a>
+        <a href="entries/q3/Exchange%202016/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="hold" data-num="54"
+             transform="translate(472.9 122.4)"
+             data-name="Exchange 2016"
+             data-desc=""
+             data-ring="HOLD"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">54</text>
+          </g>
+        </a>
+        <a href="entries/q3/Hiera/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q3" data-r="hold" data-num="55"
+             transform="translate(178.4 285.8)"
+             data-name="Hiera"
+             data-desc="Хранилище секретов"
+             data-ring="HOLD"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">55</text>
+          </g>
+        </a>
+        <a href="entries/q4/AD/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="adopt" data-num="56"
+             transform="translate(693.5 479.3)"
+             data-name="AD"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">56</text>
+          </g>
+        </a>
+        <a href="entries/q4/ADFS/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="adopt" data-num="57"
+             transform="translate(582.4 359.2)"
+             data-name="ADFS"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">57</text>
+          </g>
+        </a>
+        <a href="entries/q4/Asterisk/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="adopt" data-num="58"
+             transform="translate(585.0 520.7)"
+             data-name="Asterisk"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">58</text>
+          </g>
+        </a>
+        <a href="entries/q4/AzureAD/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="adopt" data-num="59"
+             transform="translate(606.9 400.7)"
+             data-name="AzureAD"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">59</text>
+          </g>
+        </a>
+        <a href="entries/q4/Commvault%20Simpana/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="adopt" data-num="60"
+             transform="translate(645.7 409.8)"
+             data-name="Commvault Simpana"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">60</text>
+          </g>
+        </a>
+        <a href="entries/q4/Freeswitch/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="adopt" data-num="61"
+             transform="translate(751.3 511.0)"
+             data-name="Freeswitch"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">61</text>
+          </g>
+        </a>
+        <a href="entries/q4/Graphite/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="adopt" data-num="62"
+             transform="translate(680.5 433.5)"
+             data-name="Graphite"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">62</text>
+          </g>
+        </a>
+        <a href="entries/q4/Graylog/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="adopt" data-num="63"
+             transform="translate(732.9 480.3)"
+             data-name="Graylog"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">63</text>
+          </g>
+        </a>
+        <a href="entries/q4/Librenms/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="adopt" data-num="64"
+             transform="translate(570.6 476.0)"
+             data-name="Librenms"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">64</text>
+          </g>
+        </a>
+        <a href="entries/q4/Metabase/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="adopt" data-num="65"
+             transform="translate(580.4 434.9)"
+             data-name="Metabase"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">65</text>
+          </g>
+        </a>
+        <a href="entries/q4/Proxysql/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="adopt" data-num="66"
+             transform="translate(628.2 493.8)"
+             data-name="Proxysql"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">66</text>
+          </g>
+        </a>
+        <a href="entries/q4/SCCM/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="adopt" data-num="67"
+             transform="translate(705.1 535.3)"
+             data-name="SCCM"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">67</text>
+          </g>
+        </a>
+        <a href="entries/q4/SonarQube/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="adopt" data-num="68"
+             transform="translate(666.0 531.1)"
+             data-name="SonarQube"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">68</text>
+          </g>
+        </a>
+        <a href="entries/q4/Stor2rrd/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="adopt" data-num="69"
+             transform="translate(617.7 545.2)"
+             data-name="Stor2rrd"
+             data-desc=""
+             data-ring="ADOPT"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">69</text>
+          </g>
+        </a>
+        <a href="entries/q4/Ibm%20spectrum%20control/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="trial" data-num="70"
+             transform="translate(599.1 294.6)"
+             data-name="Ibm spectrum control"
+             data-desc=""
+             data-ring="TRIAL"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">70</text>
+          </g>
+        </a>
+        <a href="entries/q4/Nats/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="trial" data-num="71"
+             transform="translate(806.8 405.5)"
+             data-name="Nats"
+             data-desc=""
+             data-ring="TRIAL"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">71</text>
+          </g>
+        </a>
+        <a href="entries/q4/VueJS/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="trial" data-num="72"
+             transform="translate(631.4 273.9)"
+             data-name="VueJS"
+             data-desc=""
+             data-ring="TRIAL"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">72</text>
+          </g>
+        </a>
+        <a href="entries/q4/Noction%20netflow/" class="blip-link" tabindex="0">
+          <g class="blip" data-q="q4" data-r="assess" data-num="73"
+             transform="translate(746.6 219.7)"
+             data-name="Noction netflow"
+             data-desc=""
+             data-ring="ASSESS"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">73</text>
+          </g>
+        </a></g>
+</svg></div>
+    
+    <div class="legend-col">
+      <aside class="legend">
+      <section class="legend-quad" data-q="q1">
+        <h3>Languages and frameworks</h3>
+        
+        <div class="legend-ring legend-ring--adopt">
+          <h4>ADOPT</h4>
+          <ul><li><span class="li-num">1</span><span class="li-name">.NET Core 6 LTS</span></li><li><span class="li-num">2</span><span class="li-name">App.Metrics</span></li><li><span class="li-num">3</span><span class="li-name">ASP.NET</span></li><li><span class="li-num">4</span><span class="li-name">Flask</span></li><li><span class="li-num">5</span><span class="li-name">Java</span></li><li><span class="li-num">6</span><span class="li-name">Logback</span></li><li><span class="li-num">7</span><span class="li-name">Lua</span></li><li><span class="li-num">8</span><span class="li-name">MSTest2</span></li><li><span class="li-num">9</span><span class="li-name">Python 3</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--trial">
+          <h4>TRIAL</h4>
+          <ul><li><span class="li-num">10</span><span class="li-name">FastApi</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--assess">
+          <h4>ASSESS</h4>
+          <ul><li><span class="li-num">11</span><span class="li-name">GoLang</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--hold">
+          <h4>HOLD</h4>
+          <ul><li><span class="li-num">12</span><span class="li-name">.NET Core 5</span></li><li><span class="li-num">13</span><span class="li-name">Log4j</span></li></ul>
+        </div>
+      </section>
+      <section class="legend-quad" data-q="q2">
+        <h3>Data management</h3>
+        
+        <div class="legend-ring legend-ring--adopt">
+          <h4>ADOPT</h4>
+          <ul><li><span class="li-num">14</span><span class="li-name">Cassandra</span></li><li><span class="li-num">15</span><span class="li-name">Clickhouse</span></li><li><span class="li-num">16</span><span class="li-name">Elasticsearch</span></li><li><span class="li-num">17</span><span class="li-name">Kafka</span></li><li><span class="li-num">18</span><span class="li-name">MsSQL</span></li><li><span class="li-num">19</span><span class="li-name">OracleDB</span></li><li><span class="li-num">20</span><span class="li-name">Patroni</span></li><li><span class="li-num">21</span><span class="li-name">PostgreSQL</span></li><li><span class="li-num">22</span><span class="li-name">Victoriametrics</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--assess">
+          <h4>ASSESS</h4>
+          <ul><li><span class="li-num">23</span><span class="li-name">CockroachDB</span></li><li><span class="li-num">24</span><span class="li-name">Hazelcast</span></li><li><span class="li-num">25</span><span class="li-name">MongoDB</span></li></ul>
+        </div>
+      </section>
+      <section class="legend-quad" data-q="q3">
+        <h3>Infrastructure</h3>
+        
+        <div class="legend-ring legend-ring--adopt">
+          <h4>ADOPT</h4>
+          <ul><li><span class="li-num">26</span><span class="li-name">Clickhouse</span></li><li><span class="li-num">27</span><span class="li-name">Consul</span></li><li><span class="li-num">28</span><span class="li-name">Docker</span></li><li><span class="li-num">29</span><span class="li-name">Exchange 2019</span></li><li><span class="li-num">30</span><span class="li-name">Grafana</span></li><li><span class="li-num">31</span><span class="li-name">Kibana</span></li><li><span class="li-num">32</span><span class="li-name">Kubernetes</span></li><li><span class="li-num">33</span><span class="li-name">Microsoft Teams</span></li><li><span class="li-num">34</span><span class="li-name">Office 365</span></li><li><span class="li-num">35</span><span class="li-name">Onedrive for business</span></li><li><span class="li-num">36</span><span class="li-name">Prometheus</span></li><li><span class="li-num">37</span><span class="li-name">Puppet</span></li><li><span class="li-num">38</span><span class="li-name">TeamCity</span></li><li><span class="li-num">39</span><span class="li-name">Telegraf</span></li><li><span class="li-num">40</span><span class="li-name">Vault</span></li><li><span class="li-num">41</span><span class="li-name">VMware</span></li><li><span class="li-num">42</span><span class="li-name">Zabbix</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--trial">
+          <h4>TRIAL</h4>
+          <ul><li><span class="li-num">43</span><span class="li-name">Apple Business Manager</span></li><li><span class="li-num">44</span><span class="li-name">ArgoCD</span></li><li><span class="li-num">45</span><span class="li-name">Janus</span></li><li><span class="li-num">46</span><span class="li-name">Kamailio</span></li><li><span class="li-num">47</span><span class="li-name">MS Teams</span></li><li><span class="li-num">48</span><span class="li-name">Sharepoint Online</span></li><li><span class="li-num">49</span><span class="li-name">Zipkin</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--assess">
+          <h4>ASSESS</h4>
+          <ul><li><span class="li-num">50</span><span class="li-name">Jitsi</span></li><li><span class="li-num">51</span><span class="li-name">Sentry</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--hold">
+          <h4>HOLD</h4>
+          <ul><li><span class="li-num">52</span><span class="li-name">Cisco Call Manager</span></li><li><span class="li-num">53</span><span class="li-name">Cisco Contact Center</span></li><li><span class="li-num">54</span><span class="li-name">Exchange 2016</span></li><li><span class="li-num">55</span><span class="li-name">Hiera</span></li></ul>
+        </div>
+      </section>
+      <section class="legend-quad" data-q="q4">
+        <h3>Tools and Techniques</h3>
+        
+        <div class="legend-ring legend-ring--adopt">
+          <h4>ADOPT</h4>
+          <ul><li><span class="li-num">56</span><span class="li-name">AD</span></li><li><span class="li-num">57</span><span class="li-name">ADFS</span></li><li><span class="li-num">58</span><span class="li-name">Asterisk</span></li><li><span class="li-num">59</span><span class="li-name">AzureAD</span></li><li><span class="li-num">60</span><span class="li-name">Commvault Simpana</span></li><li><span class="li-num">61</span><span class="li-name">Freeswitch</span></li><li><span class="li-num">62</span><span class="li-name">Graphite</span></li><li><span class="li-num">63</span><span class="li-name">Graylog</span></li><li><span class="li-num">64</span><span class="li-name">Librenms</span></li><li><span class="li-num">65</span><span class="li-name">Metabase</span></li><li><span class="li-num">66</span><span class="li-name">Proxysql</span></li><li><span class="li-num">67</span><span class="li-name">SCCM</span></li><li><span class="li-num">68</span><span class="li-name">SonarQube</span></li><li><span class="li-num">69</span><span class="li-name">Stor2rrd</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--trial">
+          <h4>TRIAL</h4>
+          <ul><li><span class="li-num">70</span><span class="li-name">Ibm spectrum control</span></li><li><span class="li-num">71</span><span class="li-name">Nats</span></li><li><span class="li-num">72</span><span class="li-name">VueJS</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--assess">
+          <h4>ASSESS</h4>
+          <ul><li><span class="li-num">73</span><span class="li-name">Noction netflow</span></li></ul>
+        </div>
+      </section></aside><div class="legend-footer"><a class="legend-about" href="../../about/" aria-label="About this radar">?</a><span class="legend-credit">QIWI <span class="heart">❤</span> <a href="https://github.com/qiwi/tech-radar" target="_blank" rel="noopener">Open Source</a></span></div>
+    </div>
+  </main>
+  <div class="hover-card" id="hoverCard" role="status" aria-live="polite">
+    <div class="hc-head">
+      <span class="hc-num"></span>
+      <h4 class="hc-name"></h4>
+    </div>
+    <div class="hc-meta">
+      <span class="hc-ring"></span>
+      <span class="hc-move"></span>
+    </div>
+    <p class="hc-desc"></p>
+  </div>
+  
+  <script src="../../aurora.js" defer></script>
+</body>
+</html>
