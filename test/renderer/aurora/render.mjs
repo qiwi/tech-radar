@@ -51,18 +51,56 @@ describe('aurora renderer', () => {
   it('emits an About page + legend link when --about is set', async () => {
     const output = await tempDir(out)
     const aboutSrc = path.join(output, '_about-src.md')
-    await fse.outputFile(aboutSrc, '# Hello\n\nWorld with **bold** text.\n')
+    // Exercises every branch of the inline markdown parser: h1/h2/h3,
+    // paragraphs, `-` lists, `**bold**`, `[text](url)`.
+    await fse.outputFile(
+      aboutSrc,
+      [
+        '# Hello',
+        '',
+        'World with **bold** text and a [link](https://example.com).',
+        '',
+        '## Rings',
+        '',
+        '- **ADOPT** — proven',
+        '- **TRIAL** — sampled',
+        '',
+        '### Notes',
+        '',
+        'Just text.',
+      ].join('\n'),
+    )
     await run({ input: fixture, output, renderer: 'aurora', about: aboutSrc })
 
     const aboutHtml = await renderHtml(output, 'about', 'index.html')
     expect(aboutHtml).toContain('<h1>Hello</h1>')
+    expect(aboutHtml).toContain('<h2>Rings</h2>')
+    expect(aboutHtml).toContain('<h3>Notes</h3>')
     expect(aboutHtml).toContain('<strong>bold</strong>')
+    expect(aboutHtml).toContain('<a href="https://example.com"')
+    expect(aboutHtml).toContain('<ul>')
+    expect(aboutHtml).toContain('<li><strong>ADOPT</strong>')
 
     const radarHtml = await renderHtml(output, FIXTURE_DATE, 'index.html')
     expect(radarHtml).toContain('class="legend-about"')
     // basePath climbs two levels (`<scope>/<date>/` → dist root); for the
     // single-fixture `.` scope this still emits `../../about/`.
     expect(radarHtml).toContain('href="../../about/"')
+  })
+
+  it('renders the multi-snapshot timeline with year ticks and per-date dots', async () => {
+    const output = await tempDir(out)
+    // Three fixtures at the root scope on different dates — exercises the
+    // multi-snapshot branch of renderTimeline (year ticks + dots).
+    await run({
+      input: 'test/fixtures/test.{csv,json,yml}',
+      output,
+      renderer: 'aurora',
+    })
+    const html = await renderHtml(output, FIXTURE_DATE, 'index.html')
+    expect(html).toMatch(/class="tl-year-tick"/)
+    expect(html).toMatch(/class="tl-dot tl-dot--current"/)
+    expect(html).toMatch(/class="tl-dot"/)
   })
 
   it('skips About page + legend link when --about is not set', async () => {
@@ -86,6 +124,52 @@ describe('aurora renderer', () => {
     const radarHtml = await renderHtml(output, FIXTURE_DATE, 'index.html')
     expect(radarHtml).toContain('legend-credit')
     expect(radarHtml).toContain('Open Source')
+  })
+
+  it('embeds an .html About source verbatim (skipping the markdown parser)', async () => {
+    const output = await tempDir(out)
+    const aboutSrc = path.join(output, '_about-src.html')
+    await fse.outputFile(aboutSrc, '<section><h1>Raw</h1></section>')
+    await run({ input: fixture, output, renderer: 'aurora', about: aboutSrc })
+    const aboutHtml = await renderHtml(output, 'about', 'index.html')
+    expect(aboutHtml).toContain('<section><h1>Raw</h1></section>')
+  })
+
+  it('ignores a missing --about file (no About page, no legend link)', async () => {
+    const output = await tempDir(out)
+    await run({
+      input: fixture,
+      output,
+      renderer: 'aurora',
+      about: path.join(output, 'does-not-exist.md'),
+    })
+    expect(await fse.pathExists(path.join(output, 'about'))).toBe(false)
+    const radarHtml = await renderHtml(output, FIXTURE_DATE, 'index.html')
+    expect(radarHtml).not.toContain('class="legend-about"')
+  })
+
+  it('renders moved-up / moved-down badges on entry pages', async () => {
+    // data2/js/test.json carries explicit `moved` values (no autoscope so
+    // they pass through as-is). Both directions should appear.
+    const output = await tempDir(out)
+    await run({
+      input: 'test/fixtures/data2/js/test.json',
+      output,
+      renderer: 'aurora',
+    })
+    const up = await fse.readFile(
+      path.join(output, '2021-06-12', 'entries', 'q1', 'TypeScript', 'index.html'),
+      'utf8',
+    )
+    expect(up).toContain('badge--up')
+    const down = await fse.readFile(
+      path.join(
+        output, '2021-06-12', 'entries', 'q4',
+        'Гексагональная архитектура', 'index.html',
+      ),
+      'utf8',
+    )
+    expect(down).toContain('badge--down')
   })
 
   it('copies a user-supplied favicon to <output>/favicon.ico', async () => {
