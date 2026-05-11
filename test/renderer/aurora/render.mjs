@@ -126,6 +126,30 @@ describe('aurora renderer', () => {
     expect(radarHtml).toContain('Open Source')
   })
 
+  it('sanitises markdown link URLs with unsafe schemes', async () => {
+    const output = await tempDir(out)
+    const aboutSrc = path.join(output, '_about-xss.md')
+    // Only the http(s)/mailto/anchor/relative schemes survive — `javascript:`
+    // and `data:` get rewritten to "#" so a careless About author can't
+    // inject executable code via the markdown parser.
+    await fse.outputFile(
+      aboutSrc,
+      [
+        '[ok](https://example.com)',
+        '[js](javascript:alert(1))',
+        '[data](data:text/html,<script>1</script>)',
+      ].join('\n\n'),
+    )
+    await run({ input: fixture, output, renderer: 'aurora', about: aboutSrc })
+    const html = await renderHtml(output, 'about', 'index.html')
+    expect(html).toContain('<a href="https://example.com"')
+    expect(html).not.toContain('javascript:alert')
+    expect(html).not.toMatch(/href="data:/)
+    // The unsafe ones still render as anchors, but pointing at "#".
+    expect(html).toMatch(/<a href="#"[^>]*>js<\/a>/)
+    expect(html).toMatch(/<a href="#"[^>]*>data<\/a>/)
+  })
+
   it('embeds an .html About source verbatim (skipping the markdown parser)', async () => {
     const output = await tempDir(out)
     const aboutSrc = path.join(output, '_about-src.html')

@@ -21,8 +21,9 @@ const escape = (s = '') =>
 const THEME_BOOT = `<script>try{var p=JSON.parse(localStorage.getItem('aurora-prefs')||'{}');var h=document.documentElement;h.dataset.theme=p.theme||'dark';h.dataset.chroma=p.chroma||'color';}catch(e){}</script>`
 
 /** Path-safe entry slug: keep the original name (matches zalando backend),
- *  only strip path separators that would break the directory layout. */
-const entrySlug = (name) => String(name).replaceAll(/[/\\]/g, '-').trim()
+ *  only strip path separators that would break the directory layout.
+ *  Exported so the renderer entry can share the same definition. */
+export const entrySlug = (name) => String(name).replaceAll(/[/\\]/g, '-').trim()
 const entryHref = (name) => encodeURIComponent(entrySlug(name))
 
 /** Render a single radar SVG (full viewBox). */

@@ -235,7 +235,6 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
   height: 1px;
   background: var(--line);
 }
-.tl-track { display: none; }
 .tl-dot {
   position: absolute;
   top: 0;
