@@ -17,5 +17,9 @@ const html = `<!DOCTYPE html>
 </html>
 `
 
+// Ensure dist/ exists — the script is normally run after the renderers
+// have populated it, but guarding lets it stand on its own (CI cache miss,
+// manual `npm run gen:redirects` from a clean tree, etc.).
+await fs.mkdir(path.dirname(OUT), { recursive: true })
 await fs.writeFile(OUT, html)
 console.log(`redirect → ${OUT}`)

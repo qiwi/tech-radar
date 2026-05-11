@@ -3,12 +3,23 @@ import fse from 'fs-extra'
 
 import { rootDir } from '../../constants.js'
 import { js as clientJs } from './client.js'
-import { aboutPage, entryPage, radarPage, redirectPage } from './pages.js'
+import {
+  aboutPage,
+  entryPage,
+  entrySlug,
+  radarPage,
+  redirectPage,
+} from './pages.js'
 import { css } from './styles.js'
 
 /** Minimal markdown → HTML for the About page. Handles h1/h2/h3, paragraphs,
  *  unordered lists, **bold**, and [text](url) inline. Anything fancier
  *  should be written as raw HTML. */
+// Allow-list of URL schemes that can land in a markdown link's `href` —
+// blocks `javascript:` / `data:` / etc., which would otherwise become
+// executable code if an About-source author is careless or malicious.
+const SAFE_URL = /^(https?:\/\/|mailto:|\/|#|\.{1,2}\/)/i
+
 const mdToHtml = (md) => {
   const inline = (s) =>
     s
@@ -16,10 +27,10 @@ const mdToHtml = (md) => {
       .replaceAll('<', '&lt;')
       .replaceAll('>', '&gt;')
       .replaceAll(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-      .replaceAll(
-        /\[([^\]]+)\]\(([^)]+)\)/g,
-        '<a href="$2" target="_blank" rel="noopener">$1</a>',
-      )
+      .replaceAll(/\[([^\]]+)\]\(([^)]+)\)/g, (_, text, url) => {
+        const safe = SAFE_URL.test(url.trim()) ? url.trim() : '#'
+        return `<a href="${safe}" target="_blank" rel="noopener">${text}</a>`
+      })
   const lines = md.split(/\r?\n/)
   const out = []
   let para = []
@@ -83,8 +94,6 @@ const DEFAULT_FAVICON = path.resolve(
   rootDir,
   'renderer/zalando/templates/assets/favicon.ico',
 )
-
-const entrySlug = (name) => String(name).replaceAll(/[/\\]/g, '-').trim()
 
 /** Build per-scope timeline (sorted desc by date) from the full radar list. */
 const buildTimelines = (radars) => {
