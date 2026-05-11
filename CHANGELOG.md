@@ -1,3 +1,17 @@
+## [2.0.0](https://github.com/qiwi/tech-radar/compare/v1.13.29...v2.0.0) (2026-05-11)
+
+### Fixes & improvements
+* fix(md): sanitize unsafe urls ([472132f](https://github.com/qiwi/tech-radar/commit/472132f57f7b1bfea40f266b94bd295ab29f8102))
+* refactor: continue zalando and aurora split ([c9db46f](https://github.com/qiwi/tech-radar/commit/c9db46f9df47e9627c675a31fc2dfe0bf4aa0715))
+* refactor: one-btn theme switch for aurora ([aa67e75](https://github.com/qiwi/tech-radar/commit/aa67e75fbb9ad869103f83c94a798185c46ab2c4))
+* refactor: tidy up parser/generator internals ([e265502](https://github.com/qiwi/tech-radar/commit/e265502dfd1aaf6e1b45e3ad2952893ce127062c))
+
+### Features
+* feat: add `aurora` renderer draft ([bac813f](https://github.com/qiwi/tech-radar/commit/bac813f61950e7a37486858f4f871e115db45cff))
+
+### BREAKING CHANGES
+* internal dir layout refactoring ([6fbbbff](https://github.com/qiwi/tech-radar/commit/6fbbbff2762af3ceee5640c0a2ea5070c400409c))
+
 ## [1.13.29](https://github.com/qiwi/tech-radar/compare/v1.13.28...v1.13.29) (2026-05-03)
 
 ### Fixes & improvements
