@@ -21,8 +21,10 @@
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "format": "prettier --write \"src/**/*.js\"",
-    "generate": "node ./src/cli.mjs --input \"data/**/*.{csv,json,yml}\"  --output dist --base-prefix tech-radar --autoscope true --nav-page true && touch dist/.nojekyll",
-    "gen:aurora": "node ./src/cli.mjs --renderer aurora --input \"data/**/*.{csv,json,yml}\"  --output dist --base-prefix tech-radar --autoscope true --nav-page true && touch dist/.nojekyll",
+    "generate": "npm run gen:zalando && npm run gen:aurora && npm run gen:redirects && touch dist/.nojekyll",
+    "gen:zalando": "node ./src/cli.mjs --renderer zalando --input \"data/**/*.{csv,json,yml}\" --output dist/v1 --base-prefix tech-radar/v1 --autoscope true --nav-page true",
+    "gen:aurora": "node ./src/cli.mjs --renderer aurora --input \"data/**/*.{csv,json,yml}\" --output dist/v2 --autoscope true --about data/about.md",
+    "gen:redirects": "node scripts/redirects.mjs",
     "preview": "node src/preview",
     "postupdate": "npm install && npm audit fix && npm test && npm run generate"
   },

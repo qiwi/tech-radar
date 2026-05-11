@@ -9,7 +9,7 @@ import { genMdAssets } from './markdown.js'
 
 export const genConfig = async ({ temp, output, prefix }) => {
   const configPath = path.join(temp, 'config.js')
-  const configLoaderAbsPath = path.resolve(rootDir, 'renderer/eleventy/config.cjs')
+  const configLoaderAbsPath = path.resolve(rootDir, 'renderer/zalando/config.cjs')
   const configLoaderRelPath = slash(path.relative(temp, configLoaderAbsPath))
   const configMixin = { extra: { temp, prefix, output } }
   const configContents = `
@@ -171,4 +171,9 @@ export const render = async (ctx) => {
   await genNavPage(ctx)
   await genRedirects(ctx)
   await fse.copy(path.join(tplDir, 'assets'), ctx.output)
+  // Override bundled favicon if the caller supplied one. Runs AFTER the
+  // assets copy so it always wins.
+  if (ctx.favicon && (await fse.pathExists(ctx.favicon))) {
+    await fse.copy(ctx.favicon, path.join(ctx.output, 'favicon.ico'))
+  }
 }

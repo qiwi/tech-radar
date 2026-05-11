@@ -6,7 +6,7 @@ import {run} from './index.js'
 export const cli = meow(
   `
     Usage:
-      techradar  --input /path/to/csv --output /radar --base-prefix tech-radar --autoscope true --nav-page true --nav-title title --nav-footer footer --renderer eleventy
+      techradar  --input /path/to/csv --output /radar --base-prefix tech-radar --autoscope true --nav-page true --nav-title title --nav-footer footer --renderer zalando
     Options
       --cwd
       --input
@@ -18,7 +18,10 @@ export const cli = meow(
       --nav-footer
       --temp
       --templates
-      --renderer  output backend: "eleventy" (default) or "aurora"
+      --renderer  output backend: "zalando" (default, classic d3-style) or "aurora" (pure-SVG)
+      --favicon   path to a .ico/.png file to copy as <output>/favicon.ico (overrides the bundled default)
+      --about     path to an .md or .html file with radar overview (aurora only)
+      --credits   include the generator credit in the legend footer (default true; aurora only)
 `,
   {
     importMeta: import.meta,
@@ -56,6 +59,16 @@ export const cli = meow(
       },
       renderer: {
         type: 'string'
+      },
+      favicon: {
+        type: 'string'
+      },
+      about: {
+        type: 'string'
+      },
+      credits: {
+        type: 'boolean',
+        default: true
       }
     },
   },

@@ -22,7 +22,10 @@ import { getDirs, tempDir } from './util.js'
  * @param {string} [options.temp] temp directory
  * @param {string} [options.templates] path to a directory whose contents are merged on top of bundled templates
  * @param {Object} [options.renderSettings] custom render settings (rings, colors, dimensions) for `radar.js`
- * @param {('eleventy'|'aurora')} [options.renderer] output backend (default `eleventy`)
+ * @param {('zalando'|'aurora')} [options.renderer] output backend (default `zalando`)
+ * @param {string} [options.favicon] path to a custom favicon (`.ico`/`.png`) — copied to `<output>/favicon.ico`. If not provided, the bundled default is used.
+ * @param {string} [options.about] path to a .md or .html file with radar overview (aurora only)
+ * @param {boolean} [options.credits] include the generator credit in the legend footer (default `true`; aurora only)
  *
  * @return {Promise<void>}
  */
@@ -49,7 +52,10 @@ const getContext = async ({
   temp,
   templates,
   renderSettings,
-  renderer = 'eleventy',
+  renderer = 'zalando',
+  favicon,
+  about,
+  credits = true,
 } = {}) => {
   const ctx = {
     input,
@@ -64,6 +70,9 @@ const getContext = async ({
     templates,
     renderSettings,
     renderer,
+    favicon: favicon ? path.resolve(cwd, favicon) : undefined,
+    about: about ? path.resolve(cwd, about) : undefined,
+    credits,
   }
 
   ctx.ctx = ctx // context self-ref to simplify pipelining
