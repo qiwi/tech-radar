@@ -1,21 +1,11 @@
-<p align="center">
-  <a href="https://qiwi.github.io/tech-radar/">
-    <img alt="Tech-radar" src="https://github.com/qiwi/tech-radar/blob/master/img/radar.png?raw=true?raw=true" width="546">
-  </a>
-</p>
-
-<div align="center"><h2>
-
-[📡 QIWI](https://qiwi.github.io/tech-radar/) • [Android](https://qiwi.github.io/tech-radar/android/) • [Backend](https://qiwi.github.io/tech-radar/backend/) • [iOS](https://qiwi.github.io/tech-radar/ios/) • [ISEC](https://qiwi.github.io/tech-radar/isec/) • [JS](https://qiwi.github.io/tech-radar/js/) • [OPS](https://qiwi.github.io/tech-radar/ops/) • [QA](https://qiwi.github.io/tech-radar/qa/)
-</h2>
+# 📡 @qiwi/tech-radar
 
 [![CI](https://github.com/qiwi/tech-radar/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/qiwi/tech-radar/actions/workflows/ci.yaml)
 [![Maintainability](https://qlty.sh/gh/qiwi/projects/tech-radar/maintainability.svg)](https://qlty.sh/gh/qiwi/projects/tech-radar)
 [![Code Coverage](https://qlty.sh/gh/qiwi/projects/tech-radar/coverage.svg)](https://qlty.sh/gh/qiwi/projects/tech-radar)
 [![npm (scoped)](https://img.shields.io/npm/v/@qiwi/tech-radar?color=09e)](https://www.npmjs.com/package/@qiwi/tech-radar)
 
-Fully automated tech-radar generator. Based on [zalando/tech-radar](https://github.com/zalando/tech-radar). Boosted with [11ty](https://github.com/11ty/eleventy/)
-</div>
+Fully automated tech-radar generator. Two output styles from the same input: a classic Zalando-style radar (built on top of [zalando/tech-radar](https://github.com/zalando/tech-radar) + [11ty](https://github.com/11ty/eleventy/)) and **Aurora** — a self-contained pure-SVG renderer with theming, a per-scope snapshot timeline and an optional About page.
 
 ## Purpose
 [Zalando's answer](https://opensource.zalando.com/tech-radar/):
@@ -23,30 +13,60 @@ Fully automated tech-radar generator. Based on [zalando/tech-radar](https://gith
 
 We've just _slightly_ modified [the original implementation](https://github.com/zalando/tech-radar) for our bloody enterprise requirements.
 
+## Demo
+
+<table align="center">
+  <tr>
+    <td width="50%" align="center">
+      <a href="https://qiwi.github.io/tech-radar/v2/">
+        <img alt="Aurora demo" src="https://github.com/qiwi/tech-radar/blob/master/img/radar-v2.png?raw=true" width="100%">
+      </a>
+    </td>
+    <td width="50%" align="center">
+      <a href="https://qiwi.github.io/tech-radar/v1/">
+        <img alt="Zalando-style demo" src="https://github.com/qiwi/tech-radar/blob/master/img/radar.png?raw=true" width="100%">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://qiwi.github.io/tech-radar/v2/"><b>v2 — Aurora</b></a></td>
+    <td align="center"><a href="https://qiwi.github.io/tech-radar/v1/"><b>v1 — Zalando</b></a></td>
+  </tr>
+</table>
+
+
 ## Table of contents
-- [Getting started](#getting-started)
-  - [Key features](#key-features)
-  - [Requirements](#requirements)
-  - [Install](#install)
-  - [Usage](#usage)
-    - [CLI](#cli)
-    - [JS API](#js-api)
-    - [Input-examples](#input-examples)
-    - [CI/CD](#cicd)
-  - [Customization](#customization)
+- [Key features](#key-features)
+- [Requirements](#requirements)
+- [Install](#install)
+- [Usage](#usage)
+  - [CLI](#cli)
+  - [JS API](#js-api)
+  - [Input examples](#input-examples)
+  - [CI/CD](#cicd)
+- [Customization](#customization)
+  - [Renderers](#renderers)
+  - [Group labels](#group-labels)
+  - [Ring colors *(zalando)*](#ring-colors)
+  - [Templates *(zalando)*](#templates)
+  - [Aurora theming](#aurora-theming)
 - [Contributing](#contributing)
-  - [Add new data](#add-new-radar-data)
+  - [Update the radar data](#update-the-radar-data)
   - [Enhance the generator](#enhance-the-generator)
 - [Alternatives](#alternatives)
 - [License](#license)
 
 ## Key features
-* Builds radars by `csv`, `json` or `yaml` data
-* Renders a separate description page for each radar entry
-* Compares radars of the same scope with each other and shows the movement of points
-* Assembles all the radars refs on the main navigation page
-* Redirects scope urls to the latest version of their radars
+Common (any renderer):
+* Reads radar data from `csv`, `json` or `yaml`
+* Renders one snapshot per `(scope, date)` pair, with a separate description page per entry
+* Auto-derives the `moved` indicator across snapshots of the same scope (`autoscope`)
+* Redirects each scope URL to its latest snapshot
 * CLI / JS / TS API
+
+Per renderer:
+* **`zalando`** — Zalando-style d3 radar via 11ty; a top-level navigation page lists all scopes; templates are user-overridable.
+* **`aurora`** — pure-SVG, no client-side d3 or runtime; dark/light themes + colour/mono toggle; built-in per-scope snapshot timeline; sidebar legend with cross-highlight; optional Markdown-driven About page.
 
 ## Requirements
 * Node.js >= 22
@@ -72,19 +92,24 @@ techradar --input "/path/to/files/*.{json, csv, yml}" --output /radar
 npx @qiwi/tech-radar --input "/path/to/files/*.{json, csv, yml}" --output /radar
 ```
 
-| Option      | Description                                                                                                                                                  | Default                                                                  |
-|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
-| cwd         | Current working dir                                                                                                                                          | `process.cwd()`                                                          |
-| input       | [glob pattern](https://github.com/mrmlnc/fast-glob) to find radar data: csv/json/yml                                                                         | `<cwd>/data/**/*.{json,csv,yml}`                                         |
-| output      | Output directory                                                                                                                                             | `<cwd>/radar`                                                            |
-| autoscope   | identify same-scoped files as subversions of a single radar; derive each entry `moved` indicator from the previous snapshot of the same scope (auto-trail)   | `false`                                                                  |
-| base-prefix | base context for assets. Path-shaped (`tech-radar`, empty) → relative URLs at any mount; URL-shaped (`https://cdn…`, `//cdn…`) → kept as absolute (CDN case) | `'/'`                                                                    |
-| nav-page    | create navigation page                                                                                                                                       | `false`                                                                  |
-| nav-title   | navigation page title                                                                                                                                        | `📡 Tech radars`                                                         |
-| nav-footer  | navigation page footer                                                                                                                                       |                                                                          |
-| temp        | temporary assets dir                                                                                                                                         | [`temp-dir`](https://github.com/sindresorhus/temp-dir) + random subfolder |
-| templates   | custom `11ty/nunjucks` compatible templates directory. Its contents will be merged into the default templates dir                                            |                                                                          |
-| renderer    | output backend: `eleventy` (Zalando-style d3 radar via 11ty) or `aurora` (pure-SVG dark-themed renderer with a built-in snapshot timeline)                   | `eleventy`                                                               |
+The table groups options by scope: common ones first, then zalando-specific, then aurora-specific. A renderer-scoped flag is silently ignored when running the other backend.
+
+| Option      | Renderer  | Description                                                                                                                                                  | Default                                                                  |
+|-------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| cwd         |           | Current working dir                                                                                                                                          | `process.cwd()`                                                          |
+| input       |           | [glob pattern](https://github.com/mrmlnc/fast-glob) to find radar data: csv/json/yml                                                                         | `<cwd>/data/**/*.{json,csv,yml}`                                         |
+| output      |           | Output directory                                                                                                                                             | `<cwd>/radar`                                                            |
+| autoscope   |           | identify same-scoped files as subversions of a single radar; derive each entry `moved` indicator from the previous snapshot of the same scope (auto-trail)   | `false`                                                                  |
+| nav-title   |           | site / topbar title                                                                                                                                          | `📡 Tech radars`                                                         |
+| nav-footer  |           | page footer (`<footer>` on each generated page)                                                                                                              |                                                                          |
+| temp        |           | temporary assets dir                                                                                                                                         | [`temp-dir`](https://github.com/sindresorhus/temp-dir) + random subfolder |
+| renderer    |           | output backend: `zalando` (classic d3 radar) or `aurora` (pure-SVG dark-themed renderer with a built-in snapshot timeline)                                   | `zalando`                                                                |
+| favicon     |           | path to a custom favicon (`.ico` / `.png`). Copied to `<output>/favicon.ico` and overrides the bundled default in both renderers.                            |                                                                          |
+| base-prefix | `zalando` | base context for assets. Path-shaped (`tech-radar`, empty) → relative URLs at any mount; URL-shaped (`https://cdn…`, `//cdn…`) → kept as absolute (CDN case). Aurora always emits relative URLs and ignores this. | `'/'`                                                                    |
+| nav-page    | `zalando` | generate a top-level navigation page listing all scopes. Aurora exposes scopes via the in-radar topbar tabs instead.                                         | `false`                                                                  |
+| templates   | `zalando` | custom `11ty/nunjucks` compatible templates directory. Its contents will be merged into the default templates dir. Aurora is not template-customisable.      |                                                                          |
+| about       | `aurora`  | path to an `.md` or `.html` file with radar overview. When set, aurora renders a global About page at `<output>/about/` and surfaces a `?` link in the legend footer. Markdown supports h1–h3, paragraphs, unordered lists, `**bold**`, and `[text](url)` — anything fancier should be authored as HTML. |                                                                          |
+| credits     | `aurora`  | include the generator credit (`QIWI ❤ Open Source`, with the trailing words linking back to the generator repo) in the legend footer. Set to `false` to suppress on deployments where it isn't wanted. | `true`                                                                   |
 
 ### JS API
 ```js
@@ -272,18 +297,77 @@ jobs:
 ```
 </details>
 <details>
-  <summary>generator script</summary>
+  <summary>generator scripts (single renderer)</summary>
 
 ```json
+// Zalando — needs base-prefix matching the deployment path and an explicit
+// nav-page if you want the scope listing at the root.
 "scripts": {
-  "generate": "node ./src/cli.mjs --input \"data/**/*.{csv,json,yml}\"  --output dist --base-prefix tech-radar --autoscope true --nav-page true && touch dist/.nojekyll"
-},
+  "generate": "node ./src/cli.mjs --renderer zalando --input \"data/**/*.{csv,json,yml}\" --output dist --base-prefix tech-radar --autoscope true --nav-page true && touch dist/.nojekyll"
+}
+
+// Aurora — relative URLs, no nav-page (scope tabs are built in); an optional
+// --about file enables the overview screen.
+"scripts": {
+  "generate": "node ./src/cli.mjs --renderer aurora --input \"data/**/*.{csv,json,yml}\" --output dist --autoscope true --about data/about.md && touch dist/.nojekyll"
+}
 ```
 </details>
 
+<details>
+  <summary>generator scripts (dual-renderer demo — this repo)</summary>
+
+This repo deploys both renderers side-by-side under one gh-pages site. Each lands in its own subfolder; the root and old per-scope URLs forward to v2 (the maintained default) so any external link to the pre-dual-renderer layout still resolves.
+
+```json
+"scripts": {
+  "generate":      "npm run gen:zalando && npm run gen:aurora && npm run gen:redirects && touch dist/.nojekyll",
+  "gen:zalando":   "node ./src/cli.mjs --renderer zalando --input \"data/**/*.{csv,json,yml}\" --output dist/v1 --base-prefix tech-radar/v1 --autoscope true --nav-page true",
+  "gen:aurora":    "node ./src/cli.mjs --renderer aurora  --input \"data/**/*.{csv,json,yml}\" --output dist/v2 --autoscope true --about data/about.md",
+  "gen:redirects": "node scripts/redirects.mjs"
+}
+```
+
+Notes:
+- **`--base-prefix tech-radar/v1`** matches the deployment path. The classic renderer bakes the prefix into absolute links it builds at runtime, so it has to know the subfolder. Aurora uses relative URLs only and doesn't need a prefix.
+- **`--about data/about.md`** turns on the radar-overview page on the aurora demo (markdown is fine; `.html` files are embedded as-is).
+- **`dist/.nojekyll`** is created once at the end so gh-pages doesn't run jekyll on the output.
+- **`scripts/redirects.mjs`** writes a single meta-refresh stub at `dist/index.html` pointing at `v2/`, so external links to the gh-pages root keep landing on a working radar.
+
+</details>
+
 ## Customization
+
+### Renderers
+The same input data can be rendered into two different output styles. Pick one with the `renderer` option (or `--renderer` flag) — the rest of the Customization subsections call out which renderer they apply to.
+
+| `renderer`            | Description                                                                                                                                                                                                                       |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `zalando` *(default)* | Classic Zalando-style radar built via 11ty + d3. Customisable through `renderSettings` and a templates directory (see below).                                                                                                     |
+| `aurora`              | Self-contained pure-SVG renderer. Dark/light themes + colour/mono chroma cycled via a single topbar toggle, deterministic entry placement (no jitter on regen), built-in per-scope timeline, hover details, sidebar legend with cross-highlight, optional About page. No client-side d3, no runtime. |
+
+```shell
+# Zalando (default) — generate a nav-page and the classic d3 radar
+techradar --input "data/**" --output dist --autoscope --nav-page
+
+# Aurora — overview page, no generator credit in the legend
+techradar --input "data/**" --output dist --renderer aurora --autoscope \
+          --about ./docs/about.md --credits false
+```
+
+```js
+await run({
+  input: 'data/**',
+  output: 'dist',
+  renderer: 'aurora',
+  autoscope: true,
+  about: './docs/about.md', // optional radar overview, surfaced via the `?` icon
+  credits: false,           // suppress "QIWI ❤ Open Source"
+})
+```
+
 ### Group labels
-Every radar document provides its own definition of what each `quadrant` does represent. Change if necessary.
+*Applies to: **any** renderer.* Every radar document provides its own definition of what each `quadrant` represents — override the titles per radar:
 ```csv
 quadrant,   title
 q1,         Languages and frameworks
@@ -293,7 +377,7 @@ q4,         Techniques
 ```
 
 ### Ring colors
-The easiest way to tweak up the look of your radar is by adding an alternative color scheme. `renderSettings` option is exactly for that:
+*Applies to: **`zalando`** only.* The classic renderer reads a `renderSettings` object that the underlying d3 radar consumes for sector fills, ring labels and canvas size:
 ```json
 {
   "svg_id": "radar",
@@ -314,26 +398,10 @@ The easiest way to tweak up the look of your radar is by adding an alternative c
 }
 ```
 
-### Renderers
-The same input data can be rendered into two different output styles. Pick one with the `renderer` option (or `--renderer` flag).
-
-| `renderer`         | Description                                                                                                                                                                                                                       |
-|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `eleventy` *(default)* | Classic Zalando-style radar built via 11ty + d3, hardened with the customisations described in this README (custom templates, asset filter, etc.).                                                                          |
-| `aurora`           | Self-contained pure-SVG renderer. Dark theme, deterministic entry placement (no jitter on regen), built-in per-scope timeline, hover details, sidebar legend with cross-highlight. No client-side d3, no runtime. |
-
-```shell
-techradar --input "data/**" --output dist --renderer aurora --autoscope
-```
-
-```js
-await run({ input: 'data/**', output: 'dist', renderer: 'aurora', autoscope: true })
-```
-
-The `templates` option below applies only to the `eleventy` renderer. Aurora is purely server-side rendered and not template-customisable; tweak it via `src/renderer/aurora/styles.js` if needed.
+Aurora ignores `renderSettings` — its palette is theme-driven (CSS custom properties); see *Aurora theming* below.
 
 ### Templates
-For advanced view modification, you can use your own templates. Pass the `templates` option to point at a directory where your own custom files live. The directory is merged on top of the bundled templates (matching files override). Expected structure:
+*Applies to: **`zalando`** only.* For advanced view modification, point the `templates` option at a directory of njk/11ty files. The directory is merged on top of the bundled templates (matching files override). Expected structure:
 ```
 assets/
   favicon.ico
@@ -358,6 +426,14 @@ entries/
   q3/q3.11tydata.json     # ...                                       2
   q4/q4.11tydata.json     # ...                                       3
 ```
+
+### Aurora theming
+*Applies to: **`aurora`** only.* The renderer ships its own CSS and JS as static assets (`<output>/aurora.css`, `<output>/aurora.js`) and is **not** template-customisable. To tweak the visuals:
+
+- Edit the CSS tokens in [`src/renderer/aurora/styles.js`](src/renderer/aurora/styles.js) — palette (`--q1-accent` …), spacing, theme-specific overrides (`[data-theme="light"]`, `[data-chroma="mono"]`), legend/timeline/topbar styling all live here.
+- Edit the geometry/layout knobs in [`src/renderer/aurora/geometry.js`](src/renderer/aurora/geometry.js) — ring radii, quadrant angles, blip placement constants (`MIN_DIST`, `MAX_ATTEMPTS`).
+
+The theme/chroma user choice is persisted in `localStorage.aurora-prefs` and applied via inline `<script>` before the stylesheet runs, so there is no FOUC.
 
 ## Contributing
 Feel free to open new issues: bug reports, feature requests or questions.

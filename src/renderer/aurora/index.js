@@ -3,12 +3,85 @@ import fse from 'fs-extra'
 
 import { rootDir } from '../../constants.js'
 import { js as clientJs } from './client.js'
-import { entryPage, radarPage, redirectPage } from './pages.js'
+import { aboutPage, entryPage, radarPage, redirectPage } from './pages.js'
 import { css } from './styles.js'
 
-const FAVICON = path.resolve(
+/** Minimal markdown → HTML for the About page. Handles h1/h2/h3, paragraphs,
+ *  unordered lists, **bold**, and [text](url) inline. Anything fancier
+ *  should be written as raw HTML. */
+const mdToHtml = (md) => {
+  const inline = (s) =>
+    s
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replaceAll(
+        /\[([^\]]+)\]\(([^)]+)\)/g,
+        '<a href="$2" target="_blank" rel="noopener">$1</a>',
+      )
+  const lines = md.split(/\r?\n/)
+  const out = []
+  let para = []
+  let inList = false
+  const flushPara = () => {
+    if (para.length) {
+      out.push(`<p>${para.join(' ').trim()}</p>`)
+      para = []
+    }
+  }
+  const flushList = () => {
+    if (inList) {
+      out.push('</ul>')
+      inList = false
+    }
+  }
+  for (const raw of lines) {
+    const line = raw.trim()
+    if (!line) {
+      flushPara()
+      flushList()
+      continue
+    }
+    const h = line.match(/^(#{1,3})\s+(.+)$/)
+    if (h) {
+      flushPara()
+      flushList()
+      out.push(`<h${h[1].length}>${inline(h[2])}</h${h[1].length}>`)
+      continue
+    }
+    const li = line.match(/^[-*]\s+(.+)$/)
+    if (li) {
+      flushPara()
+      if (!inList) {
+        out.push('<ul>')
+        inList = true
+      }
+      out.push(`<li>${inline(li[1])}</li>`)
+      continue
+    }
+    para.push(inline(line))
+  }
+  flushPara()
+  flushList()
+  return out.join('\n')
+}
+
+/** Load the about-content file referenced by `ctx.about`. `.md` is parsed
+ *  through the minimal MD converter; `.html` is embedded as-is. */
+const loadAbout = async (filePath) => {
+  if (!filePath) return null
+  if (!(await fse.pathExists(filePath))) return null
+  const raw = await fse.readFile(filePath, 'utf8')
+  const ext = path.extname(filePath).toLowerCase()
+  return ext === '.md' ? mdToHtml(raw) : raw
+}
+
+/** Bundled favicon used when `ctx.favicon` is not provided. Lives inside
+ *  the zalando templates dir so the package only ships one copy. */
+const DEFAULT_FAVICON = path.resolve(
   rootDir,
-  'renderer/eleventy/templates/assets/favicon.ico',
+  'renderer/zalando/templates/assets/favicon.ico',
 )
 
 const entrySlug = (name) => String(name).replaceAll(/[/\\]/g, '-').trim()
@@ -30,7 +103,7 @@ const buildTimelines = (radars) => {
 const upToRoot = (depth) => '../'.repeat(depth)
 
 /**
- * Aurora — pure-SVG static renderer (alternative to eleventy/Zalando).
+ * Aurora — pure-SVG static renderer (alternative to the Zalando-style backend).
  * Each radar page hosts the scope-switcher and timeline, so there is no
  * separate root index — `dist/index.html` is just a redirect to the
  * default scope's latest snapshot.
@@ -39,7 +112,15 @@ const upToRoot = (depth) => '../'.repeat(depth)
  * @returns {Promise<void>}
  */
 export const render = async (ctx) => {
-  const { radars, output, navTitle, navFooter } = ctx
+  const {
+    radars,
+    output,
+    navTitle,
+    navFooter,
+    about,
+    credits = true,
+    favicon,
+  } = ctx
   if (!radars || radars.length === 0) return
 
   const timelines = buildTimelines(radars)
@@ -50,6 +131,12 @@ export const render = async (ctx) => {
   const scopeLatest = Object.fromEntries(
     scopes.map((s) => [s, timelines.get(s)?.[0]?.date]),
   )
+
+  // About page (optional). When the source file resolves to non-empty HTML
+  // we render `<output>/about/index.html` and pass `aboutHref` to every
+  // page so they can surface the `?` link in the topbar.
+  const aboutHtml = await loadAbout(about)
+  const hasAbout = !!aboutHtml
 
   // --- Per-radar pages -----------------------------------------------------
   await Promise.all(
@@ -72,6 +159,8 @@ export const render = async (ctx) => {
           basePath,
           navTitle,
           navFooter,
+          credits,
+          aboutHref: hasAbout ? `${basePath}about/` : null,
         }),
       )
 
@@ -98,6 +187,18 @@ export const render = async (ctx) => {
       )
     }),
   )
+
+  // --- About page (single global) -----------------------------------------
+  if (hasAbout) {
+    await fse.outputFile(
+      path.join(output, 'about', 'index.html'),
+      aboutPage({
+        contentHtml: aboutHtml,
+        basePath: upToRoot(1), // about/ → dist root
+        navTitle,
+      }),
+    )
+  }
 
   // --- Per-scope redirect → latest snapshot --------------------------------
   await Promise.all(
@@ -136,7 +237,8 @@ export const render = async (ctx) => {
   // --- Shared assets at dist root -----------------------------------------
   await fse.outputFile(path.join(output, 'aurora.css'), css)
   await fse.outputFile(path.join(output, 'aurora.js'), clientJs)
-  if (await fse.pathExists(FAVICON)) {
-    await fse.copy(FAVICON, path.join(output, 'favicon.ico'))
+  const faviconSrc = favicon || DEFAULT_FAVICON
+  if (await fse.pathExists(faviconSrc)) {
+    await fse.copy(faviconSrc, path.join(output, 'favicon.ico'))
   }
 }

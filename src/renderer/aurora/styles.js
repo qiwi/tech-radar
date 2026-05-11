@@ -504,6 +504,28 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
   background: color-mix(in srgb, var(--fg) 12%, transparent);
 }
 
+/* About link — round "?" pill sitting INSIDE .legend-footer to the left
+   of the credit text. No label, no own line. Independent of credits flag,
+   so it can stand alone if --credits false. */
+.legend-about {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px;
+  border-radius: 999px;
+  border: 1px solid var(--fg-mute);
+  color: var(--fg-mute);
+  font: 600 11px/1 sans-serif;
+  text-decoration: none;
+  transition: color .15s ease, border-color .15s ease, transform .15s ease;
+  flex: 0 0 auto;
+}
+.legend-about:hover {
+  color: var(--fg);
+  border-color: var(--fg);
+  transform: scale(1.06);
+}
+.legend-about:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.legend-credit { display: inline-flex; gap: 6px; align-items: baseline; }
+
 /* Generator credit — sits OUTSIDE .legend so the panel's bg/radius don't
    wrap it. Just plain text on the page background, no chrome.
    Single row; flex: 0 0 auto so the scrollable panel above can't squeeze
@@ -515,19 +537,21 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
   font-size: 11px;
   color: var(--fg-mute);
   line-height: 1.4;
-  display: flex; flex-flow: row wrap; align-items: baseline;
-  gap: 0 6px;
+  display: flex; flex-flow: row wrap; align-items: center;
+  gap: 8px;
 }
 .legend-footer .sep { opacity: .55; }
 /* Link inherits the same muted grey as the slogan — it's a credit, not a CTA.
    Underline stays as the only affordance; brightens on hover. */
-.legend-footer a {
+/* Only the credit link gets the underline treatment — the "?" pill is
+   styled separately and would look weird with an underline through it. */
+.legend-credit a {
   color: inherit;
   text-decoration: underline;
   text-decoration-color: color-mix(in srgb, var(--fg-mute) 35%, transparent);
   text-underline-offset: 2px;
 }
-.legend-footer a:hover {
+.legend-credit a:hover {
   color: var(--fg-soft);
   text-decoration-color: var(--fg-mute);
 }
@@ -613,6 +637,48 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
   font-size: 16px; line-height: 1.7; color: var(--fg-soft);
   white-space: pre-wrap;
 }
+
+/* ── About page ──────────────────────────────────────────────────── */
+/* Prose layout — wider than entry-shell because content has two-column
+   reading flow with headings + bullets. Container caps line length so
+   long paragraphs stay readable. */
+.about-shell {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 24px 32px 64px;
+}
+.about-content {
+  columns: 2;
+  column-gap: 48px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--fg-soft);
+}
+@media (max-width: 720px) {
+  .about-content { columns: 1; }
+}
+.about-content h1,
+.about-content h2,
+.about-content h3 {
+  break-after: avoid;
+  margin: 0 0 12px;
+  color: var(--fg);
+  font-weight: 700;
+}
+.about-content h1 { font-size: 20px; }
+.about-content h2 { font-size: 17px; margin-top: 22px; }
+.about-content h3 { font-size: 15px; margin-top: 18px; }
+.about-content p { margin: 0 0 14px; }
+.about-content ul { margin: 0 0 16px; padding-left: 22px; }
+.about-content li { margin: 0 0 10px; }
+.about-content li::marker { color: var(--fg-mute); }
+.about-content strong { color: var(--fg); font-weight: 700; }
+.about-content a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 50%, transparent);
+}
+.about-content a:hover { text-decoration-color: var(--accent); }
 
 .page-footer {
   text-align: center; padding: 24px;

@@ -20,7 +20,7 @@ const escape = (s = '') =>
  *  so we don't flash the default palette on a fresh load. */
 const THEME_BOOT = `<script>try{var p=JSON.parse(localStorage.getItem('aurora-prefs')||'{}');var h=document.documentElement;h.dataset.theme=p.theme||'dark';h.dataset.chroma=p.chroma||'color';}catch(e){}</script>`
 
-/** Path-safe entry slug: keep the original name (matches eleventy backend),
+/** Path-safe entry slug: keep the original name (matches zalando backend),
  *  only strip path separators that would break the directory layout. */
 const entrySlug = (name) => String(name).replaceAll(/[/\\]/g, '-').trim()
 const entryHref = (name) => encodeURIComponent(entrySlug(name))
@@ -189,8 +189,12 @@ const renderTimeline = (timeline, currentDate) => {
     </nav>`
 }
 
-/** Sidebar with all entries grouped by quadrant + ring. */
-const renderLegend = (radar, entries) => {
+/** Sidebar with all entries grouped by quadrant + ring.
+ *  `credits` toggles the generator-credit footer under the panel.
+ *  `aboutHref`, when set, renders a small "About" link with a `?` icon
+ *  between the panel and the credit — independent of `credits` since
+ *  About is navigation, not branding. */
+const renderLegend = (radar, entries, { credits = true, aboutHref = null } = {}) => {
   const groups = QUADRANTS.map((q) => {
     const title = radar.document.quadrantTitles[q.id] || q.id.toUpperCase()
     const inQuad = entries.filter((e) => e.quadrant === q.id)
@@ -221,17 +225,21 @@ const renderLegend = (radar, entries) => {
         ${ringGroups}
       </section>`
   }).join('')
-  // Footer lives OUTSIDE the scrollable legend panel — sibling in the
-  // sticky column wrapper so it sits visually under the panel, not inside it.
-  // Single-line credit; middle dot separates link from the OS line.
+  // Footer row sits OUTSIDE the scrollable legend panel. Single line
+  // containing (optional) About `?` pill on the left and (optional) credit
+  // text on the right. Footer suppressed entirely when both are absent.
+  const aboutLink = aboutHref
+    ? `<a class="legend-about" href="${aboutHref}" aria-label="About this radar">?</a>`
+    : ''
+  const credit = credits
+    ? `<span class="legend-credit">QIWI <span class="heart">❤</span> <a href="https://github.com/qiwi/tech-radar" target="_blank" rel="noopener">Open Source</a></span>`
+    : ''
+  const footer = (aboutLink || credit)
+    ? `<div class="legend-footer">${aboutLink}${credit}</div>`
+    : ''
   return `
     <div class="legend-col">
-      <aside class="legend">${groups}</aside>
-      <div class="legend-footer">
-        <a href="https://github.com/qiwi/tech-radar" target="_blank" rel="noopener">Tech-radar generator</a>
-        <span class="sep">·</span>
-        <span>QIWI <span class="heart">❤</span> Open Source</span>
-      </div>
+      <aside class="legend">${groups}</aside>${footer}
     </div>`
 }
 
@@ -264,6 +272,8 @@ export const radarPage = ({
   basePath,
   navTitle,
   navFooter,
+  credits = true,
+  aboutHref = null,
 }) => {
   const entries = layoutRadar(radar)
   const title = `${escape(radar.title || scope)} — ${escape(date)}`
@@ -281,10 +291,10 @@ export const radarPage = ({
 </head>
 <body class="page-radar">
   <header class="topbar">
-    <span class="brand">
+    <a class="brand" href="${basePath}">
       <span class="brand-mark">📡</span>
       <span class="brand-text">${escape(navTitle || 'Tech radar')}</span>
-    </span>
+    </a>
     ${renderScopeTabs(scopes, scopeLatest, scope)}
     <div class="topbar-meta">
       <span class="meta-date" id="metaDate" data-default="${escape(date)}">${escape(date)}</span>
@@ -294,7 +304,7 @@ export const radarPage = ({
   ${renderTimeline(timeline, date)}
   <main class="radar-shell">
     <div class="radar-stage">${renderSvg(radar, entries)}</div>
-    ${renderLegend(radar, entries)}
+    ${renderLegend(radar, entries, { credits, aboutHref })}
   </main>
   <div class="hover-card" id="hoverCard" role="status" aria-live="polite">
     <div class="hc-head">
@@ -351,8 +361,6 @@ export const entryPage = ({
       <span class="brand-text">${escape(navTitle || 'Tech radar')}</span>
     </a>
     <div class="topbar-meta">
-      <a href="${radarPath}" class="meta-scope">${escape(scope)}</a>
-      <span class="meta-date">${escape(date)}</span>
       <button class="toggle toggle--mode" data-toggle="mode" type="button" aria-label="Cycle theme &amp; colour mode"></button>
     </div>
   </header>
@@ -373,6 +381,43 @@ export const entryPage = ({
 </html>
 `
 }
+
+/** Global About page — radar overview content rendered as prose. The
+ *  back arrow points to dist root (and the SPA picks it up like any
+ *  other internal link). */
+export const aboutPage = ({ contentHtml, basePath, navTitle }) => `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <style>html,body{background:#07080d;color:#e6e9f0;margin:0}html[data-theme="light"],html[data-theme="light"] body{background:#f6f7fa;color:#11151c}</style>
+  ${THEME_BOOT}
+  <title>${escape(navTitle || 'Tech radar')} — About</title>
+  <link rel="stylesheet" href="${basePath}aurora.css">
+  <link rel="icon" href="${basePath}favicon.ico">
+</head>
+<body class="page-about">
+  <header class="topbar">
+    <a class="brand" href="${basePath}">
+      <span class="brand-mark">📡</span>
+      <span class="brand-text">${escape(navTitle || 'Tech radar')}</span>
+    </a>
+    <div class="topbar-meta">
+      <button class="toggle toggle--mode" data-toggle="mode" type="button" aria-label="Cycle theme &amp; colour mode"></button>
+    </div>
+  </header>
+  <main class="about-shell">
+    <h1 class="entry-title">
+      <a class="back" href="${basePath}" aria-label="Back to radar">←</a>
+      About
+    </h1>
+    <article class="about-content">${contentHtml}</article>
+  </main>
+  <script src="${basePath}aurora.js" defer></script>
+</body>
+</html>
+`
 
 /** scope/index.html — meta-redirect to latest snapshot. */
 export const redirectPage = ({ date }) => `<!DOCTYPE html>

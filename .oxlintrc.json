@@ -23,7 +23,7 @@
     "import/no-named-as-default-member": "off"
   },
   "ignorePatterns": [
-    "src/renderer/eleventy/templates/**/*.js",
+    "src/renderer/zalando/templates/**/*.js",
     "test/fixtures/**",
     "test/templates/**",
     "test-output",

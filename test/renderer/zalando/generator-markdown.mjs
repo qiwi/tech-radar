@@ -6,7 +6,7 @@ import {
   genMdAssets,
   genMdContent,
   genMdPath,
-} from '../../../src/renderer/eleventy/markdown.js'
+} from '../../../src/renderer/zalando/markdown.js'
 import { parse } from '../../../src/parser/index.js'
 import {fileURLToPath} from 'url'
 

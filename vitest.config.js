@@ -12,7 +12,7 @@ export default defineConfig({
       reporter: ['text', 'lcov'],
       include: ['src/**/*.js'],
       exclude: [
-        'src/renderer/eleventy/config.cjs',
+        'src/renderer/zalando/config.cjs',
         'src/preview/**',
       ],
     },
