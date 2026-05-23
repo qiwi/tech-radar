@@ -1,0 +1,22 @@
+title
+Flex demo 2×3 — minimal
+===
+date
+2026-10-01
+===
+sector, title
+s1,     Build
+s2,     Run
+===
+ring,   title
+r1,     Use
+r2,     Try
+r3,     Stop
+===
+name,            sector,  ring,    description,                       moved
+Vite,            s1,      Use,     Frontend bundler,                  0
+Turbopack,       s1,      Try,     Next bundler,                      0
+Webpack,         s1,      Stop,    Replaced,                          0
+Kubernetes,      s2,      Use,     Container orchestration,           0
+Nomad,           s2,      Try,     HashiCorp alternative,             0
+Docker Swarm,    s2,      Stop,    Phased out,                        0

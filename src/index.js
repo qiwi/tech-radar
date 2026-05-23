@@ -56,6 +56,7 @@ const getContext = async ({
   favicon,
   about,
   credits = true,
+  autoFitRings = false,
 } = {}) => {
   const ctx = {
     input,
@@ -73,6 +74,7 @@ const getContext = async ({
     favicon: favicon ? path.resolve(cwd, favicon) : undefined,
     about: about ? path.resolve(cwd, about) : undefined,
     credits,
+    autoFitRings,
   }
 
   ctx.ctx = ctx // context self-ref to simplify pipelining
@@ -117,14 +119,27 @@ const RING_WEIGHT = {
   adopt: 3,
 }
 
-const getRingWeight = (ring) => RING_WEIGHT[ring.toLowerCase()]
+/**
+ * Ring weight for the auto-trail computation. Inner ring = highest weight
+ * (most "adopted"). For legacy 4×4 radars uses the hardcoded RING_WEIGHT
+ * map; for Flex radars derives the weight from the radar's own ordered
+ * `rings` array (index 0 = innermost = N-1, last = outermost = 0).
+ */
+const getRingWeight = (ring, ringList) => {
+  if (ringList?.length) {
+    const idx = ringList.findIndex((r) => r.id === ring)
+    if (idx !== -1) return ringList.length - 1 - idx
+  }
+  return RING_WEIGHT[String(ring).toLowerCase()]
+}
 
 const resolveMoves = async ({ ctx, radars, autoscope }) => {
   if (!autoscope) {
     return ctx
   }
 
-  radars.forEach(({ document: { data }, scope }, i) => {
+  radars.forEach(({ document: { data, rings } }, i) => {
+    const { scope } = radars[i]
     data.forEach((entry) => {
       const { name, ring } = entry
       const lowerName = name.toLowerCase()
@@ -136,8 +151,13 @@ const resolveMoves = async ({ ctx, radars, autoscope }) => {
           ({ name: _name }) => _name.toLowerCase() === lowerName,
         )
 
+      // Comparing two snapshots that disagree on their ring shape is a
+      // best-effort: each side uses its own `rings` for weighting.
+      const prevRings = prevRadar?.document?.rings
       entry.moved = prevEntry
-        ? Math.sign(getRingWeight(ring) - getRingWeight(prevEntry.ring))
+        ? Math.sign(
+            getRingWeight(ring, rings) - getRingWeight(prevEntry.ring, prevRings),
+          )
         : 0
     })
   })

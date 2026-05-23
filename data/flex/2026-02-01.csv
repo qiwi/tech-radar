@@ -1,0 +1,38 @@
+title
+Flex demo 5×4
+===
+date
+2026-02-01
+===
+sector, title
+s1,     Languages
+s2,     Frameworks
+s3,     Data stores
+s4,     Infra
+s5,     Process
+===
+ring,   title
+r1,     Adopt
+r2,     Trial
+r3,     Assess
+r4,     Hold
+===
+name,                 sector,  ring,    description,                       moved
+Go,                   s1,      Adopt,   Backend lang,                      0
+TypeScript,           s1,      Adopt,   Default for front + node,          0
+Java,                 s1,      Trial,   Legacy-safe,                       0
+Rust,                 s1,      Assess,  Systems / perf-critical paths,     1
+Spring Boot,          s2,      Adopt,   DI + REST,                         0
+NestJS,               s2,      Trial,   Node REST/GraphQL,                 1
+Quarkus,              s2,      Assess,  Native-image JVM,                  1
+Express,              s2,      Hold,    Phasing out,                       -1
+Postgres,             s3,      Adopt,   Primary OLTP,                      0
+Kafka,                s3,      Adopt,   Event bus,                         0
+Clickhouse,           s3,      Trial,   Columnar analytics,                1
+MongoDB,              s3,      Hold,    Migrating away,                    -1
+Kubernetes,           s4,      Adopt,   Container orchestration,           0
+ArgoCD,               s4,      Trial,   GitOps CD,                         1
+Crossplane,           s4,      Assess,  IaC via k8s CRDs,                  1
+Trunk-based dev,      s5,      Adopt,   Short branches,                    0
+DORA metrics,         s5,      Trial,   Delivery health,                   1
+Long-lived branches,  s5,      Hold,    Anti-pattern,                      -1

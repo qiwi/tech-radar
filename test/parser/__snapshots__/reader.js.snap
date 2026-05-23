@@ -50,6 +50,9 @@ exports[`parser.js > csvReader 1`] = `
     "q3": "Tools",
     "q4": "Techniques",
   },
+  "ringTitles": {},
+  "sectorAliases": {},
+  "sectorTitles": {},
 }
 `;
 
@@ -107,6 +110,7 @@ exports[`parser.js > jsonReader 1`] = `
 
 exports[`parser.js > parse() 1`] = `
 {
+  "_schema": "4x4",
   "data": [
     {
       "description": "",
@@ -115,6 +119,7 @@ exports[`parser.js > parse() 1`] = `
       "quadrant": "q2",
       "quadrantTitle": "Platforms",
       "ring": "adopt",
+      "sector": "s2",
     },
     {
       "description": "Статически, типизированный ЖС",
@@ -123,6 +128,7 @@ exports[`parser.js > parse() 1`] = `
       "quadrant": "q1",
       "quadrantTitle": "Languages and frameworks",
       "ring": "adopt",
+      "sector": "s1",
     },
     {
       "description": "Статический анализатор кода",
@@ -131,6 +137,7 @@ exports[`parser.js > parse() 1`] = `
       "quadrant": "q3",
       "quadrantTitle": "Tools",
       "ring": "trial",
+      "sector": "s3",
     },
     {
       "description": "Унификации контракта интерфейсов различных слоев приложений",
@@ -139,6 +146,7 @@ exports[`parser.js > parse() 1`] = `
       "quadrant": "q4",
       "quadrantTitle": "Techniques",
       "ring": "assess",
+      "sector": "s4",
     },
   ],
   "meta": {
@@ -159,6 +167,55 @@ exports[`parser.js > parse() 1`] = `
     "q3": "Tools",
     "q4": "Techniques",
   },
+  "rings": [
+    {
+      "id": "adopt",
+      "title": "Adopt",
+    },
+    {
+      "id": "trial",
+      "title": "Trial",
+    },
+    {
+      "id": "assess",
+      "title": "Assess",
+    },
+    {
+      "id": "hold",
+      "title": "Hold",
+    },
+  ],
+  "sectors": [
+    {
+      "aliases": [
+        "language",
+        "languages-and-frameworks",
+      ],
+      "id": "s1",
+      "title": "Languages and frameworks",
+    },
+    {
+      "aliases": [
+        "platforms",
+      ],
+      "id": "s2",
+      "title": "Platforms",
+    },
+    {
+      "aliases": [
+        "tools",
+      ],
+      "id": "s3",
+      "title": "Tools",
+    },
+    {
+      "aliases": [
+        "techniques",
+      ],
+      "id": "s4",
+      "title": "Techniques",
+    },
+  ],
 }
 `;
 

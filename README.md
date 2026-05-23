@@ -46,6 +46,7 @@ We've just _slightly_ modified [the original implementation](https://github.com/
   - [CI/CD](#cicd)
 - [Customization](#customization)
   - [Renderers](#renderers)
+  - [Sectors and rings *(aurora — NxM)*](#sectors-and-rings)
   - [Group labels](#group-labels)
   - [Ring colors *(zalando)*](#ring-colors)
   - [Templates *(zalando)*](#templates)
@@ -65,8 +66,8 @@ Common (any renderer):
 * CLI / JS / TS API
 
 Per renderer:
-* **`zalando`** — Zalando-style d3 radar via 11ty; a top-level navigation page lists all scopes; templates are user-overridable.
-* **`aurora`** — pure-SVG, no client-side d3 or runtime; dark/light themes + colour/mono toggle; built-in per-scope snapshot timeline; sidebar legend with cross-highlight; optional Markdown-driven About page.
+* **`zalando`** — Zalando-style d3 radar via 11ty; a top-level navigation page lists all scopes; templates are user-overridable. Strict 4 sectors × 4 rings (`adopt/trial/assess/hold`).
+* **`aurora`** — pure-SVG, no client-side d3 or runtime; dark/light themes + colour/mono toggle; built-in per-scope snapshot timeline; sidebar legend with cross-highlight; optional Markdown-driven About page. **Variable layout — any 2–8 sectors × 2–8 rings**.
 
 ## Requirements
 * Node.js >= 22
@@ -110,6 +111,7 @@ The table groups options by scope: common ones first, then zalando-specific, the
 | templates   | `zalando` | custom `11ty/nunjucks` compatible templates directory. Its contents will be merged into the default templates dir. Aurora is not template-customisable.      |                                                                          |
 | about       | `aurora`  | path to an `.md` or `.html` file with radar overview. When set, aurora renders a global About page at `<output>/about/` and surfaces a `?` link in the legend footer. Markdown supports h1–h3, paragraphs, unordered lists, `**bold**`, and `[text](url)` — anything fancier should be authored as HTML. |                                                                          |
 | credits     | `aurora`  | include the generator credit (`QIWI ❤ Open Source`, with the trailing words linking back to the generator repo) in the legend footer. Set to `false` to suppress on deployments where it isn't wanted. | `true`                                                                   |
+| auto-fit-rings | `aurora` | size ring radii by entry density — the most crowded `(sector, ring)` cell expands its ring, the rest shrink. Off by default (equal widths); turn on for radars with uneven distributions where dense cells would otherwise cram blips on top of each other. | `false`                                                                  |
 
 ### JS API
 ```js
@@ -341,10 +343,10 @@ Notes:
 ### Renderers
 The same input data can be rendered into two different output styles. Pick one with the `renderer` option (or `--renderer` flag) — the rest of the Customization subsections call out which renderer they apply to.
 
-| `renderer`            | Description                                                                                                                                                                                                                       |
-|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `zalando` *(default)* | Classic Zalando-style radar built via 11ty + d3. Customisable through `renderSettings` and a templates directory (see below).                                                                                                     |
-| `aurora`              | Self-contained pure-SVG renderer. Dark/light themes + colour/mono chroma cycled via a single topbar toggle, deterministic entry placement (no jitter on regen), built-in per-scope timeline, hover details, sidebar legend with cross-highlight, optional About page. No client-side d3, no runtime. |
+| `renderer`            | Schema       | Description                                                                                                                                                                                                                       |
+|-----------------------|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `zalando` *(default)* | `4x4` only   | Classic Zalando-style radar built via 11ty + d3. Customisable through `renderSettings` and a templates directory (see below). Fixed at 4 quadrants × 4 rings (`adopt/trial/assess/hold`) — radars in any other shape are rejected at dispatch time. |
+| `aurora`              | `4x4` + flex | Self-contained pure-SVG renderer. Dark/light themes + colour/mono chroma cycled via a single topbar toggle, deterministic entry placement, built-in per-scope timeline, hover details, sidebar legend, optional About page. Accepts any 2–8 sectors × 2–8 rings layout (see *Sectors and rings*). No client-side d3, no runtime. |
 
 ```shell
 # Zalando (default) — generate a nav-page and the classic d3 radar
@@ -366,14 +368,68 @@ await run({
 })
 ```
 
+### Sectors and rings
+*Applies to: **`aurora`** for any count; **`zalando`** is restricted to the 4×4 case.*
+
+Aurora supports variable shapes — **2 to 8 sectors × 2 to 8 rings**. The data file declares them via two optional sections; both are mirrored on the existing `quadrant,*` and ring conventions so legacy radars keep working.
+
+**Declare sectors** with `sector,title` rows (id is `s1..s8`, in order). Aliases follow the same pattern as legacy `quadrant,alias`:
+
+```csv
+sector, title
+s1,     Backend
+s2,     Frontend
+s3,     Mobile
+s4,     Data
+s5,     Infra
+s6,     QA
+
+sector, alias
+s1,     backend-platform
+```
+
+**Declare rings** with `ring,title` rows (id is `r1..r6`, ordered inner → outer):
+
+```csv
+ring,   title
+r1,     Use
+r2,     Try
+r3,     Stop
+```
+
+Then entries reference either ids or titles (case-insensitive):
+
+```csv
+name,      sector,   ring,   description,            moved
+Java,      s1,       Use,    Backend lang,           0
+React,     frontend, Try,    UI library,             1
+```
+
+JSON/YAML use the same shape — `sectors: [{ id, title, aliases? }]` and `rings: [{ id, title }]`.
+
+**If the data uses only the legacy `quadrant,*` sections + standard ring names (`adopt`, `trial`, `assess`, `hold`)**, the parser produces both the new `sectors/rings` arrays AND the legacy `quadrantTitles/quadrantAliases` view — that radar can be rendered by either backend. The dispatch layer (`src/renderer/index.js`) rejects flex radars from zalando with a clear error pointing at aurora.
+
+**Ring auto-derivation.** If a radar has no explicit `ring,title` section, rings are inferred from the unique values in the entries' `ring` column. When all match the legacy set, the canonical adopt/trial/assess/hold order is preserved. Otherwise: first-seen order with `r1..rN` ids.
+
 ### Group labels
-*Applies to: **any** renderer.* Every radar document provides its own definition of what each `quadrant` represents — override the titles per radar:
+*Applies to: **any** renderer.* Every radar document provides its own definition of what each section represents — override the titles per radar. Legacy `quadrant,*` syntax for the 4-sector case:
+
 ```csv
 quadrant,   title
 q1,         Languages and frameworks
 q2,         Platforms
 q3,         Tools
 q4,         Techniques
+```
+
+New `sector,*` syntax for the same effect (or for non-4 layouts):
+
+```csv
+sector, title
+s1,     Languages and frameworks
+s2,     Platforms
+s3,     Tools
+s4,     Techniques
 ```
 
 ### Ring colors
@@ -430,8 +486,9 @@ entries/
 ### Aurora theming
 *Applies to: **`aurora`** only.* The renderer ships its own CSS and JS as static assets (`<output>/aurora.css`, `<output>/aurora.js`) and is **not** template-customisable. To tweak the visuals:
 
-- Edit the CSS tokens in [`src/renderer/aurora/styles.js`](src/renderer/aurora/styles.js) — palette (`--q1-accent` …), spacing, theme-specific overrides (`[data-theme="light"]`, `[data-chroma="mono"]`), legend/timeline/topbar styling all live here.
-- Edit the geometry/layout knobs in [`src/renderer/aurora/geometry.js`](src/renderer/aurora/geometry.js) — ring radii, quadrant angles, blip placement constants (`MIN_DIST`, `MAX_ATTEMPTS`).
+- **Global tokens** live in [`src/renderer/aurora/styles.js`](src/renderer/aurora/styles.js) — surface colours (`--bg`, `--fg`, `--accent`, `--line` …), spacing, theme-specific overrides (`[data-theme="light"]`, `[data-chroma="mono"]`), legend/timeline/topbar styling.
+- **Per-sector colours** are computed per radar and emitted as a `<style>` block inside the page itself (see `renderPalette()` in [`pages.js`](src/renderer/aurora/pages.js)). Tokens: `--s{N}-accent` (labels/strokes), `--s{N}-fill` (blip body — same as accent on dark, vivid on light+colour), `--s{N}-grad-0/1` (sector wash gradient stops). The base hue rotates `360°/N` between sectors starting from `BASE_HUE` in [`geometry.js`](src/renderer/aurora/geometry.js); change `BASE_HUE` to shift the whole palette.
+- **Geometry** also lives in `geometry.js` — `buildRings()` lays out M rings evenly across `MAX_RADIUS`, `buildSectors()` distributes N angular slices. Blip placement constants (`MIN_DIST`, `MAX_ATTEMPTS`) are in the same file.
 
 The theme/chroma user choice is persisted in `localStorage.aurora-prefs` and applied via inline `<script>` before the stylesheet runs, so there is no FOUC.
 

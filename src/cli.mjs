@@ -20,8 +20,9 @@ export const cli = meow(
       --templates
       --renderer  output backend: "zalando" (default, classic d3-style) or "aurora" (pure-SVG)
       --favicon   path to a .ico/.png file to copy as <output>/favicon.ico (overrides the bundled default)
-      --about     path to an .md or .html file with radar overview (aurora only)
-      --credits   include the generator credit in the legend footer (default true; aurora only)
+      --about           path to an .md or .html file with radar overview (aurora only)
+      --credits         include the generator credit in the legend footer (default true; aurora only)
+      --auto-fit-rings  size ring radii by entry density so crowded cells get more room (aurora only)
 `,
   {
     importMeta: import.meta,
@@ -69,6 +70,9 @@ export const cli = meow(
       credits: {
         type: 'boolean',
         default: true
+      },
+      autoFitRings: {
+        type: 'boolean'
       }
     },
   },

@@ -27,13 +27,13 @@ Spring,                     langlib,       Adopt,  СI движок и комб�
 Spring Boot,                langlib,       Adopt,  Инcтрумент для запуска комбайна
 Thrfit,                     langlib,       Adopt,  Бинарный протокол и реализация клиента-сервера
 resilience4j,               langlib,       Trial,  Implemeneation of Circuit breaker pattern
-Arrow,                      langlib,       Access, Функциональщина для Java/Kotlin
+Arrow,                      langlib,       Assess, Функциональщина для Java/Kotlin
 logback,                    langlib,       Adopt,  Библиотека-фасал для логирования
 log4j,                      langlib,       Hold,   Библиотека для логирования
 
 Oracle,                     data,          Adopt,  Одна из основных баз данных
 PostgreSQL,                 data,          Adopt,  Основная база данных
-CockroachDB,                data,          Access, Распределенная SQL база данных
+CockroachDB,                data,          Assess, Распределенная SQL база данных
 Kafka,                      data,          Trial,  Распределенная шина для поточно обработки данных
 Cassandra,                  data,          Adopt,  Масштабируемая распределенная база данных
 Liquibase,                  data,          Trial,  Инструмент для миграций
@@ -45,5 +45,5 @@ Trunk-based development,    techtools,     Adopt,  Фиче-флаги вмес�
 Kubernetes,                 infra,         Adopt,  Основная платформа для запуска приложений
 Docker,                     infra,         Adopt,  Контейренизация
 TeamCity,                   infra,         Adopt,  CI/CD инструмент
-Tekton,                     infra,         Access, Легковесный CI инструмент
+Tekton,                     infra,         Assess, Легковесный CI инструмент
 ArgoCD,                     infra,         Trial,  CD и IaC для Kubernetes

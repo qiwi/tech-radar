@@ -129,6 +129,7 @@ export const render = async (ctx) => {
     about,
     credits = true,
     favicon,
+    autoFitRings = false,
   } = ctx
   if (!radars || radars.length === 0) return
 
@@ -170,16 +171,21 @@ export const render = async (ctx) => {
           navFooter,
           credits,
           aboutHref: hasAbout ? `${basePath}about/` : null,
+          autoFitRings,
         }),
       )
 
-      // Per-entry detail pages (depth: <scope>/<date>/entries/<q>/<slug>/ → 5)
+      // Per-entry detail pages (depth: <scope>/<date>/entries/<sId>/<slug>/ → 5).
+      // Legacy 4×4 radars carry both `quadrant` (q1..q4) and `sector` (s1..s4);
+      // we prefer the legacy id so existing deployment URLs stay stable. Flex
+      // radars only have `sector` (s1..sN).
       const entryBasePath = upToRoot(5)
       const radarPath = upToRoot(3)
       await Promise.all(
         radar.document.data.map(async (entry) => {
           const slug = entrySlug(entry.name)
-          const dir = path.join(radarDir, 'entries', entry.quadrant, slug)
+          const sectorDir = entry.quadrant ?? entry.sector
+          const dir = path.join(radarDir, 'entries', sectorDir, slug)
           await fse.outputFile(
             path.join(dir, 'index.html'),
             entryPage({

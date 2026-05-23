@@ -1,0 +1,32 @@
+title
+Flex demo 5×3
+===
+date
+2025-09-01
+===
+sector, title
+s1,     Languages
+s2,     Frameworks
+s3,     Storage
+s4,     Infra
+s5,     Process
+===
+ring,   title
+r1,     Use
+r2,     Try
+r3,     Stop
+===
+name,           sector,  ring,    description,                       moved
+Go,             s1,      Use,     Backend lang,                      0
+TypeScript,     s1,      Use,     UI + node default,                 0
+Rust,           s1,      Try,     Systems / perf,                    0
+Spring Boot,    s2,      Use,     DI + REST,                         0
+NestJS,         s2,      Try,     Node REST/GraphQL,                 0
+Express,        s2,      Stop,    Legacy,                            0
+Postgres,       s3,      Use,     Primary OLTP,                      0
+Kafka,          s3,      Use,     Event bus,                         0
+MongoDB,        s3,      Stop,    Migrating away,                    0
+Kubernetes,     s4,      Use,     Container orchestration,           0
+ArgoCD,         s4,      Try,     GitOps CD,                         0
+Trunk-based,    s5,      Use,     Short branches,                    0
+Long branches,  s5,      Stop,    Anti-pattern,                      0

@@ -12,7 +12,9 @@ import { tempDir } from '../../../src/util.js'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const out = path.resolve(process.cwd(), 'test-output-aurora')
 const fixture = path.join(__dirname, '../../fixtures/test.csv')
+const flexFixture = path.join(__dirname, '../../fixtures/flex/test.csv')
 const FIXTURE_DATE = '2021-06-18'
+const FLEX_DATE = '2026-05-12'
 
 afterAll(async () => await fse.remove(out))
 
@@ -229,5 +231,37 @@ describe('aurora renderer', () => {
     expect(await fse.pathExists(path.join(output, 'index.html'))).toBe(true)
     const rootIndex = await renderHtml(output, 'index.html')
     expect(rootIndex).toMatch(/<meta http-equiv="refresh"[^>]*url=ios\//)
+  })
+
+  describe('flex schema (NxM)', () => {
+    it('renders a 6×3 radar end-to-end', async () => {
+      const output = await tempDir(out)
+      await run({ input: flexFixture, output, renderer: 'aurora' })
+      const html = await renderHtml(output, FLEX_DATE, 'index.html')
+      // All 6 sector ids present in the inline palette block
+      for (let i = 1; i <= 6; i++) {
+        expect(html).toContain(`--s${i}-accent:`)
+        expect(html).toContain(`--s${i}-fill:`)
+      }
+      // All 3 ring opacity rules present
+      for (const id of ['r1', 'r2', 'r3']) {
+        expect(html).toContain(`.blip[data-r="${id}"]`)
+      }
+      // SVG contains a path per cell (6 sectors × 3 rings = 18 paths)
+      const sectorPaths = html.match(/<path d="M [^"]+" fill="url\(#grad-s\d+\)"/g) || []
+      expect(sectorPaths.length).toBe(18)
+    })
+
+    it('emits per-sector entry directories using s{N} ids', async () => {
+      const output = await tempDir(out)
+      await run({ input: flexFixture, output, renderer: 'aurora' })
+      // First entry "Java" sits in sector s1 per the fixture
+      const javaPage = await renderHtml(
+        output, FLEX_DATE, 'entries', 's1', 'Java', 'index.html',
+      )
+      expect(javaPage).toContain('Java')
+      expect(javaPage).toContain('Backend')   // sector title in the badge
+      expect(javaPage).toContain('USE')       // ring title (uppercased)
+    })
   })
 })

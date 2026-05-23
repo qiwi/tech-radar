@@ -46,4 +46,18 @@ describe('zalando renderer', () => {
     expect(await fse.pathExists(path.join(output, 'ios', 'index.html'))).toBe(true)
     expect(await fse.pathExists(path.join(output, 'js', 'index.html'))).toBe(true)
   })
+
+  it('rejects a flex (NxM) radar with a clear error', async () => {
+    // Use the run() pipeline indirectly via the dispatch — easier to test
+    // the guard than wiring up an isolated radar manually.
+    const { render } = await import('../../../src/renderer/index.js')
+    await expect(
+      render({
+        renderer: 'zalando',
+        radars: [
+          { source: 'flex.csv', document: { _schema: 'flex' } },
+        ],
+      }),
+    ).rejects.toThrow(/only accepts 4x4 radars/)
+  })
 })
