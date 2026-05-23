@@ -185,6 +185,17 @@ export const js = `(() => {
     }
     const swap = () => {
       document.title = doc.title
+      // Each radar emits its own per-sector palette as <style id="radar-palette">
+      // because sector ids/hues differ across snapshots (e.g. 6 sectors vs 5).
+      // If we don't swap it here, going from a smaller-N radar to a larger-N
+      // one leaves the new sectors with undefined CSS vars → black wash.
+      const oldPalette = document.getElementById('radar-palette')
+      const newPalette = doc.getElementById('radar-palette')
+      if (oldPalette && newPalette) {
+        oldPalette.replaceWith(newPalette)
+      } else if (newPalette) {
+        document.head.append(newPalette)
+      }
       // Replace body contents (script in <head> stays alive — IIFE already running).
       document.body.replaceChildren(...doc.body.childNodes)
       window.scrollTo(0, 0)

@@ -1,0 +1,28 @@
+title
+flex radar 6x3
+===
+date
+2026-05-12
+===
+sector, title
+s1,     Backend
+s2,     Frontend
+s3,     Mobile
+s4,     Data
+s5,     Infra
+s6,     QA
+===
+ring,   title
+r1,     Use
+r2,     Try
+r3,     Stop
+===
+name,                  sector,  ring,  description,                   moved
+Java,                  s1,      Use,   Backend lang,                  0
+Kotlin,                s1,      Try,   Modern JVM,                    1
+Scala,                 s1,      Stop,  Legacy,                        -1
+React,                 s2,      Use,   UI lib,                        1
+Swift,                 s3,      Try,   iOS lang,                      0
+Postgres,              s4,      Use,   Primary DB,                    0
+Kubernetes,            s5,      Use,   Container orchestration,       1
+Playwright,            s6,      Try,   E2E testing,                   0

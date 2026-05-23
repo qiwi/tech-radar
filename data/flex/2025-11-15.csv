@@ -1,0 +1,42 @@
+title
+Flex demo 3×7 — fine-grained adoption ladder
+===
+date
+2025-11-15
+===
+sector, title
+s1,     Backend
+s2,     Frontend
+s3,     Data
+===
+ring,   title
+r1,     Standard
+r2,     Recommended
+r3,     Adopt
+r4,     Trial
+r5,     Assess
+r6,     Sunset
+r7,     Forbidden
+===
+name,         sector,  ring,        description,                     moved
+Go,           s1,      Standard,    Workhorse,                       0
+Java,         s1,      Recommended, LTS only,                        0
+Kotlin,       s1,      Adopt,       JVM,                             0
+Rust,         s1,      Trial,       Perf-sensitive code,             0
+Zig,          s1,      Assess,      Watch-list,                      0
+Scala,        s1,      Sunset,      Legacy,                          0
+PHP,          s1,      Forbidden,   Banned,                          0
+React,        s2,      Standard,    Default UI lib,                  0
+TypeScript,   s2,      Recommended, Always-on types,                 0
+Vite,         s2,      Adopt,       Bundler,                         0
+Solid,        s2,      Trial,       Lightweight alt,                 0
+Astro,        s2,      Assess,      Content sites,                   0
+Webpack,      s2,      Sunset,      Replaced by Vite,                0
+jQuery,       s2,      Forbidden,   Banned,                          0
+Postgres,     s3,      Standard,    OLTP,                            0
+Kafka,        s3,      Recommended, Events,                          0
+ClickHouse,   s3,      Adopt,       Analytics,                       0
+DuckDB,       s3,      Trial,       Embedded analytics,              0
+LanceDB,      s3,      Assess,      Vector DB,                       0
+MongoDB,      s3,      Sunset,      Migrating off,                   0
+Cassandra,    s3,      Forbidden,   Banned,                          0

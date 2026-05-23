@@ -1,0 +1,45 @@
+title
+Flex demo 6×4
+===
+date
+2026-08-01
+===
+sector, title
+s1,     Backend
+s2,     Frontend
+s3,     Mobile
+s4,     Data
+s5,     Infra
+s6,     QA
+===
+ring,   title
+r1,     Adopt
+r2,     Trial
+r3,     Assess
+r4,     Hold
+===
+name,         sector,  ring,    description,                   moved
+Go,           s1,      Adopt,   Backend,                       0
+Kotlin,       s1,      Trial,   JVM modern,                    0
+Java 21,      s1,      Assess,  Virtual threads,               0
+Scala,        s1,      Hold,    Legacy,                        0
+React,        s2,      Adopt,   UI,                            0
+TypeScript,   s2,      Adopt,   Types,                         0
+Solid,        s2,      Trial,   Reactive alt,                  0
+Vue 2,        s2,      Hold,    EOL,                           0
+Swift,        s3,      Adopt,   iOS,                           0
+Kotlin MP,    s3,      Trial,   Shared code,                   0
+Flutter,      s3,      Assess,  Cross-platform,                0
+Cordova,      s3,      Hold,    Sunset,                        0
+Postgres,     s4,      Adopt,   OLTP,                          0
+Kafka,        s4,      Adopt,   Events,                        0
+ClickHouse,   s4,      Trial,   Analytics,                     0
+MongoDB,      s4,      Hold,    Migrating off,                 0
+Kubernetes,   s5,      Adopt,   Orchestration,                 0
+ArgoCD,       s5,      Trial,   GitOps,                        0
+Crossplane,   s5,      Assess,  IaC over CRDs,                 0
+Chef,         s5,      Hold,    Legacy IaC,                    0
+Playwright,   s6,      Adopt,   E2E,                           0
+k6,           s6,      Trial,   Load,                          0
+Cypress,      s6,      Assess,  E2E alt,                       0
+Selenium,     s6,      Hold,    Replaced,                      0

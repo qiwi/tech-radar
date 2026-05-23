@@ -29,7 +29,7 @@ Spock,                      lang,       Adopt,  Фреймворк for Java and 
 Kubernetes,                 platforms,  Adopt,  Основная платформа для запуска приложений
 Docker,                     platforms,  Adopt,  Контейренизация
 TeamCity,                   platforms,  Adopt,  CI/CD инструмент
-Tekton,                     platforms,  Access, Легковесный CI инструмент
+Tekton,                     platforms,  Assess, Легковесный CI инструмент
 SonarQube,                  platforms,  TRIAL,  Платформа с открытым исходным кодом для непрерывного анализа и измерения качества программного кода. 
 Moon,                       tools,      Adopt,  "Организация ручного и автоматизированного тестирования веб-приложений в настольных и мобильных браузерах на основе протокола Selenium WebDriver, работающее в кластере Kubernetes или Openshift"
 Appium,                     tools,      Adopt,  Tool for automation UI tests

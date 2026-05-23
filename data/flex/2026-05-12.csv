@@ -1,0 +1,41 @@
+title
+Flex demo 6×3
+===
+date
+2026-05-12
+===
+sector, title
+s1,     Backend
+s2,     Frontend
+s3,     Mobile
+s4,     Data
+s5,     Infra
+s6,     QA
+===
+ring,   title
+r1,     Use
+r2,     Try
+r3,     Stop
+===
+name,                       sector,    ring,   description,                                              moved
+Java,                       s1,        Use,    "JVM workhorse, used everywhere",                         0
+Kotlin,                     s1,        Try,    Modern JVM,                                               1
+Scala,                      s1,        Stop,   Legacy stack,                                             -1
+Spring Boot,                s1,        Use,    DI + REST glue,                                           0
+gRPC,                       s1,        Try,    Internal RPC,                                             1
+React,                      s2,        Use,    UI library,                                               1
+TypeScript,                 s2,        Use,    Types for JS,                                             0
+Vue,                        s2,        Stop,   Phasing out,                                              -1
+Vite,                       s2,        Try,    Fast bundler,                                             1
+Swift,                      s3,        Use,    iOS lang,                                                 0
+Kotlin Multiplatform,       s3,        Try,    Cross-platform shared code,                               1
+Postgres,                   s4,        Use,    Primary OLTP,                                             0
+Kafka,                      s4,        Use,    Event streaming,                                          0
+Clickhouse,                 s4,        Try,    Columnar OLAP,                                            1
+MongoDB,                    s4,        Stop,   Migrating off,                                            -1
+Kubernetes,                 s5,        Use,    Container orchestration,                                  0
+ArgoCD,                     s5,        Try,    GitOps CD,                                                1
+Terraform,                  s5,        Use,    IaC,                                                      0
+Playwright,                 s6,        Use,    E2E in browsers,                                          1
+k6,                         s6,        Try,    Load testing,                                             1
+Selenium,                   s6,        Stop,   Replaced by Playwright,                                   -1
