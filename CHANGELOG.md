@@ -1,3 +1,8 @@
+## [2.1.0](https://github.com/qiwi/tech-radar/compare/v2.0.0...v2.1.0) (2026-05-23)
+
+### Features
+* feat(aurora): variable sectors and rings (NxM layout) ([04c7920](https://github.com/qiwi/tech-radar/commit/04c7920060dcd7b03f927a92d087eebded17d9df))
+
 ## [2.0.0](https://github.com/qiwi/tech-radar/compare/v1.13.29...v2.0.0) (2026-05-11)
 
 ### Fixes & improvements
