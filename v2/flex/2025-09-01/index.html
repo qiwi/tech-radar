@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <style>html,body{background:#07080d;color:#e6e9f0;margin:0}html[data-theme="light"],html[data-theme="light"] body{background:#f6f7fa;color:#11151c}</style>
+  <script>try{var p=JSON.parse(localStorage.getItem('aurora-prefs')||'{}');var h=document.documentElement;h.dataset.theme=p.theme||'dark';h.dataset.chroma=p.chroma||'color';}catch(e){}</script>
+  <title>Flex demo 5×3 — 2025-09-01</title>
+  <link rel="stylesheet" href="../../aurora.css">
+  <style id="radar-palette">
+[data-theme="dark"] {
+  --s1-accent: hsl(200 65% 60%);
+  --s2-accent: hsl(272 65% 60%);
+  --s3-accent: hsl(344 65% 60%);
+  --s4-accent: hsl(56 65% 60%);
+  --s5-accent: hsl(128 65% 60%);
+  --s1-fill: hsl(200 65% 60%);
+  --s2-fill: hsl(272 65% 60%);
+  --s3-fill: hsl(344 65% 60%);
+  --s4-fill: hsl(56 65% 60%);
+  --s5-fill: hsl(128 65% 60%);
+  --s1-grad-0: hsla(200, 65%, 60%, 0.32);
+  --s1-grad-1: hsla(200, 65%, 60%, 0.02);
+  --s2-grad-0: hsla(272, 65%, 60%, 0.32);
+  --s2-grad-1: hsla(272, 65%, 60%, 0.02);
+  --s3-grad-0: hsla(344, 65%, 60%, 0.32);
+  --s3-grad-1: hsla(344, 65%, 60%, 0.02);
+  --s4-grad-0: hsla(56, 65%, 60%, 0.32);
+  --s4-grad-1: hsla(56, 65%, 60%, 0.02);
+  --s5-grad-0: hsla(128, 65%, 60%, 0.32);
+  --s5-grad-1: hsla(128, 65%, 60%, 0.02);
+}
+[data-theme="light"] {
+  --s1-accent: hsl(200 60% 36%);
+  --s2-accent: hsl(272 60% 36%);
+  --s3-accent: hsl(344 60% 36%);
+  --s4-accent: hsl(56 60% 36%);
+  --s5-accent: hsl(128 60% 36%);
+  --s1-fill: hsl(200 60% 36%);
+  --s2-fill: hsl(272 60% 36%);
+  --s3-fill: hsl(344 60% 36%);
+  --s4-fill: hsl(56 60% 36%);
+  --s5-fill: hsl(128 60% 36%);
+  --s1-grad-0: hsla(200, 75%, 78%, 0.40);
+  --s1-grad-1: hsla(200, 75%, 78%, 0.02);
+  --s2-grad-0: hsla(272, 75%, 78%, 0.40);
+  --s2-grad-1: hsla(272, 75%, 78%, 0.02);
+  --s3-grad-0: hsla(344, 75%, 78%, 0.40);
+  --s3-grad-1: hsla(344, 75%, 78%, 0.02);
+  --s4-grad-0: hsla(56, 75%, 78%, 0.40);
+  --s4-grad-1: hsla(56, 75%, 78%, 0.02);
+  --s5-grad-0: hsla(128, 75%, 78%, 0.40);
+  --s5-grad-1: hsla(128, 75%, 78%, 0.02);
+}
+[data-theme="light"][data-chroma="color"] {
+  --s1-fill: hsl(200 70% 48%);
+  --s2-fill: hsl(272 70% 48%);
+  --s3-fill: hsl(344 70% 48%);
+  --s4-fill: hsl(56 70% 48%);
+  --s5-fill: hsl(128 70% 48%);
+}
+[data-chroma="mono"] {
+  --s1-accent: var(--fg-soft);
+  --s1-fill: var(--fg-soft);
+  --s1-grad-0: hsla(220, 10%, 50%, 0.10);
+  --s1-grad-1: hsla(220, 10%, 50%, 0.02);
+  --s2-accent: var(--fg-soft);
+  --s2-fill: var(--fg-soft);
+  --s2-grad-0: hsla(220, 10%, 50%, 0.10);
+  --s2-grad-1: hsla(220, 10%, 50%, 0.02);
+  --s3-accent: var(--fg-soft);
+  --s3-fill: var(--fg-soft);
+  --s3-grad-0: hsla(220, 10%, 50%, 0.10);
+  --s3-grad-1: hsla(220, 10%, 50%, 0.02);
+  --s4-accent: var(--fg-soft);
+  --s4-fill: var(--fg-soft);
+  --s4-grad-0: hsla(220, 10%, 50%, 0.10);
+  --s4-grad-1: hsla(220, 10%, 50%, 0.02);
+  --s5-accent: var(--fg-soft);
+  --s5-fill: var(--fg-soft);
+  --s5-grad-0: hsla(220, 10%, 50%, 0.10);
+  --s5-grad-1: hsla(220, 10%, 50%, 0.02);
+}
+.blip[data-r="r1"] { opacity: 1.00; }
+.blip[data-r="r2"] { opacity: 0.78; }
+.blip[data-r="r3"] { opacity: 0.55; }
+.sector[data-r="r1"] { fill-opacity: 0.95; }
+.sector[data-r="r2"] { fill-opacity: 0.70; }
+.sector[data-r="r3"] { fill-opacity: 0.45; }
+</style>
+  <link rel="icon" href="../../favicon.ico">
+</head>
+<body class="page-radar">
+  <header class="topbar">
+    <a class="brand" href="../../">
+      <span class="brand-mark">📡</span>
+      <span class="brand-text">Tech radar</span>
+    </a>
+    <nav class="scope-tabs" aria-label="Scope"><a class="tab" href="../../android/2022-01-12/">android</a><a class="tab" href="../../backend/2023-10-13/">backend</a><a class="tab tab--current" href="#">flex</a><a class="tab" href="../../ios/2021-06-21/">ios</a><a class="tab" href="../../isec/2022-07-24/">isec</a><a class="tab" href="../../js/2023-10-23/">js</a><a class="tab" href="../../ops/2022-07-01/">ops</a><a class="tab" href="../../qa/2023-07-12/">qa</a></nav>
+    <div class="topbar-meta">
+      <span class="meta-date" id="metaDate" data-default="2025-09-01">2025-09-01</span>
+      <button class="toggle toggle--mode" data-toggle="mode" type="button" aria-label="Cycle theme &amp; colour mode"></button>
+    </div>
+  </header>
+  
+    <nav class="timeline" aria-label="Snapshot timeline">
+      <div class="tl-items">
+        <a class="tl-dot tl-dot--current" href="../2025-09-01/" style="--p:0.3329"
+           data-date="2025-09-01" aria-label="2025-09-01">
+          <span class="tl-marker"></span>
+        </a>
+        <a class="tl-dot" href="../2025-11-15/" style="--p:0.4356"
+           data-date="2025-11-15" aria-label="2025-11-15">
+          <span class="tl-marker"></span>
+        </a>
+        <a class="tl-dot" href="../2026-02-01/" style="--p:0.5425"
+           data-date="2026-02-01" aria-label="2026-02-01">
+          <span class="tl-marker"></span>
+        </a>
+        <a class="tl-dot" href="../2026-05-12/" style="--p:0.6795"
+           data-date="2026-05-12" aria-label="2026-05-12">
+          <span class="tl-marker"></span>
+        </a>
+        <a class="tl-dot" href="../2026-08-01/" style="--p:0.7904"
+           data-date="2026-08-01" aria-label="2026-08-01">
+          <span class="tl-marker"></span>
+        </a>
+        <a class="tl-dot" href="../2026-10-01/" style="--p:0.8740"
+           data-date="2026-10-01" aria-label="2026-10-01">
+          <span class="tl-marker"></span>
+        </a><span class="tl-year-tick" style="--p:0.0000">2025</span><span class="tl-year-tick" style="--p:0.5000">2026</span></div>
+    </nav>
+  <main class="radar-shell">
+    <div class="radar-stage">
+<svg viewBox="0 0 1100 1100" xmlns="http://www.w3.org/2000/svg" class="radar-svg" role="img" aria-label="Tech radar">
+  <defs>
+      <radialGradient id="grad-s1" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"   style="stop-color: var(--s1-grad-0)"/>
+        <stop offset="100%" style="stop-color: var(--s1-grad-1)"/>
+      </radialGradient>
+      <radialGradient id="grad-s2" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"   style="stop-color: var(--s2-grad-0)"/>
+        <stop offset="100%" style="stop-color: var(--s2-grad-1)"/>
+      </radialGradient>
+      <radialGradient id="grad-s3" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"   style="stop-color: var(--s3-grad-0)"/>
+        <stop offset="100%" style="stop-color: var(--s3-grad-1)"/>
+      </radialGradient>
+      <radialGradient id="grad-s4" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"   style="stop-color: var(--s4-grad-0)"/>
+        <stop offset="100%" style="stop-color: var(--s4-grad-1)"/>
+      </radialGradient>
+      <radialGradient id="grad-s5" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"   style="stop-color: var(--s5-grad-0)"/>
+        <stop offset="100%" style="stop-color: var(--s5-grad-1)"/>
+      </radialGradient></defs>
+  <g class="radar-sectors"><path d="M 550 550 L 717 550 A 167 167 0 0 1 601.6058380606162 708.8264382212906 Z" fill="url(#grad-s1)"
+              class="sector" data-s="s1" data-r="r1"/><path d="M 883 550 A 333 333 0 0 1 652.9026591268575 866.7018199262861 L 601.6058380606162 708.8264382212906 A 167 167 0 0 0 717 550 Z" fill="url(#grad-s1)"
+              class="sector" data-s="s1" data-r="r2"/><path d="M 1050 550 A 500 500 0 0 1 704.5084971874737 1025.5282581475767 L 652.9026591268575 866.7018199262861 A 333 333 0 0 0 883 550 Z" fill="url(#grad-s1)"
+              class="sector" data-s="s1" data-r="r3"/><path d="M 550 550 L 601.6058380606162 708.8264382212906 A 167 167 0 0 1 414.8941619393838 648.160137132843 Z" fill="url(#grad-s2)"
+              class="sector" data-s="s2" data-r="r1"/><path d="M 652.9026591268575 866.7018199262861 A 333 333 0 0 1 280.5973408731425 745.7324890133937 L 414.8941619393838 648.160137132843 A 167 167 0 0 0 601.6058380606162 708.8264382212906 Z" fill="url(#grad-s2)"
+              class="sector" data-s="s2" data-r="r2"/><path d="M 704.5084971874737 1025.5282581475767 A 500 500 0 0 1 145.49150281252633 843.8926261462366 L 280.5973408731425 745.7324890133937 A 333 333 0 0 0 652.9026591268575 866.7018199262861 Z" fill="url(#grad-s2)"
+              class="sector" data-s="s2" data-r="r3"/><path d="M 550 550 L 414.8941619393838 648.160137132843 A 167 167 0 0 1 414.89416193938376 451.839862867157 Z" fill="url(#grad-s3)"
+              class="sector" data-s="s3" data-r="r1"/><path d="M 280.5973408731425 745.7324890133937 A 333 333 0 0 1 280.5973408731425 354.26751098660645 L 414.89416193938376 451.839862867157 A 167 167 0 0 0 414.8941619393838 648.160137132843 Z" fill="url(#grad-s3)"
+              class="sector" data-s="s3" data-r="r2"/><path d="M 145.49150281252633 843.8926261462366 A 500 500 0 0 1 145.49150281252628 256.1073738537635 L 280.5973408731425 354.26751098660645 A 333 333 0 0 0 280.5973408731425 745.7324890133937 Z" fill="url(#grad-s3)"
+              class="sector" data-s="s3" data-r="r3"/><path d="M 550 550 L 414.89416193938376 451.839862867157 A 167 167 0 0 1 601.6058380606162 391.1735617787093 Z" fill="url(#grad-s4)"
+              class="sector" data-s="s4" data-r="r1"/><path d="M 280.5973408731425 354.26751098660645 A 333 333 0 0 1 652.9026591268574 233.29818007371387 L 601.6058380606162 391.1735617787093 A 167 167 0 0 0 414.89416193938376 451.839862867157 Z" fill="url(#grad-s4)"
+              class="sector" data-s="s4" data-r="r2"/><path d="M 145.49150281252628 256.1073738537635 A 500 500 0 0 1 704.5084971874736 74.47174185242318 L 652.9026591268574 233.29818007371387 A 333 333 0 0 0 280.5973408731425 354.26751098660645 Z" fill="url(#grad-s4)"
+              class="sector" data-s="s4" data-r="r3"/><path d="M 550 550 L 601.6058380606162 391.1735617787093 A 167 167 0 0 1 717 550 Z" fill="url(#grad-s5)"
+              class="sector" data-s="s5" data-r="r1"/><path d="M 652.9026591268574 233.29818007371387 A 333 333 0 0 1 883 549.9999999999999 L 717 550 A 167 167 0 0 0 601.6058380606162 391.1735617787093 Z" fill="url(#grad-s5)"
+              class="sector" data-s="s5" data-r="r2"/><path d="M 704.5084971874736 74.47174185242318 A 500 500 0 0 1 1050 549.9999999999999 L 883 549.9999999999999 A 333 333 0 0 0 652.9026591268574 233.29818007371387 Z" fill="url(#grad-s5)"
+              class="sector" data-s="s5" data-r="r3"/></g>
+  <g class="radar-rings"><circle cx="550" cy="550" r="167" class="ring-line"/><circle cx="550" cy="550" r="333" class="ring-line"/><circle cx="550" cy="550" r="500" class="ring-line"/><line x1="550" y1="550" x2="1050.0" y2="550.0" class="axis"/><line x1="550" y1="550" x2="704.5" y2="1025.5" class="axis"/><line x1="550" y1="550" x2="145.5" y2="843.9" class="axis"/><line x1="550" y1="550" x2="145.5" y2="256.1" class="axis"/><line x1="550" y1="550" x2="704.5" y2="74.5" class="axis"/></g>
+  <g class="radar-labels">
+      <defs><path id="arc-ring-r1" d="M 484.1088891538786 453.43928587948335 A 116.89999999999999 116.89999999999999 0 0 1 615.8911108461215 453.4392858794834"/></defs>
+      <text class="ring-label" data-r="r1" style="font-size: 18px; letter-spacing: 0.25em">
+        <textPath href="#arc-ring-r1" startOffset="50%" text-anchor="middle">USE</textPath>
+      </text>
+      <defs><path id="arc-ring-r2" d="M 480.710607197898 275.4071740829415 A 283.2 283.2 0 0 1 619.289392802102 275.4071740829415"/></defs>
+      <text class="ring-label" data-r="r2" style="font-size: 18px; letter-spacing: 0.25em">
+        <textPath href="#arc-ring-r2" startOffset="50%" text-anchor="middle">TRY</textPath>
+      </text>
+      <defs><path id="arc-ring-r3" d="M 469.45459491572177 107.36872261462418 A 449.9 449.9 0 0 1 630.5454050842783 107.36872261462418"/></defs>
+      <text class="ring-label" data-r="r3" style="font-size: 18px; letter-spacing: 0.25em">
+        <textPath href="#arc-ring-r3" startOffset="50%" text-anchor="middle">STOP</textPath>
+      </text><text class="quad-label" x="977.2" y="860.4"
+        text-anchor="end" dominant-baseline="auto"
+        fill="var(--s1-accent)">Languages</text><text class="quad-label" x="386.8" y="1052.2"
+        text-anchor="start" dominant-baseline="auto"
+        fill="var(--s2-accent)">Frameworks</text><text class="quad-label" x="22.0" y="550.0"
+        text-anchor="start" dominant-baseline="middle"
+        fill="var(--s3-accent)">Storage</text><text class="quad-label" x="386.8" y="47.8"
+        text-anchor="start" dominant-baseline="hanging"
+        fill="var(--s4-accent)">Infra</text><text class="quad-label" x="977.2" y="239.6"
+        text-anchor="end" dominant-baseline="hanging"
+        fill="var(--s5-accent)">Process</text></g>
+  <g class="radar-blips">
+        <a href="entries/s1/Go/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s1" data-r="r1" data-num="1"
+             transform="translate(570.7 584.7)"
+             style="color: var(--s1-fill)"
+             data-name="Go"
+             data-desc="Backend lang"
+             data-ring="R1"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">1</text>
+          </g>
+        </a>
+        <a href="entries/s1/TypeScript/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s1" data-r="r1" data-num="2"
+             transform="translate(638.3 608.7)"
+             style="color: var(--s1-fill)"
+             data-name="TypeScript"
+             data-desc="UI + node default"
+             data-ring="R1"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">2</text>
+          </g>
+        </a>
+        <a href="entries/s1/Rust/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s1" data-r="r2" data-num="3"
+             transform="translate(741.9 566.7)"
+             style="color: var(--s1-fill)"
+             data-name="Rust"
+             data-desc="Systems / perf"
+             data-ring="R2"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">3</text>
+          </g>
+        </a>
+        <a href="entries/s2/Spring%20Boot/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s2" data-r="r1" data-num="4"
+             transform="translate(557.9 698.3)"
+             style="color: var(--s2-fill)"
+             data-name="Spring Boot"
+             data-desc="DI + REST"
+             data-ring="R1"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">4</text>
+          </g>
+        </a>
+        <a href="entries/s2/NestJS/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s2" data-r="r2" data-num="5"
+             transform="translate(482.8 720.9)"
+             style="color: var(--s2-fill)"
+             data-name="NestJS"
+             data-desc="Node REST/GraphQL"
+             data-ring="R2"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">5</text>
+          </g>
+        </a>
+        <a href="entries/s2/Express/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s2" data-r="r3" data-num="6"
+             transform="translate(471.4 996.8)"
+             style="color: var(--s2-fill)"
+             data-name="Express"
+             data-desc="Legacy"
+             data-ring="R3"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">6</text>
+          </g>
+        </a>
+        <a href="entries/s3/Kafka/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s3" data-r="r1" data-num="7"
+             transform="translate(477.0 506.2)"
+             style="color: var(--s3-fill)"
+             data-name="Kafka"
+             data-desc="Event bus"
+             data-ring="R1"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">7</text>
+          </g>
+        </a>
+        <a href="entries/s3/Postgres/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s3" data-r="r1" data-num="8"
+             transform="translate(475.3 565.5)"
+             style="color: var(--s3-fill)"
+             data-name="Postgres"
+             data-desc="Primary OLTP"
+             data-ring="R1"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">8</text>
+          </g>
+        </a>
+        <a href="entries/s3/MongoDB/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s3" data-r="r3" data-num="9"
+             transform="translate(147.0 568.1)"
+             style="color: var(--s3-fill)"
+             data-name="MongoDB"
+             data-desc="Migrating away"
+             data-ring="R3"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">9</text>
+          </g>
+        </a>
+        <a href="entries/s4/Kubernetes/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s4" data-r="r1" data-num="10"
+             transform="translate(543.9 417.2)"
+             style="color: var(--s4-fill)"
+             data-name="Kubernetes"
+             data-desc="Container orchestration"
+             data-ring="R1"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">10</text>
+          </g>
+        </a>
+        <a href="entries/s4/ArgoCD/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s4" data-r="r2" data-num="11"
+             transform="translate(363.6 375.8)"
+             style="color: var(--s4-fill)"
+             data-name="ArgoCD"
+             data-desc="GitOps CD"
+             data-ring="R2"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">11</text>
+          </g>
+        </a>
+        <a href="entries/s5/Trunk-based/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s5" data-r="r1" data-num="12"
+             transform="translate(585.0 542.8)"
+             style="color: var(--s5-fill)"
+             data-name="Trunk-based"
+             data-desc="Short branches"
+             data-ring="R1"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">12</text>
+          </g>
+        </a>
+        <a href="entries/s5/Long%20branches/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s5" data-r="r3" data-num="13"
+             transform="translate(738.6 196.0)"
+             style="color: var(--s5-fill)"
+             data-name="Long branches"
+             data-desc="Anti-pattern"
+             data-ring="R3"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">13</text>
+          </g>
+        </a></g>
+</svg></div>
+    
+    <div class="legend-col">
+      <aside class="legend">
+      <section class="legend-quad" data-s="s1" style="--sector-accent: var(--s1-accent)">
+        <h3>Languages</h3>
+        
+        <div class="legend-ring legend-ring--r1">
+          <h4>USE</h4>
+          <ul><li><span class="li-num">1</span><span class="li-name">Go</span></li><li><span class="li-num">2</span><span class="li-name">TypeScript</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r2">
+          <h4>TRY</h4>
+          <ul><li><span class="li-num">3</span><span class="li-name">Rust</span></li></ul>
+        </div>
+      </section>
+      <section class="legend-quad" data-s="s2" style="--sector-accent: var(--s2-accent)">
+        <h3>Frameworks</h3>
+        
+        <div class="legend-ring legend-ring--r1">
+          <h4>USE</h4>
+          <ul><li><span class="li-num">4</span><span class="li-name">Spring Boot</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r2">
+          <h4>TRY</h4>
+          <ul><li><span class="li-num">5</span><span class="li-name">NestJS</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r3">
+          <h4>STOP</h4>
+          <ul><li><span class="li-num">6</span><span class="li-name">Express</span></li></ul>
+        </div>
+      </section>
+      <section class="legend-quad" data-s="s3" style="--sector-accent: var(--s3-accent)">
+        <h3>Storage</h3>
+        
+        <div class="legend-ring legend-ring--r1">
+          <h4>USE</h4>
+          <ul><li><span class="li-num">7</span><span class="li-name">Kafka</span></li><li><span class="li-num">8</span><span class="li-name">Postgres</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r3">
+          <h4>STOP</h4>
+          <ul><li><span class="li-num">9</span><span class="li-name">MongoDB</span></li></ul>
+        </div>
+      </section>
+      <section class="legend-quad" data-s="s4" style="--sector-accent: var(--s4-accent)">
+        <h3>Infra</h3>
+        
+        <div class="legend-ring legend-ring--r1">
+          <h4>USE</h4>
+          <ul><li><span class="li-num">10</span><span class="li-name">Kubernetes</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r2">
+          <h4>TRY</h4>
+          <ul><li><span class="li-num">11</span><span class="li-name">ArgoCD</span></li></ul>
+        </div>
+      </section>
+      <section class="legend-quad" data-s="s5" style="--sector-accent: var(--s5-accent)">
+        <h3>Process</h3>
+        
+        <div class="legend-ring legend-ring--r1">
+          <h4>USE</h4>
+          <ul><li><span class="li-num">12</span><span class="li-name">Trunk-based</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r3">
+          <h4>STOP</h4>
+          <ul><li><span class="li-num">13</span><span class="li-name">Long branches</span></li></ul>
+        </div>
+      </section></aside><div class="legend-footer"><a class="legend-about" href="../../about/" aria-label="About this radar">?</a><span class="legend-credit">QIWI <span class="heart">❤</span> <a href="https://github.com/qiwi/tech-radar" target="_blank" rel="noopener">Open Source</a></span></div>
+    </div>
+  </main>
+  <div class="hover-card" id="hoverCard" role="status" aria-live="polite">
+    <div class="hc-head">
+      <span class="hc-num"></span>
+      <h4 class="hc-name"></h4>
+    </div>
+    <div class="hc-meta">
+      <span class="hc-ring"></span>
+      <span class="hc-move"></span>
+    </div>
+    <p class="hc-desc"></p>
+  </div>
+  
+  <script src="../../aurora.js" defer></script>
+</body>
+</html>

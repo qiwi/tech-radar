@@ -34,21 +34,9 @@
   --shadow-lg: 0 24px 60px -16px rgba(0, 0, 0, 0.6);
   --radius: 12px;
 
-  /* Per-quadrant accents (color chroma) — used for strokes, text, blip outline. */
-  --q1-accent: hsl(165 65% 60%);
-  --q2-accent: hsl(280 60% 68%);
-  --q3-accent: hsl(38 75% 60%);
-  --q4-accent: hsl(200 70% 62%);
-
-  /* Sector gradient stops — alpha baked in, tuned for dark canvas. */
-  --q1-grad-0: hsla(165, 65%, 60%, 0.32);
-  --q1-grad-1: hsla(165, 65%, 60%, 0.02);
-  --q2-grad-0: hsla(280, 60%, 68%, 0.32);
-  --q2-grad-1: hsla(280, 60%, 68%, 0.02);
-  --q3-grad-0: hsla(38,  75%, 60%, 0.32);
-  --q3-grad-1: hsla(38,  75%, 60%, 0.02);
-  --q4-grad-0: hsla(200, 70%, 62%, 0.32);
-  --q4-grad-1: hsla(200, 70%, 62%, 0.02);
+  /* Per-sector accents (`--s{N}-accent`, `--s{N}-grad-0/1`, `--s{N}-blip`)
+     are emitted per radar in renderPalette() — depend on sector count and
+     hue distribution, can't live as a fixed set of named tokens here. */
 }
 
 [data-theme="light"] {
@@ -71,45 +59,19 @@
   --r-assess: hsl(38 70% 45%);
   --r-hold:   hsl(2 70% 48%);
   --shadow-lg: 0 12px 40px -10px rgba(20, 25, 40, 0.18);
-
-  /* Strokes/text stay darker for contrast on white. */
-  --q1-accent: hsl(165 60% 36%);
-  --q2-accent: hsl(280 50% 48%);
-  --q3-accent: hsl(38  75% 42%);
-  --q4-accent: hsl(200 65% 40%);
-
-  /* Gradient stops are a DIFFERENT colour — pastel wash, not dark ink. The
-     hue matches the accent, but lightness is bumped way up and the alpha
-     compensates so the sectors read as tinted paper instead of stains. */
-  --q1-grad-0: hsla(165, 75%, 70%, 0.55);
-  --q1-grad-1: hsla(165, 75%, 80%, 0.02);
-  --q2-grad-0: hsla(280, 65%, 80%, 0.55);
-  --q2-grad-1: hsla(280, 65%, 88%, 0.02);
-  --q3-grad-0: hsla(38,  90%, 70%, 0.55);
-  --q3-grad-1: hsla(38,  90%, 85%, 0.02);
-  --q4-grad-0: hsla(200, 80%, 75%, 0.55);
-  --q4-grad-1: hsla(200, 80%, 88%, 0.02);
+  /* Per-sector accents/gradients/blips for the light theme are emitted in
+     renderPalette() per radar (sector-count-dependent). */
 }
 
-/* Monochrome — collapse all semantic accents (and gradient stops) to neutral. */
+/* Monochrome — collapse all semantic accents to neutral. Per-sector
+   token overrides live in renderPalette() so they cover whatever count
+   the current radar declares. */
 [data-chroma="mono"] {
   --accent: var(--fg-soft);
   --r-adopt:  var(--fg-soft);
   --r-trial:  var(--fg-soft);
   --r-assess: var(--fg-soft);
   --r-hold:   var(--fg-soft);
-  --q1-accent: var(--fg-soft);
-  --q2-accent: var(--fg-soft);
-  --q3-accent: var(--fg-soft);
-  --q4-accent: var(--fg-soft);
-  --q1-grad-0: hsla(220, 10%, 50%, 0.1);
-  --q1-grad-1: hsla(220, 10%, 50%, 0.02);
-  --q2-grad-0: hsla(220, 10%, 50%, 0.1);
-  --q2-grad-1: hsla(220, 10%, 50%, 0.02);
-  --q3-grad-0: hsla(220, 10%, 50%, 0.1);
-  --q3-grad-1: hsla(220, 10%, 50%, 0.02);
-  --q4-grad-0: hsla(220, 10%, 50%, 0.1);
-  --q4-grad-1: hsla(220, 10%, 50%, 0.02);
 }
 
 * { box-sizing: border-box; }
@@ -348,24 +310,10 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
 }
 [data-chroma="mono"] .quad-label { fill-opacity: .55; }
 .blip-link { cursor: pointer; outline: none; }
-/* Color = quadrant (matches the sector hue). Brightness = ring — adopt
-   glows brightly, hold fades to a quiet outline. The decay is the visual
-   metaphor for "alive / on its way out". */
-.blip[data-q="q1"] { color: var(--q1-accent); }
-.blip[data-q="q2"] { color: var(--q2-accent); }
-.blip[data-q="q3"] { color: var(--q3-accent); }
-.blip[data-q="q4"] { color: var(--q4-accent); }
-
-/* Center glows, periphery fades to a ghostly silhouette: both opacity
-   and saturation drop as you move outward, so hold-ring entries feel
-   like they're already leaving the stage. */
-.blip[data-r="adopt"]  { opacity: 1;    filter: saturate(1.15); }
-.blip[data-r="trial"]  { opacity: 0.78; filter: saturate(0.8); }
-.blip[data-r="assess"] { opacity: 0.5;  filter: saturate(0.5); }
-.blip[data-r="hold"]   { opacity: 0.32; filter: saturate(0.25); }
-
-/* Hover / active brings any blip back to full intensity so the user can
-   inspect even the most faded hold-ring entries. */
+/* Sector hue arrives via an inline style="color: var(--s{N}-fill)" on
+   each blip — pages.js emits it because the sector ids are radar-specific.
+   Ring brightness ramp (.blip[data-r=...] opacity) is emitted alongside,
+   in renderPalette(). Hover/active restores full intensity here. */
 .blip.is-active,
 .blip-link:hover .blip,
 .blip-link:focus-visible .blip {
@@ -400,20 +348,8 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
 /* ── Light + colour: solid-filled blips, no sector wash ─────────────
    On the dark canvas a coloured wash + outlined blip read well together
    (signal-on-fog). On white we drop the wash entirely and let the blip
-   colour carry. Key fixes against "dirty colour":
-     • dedicated vivid --qN-blip tokens (--qN-accent stays darker for
-       strokes/text on white — different jobs);
-     • no stroke (dark stroke muddies the hue);
-     • no saturate() filter on blip (it pushes solid fills toward grey);
-     • softer opacity ramp so hold-ring blips fade but don't go ghost. */
-[data-theme="light"][data-chroma="color"] {
-  /* Brighter, cooler palette — lifted lightness, higher saturation. The
-     hue shifts a touch: q1 → mint, q4 → cerulean, q3 → tangerine. */
-  --q1-blip: hsl(168 72% 46%);
-  --q2-blip: hsl(275 68% 64%);
-  --q3-blip: hsl(34  96% 56%);
-  --q4-blip: hsl(198 82% 54%);
-}
+   colour carry. Per-sector --sN-fill tokens are emitted in
+   renderPalette(); rules below are sector-count-agnostic. */
 [data-theme="light"][data-chroma="color"] .sector { fill: transparent; }
 [data-theme="light"][data-chroma="color"] .ring-line {
   stroke: color-mix(in srgb, var(--fg) 14%, transparent);
@@ -421,15 +357,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
 [data-theme="light"][data-chroma="color"] .axis {
   stroke: color-mix(in srgb, var(--fg) 10%, transparent);
 }
-[data-theme="light"][data-chroma="color"] .blip[data-q="q1"] { color: var(--q1-blip); }
-[data-theme="light"][data-chroma="color"] .blip[data-q="q2"] { color: var(--q2-blip); }
-[data-theme="light"][data-chroma="color"] .blip[data-q="q3"] { color: var(--q3-blip); }
-[data-theme="light"][data-chroma="color"] .blip[data-q="q4"] { color: var(--q4-blip); }
 [data-theme="light"][data-chroma="color"] .blip { filter: none; }
-[data-theme="light"][data-chroma="color"] .blip[data-r="adopt"]  { opacity: 1;    }
-[data-theme="light"][data-chroma="color"] .blip[data-r="trial"]  { opacity: 0.92; }
-[data-theme="light"][data-chroma="color"] .blip[data-r="assess"] { opacity: 0.78; }
-[data-theme="light"][data-chroma="color"] .blip[data-r="hold"]   { opacity: 0.55; }
 [data-theme="light"][data-chroma="color"] .blip.is-active,
 [data-theme="light"][data-chroma="color"] .blip-link:hover .blip,
 [data-theme="light"][data-chroma="color"] .blip-link:focus-visible .blip {
@@ -479,10 +407,9 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
   color: var(--fg);
   margin-bottom: 10px;
 }
-.legend-quad[data-q="q1"] h3 { color: var(--q1-accent); }
-.legend-quad[data-q="q2"] h3 { color: var(--q2-accent); }
-.legend-quad[data-q="q3"] h3 { color: var(--q3-accent); }
-.legend-quad[data-q="q4"] h3 { color: var(--q4-accent); }
+/* Sector accent comes from the inline `--sector-accent` custom property
+   pages.js sets on each <section data-s="sN"> — works for any sector count. */
+.legend-quad h3 { color: var(--sector-accent, var(--fg)); }
 .legend-ring h4 {
   font-size: 11px; letter-spacing: .15em; text-transform: uppercase;
   color: var(--fg-mute); margin: 12px 0 6px;

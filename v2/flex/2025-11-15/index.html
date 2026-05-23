@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <style>html,body{background:#07080d;color:#e6e9f0;margin:0}html[data-theme="light"],html[data-theme="light"] body{background:#f6f7fa;color:#11151c}</style>
+  <script>try{var p=JSON.parse(localStorage.getItem('aurora-prefs')||'{}');var h=document.documentElement;h.dataset.theme=p.theme||'dark';h.dataset.chroma=p.chroma||'color';}catch(e){}</script>
+  <title>Flex demo 3×7 — fine-grained adoption ladder — 2025-11-15</title>
+  <link rel="stylesheet" href="../../aurora.css">
+  <style id="radar-palette">
+[data-theme="dark"] {
+  --s1-accent: hsl(200 65% 60%);
+  --s2-accent: hsl(320 65% 60%);
+  --s3-accent: hsl(80 65% 60%);
+  --s1-fill: hsl(200 65% 60%);
+  --s2-fill: hsl(320 65% 60%);
+  --s3-fill: hsl(80 65% 60%);
+  --s1-grad-0: hsla(200, 65%, 60%, 0.32);
+  --s1-grad-1: hsla(200, 65%, 60%, 0.02);
+  --s2-grad-0: hsla(320, 65%, 60%, 0.32);
+  --s2-grad-1: hsla(320, 65%, 60%, 0.02);
+  --s3-grad-0: hsla(80, 65%, 60%, 0.32);
+  --s3-grad-1: hsla(80, 65%, 60%, 0.02);
+}
+[data-theme="light"] {
+  --s1-accent: hsl(200 60% 36%);
+  --s2-accent: hsl(320 60% 36%);
+  --s3-accent: hsl(80 60% 36%);
+  --s1-fill: hsl(200 60% 36%);
+  --s2-fill: hsl(320 60% 36%);
+  --s3-fill: hsl(80 60% 36%);
+  --s1-grad-0: hsla(200, 75%, 78%, 0.40);
+  --s1-grad-1: hsla(200, 75%, 78%, 0.02);
+  --s2-grad-0: hsla(320, 75%, 78%, 0.40);
+  --s2-grad-1: hsla(320, 75%, 78%, 0.02);
+  --s3-grad-0: hsla(80, 75%, 78%, 0.40);
+  --s3-grad-1: hsla(80, 75%, 78%, 0.02);
+}
+[data-theme="light"][data-chroma="color"] {
+  --s1-fill: hsl(200 70% 48%);
+  --s2-fill: hsl(320 70% 48%);
+  --s3-fill: hsl(80 70% 48%);
+}
+[data-chroma="mono"] {
+  --s1-accent: var(--fg-soft);
+  --s1-fill: var(--fg-soft);
+  --s1-grad-0: hsla(220, 10%, 50%, 0.10);
+  --s1-grad-1: hsla(220, 10%, 50%, 0.02);
+  --s2-accent: var(--fg-soft);
+  --s2-fill: var(--fg-soft);
+  --s2-grad-0: hsla(220, 10%, 50%, 0.10);
+  --s2-grad-1: hsla(220, 10%, 50%, 0.02);
+  --s3-accent: var(--fg-soft);
+  --s3-fill: var(--fg-soft);
+  --s3-grad-0: hsla(220, 10%, 50%, 0.10);
+  --s3-grad-1: hsla(220, 10%, 50%, 0.02);
+}
+.blip[data-r="r1"] { opacity: 1.00; }
+.blip[data-r="r2"] { opacity: 0.93; }
+.blip[data-r="r3"] { opacity: 0.85; }
+.blip[data-r="r4"] { opacity: 0.78; }
+.blip[data-r="r5"] { opacity: 0.70; }
+.blip[data-r="r6"] { opacity: 0.63; }
+.blip[data-r="r7"] { opacity: 0.55; }
+.sector[data-r="r1"] { fill-opacity: 0.95; }
+.sector[data-r="r2"] { fill-opacity: 0.87; }
+.sector[data-r="r3"] { fill-opacity: 0.78; }
+.sector[data-r="r4"] { fill-opacity: 0.70; }
+.sector[data-r="r5"] { fill-opacity: 0.62; }
+.sector[data-r="r6"] { fill-opacity: 0.53; }
+.sector[data-r="r7"] { fill-opacity: 0.45; }
+</style>
+  <link rel="icon" href="../../favicon.ico">
+</head>
+<body class="page-radar">
+  <header class="topbar">
+    <a class="brand" href="../../">
+      <span class="brand-mark">📡</span>
+      <span class="brand-text">Tech radar</span>
+    </a>
+    <nav class="scope-tabs" aria-label="Scope"><a class="tab" href="../../android/2022-01-12/">android</a><a class="tab" href="../../backend/2023-10-13/">backend</a><a class="tab tab--current" href="#">flex</a><a class="tab" href="../../ios/2021-06-21/">ios</a><a class="tab" href="../../isec/2022-07-24/">isec</a><a class="tab" href="../../js/2023-10-23/">js</a><a class="tab" href="../../ops/2022-07-01/">ops</a><a class="tab" href="../../qa/2023-07-12/">qa</a></nav>
+    <div class="topbar-meta">
+      <span class="meta-date" id="metaDate" data-default="2025-11-15">2025-11-15</span>
+      <button class="toggle toggle--mode" data-toggle="mode" type="button" aria-label="Cycle theme &amp; colour mode"></button>
+    </div>
+  </header>
+  
+    <nav class="timeline" aria-label="Snapshot timeline">
+      <div class="tl-items">
+        <a class="tl-dot" href="../2025-09-01/" style="--p:0.3329"
+           data-date="2025-09-01" aria-label="2025-09-01">
+          <span class="tl-marker"></span>
+        </a>
+        <a class="tl-dot tl-dot--current" href="../2025-11-15/" style="--p:0.4356"
+           data-date="2025-11-15" aria-label="2025-11-15">
+          <span class="tl-marker"></span>
+        </a>
+        <a class="tl-dot" href="../2026-02-01/" style="--p:0.5425"
+           data-date="2026-02-01" aria-label="2026-02-01">
+          <span class="tl-marker"></span>
+        </a>
+        <a class="tl-dot" href="../2026-05-12/" style="--p:0.6795"
+           data-date="2026-05-12" aria-label="2026-05-12">
+          <span class="tl-marker"></span>
+        </a>
+        <a class="tl-dot" href="../2026-08-01/" style="--p:0.7904"
+           data-date="2026-08-01" aria-label="2026-08-01">
+          <span class="tl-marker"></span>
+        </a>
+        <a class="tl-dot" href="../2026-10-01/" style="--p:0.8740"
+           data-date="2026-10-01" aria-label="2026-10-01">
+          <span class="tl-marker"></span>
+        </a><span class="tl-year-tick" style="--p:0.0000">2025</span><span class="tl-year-tick" style="--p:0.5000">2026</span></div>
+    </nav>
+  <main class="radar-shell">
+    <div class="radar-stage">
+<svg viewBox="0 0 1100 1100" xmlns="http://www.w3.org/2000/svg" class="radar-svg" role="img" aria-label="Tech radar">
+  <defs>
+      <radialGradient id="grad-s1" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"   style="stop-color: var(--s1-grad-0)"/>
+        <stop offset="100%" style="stop-color: var(--s1-grad-1)"/>
+      </radialGradient>
+      <radialGradient id="grad-s2" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"   style="stop-color: var(--s2-grad-0)"/>
+        <stop offset="100%" style="stop-color: var(--s2-grad-1)"/>
+      </radialGradient>
+      <radialGradient id="grad-s3" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"   style="stop-color: var(--s3-grad-0)"/>
+        <stop offset="100%" style="stop-color: var(--s3-grad-1)"/>
+      </radialGradient></defs>
+  <g class="radar-sectors"><path d="M 550 550 L 621 550 A 71 71 0 0 1 514.5 611.4878036686952 Z" fill="url(#grad-s1)"
+              class="sector" data-s="s1" data-r="r1"/><path d="M 693 550 A 143 143 0 0 1 478.5 673.8416327411747 L 514.5 611.4878036686952 A 71 71 0 0 0 621 550 Z" fill="url(#grad-s1)"
+              class="sector" data-s="s1" data-r="r2"/><path d="M 764 550 A 214 214 0 0 1 443.00000000000006 735.3294364098699 L 478.5 673.8416327411747 A 143 143 0 0 0 693 550 Z" fill="url(#grad-s1)"
+              class="sector" data-s="s1" data-r="r3"/><path d="M 836 550 A 286 286 0 0 1 407.00000000000006 797.6832654823495 L 443.00000000000006 735.3294364098699 A 214 214 0 0 0 764 550 Z" fill="url(#grad-s1)"
+              class="sector" data-s="s1" data-r="r4"/><path d="M 907 550 A 357 357 0 0 1 371.5000000000001 859.1710691510445 L 407.00000000000006 797.6832654823495 A 286 286 0 0 0 836 550 Z" fill="url(#grad-s1)"
+              class="sector" data-s="s1" data-r="r5"/><path d="M 979 550 A 429 429 0 0 1 335.5000000000001 921.5248982235241 L 371.5000000000001 859.1710691510445 A 357 357 0 0 0 907 550 Z" fill="url(#grad-s1)"
+              class="sector" data-s="s1" data-r="r6"/><path d="M 1050 550 A 500 500 0 0 1 300.0000000000001 983.0127018922194 L 335.5000000000001 921.5248982235241 A 429 429 0 0 0 979 550 Z" fill="url(#grad-s1)"
+              class="sector" data-s="s1" data-r="r7"/><path d="M 550 550 L 514.5 611.4878036686952 A 71 71 0 0 1 514.5 488.5121963313049 Z" fill="url(#grad-s2)"
+              class="sector" data-s="s2" data-r="r1"/><path d="M 478.5 673.8416327411747 A 143 143 0 0 1 478.49999999999994 426.1583672588253 L 514.5 488.5121963313049 A 71 71 0 0 0 514.5 611.4878036686952 Z" fill="url(#grad-s2)"
+              class="sector" data-s="s2" data-r="r2"/><path d="M 443.00000000000006 735.3294364098699 A 214 214 0 0 1 442.9999999999999 364.6705635901302 L 478.49999999999994 426.1583672588253 A 143 143 0 0 0 478.5 673.8416327411747 Z" fill="url(#grad-s2)"
+              class="sector" data-s="s2" data-r="r3"/><path d="M 407.00000000000006 797.6832654823495 A 286 286 0 0 1 406.9999999999999 302.3167345176506 L 442.9999999999999 364.6705635901302 A 214 214 0 0 0 443.00000000000006 735.3294364098699 Z" fill="url(#grad-s2)"
+              class="sector" data-s="s2" data-r="r4"/><path d="M 371.5000000000001 859.1710691510445 A 357 357 0 0 1 371.49999999999983 240.82893084895545 L 406.9999999999999 302.3167345176506 A 286 286 0 0 0 407.00000000000006 797.6832654823495 Z" fill="url(#grad-s2)"
+              class="sector" data-s="s2" data-r="r5"/><path d="M 335.5000000000001 921.5248982235241 A 429 429 0 0 1 335.4999999999998 178.47510177647587 L 371.49999999999983 240.82893084895545 A 357 357 0 0 0 371.5000000000001 859.1710691510445 Z" fill="url(#grad-s2)"
+              class="sector" data-s="s2" data-r="r6"/><path d="M 300.0000000000001 983.0127018922194 A 500 500 0 0 1 299.9999999999998 116.98729810778076 L 335.4999999999998 178.47510177647587 A 429 429 0 0 0 335.5000000000001 921.5248982235241 Z" fill="url(#grad-s2)"
+              class="sector" data-s="s2" data-r="r7"/><path d="M 550 550 L 514.5 488.5121963313049 A 71 71 0 0 1 621 550 Z" fill="url(#grad-s3)"
+              class="sector" data-s="s3" data-r="r1"/><path d="M 478.49999999999994 426.1583672588253 A 143 143 0 0 1 693 550 L 621 550 A 71 71 0 0 0 514.5 488.5121963313049 Z" fill="url(#grad-s3)"
+              class="sector" data-s="s3" data-r="r2"/><path d="M 442.9999999999999 364.6705635901302 A 214 214 0 0 1 764 550 L 693 550 A 143 143 0 0 0 478.49999999999994 426.1583672588253 Z" fill="url(#grad-s3)"
+              class="sector" data-s="s3" data-r="r3"/><path d="M 406.9999999999999 302.3167345176506 A 286 286 0 0 1 836 549.9999999999999 L 764 550 A 214 214 0 0 0 442.9999999999999 364.6705635901302 Z" fill="url(#grad-s3)"
+              class="sector" data-s="s3" data-r="r4"/><path d="M 371.49999999999983 240.82893084895545 A 357 357 0 0 1 907 549.9999999999999 L 836 549.9999999999999 A 286 286 0 0 0 406.9999999999999 302.3167345176506 Z" fill="url(#grad-s3)"
+              class="sector" data-s="s3" data-r="r5"/><path d="M 335.4999999999998 178.47510177647587 A 429 429 0 0 1 979 549.9999999999999 L 907 549.9999999999999 A 357 357 0 0 0 371.49999999999983 240.82893084895545 Z" fill="url(#grad-s3)"
+              class="sector" data-s="s3" data-r="r6"/><path d="M 299.9999999999998 116.98729810778076 A 500 500 0 0 1 1050 549.9999999999999 L 979 549.9999999999999 A 429 429 0 0 0 335.4999999999998 178.47510177647587 Z" fill="url(#grad-s3)"
+              class="sector" data-s="s3" data-r="r7"/></g>
+  <g class="radar-rings"><circle cx="550" cy="550" r="71" class="ring-line"/><circle cx="550" cy="550" r="143" class="ring-line"/><circle cx="550" cy="550" r="214" class="ring-line"/><circle cx="550" cy="550" r="286" class="ring-line"/><circle cx="550" cy="550" r="357" class="ring-line"/><circle cx="550" cy="550" r="429" class="ring-line"/><circle cx="550" cy="550" r="500" class="ring-line"/><line x1="550" y1="550" x2="1050.0" y2="550.0" class="axis"/><line x1="550" y1="550" x2="300.0" y2="983.0" class="axis"/><line x1="550" y1="550" x2="300.0" y2="117.0" class="axis"/></g>
+  <g class="radar-labels">
+      <defs><path id="arc-ring-r1" d="M 511.0686525915141 519.105984576948 A 49.699999999999996 49.699999999999996 0 0 1 588.9313474084859 519.105984576948"/></defs>
+      <text class="ring-label" data-r="r1" style="font-size: 11px; letter-spacing: 0.08em">
+        <textPath href="#arc-ring-r1" startOffset="50%" text-anchor="middle">STANDARD</textPath>
+      </text>
+      <defs><path id="arc-ring-r2" d="M 483.81489915255634 448.2282336509103 A 121.4 121.4 0 0 1 616.1851008474437 448.2282336509103"/></defs>
+      <text class="ring-label" data-r="r2" style="font-size: 13px; letter-spacing: 0.08em">
+        <textPath href="#arc-ring-r2" startOffset="50%" text-anchor="middle">RECOMMENDED</textPath>
+      </text>
+      <defs><path id="arc-ring-r3" d="M 481.529373568725 369.87486761667935 A 192.7 192.7 0 0 1 618.470626431275 369.87486761667935"/></defs>
+      <text class="ring-label" data-r="r3" style="font-size: 18px; letter-spacing: 0.25em">
+        <textPath href="#arc-ring-r3" startOffset="50%" text-anchor="middle">ADOPT</textPath>
+      </text>
+      <defs><path id="arc-ring-r4" d="M 480.814887763145 294.8122647054256 A 264.4 264.4 0 0 1 619.185112236855 294.8122647054256"/></defs>
+      <text class="ring-label" data-r="r4" style="font-size: 18px; letter-spacing: 0.25em">
+        <textPath href="#arc-ring-r4" startOffset="50%" text-anchor="middle">TRIAL</textPath>
+      </text>
+      <defs><path id="arc-ring-r5" d="M 480.50616950138806 221.57177721360455 A 335.7 335.7 0 0 1 619.493830498612 221.5717772136046"/></defs>
+      <text class="ring-label" data-r="r5" style="font-size: 18px; letter-spacing: 0.25em">
+        <textPath href="#arc-ring-r5" startOffset="50%" text-anchor="middle">ASSESS</textPath>
+      </text>
+      <defs><path id="arc-ring-r6" d="M 477.0633517863193 149.18207955811937 A 407.4 407.4 0 0 1 622.9366482136808 149.18207955811937"/></defs>
+      <text class="ring-label" data-r="r6" style="font-size: 18px; letter-spacing: 0.25em">
+        <textPath href="#arc-ring-r6" startOffset="50%" text-anchor="middle">SUNSET</textPath>
+      </text>
+      <defs><path id="arc-ring-r7" d="M 464.298543201058 79.03402426232628 A 478.7 478.7 0 0 1 635.701456798942 79.03402426232628"/></defs>
+      <text class="ring-label" data-r="r7" style="font-size: 18px; letter-spacing: 0.25em">
+        <textPath href="#arc-ring-r7" startOffset="50%" text-anchor="middle">FORBIDDEN</textPath>
+      </text><text class="quad-label" x="814.0" y="1007.3"
+        text-anchor="end" dominant-baseline="auto"
+        fill="var(--s1-accent)">Backend</text><text class="quad-label" x="22.0" y="550.0"
+        text-anchor="start" dominant-baseline="middle"
+        fill="var(--s2-accent)">Frontend</text><text class="quad-label" x="814.0" y="92.7"
+        text-anchor="end" dominant-baseline="hanging"
+        fill="var(--s3-accent)">Data</text></g>
+  <g class="radar-blips">
+        <a href="entries/s1/Go/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s1" data-r="r1" data-num="1"
+             transform="translate(545.2 576.5)"
+             style="color: var(--s1-fill)"
+             data-name="Go"
+             data-desc="Workhorse"
+             data-ring="R1"
+             data-moved="1">
+            <path class="blip-fg" d="M 0 -14 L 13.3 8.7 L -13.3 8.7 Z"/>
+            <text class="blip-num" text-anchor="middle" dy="6">1</text>
+          </g>
+        </a>
+        <a href="entries/s1/Java/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s1" data-r="r2" data-num="2"
+             transform="translate(604.8 631.6)"
+             style="color: var(--s1-fill)"
+             data-name="Java"
+             data-desc="LTS only"
+             data-ring="R2"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">2</text>
+          </g>
+        </a>
+        <a href="entries/s1/Kotlin/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s1" data-r="r3" data-num="3"
+             transform="translate(470.3 716.9)"
+             style="color: var(--s1-fill)"
+             data-name="Kotlin"
+             data-desc="JVM"
+             data-ring="R3"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">3</text>
+          </g>
+        </a>
+        <a href="entries/s1/Rust/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s1" data-r="r4" data-num="4"
+             transform="translate(780.4 574.6)"
+             style="color: var(--s1-fill)"
+             data-name="Rust"
+             data-desc="Perf-sensitive code"
+             data-ring="R4"
+             data-moved="1">
+            <path class="blip-fg" d="M 0 -14 L 13.3 8.7 L -13.3 8.7 Z"/>
+            <text class="blip-num" text-anchor="middle" dy="6">4</text>
+          </g>
+        </a>
+        <a href="entries/s1/Zig/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s1" data-r="r5" data-num="5"
+             transform="translate(851.1 669.1)"
+             style="color: var(--s1-fill)"
+             data-name="Zig"
+             data-desc="Watch-list"
+             data-ring="R5"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">5</text>
+          </g>
+        </a>
+        <a href="entries/s1/Scala/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s1" data-r="r6" data-num="6"
+             transform="translate(960.2 605.2)"
+             style="color: var(--s1-fill)"
+             data-name="Scala"
+             data-desc="Legacy"
+             data-ring="R6"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">6</text>
+          </g>
+        </a>
+        <a href="entries/s1/PHP/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s1" data-r="r7" data-num="7"
+             transform="translate(971.2 770.0)"
+             style="color: var(--s1-fill)"
+             data-name="PHP"
+             data-desc="Banned"
+             data-ring="R7"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">7</text>
+          </g>
+        </a>
+        <a href="entries/s2/React/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s2" data-r="r1" data-num="8"
+             transform="translate(494.7 543.5)"
+             style="color: var(--s2-fill)"
+             data-name="React"
+             data-desc="Default UI lib"
+             data-ring="R1"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">8</text>
+          </g>
+        </a>
+        <a href="entries/s2/TypeScript/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s2" data-r="r2" data-num="9"
+             transform="translate(437.0 558.2)"
+             style="color: var(--s2-fill)"
+             data-name="TypeScript"
+             data-desc="Always-on types"
+             data-ring="R2"
+             data-moved="1">
+            <path class="blip-fg" d="M 0 -14 L 13.3 8.7 L -13.3 8.7 Z"/>
+            <text class="blip-num" text-anchor="middle" dy="6">9</text>
+          </g>
+        </a>
+        <a href="entries/s2/Vite/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s2" data-r="r3" data-num="10"
+             transform="translate(388.8 532.8)"
+             style="color: var(--s2-fill)"
+             data-name="Vite"
+             data-desc="Bundler"
+             data-ring="R3"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">10</text>
+          </g>
+        </a>
+        <a href="entries/s2/Solid/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s2" data-r="r4" data-num="11"
+             transform="translate(313.4 419.5)"
+             style="color: var(--s2-fill)"
+             data-name="Solid"
+             data-desc="Lightweight alt"
+             data-ring="R4"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">11</text>
+          </g>
+        </a>
+        <a href="entries/s2/Astro/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s2" data-r="r5" data-num="12"
+             transform="translate(238.0 509.5)"
+             style="color: var(--s2-fill)"
+             data-name="Astro"
+             data-desc="Content sites"
+             data-ring="R5"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">12</text>
+          </g>
+        </a>
+        <a href="entries/s2/Webpack/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s2" data-r="r6" data-num="13"
+             transform="translate(306.3 259.7)"
+             style="color: var(--s2-fill)"
+             data-name="Webpack"
+             data-desc="Replaced by Vite"
+             data-ring="R6"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">13</text>
+          </g>
+        </a>
+        <a href="entries/s2/jQuery/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s2" data-r="r7" data-num="14"
+             transform="translate(105.1 730.9)"
+             style="color: var(--s2-fill)"
+             data-name="jQuery"
+             data-desc="Banned"
+             data-ring="R7"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">14</text>
+          </g>
+        </a>
+        <a href="entries/s3/Postgres/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s3" data-r="r1" data-num="15"
+             transform="translate(556.1 514.0)"
+             style="color: var(--s3-fill)"
+             data-name="Postgres"
+             data-desc="OLTP"
+             data-ring="R1"
+             data-moved="1">
+            <path class="blip-fg" d="M 0 -14 L 13.3 8.7 L -13.3 8.7 Z"/>
+            <text class="blip-num" text-anchor="middle" dy="6">15</text>
+          </g>
+        </a>
+        <a href="entries/s3/Kafka/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s3" data-r="r2" data-num="16"
+             transform="translate(655.6 538.6)"
+             style="color: var(--s3-fill)"
+             data-name="Kafka"
+             data-desc="Events"
+             data-ring="R2"
+             data-moved="1">
+            <path class="blip-fg" d="M 0 -14 L 13.3 8.7 L -13.3 8.7 Z"/>
+            <text class="blip-num" text-anchor="middle" dy="6">16</text>
+          </g>
+        </a>
+        <a href="entries/s3/ClickHouse/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s3" data-r="r3" data-num="17"
+             transform="translate(615.4 387.2)"
+             style="color: var(--s3-fill)"
+             data-name="ClickHouse"
+             data-desc="Analytics"
+             data-ring="R3"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">17</text>
+          </g>
+        </a>
+        <a href="entries/s3/DuckDB/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s3" data-r="r4" data-num="18"
+             transform="translate(735.7 368.8)"
+             style="color: var(--s3-fill)"
+             data-name="DuckDB"
+             data-desc="Embedded analytics"
+             data-ring="R4"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">18</text>
+          </g>
+        </a>
+        <a href="entries/s3/LanceDB/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s3" data-r="r5" data-num="19"
+             transform="translate(548.8 215.7)"
+             style="color: var(--s3-fill)"
+             data-name="LanceDB"
+             data-desc="Vector DB"
+             data-ring="R5"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">19</text>
+          </g>
+        </a>
+        <a href="entries/s3/MongoDB/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s3" data-r="r6" data-num="20"
+             transform="translate(717.6 199.1)"
+             style="color: var(--s3-fill)"
+             data-name="MongoDB"
+             data-desc="Migrating off"
+             data-ring="R6"
+             data-moved="1">
+            <path class="blip-fg" d="M 0 -14 L 13.3 8.7 L -13.3 8.7 Z"/>
+            <text class="blip-num" text-anchor="middle" dy="6">20</text>
+          </g>
+        </a>
+        <a href="entries/s3/Cassandra/" class="blip-link" tabindex="0">
+          <g class="blip" data-s="s3" data-r="r7" data-num="21"
+             transform="translate(942.8 318.3)"
+             style="color: var(--s3-fill)"
+             data-name="Cassandra"
+             data-desc="Banned"
+             data-ring="R7"
+             data-moved="0">
+            <circle class="blip-fg" r="14"/>
+            <text class="blip-num" text-anchor="middle" dy="4">21</text>
+          </g>
+        </a></g>
+</svg></div>
+    
+    <div class="legend-col">
+      <aside class="legend">
+      <section class="legend-quad" data-s="s1" style="--sector-accent: var(--s1-accent)">
+        <h3>Backend</h3>
+        
+        <div class="legend-ring legend-ring--r1">
+          <h4>STANDARD</h4>
+          <ul><li><span class="li-num">1</span><span class="li-name">Go</span><span class="li-move li-move--up">▲</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r2">
+          <h4>RECOMMENDED</h4>
+          <ul><li><span class="li-num">2</span><span class="li-name">Java</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r3">
+          <h4>ADOPT</h4>
+          <ul><li><span class="li-num">3</span><span class="li-name">Kotlin</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r4">
+          <h4>TRIAL</h4>
+          <ul><li><span class="li-num">4</span><span class="li-name">Rust</span><span class="li-move li-move--up">▲</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r5">
+          <h4>ASSESS</h4>
+          <ul><li><span class="li-num">5</span><span class="li-name">Zig</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r6">
+          <h4>SUNSET</h4>
+          <ul><li><span class="li-num">6</span><span class="li-name">Scala</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r7">
+          <h4>FORBIDDEN</h4>
+          <ul><li><span class="li-num">7</span><span class="li-name">PHP</span></li></ul>
+        </div>
+      </section>
+      <section class="legend-quad" data-s="s2" style="--sector-accent: var(--s2-accent)">
+        <h3>Frontend</h3>
+        
+        <div class="legend-ring legend-ring--r1">
+          <h4>STANDARD</h4>
+          <ul><li><span class="li-num">8</span><span class="li-name">React</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r2">
+          <h4>RECOMMENDED</h4>
+          <ul><li><span class="li-num">9</span><span class="li-name">TypeScript</span><span class="li-move li-move--up">▲</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r3">
+          <h4>ADOPT</h4>
+          <ul><li><span class="li-num">10</span><span class="li-name">Vite</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r4">
+          <h4>TRIAL</h4>
+          <ul><li><span class="li-num">11</span><span class="li-name">Solid</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r5">
+          <h4>ASSESS</h4>
+          <ul><li><span class="li-num">12</span><span class="li-name">Astro</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r6">
+          <h4>SUNSET</h4>
+          <ul><li><span class="li-num">13</span><span class="li-name">Webpack</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r7">
+          <h4>FORBIDDEN</h4>
+          <ul><li><span class="li-num">14</span><span class="li-name">jQuery</span></li></ul>
+        </div>
+      </section>
+      <section class="legend-quad" data-s="s3" style="--sector-accent: var(--s3-accent)">
+        <h3>Data</h3>
+        
+        <div class="legend-ring legend-ring--r1">
+          <h4>STANDARD</h4>
+          <ul><li><span class="li-num">15</span><span class="li-name">Postgres</span><span class="li-move li-move--up">▲</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r2">
+          <h4>RECOMMENDED</h4>
+          <ul><li><span class="li-num">16</span><span class="li-name">Kafka</span><span class="li-move li-move--up">▲</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r3">
+          <h4>ADOPT</h4>
+          <ul><li><span class="li-num">17</span><span class="li-name">ClickHouse</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r4">
+          <h4>TRIAL</h4>
+          <ul><li><span class="li-num">18</span><span class="li-name">DuckDB</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r5">
+          <h4>ASSESS</h4>
+          <ul><li><span class="li-num">19</span><span class="li-name">LanceDB</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r6">
+          <h4>SUNSET</h4>
+          <ul><li><span class="li-num">20</span><span class="li-name">MongoDB</span><span class="li-move li-move--up">▲</span></li></ul>
+        </div>
+        <div class="legend-ring legend-ring--r7">
+          <h4>FORBIDDEN</h4>
+          <ul><li><span class="li-num">21</span><span class="li-name">Cassandra</span></li></ul>
+        </div>
+      </section></aside><div class="legend-footer"><a class="legend-about" href="../../about/" aria-label="About this radar">?</a><span class="legend-credit">QIWI <span class="heart">❤</span> <a href="https://github.com/qiwi/tech-radar" target="_blank" rel="noopener">Open Source</a></span></div>
+    </div>
+  </main>
+  <div class="hover-card" id="hoverCard" role="status" aria-live="polite">
+    <div class="hc-head">
+      <span class="hc-num"></span>
+      <h4 class="hc-name"></h4>
+    </div>
+    <div class="hc-meta">
+      <span class="hc-ring"></span>
+      <span class="hc-move"></span>
+    </div>
+    <p class="hc-desc"></p>
+  </div>
+  
+  <script src="../../aurora.js" defer></script>
+</body>
+</html>
