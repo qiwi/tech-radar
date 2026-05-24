@@ -1,3 +1,8 @@
+## [2.1.1](https://github.com/qiwi/tech-radar/compare/v2.1.0...v2.1.1) (2026-05-24)
+
+### Fixes & improvements
+* refactor(aurora): drop polarPt dup, extract `FOUC_STYLE` const ([f304540](https://github.com/qiwi/tech-radar/commit/f304540f61d5441edf63146375aecb20910b1332))
+
 ## [2.1.0](https://github.com/qiwi/tech-radar/compare/v2.0.0...v2.1.0) (2026-05-23)
 
 ### Features
