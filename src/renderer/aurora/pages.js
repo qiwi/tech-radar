@@ -4,6 +4,7 @@ import {
   SIZE,
   arcPath,
   layoutRadar,
+  polar,
   sectorPath,
 } from './geometry.js'
 
@@ -18,6 +19,11 @@ const escape = (s = '') =>
 /** Inline-runs before the stylesheet — applies saved theme/chroma to <html>
  *  so we don't flash the default palette on a fresh load. */
 const THEME_BOOT = `<script>try{var p=JSON.parse(localStorage.getItem('aurora-prefs')||'{}');var h=document.documentElement;h.dataset.theme=p.theme||'dark';h.dataset.chroma=p.chroma||'color';}catch(e){}</script>`
+
+/** Bare background + foreground colours per theme, applied inline before
+ *  aurora.css loads so the page doesn't flash with the browser default
+ *  white. Duplicated in every page template's <head>. */
+const FOUC_STYLE = `<style>html,body{background:#07080d;color:#e6e9f0;margin:0}html[data-theme="light"],html[data-theme="light"] body{background:#f6f7fa;color:#11151c}</style>`
 
 /** Path-safe entry slug: keep the original name (matches zalando backend),
  *  only strip path separators that would break the directory layout.
@@ -149,7 +155,7 @@ const renderSvg = (radar, entries, sectors, rings) => {
     .join('')
   const axes = sectors
     .map((s) => {
-      const p = polarPt(s.start, MAX_RADIUS)
+      const p = polar(s.start, MAX_RADIUS)
       return `<line x1="${CENTER}" y1="${CENTER}" x2="${p.x.toFixed(1)}" y2="${p.y.toFixed(1)}" class="axis"/>`
     })
     .join('')
@@ -200,7 +206,7 @@ const renderSvg = (radar, entries, sectors, rings) => {
   const sectorLabels = sectors
     .map((s) => {
       const mid = (s.start + s.end) / 2
-      const p = polarPt(mid, MAX_RADIUS + 28)
+      const p = polar(mid, MAX_RADIUS + 28)
       // Anchor/baseline lean the text BACK TOWARDS the centre so it stays
       // inside the viewBox. On the right edge (dx > 0) the END of the
       // text sits at x; on the bottom (dy > 0) the BASELINE sits at y so
@@ -259,12 +265,6 @@ const renderSvg = (radar, entries, sectors, rings) => {
   <g class="radar-blips">${blips}</g>
 </svg>`
 }
-
-// Inline `polar` so renderSvg doesn't need a context import — same math.
-const polarPt = (angle, radius) => ({
-  x: CENTER + Math.cos(angle) * radius,
-  y: CENTER + Math.sin(angle) * radius,
-})
 
 /** Timeline strip — range covers full calendar years that contain data
  *  (Jan 1 minYear → Jan 1 maxYear+1). Snapshot dots sit at their real
@@ -411,7 +411,7 @@ export const radarPage = ({
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark light">
-  <style>html,body{background:#07080d;color:#e6e9f0;margin:0}html[data-theme="light"],html[data-theme="light"] body{background:#f6f7fa;color:#11151c}</style>
+  ${FOUC_STYLE}
   ${THEME_BOOT}
   <title>${title}</title>
   <link rel="stylesheet" href="${basePath}aurora.css">
@@ -491,7 +491,7 @@ export const entryPage = ({
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark light">
-  <style>html,body{background:#07080d;color:#e6e9f0;margin:0}html[data-theme="light"],html[data-theme="light"] body{background:#f6f7fa;color:#11151c}</style>
+  ${FOUC_STYLE}
   ${THEME_BOOT}
   <title>${escape(entry.name)} — ${escape(scope)} ${escape(date)}</title>
   <link rel="stylesheet" href="${basePath}aurora.css">
@@ -534,7 +534,7 @@ export const aboutPage = ({ contentHtml, basePath, navTitle }) => `<!DOCTYPE htm
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark light">
-  <style>html,body{background:#07080d;color:#e6e9f0;margin:0}html[data-theme="light"],html[data-theme="light"] body{background:#f6f7fa;color:#11151c}</style>
+  ${FOUC_STYLE}
   ${THEME_BOOT}
   <title>${escape(navTitle || 'Tech radar')} — About</title>
   <link rel="stylesheet" href="${basePath}aurora.css">
