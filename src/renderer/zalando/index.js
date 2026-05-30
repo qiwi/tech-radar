@@ -37,8 +37,9 @@ export const genRadarSettings = ({
   const extra = {
     title,
     date,
-    target: path.join(scope, date),
-    prefix: path.join(basePrefix, scope, date),
+    // POSIX separators: `target` feeds the asset-depth counter in
+    // config.cjs (`split('/')`); path.join would emit backslashes on win32.
+    target: path.posix.join(scope, date),
     basePrefix,
     footer: navFooter,
   }

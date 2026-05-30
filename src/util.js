@@ -8,12 +8,20 @@ export const mkdirp = async (dir) => {
   return dir
 }
 
-export const getDirs = (files) =>
-  files.map((f) =>
-    f.slice(
-      [...files[0]].findIndex((c, i) => files.some((f) => f.charAt(i) !== c)),
-    ),
-  ).sort()
+// Strip the longest common character prefix shared by every path, then
+// sort. Callers map the result through path.dirname to derive each file's
+// scope. A single file collapses to '' (→ scope '.').
+export const getDirs = (files) => {
+  if (files.length === 0) return []
+  const ref = files[0]
+  let prefix = ref.length
+  for (const f of files) {
+    let i = 0
+    while (i < prefix && f[i] === ref[i]) i++
+    prefix = i
+  }
+  return files.map((f) => f.slice(prefix)).toSorted()
+}
 
 export const tempDir = async (base) =>
   base
