@@ -1,3 +1,8 @@
+## [2.1.3](https://github.com/qiwi/tech-radar/compare/v2.1.2...v2.1.3) (2026-05-30)
+
+### Fixes & improvements
+* fix(win32): posix-join asset target; harden getDirs & SPA fetch ([50917f6](https://github.com/qiwi/tech-radar/commit/50917f643c3f9a7cafc48313b9ce1cc791f4cfa3))
+
 ## [2.1.2](https://github.com/qiwi/tech-radar/compare/v2.1.1...v2.1.2) (2026-05-30)
 
 ### Fixes & improvements
