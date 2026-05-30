@@ -1,3 +1,8 @@
+## [2.1.2](https://github.com/qiwi/tech-radar/compare/v2.1.1...v2.1.2) (2026-05-30)
+
+### Fixes & improvements
+* fix(parser): clear errors + tolerant CSV + non-fatal per-file failures ([d8aa379](https://github.com/qiwi/tech-radar/commit/d8aa379af8813d8d4f0d9fbd732e6fa5a0185b3a))
+
 ## [2.1.1](https://github.com/qiwi/tech-radar/compare/v2.1.0...v2.1.1) (2026-05-24)
 
 ### Fixes & improvements
