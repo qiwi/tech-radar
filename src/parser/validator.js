@@ -65,7 +65,8 @@ const dataItem = {
     description: { type: ['string', 'null'] },
     moved: { type: ['string', 'integer', 'null'] },
   },
-  required: ['name', 'ring', 'description'],
+  // `description` is optional — renderer treats missing/null as ''.
+  required: ['name', 'ring'],
 }
 
 const meta = {
@@ -84,7 +85,7 @@ export const radarSchema4x4 = {
   properties: {
     data: {
       type: 'array',
-      items: { ...dataItem, required: ['name', 'quadrant', 'ring', 'description'] },
+      items: { ...dataItem, required: ['name', 'quadrant', 'ring'] },
     },
     meta,
     quadrantTitles: {
@@ -110,7 +111,7 @@ export const radarSchema4x4 = {
 }
 
 /**
- * Flex schema — 2–8 sectors, 2–6 rings, arbitrary ids/titles.
+ * Flex schema — 2–8 sectors, 2–8 rings, arbitrary ids/titles.
  * Aurora-only. Sectors expressed as `sN`; legacy `qN` is mapped to `sN`
  * at parse time. `rings` is an ORDERED list inner → outer.
  */
@@ -119,7 +120,7 @@ export const radarSchemaFlex = {
   properties: {
     data: {
       type: 'array',
-      items: { ...dataItem, required: ['name', 'sector', 'ring', 'description'] },
+      items: { ...dataItem, required: ['name', 'sector', 'ring'] },
     },
     meta,
     sectors: {

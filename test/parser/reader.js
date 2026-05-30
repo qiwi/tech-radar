@@ -24,7 +24,7 @@ describe('parser.js', () => {
     expect(getReader('.json')).toBe(parseJsonRadar)
     expect(getReader('.yml')).toBe(parseYamlRadar)
   })
-  it('invalid .csv', async () => {
-    expect(await parse('test/fixtures/invalid.csv')).toStrictEqual({})
+  it('invalid .csv throws — caller decides whether to skip or abort', async () => {
+    await expect(parse('test/fixtures/invalid.csv')).rejects.toThrow()
   })
 })

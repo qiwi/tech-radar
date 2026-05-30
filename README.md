@@ -388,7 +388,7 @@ sector, alias
 s1,     backend-platform
 ```
 
-**Declare rings** with `ring,title` rows (id is `r1..r6`, ordered inner → outer):
+**Declare rings** with `ring,title` rows (id is `r1..r8`, ordered inner → outer):
 
 ```csv
 ring,   title

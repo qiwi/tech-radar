@@ -90,20 +90,25 @@ const readSources = async ({ ctx, cwd, input }) => {
 }
 
 const parseRadars = async ({ ctx, sources, scopes }) => {
-  ctx.radars = await Promise.all(
+  // Per-file: a malformed source is logged and skipped, not fatal.
+  const results = await Promise.all(
     sources.map(async (file, i) => {
-      const document = await parse(file)
-
-      return {
-        document,
-        source: file,
-        scope: scopes[i],
-        date: document.meta.date,
-        title: document.meta.title,
+      try {
+        const document = await parse(file)
+        return {
+          document,
+          source: file,
+          scope: scopes[i],
+          date: document.meta.date,
+          title: document.meta.title,
+        }
+      } catch (err) {
+        console.error(`[parse] ${file}: ${err.message || err}`)
+        return null
       }
     }),
   )
-
+  ctx.radars = results.filter(Boolean)
   return ctx
 }
 

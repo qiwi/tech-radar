@@ -60,7 +60,10 @@ export const parseCsvRadar = async (csvPath) => {
 }
 
 export const normalizeCsv = (fileContents) =>
+  // Strip UTF-8 BOM + CRLF (Excel/Sheets exports on Windows).
   fileContents
+    .replace(/^﻿/, '')
+    .replace(/\r\n?/g, '\n')
     .split(/("[^"]+")/g)
     .map((item) => {
       if (item[0] === '"') return item

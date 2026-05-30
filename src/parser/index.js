@@ -17,16 +17,10 @@ export { parseYamlRadar } from './yaml.js'
  * @returns {Promise<{data: any[], meta: {}, quadrantAliases?: {}}>} radarDocument
  */
 export const parse = async (filePath) => {
-  try {
-    const reader = getReader(path.extname(filePath))
-    const document = await reader(filePath)
-    const radar = normalizeEntries(document)
-
-    return validate(radar)
-  } catch (err) {
-    console.error('filePath:', filePath, err)
-    return {}
-  }
+  const reader = getReader(path.extname(filePath))
+  const document = await reader(filePath)
+  const radar = normalizeEntries(document)
+  return validate(radar)
 }
 const READERS = {
   '.csv': parseCsvRadar,
