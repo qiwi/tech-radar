@@ -150,7 +150,10 @@
   const SPA_CACHE = new Map()
   const fetchPage = async (url) => {
     if (SPA_CACHE.has(url)) return SPA_CACHE.get(url)
-    const html = await fetch(url, { credentials: 'same-origin' }).then(r => r.text())
+    // Don't cache error responses — let navigate() fall back to a hard nav.
+    const r = await fetch(url, { credentials: 'same-origin' })
+    if (!r.ok) throw new Error('HTTP ' + r.status)
+    const html = await r.text()
     SPA_CACHE.set(url, html)
     return html
   }
