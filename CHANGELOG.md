@@ -1,3 +1,8 @@
+## [2.1.4](https://github.com/qiwi/tech-radar/compare/v2.1.3...v2.1.4) (2026-06-01)
+
+### Fixes & improvements
+* fix(aurora): legend links now push history like blip clicks ([859e709](https://github.com/qiwi/tech-radar/commit/859e709ef301306a2a4a908e7128bd7707d67f3d))
+
 ## [2.1.3](https://github.com/qiwi/tech-radar/compare/v2.1.2...v2.1.3) (2026-05-30)
 
 ### Fixes & improvements
