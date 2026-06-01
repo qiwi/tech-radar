@@ -123,7 +123,9 @@
         const blip = numToBlip.get(num)
         const link = blip?.parentElement
         const href = link?.getAttribute('href')
-        if (href) navigate(new URL(href, location.href).href)
+        // Route through go() so the legend behaves exactly like clicking the
+        // blip: pushes history + swaps body (was navigate() only → stale URL).
+        if (href) go(new URL(href, location.href).href)
       })
     })
 
@@ -209,6 +211,16 @@
     }
   }
 
+  // Single navigation entry point — push history THEN swap the body. Both
+  // the document-level link handler and the legend cross-links route
+  // through here so they behave identically; the legend used to call
+  // navigate() directly and skip pushState, leaving the URL bar stale and
+  // breaking back/refresh (different behaviour for list vs blips).
+  const go = (url) => {
+    history.pushState(null, '', url)
+    navigate(url)
+  }
+
   document.addEventListener('click', (e) => {
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
     const link = e.target.closest && e.target.closest('a[href]')
@@ -219,8 +231,7 @@
     try { target = new URL(href, location.href) } catch { return }
     if (target.origin !== location.origin) return
     e.preventDefault()
-    history.pushState(null, '', target.href)
-    navigate(target.href)
+    go(target.href)
   })
 
   window.addEventListener('popstate', () => {
