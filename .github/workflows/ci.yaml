@@ -31,7 +31,7 @@ jobs:
 
       - name: Upload coverage to Qlty
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        uses: qltysh/qlty-action/coverage@a19242102d17e497f437d7466aa01b528537e899 # v2
+        uses: qltysh/qlty-action/coverage@a46e29cfd54065ae8a2c6b1fd3446aed1b1a4257 # v2
         env:
           QLTY_TOKEN: ${{ secrets.QLTY_TOKEN }}
         with:
